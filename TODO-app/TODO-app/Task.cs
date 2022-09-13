@@ -36,7 +36,5 @@ namespace TODO_app
         {
             creationTime = DateTime.Now;
         }
-       
-
     }
 }
