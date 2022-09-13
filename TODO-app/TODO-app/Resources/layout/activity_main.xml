@@ -20,14 +20,17 @@
             android:textSize="20dp">
 
             </TextView>
-        <Button
+
+        <ImageButton
             android:id="@+id/CreateTask"
+
             android:layout_width="150dp"
             android:layout_height="80dp"
+            android:background="@drawable/rounded_corner"
+            android:contentDescription="@string/default_description"
             android:layout_alignParentRight="true"
-            android:clickable="true" 
             android:layout_marginRight="20dp"
-            />
+            android:clickable="true"/>
         </RelativeLayout>
 
     <ScrollView
