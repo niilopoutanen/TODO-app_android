@@ -2,5 +2,6 @@
     <string name="app_name">TODO-app</string>
     <string name="action_settings">Settings</string>
     <string name="date">Tiistai</string>
-	<string name="TaskName">Kirjoita tehtävä</string>
+    <string name="task_name_header">Anna tehtävän nimi</string>
+    <string name="date_select_header">Anna tehtävän erääntymispäivä</string>
 </resources>

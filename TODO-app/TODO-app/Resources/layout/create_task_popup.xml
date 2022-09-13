@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_name_header"
+        android:textColor="#FFFFFF"/>
+    <EditText
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3a3a3a"/>
+    <Button
+        android:id="@+id/TaskNameSubmit"
+        android:layout_width="200dp"
+        android:layout_height="50dp"/>
+    <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/date_select_header"
+         android:textColor="#FFFFFF"/>
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:datePickerMode="calendar"/>
+</LinearLayout>
