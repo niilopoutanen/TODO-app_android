@@ -16,11 +16,14 @@ namespace TODO_app
 {
     internal class FileClass
     {
+        //Folder location and filename
         IFolder folder = FileSystem.Current.LocalStorage;
         string fileName = "TODO2.0";
 
         public FileClass()
         {
+            //Checks if everything is all right
+            
             CheckIfFileExists();
             CreateFile();
         }
@@ -39,6 +42,10 @@ namespace TODO_app
             }
         }
 
+
+        /// <summary>
+        /// If file doesent exists it will creati it
+        /// </summary>
         private void CreateFile()
         {
 
