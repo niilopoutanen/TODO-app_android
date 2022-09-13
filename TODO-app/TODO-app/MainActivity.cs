@@ -12,6 +12,7 @@ namespace TODO_app
     public class MainActivity : AppCompatActivity
     {
         Button btnCreateTask;
+        DatePicker datePicker;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,6 +20,7 @@ namespace TODO_app
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
             btnCreateTask.Click += btnCreateTask_Click;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -30,7 +32,7 @@ namespace TODO_app
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
-            Dialog popup = new Dialog(this);
+            Dialog popup = new Dialog(this); 
             popup.SetContentView(Resource.Layout.create_task_popup);
             popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
             popup.SetTitle("@string/TaskName");
