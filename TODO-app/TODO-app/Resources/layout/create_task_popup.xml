@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#3a3a3a"
+        android:id="@+id/TaskNameInput"
         android:textColor="#FFFFFF"/>
     <Button
         android:id="@+id/TaskNameSubmit"
