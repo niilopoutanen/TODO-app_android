@@ -42,7 +42,7 @@ namespace TODO_app
             Dialog popup = new Dialog(this);
             popup.SetContentView(Resource.Layout.create_task_popup);
             popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
-            popup.SetTitle("Uusi tehtävä");
+            popup.SetTitle("New Task");
             popup.Show();
         }
 
