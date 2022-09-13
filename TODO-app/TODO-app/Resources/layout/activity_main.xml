@@ -25,6 +25,7 @@
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:layout_alignParentRight="true"
+            android:clickable="true" 
             />
         </RelativeLayout>
 
