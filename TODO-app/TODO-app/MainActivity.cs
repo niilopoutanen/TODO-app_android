@@ -28,7 +28,7 @@ namespace TODO_app
             btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
             btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
-            btnTaskNameSubmit.Click += btnSave_Click;
+            btnTaskNameSubmit.Click += btnTaskNameSubmit_Click;
             datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -47,7 +47,7 @@ namespace TODO_app
             popup.Show();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnTaskNameSubmit_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
             task.Text = TaskNameInput.Text;
