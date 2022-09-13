@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="#3a3a3a">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,4 +24,10 @@
          android:layout_height="wrap_content"
          android:text="@string/date_select_header"
          android:textColor="#FFFFFF"/>
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker1"
+        android:datePickerMode="calendar"
+        android:calendarTextColor="#FFFFFF"/>
 </LinearLayout>
