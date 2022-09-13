@@ -5,16 +5,18 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
+using System.Collections.Generic;
 
 namespace TODO_app
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        ImageButton btnCreateTask;
-        Button btnTaskNameSubmit;
-        DatePicker datePicker;
-        EditText TaskNameInput;
+        private ImageButton btnCreateTask;
+        private Button btnTaskNameSubmit;
+        private DatePicker datePicker;
+        private EditText TaskNameInput;
+        private List<TaskItem> taskList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -40,15 +42,21 @@ namespace TODO_app
             Dialog popup = new Dialog(this);
             popup.SetContentView(Resource.Layout.create_task_popup);
             popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
-            popup.SetTitle("@string/TaskName");
+            popup.SetTitle("Uusi tehtävä");
             popup.Show();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
-            task.Title = TaskNameInput.Text;
+            task.Text = TaskNameInput.Text;
             task.DueDate = datePicker.DateTime;
+            taskList.Add(task);
         }
+
+        //public List<TaskItem> ReturnTasks()
+        //{
+        //    return taskList;
+        //}
     }
 }

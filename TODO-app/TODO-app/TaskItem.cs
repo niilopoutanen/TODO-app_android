@@ -6,7 +6,7 @@ namespace TODO_app
     {
         private DateTime creationTime;
         private DateTime dueDate;
-        private string title;
+        private string text;
 
         public DateTime CreationTime
         {
@@ -17,10 +17,10 @@ namespace TODO_app
             get { return dueDate; }
             set { dueDate = value; }
         }
-        public string Title
+        public string Text
         {
-            get { return title; }
-            set { title = value; }
+            get { return text; }
+            set { text = value; }
         }
 
         public TaskItem()
