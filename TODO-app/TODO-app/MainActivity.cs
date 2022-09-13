@@ -12,14 +12,18 @@ namespace TODO_app
     public class MainActivity : AppCompatActivity
     {
         ImageButton btnCreateTask;
+        Button btnTaskNameSubmit;
         DatePicker datePicker;
+        EditText TaskNameInput;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            TaskNameInput = FindViewById<EditText>(Resource.Id.TaskNameSubmit);
             btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
+            btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
             datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
             btnCreateTask.Click += btnCreateTask_Click;
         }
