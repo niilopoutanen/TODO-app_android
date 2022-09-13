@@ -11,7 +11,7 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Button btnCreateTask;
+        ImageButton btnCreateTask;
         DatePicker datePicker;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -19,7 +19,7 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
             datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
             btnCreateTask.Click += btnCreateTask_Click;
         }
