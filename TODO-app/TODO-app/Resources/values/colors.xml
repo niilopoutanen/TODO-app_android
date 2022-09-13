@@ -6,4 +6,6 @@
     <color name="colorBackground">#000000</color>
     <color name="colorMain">#121212</color>
     <color name="colorButton">#202024</color>
+	<color name="buttonGrey">#38383C</color>
+	<color name="mainblue">#3178F6</color>
 </resources>

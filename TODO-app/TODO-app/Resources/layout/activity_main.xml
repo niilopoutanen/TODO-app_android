@@ -9,30 +9,46 @@
         android:layout_width="match_parent"
         android:layout_height="243dp"
         android:id="@+id/Header"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="21dp"
-        android:paddingRight="21dp">
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/NavBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="75dp">
-            <ImageButton
+            android:layout_height="75dp"
+            android:paddingTop="20dp">
+<!--            <ImageButton
                 android:layout_width="106dp"
                 android:layout_height="33dp"
                 android:background="@drawable/rounded_corner"
                 android:backgroundTint="#38383C"
-                android:contentDescription="@string/default_description" />
+                android:contentDescription="@string/default_description" >
+                <TextView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="@string/show_all">
+                </TextView>
+                </ImageButton>-->
+            <Button
+                android:layout_width="106dp"
+                android:layout_height="33dp"
+                android:background="@drawable/top_nav_items"
+                app:backgroundTint="#38383C"
+                android:text=""/>
             <ImageButton
                 android:layout_alignParentRight="true"
                 android:layout_width="200dp"
                 android:layout_height="33dp"
-                android:background="@drawable/rounded_corner"
+                android:background="@drawable/top_nav_items"
                 android:backgroundTint="#38383C"
                 android:contentDescription="@string/default_description" />
             </RelativeLayout>
+
         <RelativeLayout
-            android:layout_alignParentBottom="true"
+            android:id="@+id/CreateTaskLayout"
+            android:layout_below="@id/NavBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="168dp"
+            android:layout_height="wrap_content"
             >
 
             <TextView
@@ -48,16 +64,48 @@
 
         <ImageButton
             android:id="@+id/CreateTask"
-            android:backgroundTint="#3178F6"
+            android:backgroundTint="@color/mainblue"
             android:layout_width="100dp"
             android:layout_height="55dp"
             android:background="@drawable/rounded_corner"
             android:contentDescription="@string/default_description"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+
             android:clickable="true"/>
         </RelativeLayout>
-            </RelativeLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:columnCount="4"
+            android:useDefaultMargins="true"
+            android:layout_marginBottom="22dp">
+            <Button
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:background="@drawable/calendar_item"
+                android:backgroundTint="@color/mainblue"/>
+            <Button
+                android:layout_marginLeft="14dp"
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:background="@drawable/calendar_item"
+                android:backgroundTint="@color/buttonGrey"/>
+
+            <Button
+                android:layout_marginLeft="14dp"
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:background="@drawable/calendar_item"
+                android:backgroundTint="@color/buttonGrey"/>
+            <Button
+                android:layout_marginLeft="14dp"
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:background="@drawable/calendar_item"
+                android:backgroundTint="@color/buttonGrey"/>
+        </GridLayout>
+    </RelativeLayout>
 
 
     <ScrollView

@@ -5,4 +5,5 @@
     <string name="task_name_header">Anna tehtävän nimi</string>
     <string name="date_select_header">Anna tehtävän erääntymispäivä</string>
     <string name="default_description">description</string>
+	<string name="show_all">Näytä kaikki</string>
 </resources>
