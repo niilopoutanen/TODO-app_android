@@ -23,6 +23,7 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
             TaskNameInput = FindViewById<EditText>(Resource.Id.TaskNameSubmit);
             btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
@@ -54,9 +55,9 @@ namespace TODO_app
             taskList.Add(task);
         }
 
-        //public List<TaskItem> ReturnTasks()
-        //{
-        //    return taskList;
-        //}
+        internal List<TaskItem> ReturnTasks()
+        {
+            return taskList;
+        }
     }
 }
