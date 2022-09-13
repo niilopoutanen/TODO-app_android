@@ -21,6 +21,7 @@
 
             </TextView>
         <Button
+            android:id="@+id/CreateTask"
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:layout_alignParentRight="true"
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <Button
+                    
                     android:layout_width="100dp"
                     android:layout_height="50dp"/>
             </TableRow>
