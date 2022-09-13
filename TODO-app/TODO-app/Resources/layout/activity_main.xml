@@ -4,41 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="#1c1c20">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="243dp"
         android:id="@+id/Header"
         android:layout_alignParentTop="true"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:text="@string/date"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
-            android:textSize="20dp">
+        android:paddingLeft="21dp"
+        android:paddingRight="21dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <ImageButton
+                android:layout_width="106dp"
+                android:layout_height="33dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="#38383C"
+                android:contentDescription="@string/default_description" />
+            <ImageButton
+                android:layout_alignParentRight="true"
+                android:layout_width="200dp"
+                android:layout_height="33dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="#38383C"
+                android:contentDescription="@string/default_description" />
+            </RelativeLayout>
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            >
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:text="@string/date"
+                android:textColor="#FFFFFF"
+                android:gravity="top"
+                android:textSize="21dp"
+                android:textStyle="bold" >
 
             </TextView>
 
         <ImageButton
             android:id="@+id/CreateTask"
-
-            android:layout_width="150dp"
-            android:layout_height="80dp"
+            android:backgroundTint="#3178F6"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
             android:background="@drawable/rounded_corner"
             android:contentDescription="@string/default_description"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:clickable="true"/>
         </RelativeLayout>
+            </RelativeLayout>
+
 
     <ScrollView
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="372dp"
         android:id="@+id/scrollView1"
-        android:background="#202024">
+        android:background="#000000">
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
