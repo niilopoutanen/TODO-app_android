@@ -23,9 +23,10 @@ namespace TODO_app
             SetContentView(Resource.Layout.activity_main);
             TaskNameInput = FindViewById<EditText>(Resource.Id.TaskNameSubmit);
             btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
-            btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
-            datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
             btnCreateTask.Click += btnCreateTask_Click;
+            btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
+            btnTaskNameSubmit.Click += btnSave_Click;
+            datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -41,6 +42,13 @@ namespace TODO_app
             popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
             popup.SetTitle("@string/TaskName");
             popup.Show();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            TaskItem task = new TaskItem();
+            task.Title = TaskNameInput.Text;
+            task.DueDate = datePicker.DateTime;
         }
     }
 }
