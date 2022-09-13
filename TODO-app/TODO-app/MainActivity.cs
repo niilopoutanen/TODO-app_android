@@ -32,7 +32,7 @@ namespace TODO_app
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
-            Dialog popup = new Dialog(this); 
+            Dialog popup = new Dialog(this);
             popup.SetContentView(Resource.Layout.create_task_popup);
             popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
             popup.SetTitle("@string/TaskName");
