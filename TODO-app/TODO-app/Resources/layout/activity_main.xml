@@ -5,4 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:id="@+id/Header"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="@string/date"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="20dp">
+
+            </TextView>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            />
+        </RelativeLayout>
+
+    <ScrollView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:id="@+id/scrollView1"
+        android:background="#202024">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow 
+                android:gravity="center">
+                <Button
+                    android:layout_width="400px"
+                    android:layout_height="100px"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center">
+                <Button
+                    android:layout_width="400px"
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+   
 </RelativeLayout>
