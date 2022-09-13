@@ -4,19 +4,20 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
-using PCLStorage;
 
 namespace TODO_app
 {
     internal class FileClass
     {
         IFolder folder = FileSystem.Current.LocalStorage;
-        string fileName = "TODO1";
+        string fileName = "TODO2.0";
 
         public FileClass()
         {
@@ -46,6 +47,8 @@ namespace TODO_app
                 folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             }
         }
+
+
 
     }
 }
