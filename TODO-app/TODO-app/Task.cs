@@ -17,11 +17,6 @@ namespace TODO_app
         private DateTime dueDate;
         private string title;
 
-        public Task()
-        {
-            creationTime = DateTime.Now;
-        }
-        
         public DateTime CreationTime
         {
             get { return creationTime; }
@@ -36,5 +31,12 @@ namespace TODO_app
             get { return title; }
             set { title = value; }
         }
+
+        public Task()
+        {
+            creationTime = DateTime.Now;
+        }
+       
+
     }
 }
