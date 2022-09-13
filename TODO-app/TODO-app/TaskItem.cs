@@ -2,7 +2,7 @@
 
 namespace TODO_app
 {
-    internal class Task
+    internal class TaskItem
     {
         private DateTime creationTime;
         private DateTime dueDate;
@@ -23,7 +23,7 @@ namespace TODO_app
             set { title = value; }
         }
 
-        public Task()
+        public TaskItem()
         {
             creationTime = DateTime.Now;
         }
