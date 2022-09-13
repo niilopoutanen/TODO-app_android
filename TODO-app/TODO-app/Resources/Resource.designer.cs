@@ -2322,10 +2322,13 @@ namespace TODO_app
 			public const int switch_thumb_normal_material_light = 2131034252;
 			
 			// aapt resource value: 0x7F05008D
-			public const int tooltip_background_dark = 2131034253;
+			public const int textSecondary = 2131034253;
 			
 			// aapt resource value: 0x7F05008E
-			public const int tooltip_background_light = 2131034254;
+			public const int tooltip_background_dark = 2131034254;
+			
+			// aapt resource value: 0x7F05008F
+			public const int tooltip_background_light = 2131034255;
 			
 			static Color()
 			{
