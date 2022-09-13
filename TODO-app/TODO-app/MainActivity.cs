@@ -1,8 +1,10 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using System;
 
 namespace TODO_app
 {
@@ -17,6 +19,7 @@ namespace TODO_app
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask.Click += btnCreateTask_Click;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -25,6 +28,13 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            Dialog popup = new Dialog(this);
+            popup.SetContentView(Resource.Layout.activity_main);
+            popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
+            popup.SetTitle("@string/TaskName");
+            popup.Show();
+        }
     }
 }
