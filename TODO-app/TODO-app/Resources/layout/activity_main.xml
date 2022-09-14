@@ -123,31 +123,107 @@
 
             </RelativeLayout>
 
-            <Button
+            <RelativeLayout
                 android:layout_weight="1"
-                android:id="@+id/Date2"
-                android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey"/>
+                android:backgroundTint="@color/buttonGrey">
 
-            <Button
+                    <TextView
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date2"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"/>
+
+
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date2string"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="5dp"/>
+                <Button
+                android:id="@+id/Date2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_weight="1"
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:background="@drawable/calendar_item"
+                android:backgroundTint="@color/buttonGrey">
+
+                    <TextView
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date3"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"/>
+
+
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date3string"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="5dp"/>
+                <Button
                 android:id="@+id/Date3"
-                android:layout_marginLeft="14dp"
-                android:layout_width="66dp"
-                android:layout_height="70dp"
-                android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey"/>
-            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_weight="1"
-                android:id="@+id/Date4"
-                android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey"/>
+                android:backgroundTint="@color/buttonGrey">
+
+                    <TextView
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date4"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"/>
+
+
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date4string"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="5dp"/>
+                <Button
+                android:id="@+id/Date4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 
