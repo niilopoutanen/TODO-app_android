@@ -6,6 +6,7 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace TODO_app
 {
@@ -54,31 +55,58 @@ namespace TODO_app
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
+            int day = 0;
+            int month = 0;
+            int year = 0;
 
+            day = Convert.ToInt32(dayInput.Text);
+            month = Convert.ToInt32(monthInput.Text);
+            year = Convert.ToInt32(yearInput.Text);
+            DateTime dueDate = new DateTime(year, month, day);
 
-            if (!IsNull(TaskNameInput.Text))
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+            alert.SetTitle("Huomio");
+            alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
+
+            if (IsNull(TaskNameInput.Text))
             {
-                task.Text = TaskNameInput.Text;
+                alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
+                alert.Show();
+            }
+
+            else if (IsNull(dayInput.Text) && IsNull(monthInput.Text) && IsNull(yearInput.Text))
+            {
+                alert.SetMessage("Päivämäärä ei voi olla tyhjä");
+                alert.Show();
+            }
+
+            else if (month > 12)
+            {
+                alert.SetMessage("Vuodessa ei ole noin montaa kuukautta");
+                alert.Show();
+            }
+
+            else if (!IsDayInMonth(day, month, year))
+            {
+                alert.SetMessage("Antamassasi kuukaudessa ei ole noin montaa päivää");
+                alert.Show();
+            }
+
+            else if (dueDate < DateTime.Now)
+            {
+                alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
+                alert.Show();
             }
 
             else
             {
-                Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-                Android.App.AlertDialog alert = dialog.Create();
-                alert.SetTitle("Huomio");
-                alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
-                alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
-                alert.Show();
+                task.DueDate = dueDate;
+                task.Text = TaskNameInput.Text;
+                taskList.Add(task);
+                fileSaver.WriteFile(taskList);
+
             }
-
-            int day = Convert.ToInt32(dayInput.Text);
-            int month = Convert.ToInt32(monthInput.Text);
-            int year = Convert.ToInt32(yearInput.Text);
-            DateTime dueDate = new DateTime(year, month, day);
-            task.DueDate = dueDate;
-
-            taskList.Add(task);
-            fileSaver.WriteFile(taskList);
         }
 
         internal List<TaskItem> ReturnTasks()
@@ -99,9 +127,17 @@ namespace TODO_app
             }
         }
 
-        private void RightDay(int month, int year)
+        private bool IsDayInMonth(int day, int month, int year)
         {
-
+            int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
+            if (day > amountOfDaysInMonth)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
