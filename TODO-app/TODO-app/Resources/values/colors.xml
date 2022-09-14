@@ -9,4 +9,5 @@
 	<color name="buttonGrey">#38383C</color>
 	<color name="mainblue">#3178F6</color>
 	<color name="textSecondary">#A1A1A1</color>
+    <color name="headerBackground">#1c1c20</color>
 </resources>

@@ -12,11 +12,11 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private ImageButton btnCreateTask;
-        private Button btnTaskNameSubmit;
-        private DatePicker datePicker;
-        private EditText TaskNameInput;
-        private List<TaskItem> taskList;
+        //private ImageButton btnCreateTask;
+        //private Button btnTaskNameSubmit;
+        //private DatePicker datePicker;
+        //private EditText TaskNameInput;
+        //private List<TaskItem> taskList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,12 +24,12 @@ namespace TODO_app
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            TaskNameInput = FindViewById<EditText>(Resource.Id.TaskNameSubmit);
-            btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
-            btnCreateTask.Click += btnCreateTask_Click;
-            btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
-            btnTaskNameSubmit.Click += btnTaskNameSubmit_Click;
-            datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
+            //TaskNameInput = FindViewById<EditText>(Resource.Id.TaskNameSubmit);
+            //btnCreateTask = FindViewById<ImageButton>(Resource.Id.CreateTask);
+            //btnCreateTask.Click += btnCreateTask_Click;
+            //btnTaskNameSubmit = FindViewById<Button>(Resource.Id.TaskNameSubmit);
+            //btnTaskNameSubmit.Click += btnTaskNameSubmit_Click;
+            //datePicker = FindViewById<DatePicker>(Resource.Id.datePicker1);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -38,26 +38,26 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        private void btnCreateTask_Click(object sender, EventArgs e)
-        {
-            Dialog popup = new Dialog(this);
-            popup.SetContentView(Resource.Layout.create_task_popup);
-            popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
-            popup.SetTitle("New Task");
-            popup.Show();
-        }
+        //private void btnCreateTask_Click(object sender, EventArgs e)
+        //{
+        //    Dialog popup = new Dialog(this);
+        //    popup.SetContentView(Resource.Layout.create_task_popup);
+        //    popup.Window.SetSoftInputMode(SoftInput.AdjustResize);
+        //    popup.SetTitle("New Task");
+        //    popup.Show();
+        //}
 
-        private void btnTaskNameSubmit_Click(object sender, EventArgs e)
-        {
-            TaskItem task = new TaskItem();
-            task.Text = TaskNameInput.Text;
-            task.DueDate = datePicker.DateTime;
-            taskList.Add(task);
-        }
+        //private void btnTaskNameSubmit_Click(object sender, EventArgs e)
+        //{
+        //    TaskItem task = new TaskItem();
+        //    task.Text = TaskNameInput.Text;
+        //    task.DueDate = datePicker.DateTime;
+        //    taskList.Add(task);
+        //}
 
-        internal List<TaskItem> ReturnTasks()
-        {
-            return taskList;
-        }
+        //internal List<TaskItem> ReturnTasks()
+        //{
+        //    return taskList;
+        //}
     }
 }

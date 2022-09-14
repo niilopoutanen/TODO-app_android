@@ -4,44 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1c1c20">
+    android:background="#000000">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="243dp"
         android:id="@+id/Header"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bottomrounded">
         <RelativeLayout
             android:id="@+id/NavBarLayout"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:paddingTop="20dp">
-<!--            <ImageButton
-                android:layout_width="106dp"
-                android:layout_height="33dp"
-                android:background="@drawable/rounded_corner"
-                android:backgroundTint="#38383C"
-                android:contentDescription="@string/default_description" >
-                <TextView
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:text="@string/show_all">
-                </TextView>
-                </ImageButton>-->
             <Button
+                android:id="@+id/ShowAll"
                 android:layout_width="106dp"
                 android:layout_height="33dp"
-                android:background="@drawable/top_nav_items"
+                android:background="@drawable/rounded10px"
                 app:backgroundTint="@color/buttonGrey"
                 android:text="@string/show_all"
                 android:textColor="@color/textSecondary"
                 android:textAllCaps="false"/>
             <ImageButton
+                android:id="@+id/SearchBar"
                 android:layout_alignParentRight="true"
                 android:layout_width="200dp"
                 android:layout_height="33dp"
-                android:background="@drawable/top_nav_items"
+                android:background="@drawable/rounded10px"
                 android:backgroundTint="@color/buttonGrey"
                 android:contentDescription="@string/default_description" />
             </RelativeLayout>
@@ -54,6 +45,7 @@
             >
 
             <TextView
+                android:id="@+id/DateText"
                 android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:text="@string/date"
@@ -64,19 +56,21 @@
                 android:layout_marginBottom="0.0dp" >
 
             </TextView>
-
-        <ImageButton
+        <Button
             android:id="@+id/CreateTask"
-            android:backgroundTint="@color/mainblue"
             android:layout_width="100dp"
             android:layout_height="55dp"
-            android:background="@drawable/rounded_corner"
-            android:contentDescription="@string/default_description"
+            android:background="@drawable/rounded50px"
+            android:backgroundTint="@color/mainblue"
             android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"/>
 
-            android:clickable="true"/>
         </RelativeLayout>
         <GridLayout
+            android:id="@+id/CalendarGrid"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_alignParentBottom="true"
@@ -84,11 +78,13 @@
             android:useDefaultMargins="true"
             android:layout_marginBottom="22dp">
             <Button
+                android:id="@+id/Date1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
                 android:backgroundTint="@color/mainblue"/>
             <Button
+                android:id="@+id/Date2"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
@@ -96,12 +92,14 @@
                 android:backgroundTint="@color/buttonGrey"/>
 
             <Button
+                android:id="@+id/Date3"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
                 android:backgroundTint="@color/buttonGrey"/>
             <Button
+                android:id="@+id/Date4"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
@@ -112,7 +110,6 @@
 
 
     <ScrollView
-
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="372dp"
@@ -128,7 +125,7 @@
                 android:gravity="center"
                 android:layout_marginBottom="21dp">
                 <Button
-                    android:background="@drawable/task_card"
+                    android:background="@drawable/rounded60px"
                     android:layout_width="333dp"
                     android:layout_height="68dp"/>
             </TableRow>
@@ -138,17 +135,17 @@
                 android:gravity="center"
                 android:layout_marginBottom="21dp">
                 <Button
-                    android:background="@drawable/task_card"
+                    android:background="@drawable/rounded60px"
                     android:layout_width="333dp"
                     android:layout_height="68dp"/>
             </TableRow>
-                        <TableRow
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginBottom="21dp">
                 <Button
-                    android:background="@drawable/task_card"
+                    android:background="@drawable/rounded60px"
                     android:layout_width="333dp"
                     android:layout_height="68dp"/>
             </TableRow>

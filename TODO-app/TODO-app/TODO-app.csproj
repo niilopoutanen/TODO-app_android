@@ -104,7 +104,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\rounded_corner.xml" />
+    <AndroidResource Include="Resources\drawable\rounded50px.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\create_task_popup.xml">
@@ -112,13 +112,16 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\top_nav_items.xml" />
+    <AndroidResource Include="Resources\drawable\rounded10px.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\calendar_item.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\task_card.xml" />
+    <AndroidResource Include="Resources\drawable\rounded60px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bottomRounded.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
