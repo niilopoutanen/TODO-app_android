@@ -8,5 +8,17 @@
 	<string name="show_all">Näytä kaikki</string>
     <string name="add_task_header">Lisää uusi tehtävä</string>
     <string name="add">Lisää</string>
-    <string name="search">      Hae</string>
+    <string name="search">Hae</string>
+    
+    <string name="date1">14</string>
+    <string name="date1string">Ma</string>
+
+    <string name="date2">15</string>
+    <string name="date2string">Ti</string>
+
+    <string name="date3">16</string>
+    <string name="date3string">Ke</string>
+    
+    <string name="date4">17</string>
+    <string name="date4string">To</string>
 </resources>
