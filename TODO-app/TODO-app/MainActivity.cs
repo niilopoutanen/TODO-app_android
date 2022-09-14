@@ -19,6 +19,7 @@ namespace TODO_app
         private EditText yearInput;
         private EditText monthInput;
         private EditText dayInput;
+        private FileClass fileSaver = new FileClass();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
