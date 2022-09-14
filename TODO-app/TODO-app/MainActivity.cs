@@ -199,7 +199,7 @@ namespace TODO_app
             RelativeLayout.LayoutParams headerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
             headerParams.AddRule(LayoutRules.RightOf, toggle.Id);
             TextView header = new TextView(this);
-            header.Text = taskName
+            header.Text = taskName;
             header.LayoutParameters = headerParams;
             header.SetTextColor(ContextCompat.GetColorStateList(this, Resource.Color.white));
             header.SetTextSize(new Android.Util.ComplexUnitType(),60);
