@@ -45,7 +45,22 @@ namespace TODO_app
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
-            task.Text = TaskNameInput.Text;
+
+            if (TaskNameInput.Text != "" && TaskNameInput.Text != null)
+            {
+                task.Text = TaskNameInput.Text;
+            }
+
+            else
+            {
+                Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+                Android.App.AlertDialog alert = dialog.Create();
+                alert.SetTitle("Huomio");
+                alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
+                alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
+                alert.Show();
+            }
+
             taskList.Add(task);
         }
 
