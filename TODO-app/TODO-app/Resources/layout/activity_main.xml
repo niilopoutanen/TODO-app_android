@@ -5,4 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:id="@+id/Header"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="@string/date"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="20dp">
+
+            </TextView>
+
+        <ImageButton
+            android:id="@+id/CreateTask"
+
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:background="@drawable/rounded_corner"
+            android:contentDescription="@string/default_description"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:clickable="true"/>
+        </RelativeLayout>
+
+    <ScrollView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:id="@+id/scrollView1"
+        android:background="#202024">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"/>
+            </TableRow>
+
+
+
+        </TableLayout>
+    </ScrollView>
+
+   
 </RelativeLayout>
