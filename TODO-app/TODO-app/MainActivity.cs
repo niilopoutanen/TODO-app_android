@@ -53,7 +53,7 @@ namespace TODO_app
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
-            
+
             CreateTaskItem("testi");
             //SetContentView(Resource.Layout.create_task_popup);
             //TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
@@ -74,16 +74,26 @@ namespace TODO_app
             int day = 0;
             int month = 0;
             int year = 0;
-
-            day = Convert.ToInt32(dayInput.Text);
-            month = Convert.ToInt32(monthInput.Text);
-            year = Convert.ToInt32(yearInput.Text);
-            DateTime dueDate = new DateTime(year, month, day);
+            DateTime dueDate = DateTime.Today;
 
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
             alert.SetTitle("Huomio");
             alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
+
+            if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
+            {
+                day = Convert.ToInt32(dayInput.Text);
+                month = Convert.ToInt32(monthInput.Text);
+                year = Convert.ToInt32(yearInput.Text);
+                dueDate = new DateTime(year, month, day);
+            }
+
+            else
+            {
+                alert.SetMessage("Päivämäärä ei voi olla tyhjä");
+                alert.Show();
+            }
 
             if (IsNull(TaskNameInput.Text))
             {
@@ -109,7 +119,7 @@ namespace TODO_app
                 alert.Show();
             }
 
-            else if (dueDate < DateTime.Now)
+            else if (dueDate < DateTime.Today)
             {
                 alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
                 alert.Show();
@@ -121,7 +131,6 @@ namespace TODO_app
                 task.Text = TaskNameInput.Text;
                 taskList.Add(task);
                 fileSaver.WriteFile(taskList);
-
             }
         }
 
