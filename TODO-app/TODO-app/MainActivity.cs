@@ -69,7 +69,6 @@ namespace TODO_app
                 alert.Show();
             }
 
-
             int day = Convert.ToInt32(dayInput.Text);
             int month = Convert.ToInt32(monthInput.Text);
             int year = Convert.ToInt32(yearInput.Text);
@@ -82,11 +81,6 @@ namespace TODO_app
         internal List<TaskItem> ReturnTasks()
         {
             return taskList;
-        }
-
-        private void ParseDate()
-        {
-
         }
     }
 }
