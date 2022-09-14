@@ -26,6 +26,7 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            fileSaver.ReadFile();
 
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
@@ -77,6 +78,7 @@ namespace TODO_app
             task.DueDate = dueDate;
 
             taskList.Add(task);
+            fileSaver.WriteFile(taskList);
         }
 
         internal List<TaskItem> ReturnTasks()
