@@ -14,6 +14,7 @@ using PCLStorage;
 using Org.Json;
 using Android.Util;
 using System.Text.Json;
+using System.Reflection;
 
 namespace TODO_app
 {
@@ -21,7 +22,7 @@ namespace TODO_app
     {
         //Folder location and filename
         private static IFolder _folder = FileSystem.Current.LocalStorage;
-        private string _fileName = Path.Combine(_folder.ToString(),"TODO2.0.json");
+        private string _fileName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),"TODO2.0.json");
 
 
         public FileClass()
@@ -61,7 +62,7 @@ namespace TODO_app
         /// Writes all text to internal storage. Needs List of Task objects.
         /// </summary>
         /// <param name="tasks"></param>
-        private void WriteFile(List<TaskItem> tasks)
+        internal void WriteFile(List<TaskItem> tasks)
         {
             //Empty file
             File.WriteAllText(_fileName, "");
@@ -82,7 +83,7 @@ namespace TODO_app
         /// Reads from internal storage. Returns list of Task objects.
         /// </summary>
         /// <returns></returns>
-        private List<TaskItem> ReadFile()
+        internal List<TaskItem> ReadFile()
         {
             List<TaskItem> tasks = new List<TaskItem>();
             string json = File.ReadAllText(_fileName);

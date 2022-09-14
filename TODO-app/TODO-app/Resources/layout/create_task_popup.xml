@@ -169,7 +169,8 @@
             android:layout_marginBottom="20dp"
             android:text="@string/add"
             android:textColor="@android:color/white"
-            android:id="@+id/AddButton"/>
+            android:id="@+id/AddButton"
+            android:clickable="true"/>
     </RelativeLayout>
 
 </RelativeLayout>
