@@ -60,16 +60,16 @@ namespace TODO_app
         /// Writes all text to internal storage. Needs List of Task objects.
         /// </summary>
         /// <param name="tasks"></param>
-        private void WriteFile(List<Task> tasks)
+        private void WriteFile(List<TaskItem> tasks)
         {
             //Empty file
             File.WriteAllText(_fileName, "");
 
             //Convert objects to string
             List<string> writeTasks = new List<string>();
-            foreach (Task task in tasks)
+            foreach (TaskItem task in tasks)
             {
-               writeTasks.Add(JsonSerializer.Serialize<Task>(task));
+               writeTasks.Add(JsonSerializer.Serialize<TaskItem>(task));
             }
 
             //Writes to file
@@ -81,11 +81,11 @@ namespace TODO_app
         /// Reads from internal storage. Returns list of Task objects.
         /// </summary>
         /// <returns></returns>
-        private List<Task> ReadFile()
+        private List<TaskItem> ReadFile()
         {
-            List<Task> tasks = new List<Task>();
+            List<TaskItem> tasks = new List<TaskItem>();
             string json = File.ReadAllText(_fileName);
-            tasks.Add(JsonSerializer.Deserialize<Task>(json));
+            tasks.Add(JsonSerializer.Deserialize<TaskItem>(json));
             return tasks;
         }
     }
