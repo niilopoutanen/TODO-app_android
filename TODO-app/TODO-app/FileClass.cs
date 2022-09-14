@@ -20,13 +20,13 @@ namespace TODO_app
     internal class FileClass
     {
         //Folder location and filename
-        private IFolder _folder = FileSystem.Current.LocalStorage;
-        private string _fileName = "TODO2.0.json";
+        private static IFolder _folder = FileSystem.Current.LocalStorage;
+        private string _fileName = Path.Combine(_folder.ToString(),"TODO2.0.json");
 
         public FileClass()
         {
             //Checks if everything is all right
-            
+            CreateFile();
             CheckIfFileExists();
         }
 
@@ -56,7 +56,10 @@ namespace TODO_app
             }
         }
 
-
+        /// <summary>
+        /// Writes all text to internal storage. Needs List of Task objects.
+        /// </summary>
+        /// <param name="tasks"></param>
         private void WriteFile(List<Task> tasks)
         {
             //Empty file
@@ -66,12 +69,24 @@ namespace TODO_app
             List<string> writeTasks = new List<string>();
             foreach (Task task in tasks)
             {
-               writeTasks.Add(JsonSerializer.Serialize(task));
+               writeTasks.Add(JsonSerializer.Serialize<Task>(task));
             }
 
             //Writes to file
             File.WriteAllLines(_fileName,writeTasks);
         }
 
+
+        /// <summary>
+        /// Reads from internal storage. Returns list of Task objects.
+        /// </summary>
+        /// <returns></returns>
+        private List<Task> ReadFile()
+        {
+            List<Task> tasks = new List<Task>();
+            string json = File.ReadAllText(_fileName);
+            tasks.Add(JsonSerializer.Deserialize<Task>(json));
+            return tasks;
+        }
     }
 }
