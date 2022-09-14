@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Graphics.Drawables;
+using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -43,6 +44,11 @@ namespace TODO_app
             taskToggle = FindViewById<Button>(Resource.Id.radiobutton);
             taskToggle.Click += TaskToggle_Click;
 
+            foreach (TaskItem t in taskList)
+            {
+                CreateTaskItem(t.Text);
+            }
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -54,14 +60,13 @@ namespace TODO_app
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
 
-            CreateTaskItem("testi");
-            //SetContentView(Resource.Layout.create_task_popup);
-            //TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
-            //btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
-            //yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
-            //monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
-            //dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
-            //btnAddTask.Click += btnAddTask_Click;
+            SetContentView(Resource.Layout.create_task_popup);
+            TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
+            btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
+            yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
+            monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
+            dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
+            btnAddTask.Click += btnAddTask_Click;
         }
         private void TaskToggle_Click(object sender, EventArgs e)
         {
@@ -74,63 +79,66 @@ namespace TODO_app
             int day = 0;
             int month = 0;
             int year = 0;
+            bool error = false;
             DateTime dueDate = DateTime.Today;
 
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
             alert.SetTitle("Huomio");
-            alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
-
-            if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
-            {
-                day = Convert.ToInt32(dayInput.Text);
-                month = Convert.ToInt32(monthInput.Text);
-                year = Convert.ToInt32(yearInput.Text);
-                dueDate = new DateTime(year, month, day);
-            }
-
-            else
-            {
-                alert.SetMessage("Päivämäärä ei voi olla tyhjä");
-                alert.Show();
-            }
+           alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
 
             if (IsNull(TaskNameInput.Text))
             {
+                error = true;
                 alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
                 alert.Show();
             }
 
-            else if (IsNull(dayInput.Text) && IsNull(monthInput.Text) && IsNull(yearInput.Text))
+            else if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
             {
-                alert.SetMessage("Päivämäärä ei voi olla tyhjä");
-                alert.Show();
-            }
+                day = Convert.ToInt32(dayInput.Text);
+                month = Convert.ToInt32(monthInput.Text);
+                year = Convert.ToInt32(yearInput.Text);
 
-            else if (month > 12)
-            {
-                alert.SetMessage("Vuodessa ei ole noin montaa kuukautta");
-                alert.Show();
-            }
+                if (month > 12)
+                {
+                    error = true;
+                    alert.SetMessage("Vuodessa ei ole noin montaa kuukautta");
+                    alert.Show();
+                }
+                
+                else if (!IsDayInMonth(day, month, year))
+                {
+                    alert.SetMessage("Antamassasi kuukaudessa ei ole noin montaa päivää");
+                    alert.Show();
+                }
 
-            else if (!IsDayInMonth(day, month, year))
-            {
-                alert.SetMessage("Antamassasi kuukaudessa ei ole noin montaa päivää");
-                alert.Show();
-            }
+                else
+                {
+                    dueDate = new DateTime(year, month, day);
+                }
 
-            else if (dueDate < DateTime.Today)
-            {
-                alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
-                alert.Show();
+                if (dueDate < DateTime.Today)
+                {
+                    alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
+                    alert.Show();
+                }
+
+                else
+                {
+                    task.DueDate = dueDate;
+                    task.Text = TaskNameInput.Text;
+                    taskList.Add(task);
+                    fileSaver.WriteFile(taskList);
+                    SetContentView(Resource.Layout.activity_main);
+                    CreateTaskItem(task.Text);
+                }
             }
 
             else
             {
-                task.DueDate = dueDate;
-                task.Text = TaskNameInput.Text;
-                taskList.Add(task);
-                fileSaver.WriteFile(taskList);
+                alert.SetMessage("Päivämäärä ei voi olla tyhjä");
+                alert.Show();
             }
         }
 
@@ -141,7 +149,7 @@ namespace TODO_app
 
         private bool IsNull(string s)
         {
-            if (s == "" && s == null)
+            if (s == "" || s == null)
             {
                 return true;
             }
