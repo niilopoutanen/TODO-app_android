@@ -25,6 +25,8 @@ namespace TODO_app
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::TODO_app.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::TODO_app.Resource.String.Hello;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::TODO_app.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::TODO_app.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::TODO_app.Resource.Attribute.fontProviderAuthority;
@@ -4513,88 +4515,83 @@ namespace TODO_app
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7F0D0000
-			public const int abc_action_bar_home_description = 2131558400;
-			
-			// aapt resource value: 0x7F0D0001
-			public const int abc_action_bar_up_description = 2131558401;
-			
 			// aapt resource value: 0x7F0D0002
-			public const int abc_action_menu_overflow_description = 2131558402;
+			public const int abc_action_bar_home_description = 2131558402;
 			
 			// aapt resource value: 0x7F0D0003
-			public const int abc_action_mode_done = 2131558403;
-			
-			// aapt resource value: 0x7F0D0005
-			public const int abc_activitychooserview_choose_application = 2131558405;
+			public const int abc_action_bar_up_description = 2131558403;
 			
 			// aapt resource value: 0x7F0D0004
-			public const int abc_activity_chooser_view_see_all = 2131558404;
+			public const int abc_action_menu_overflow_description = 2131558404;
 			
-			// aapt resource value: 0x7F0D0006
-			public const int abc_capital_off = 2131558406;
+			// aapt resource value: 0x7F0D0005
+			public const int abc_action_mode_done = 2131558405;
 			
 			// aapt resource value: 0x7F0D0007
-			public const int abc_capital_on = 2131558407;
+			public const int abc_activitychooserview_choose_application = 2131558407;
+			
+			// aapt resource value: 0x7F0D0006
+			public const int abc_activity_chooser_view_see_all = 2131558406;
 			
 			// aapt resource value: 0x7F0D0008
-			public const int abc_menu_alt_shortcut_label = 2131558408;
+			public const int abc_capital_off = 2131558408;
 			
 			// aapt resource value: 0x7F0D0009
-			public const int abc_menu_ctrl_shortcut_label = 2131558409;
+			public const int abc_capital_on = 2131558409;
 			
 			// aapt resource value: 0x7F0D000A
-			public const int abc_menu_delete_shortcut_label = 2131558410;
+			public const int abc_menu_alt_shortcut_label = 2131558410;
 			
 			// aapt resource value: 0x7F0D000B
-			public const int abc_menu_enter_shortcut_label = 2131558411;
+			public const int abc_menu_ctrl_shortcut_label = 2131558411;
 			
 			// aapt resource value: 0x7F0D000C
-			public const int abc_menu_function_shortcut_label = 2131558412;
+			public const int abc_menu_delete_shortcut_label = 2131558412;
 			
 			// aapt resource value: 0x7F0D000D
-			public const int abc_menu_meta_shortcut_label = 2131558413;
+			public const int abc_menu_enter_shortcut_label = 2131558413;
 			
 			// aapt resource value: 0x7F0D000E
-			public const int abc_menu_shift_shortcut_label = 2131558414;
+			public const int abc_menu_function_shortcut_label = 2131558414;
 			
 			// aapt resource value: 0x7F0D000F
-			public const int abc_menu_space_shortcut_label = 2131558415;
+			public const int abc_menu_meta_shortcut_label = 2131558415;
 			
 			// aapt resource value: 0x7F0D0010
-			public const int abc_menu_sym_shortcut_label = 2131558416;
+			public const int abc_menu_shift_shortcut_label = 2131558416;
 			
 			// aapt resource value: 0x7F0D0011
-			public const int abc_prepend_shortcut_label = 2131558417;
-			
-			// aapt resource value: 0x7F0D0013
-			public const int abc_searchview_description_clear = 2131558419;
-			
-			// aapt resource value: 0x7F0D0014
-			public const int abc_searchview_description_query = 2131558420;
-			
-			// aapt resource value: 0x7F0D0015
-			public const int abc_searchview_description_search = 2131558421;
-			
-			// aapt resource value: 0x7F0D0016
-			public const int abc_searchview_description_submit = 2131558422;
-			
-			// aapt resource value: 0x7F0D0017
-			public const int abc_searchview_description_voice = 2131558423;
+			public const int abc_menu_space_shortcut_label = 2131558417;
 			
 			// aapt resource value: 0x7F0D0012
-			public const int abc_search_hint = 2131558418;
+			public const int abc_menu_sym_shortcut_label = 2131558418;
+			
+			// aapt resource value: 0x7F0D0013
+			public const int abc_prepend_shortcut_label = 2131558419;
+			
+			// aapt resource value: 0x7F0D0015
+			public const int abc_searchview_description_clear = 2131558421;
+			
+			// aapt resource value: 0x7F0D0016
+			public const int abc_searchview_description_query = 2131558422;
+			
+			// aapt resource value: 0x7F0D0017
+			public const int abc_searchview_description_search = 2131558423;
 			
 			// aapt resource value: 0x7F0D0018
-			public const int abc_shareactionprovider_share_with = 2131558424;
+			public const int abc_searchview_description_submit = 2131558424;
 			
 			// aapt resource value: 0x7F0D0019
-			public const int abc_shareactionprovider_share_with_application = 2131558425;
+			public const int abc_searchview_description_voice = 2131558425;
+			
+			// aapt resource value: 0x7F0D0014
+			public const int abc_search_hint = 2131558420;
 			
 			// aapt resource value: 0x7F0D001A
-			public const int abc_toolbar_collapse_description = 2131558426;
+			public const int abc_shareactionprovider_share_with = 2131558426;
 			
 			// aapt resource value: 0x7F0D001B
+
 			public const int action_settings = 2131558427;
 			
 			// aapt resource value: 0x7F0D001C
