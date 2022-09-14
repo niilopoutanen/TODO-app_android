@@ -16,6 +16,10 @@ namespace TODO_app
         private Button btnAddTask;
         private EditText TaskNameInput;
         private List<TaskItem> taskList = new List<TaskItem>();
+        private EditText yearInput;
+        private EditText monthInput;
+        private EditText dayInput;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -39,12 +43,16 @@ namespace TODO_app
             SetContentView(Resource.Layout.create_task_popup);
             TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
             btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
+            yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
+            monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
+            dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
             btnAddTask.Click += btnAddTask_Click;
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
+
 
             if (TaskNameInput.Text != "" && TaskNameInput.Text != null)
             {
@@ -61,12 +69,24 @@ namespace TODO_app
                 alert.Show();
             }
 
+
+            int day = Convert.ToInt32(dayInput.Text);
+            int month = Convert.ToInt32(monthInput.Text);
+            int year = Convert.ToInt32(yearInput.Text);
+            DateTime dueDate = new DateTime(year, month, day);
+            task.DueDate = dueDate;
+
             taskList.Add(task);
         }
 
         internal List<TaskItem> ReturnTasks()
         {
             return taskList;
+        }
+
+        private void ParseDate()
+        {
+
         }
     }
 }
