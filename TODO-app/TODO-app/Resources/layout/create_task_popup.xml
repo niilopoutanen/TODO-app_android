@@ -7,7 +7,7 @@
     android:background="#000000">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="330dp"
         android:background="@drawable/bottomRounded"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
@@ -45,12 +45,13 @@
             android:layout_height="wrap_content"
             android:text="@string/date_select_header"
             android:layout_below="@+id/NameInputForm"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="20dp"/>
 
         <RelativeLayout
             android:layout_below="@+id/DateSelectHeader"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:gravity="center_vertical">
             <RelativeLayout
                 android:layout_width="85dp"
@@ -58,15 +59,17 @@
                 android:id="@+id/DaySelector"
                 android:layout_marginRight="20dp"
 >
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-
-                    android:id="@+id/DayDownButton"
+                    android:id="@+id/DayUpButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentTop="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="fitCenter "
+                    android:background="@drawable/arrow"
+                    android:contentDescription="@string/default_description" 
+
+                    />
                 <EditText
                     android:inputType="date"
                     android:id="@+id/DaySelectInput"
@@ -77,14 +80,16 @@
                     android:background="@drawable/rounded10px"
                     android:backgroundTint="@color/buttonGrey"/>
 
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/DayUpButton"
+                    android:id="@+id/DayDownButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:contentDescription="@string/default_description" 
+                    android:background="@drawable/arrowdown">
+
+                </ImageButton>
 
             </RelativeLayout>
             <RelativeLayout
@@ -95,15 +100,15 @@
                 android:layout_marginRight="20dp">
 
 
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-
-                    android:id="@+id/MonthDownButton"
+                    android:id="@+id/MonthUpButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentTop="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="fitCenter "
+                    android:background="@drawable/arrow"
+                    android:contentDescription="@string/default_description" />
                 <EditText
                     android:inputType="date"
                     android:id="@+id/MonthSelectInput"
@@ -114,14 +119,16 @@
                     android:background="@drawable/rounded10px"
                     android:backgroundTint="@color/buttonGrey"/>
 
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/MonthUpButton"
+                    android:id="@+id/MonthDownButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:contentDescription="@string/default_description" 
+                    android:background="@drawable/arrowdown">
+
+                </ImageButton>
             </RelativeLayout>
 
             <RelativeLayout
@@ -129,15 +136,19 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/MonthSelector"
                 android:id="@+id/YearSelector">
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-
-                    android:id="@+id/YearDownButton"
+                    android:id="@+id/YearUpButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentTop="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="fitCenter "
+                    android:background="@drawable/arrow"
+                    android:contentDescription="@string/default_description" 
+
+                    >
+
+                </ImageButton>
                 <EditText
                     android:inputType="date"
                     android:id="@+id/YearSelectInput"
@@ -148,14 +159,16 @@
                     android:background="@drawable/rounded10px"
                     android:backgroundTint="@color/buttonGrey"/>
 
-                <Button 
+                <ImageButton
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/YearUpButton"
+                    android:id="@+id/YearDownButton"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true">
-                    
-                </Button>
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:contentDescription="@string/default_description" 
+                    android:background="@drawable/arrowdown">
+
+                </ImageButton>
             </RelativeLayout>
 
         </RelativeLayout>
