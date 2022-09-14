@@ -23,6 +23,7 @@ namespace TODO_app
         private static IFolder _folder = FileSystem.Current.LocalStorage;
         private string _fileName = Path.Combine(_folder.ToString(),"TODO2.0.json");
 
+
         public FileClass()
         {
             //Checks if everything is all right
