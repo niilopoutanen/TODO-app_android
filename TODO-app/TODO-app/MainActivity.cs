@@ -1,9 +1,13 @@
 ﻿using Android.App;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Content;
+using Java.Time.Format;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,6 +17,7 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private TableLayout tableLayout;
         private Button btnCreateTask;
         private Button btnAddTask;
         private EditText TaskNameInput;
@@ -43,13 +48,14 @@ namespace TODO_app
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
-            SetContentView(Resource.Layout.create_task_popup);
-            TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
-            btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
-            yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
-            monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
-            dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
-            btnAddTask.Click += btnAddTask_Click;
+            CreateTaskItem("testi");
+            //SetContentView(Resource.Layout.create_task_popup);
+            //TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
+            //btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
+            //yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
+            //monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
+            //dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
+            //btnAddTask.Click += btnAddTask_Click;
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
@@ -138,6 +144,23 @@ namespace TODO_app
             {
                 return true;
             }
+        }
+
+
+
+        private void CreateTaskItem(string taskName)
+        {
+            tableLayout = FindViewById<TableLayout>(Resource.Id.TasksTable);
+            Button btn = new Button(this);
+            btn.SetWidth(400);
+            btn.SetHeight(200);
+            Drawable rounded60 = GetDrawable(Resource.Drawable.rounded60px);
+            btn.Background = rounded60;
+            TableRow row = new TableRow(this);
+            
+
+            tableLayout.AddView(row);
+            row.AddView(btn);
         }
     }
 }

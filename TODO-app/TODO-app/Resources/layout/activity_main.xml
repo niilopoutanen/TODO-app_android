@@ -110,6 +110,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center"
                         android:layout_width="match_parent"
+                    
                         android:layout_height="wrap_content"
                         android:text="@string/date1string"
                         android:textSize="20dp"
@@ -235,6 +236,7 @@
         android:id="@+id/scrollView1"
         android:background="#000000">
         <TableLayout
+            android:id="@+id/TasksTable"
             android:layout_marginTop="21dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -248,46 +250,7 @@
                     android:layout_width="333dp"
                     android:layout_height="68dp"/>
             </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="21dp">
-                <Button
-                    android:background="@drawable/rounded60px"
-                    android:layout_width="333dp"
-                    android:layout_height="68dp"/>
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="21dp">
-                <Button
-                    android:background="@drawable/rounded60px"
-                    android:layout_width="333dp"
-                    android:layout_height="68dp"/>
-            </TableRow>
-                        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="21dp">
-                <Button
-                    android:background="@drawable/rounded60px"
-                    android:layout_width="333dp"
-                    android:layout_height="68dp"/>
-            </TableRow>
-                        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="21dp">
-                <Button
-                    android:background="@drawable/rounded60px"
-                    android:layout_width="333dp"
-                    android:layout_height="68dp"/>
-            </TableRow>
+
 
 
 
