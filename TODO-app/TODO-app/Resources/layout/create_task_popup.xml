@@ -28,6 +28,7 @@
             android:textColor="@android:color/white"/>
 
         <EditText
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/NameInputForm"
@@ -67,6 +68,7 @@
                     
                 </Button>
                 <EditText
+                    android:inputType="date"
                     android:id="@+id/DaySelectInput"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
@@ -103,6 +105,7 @@
                     
                 </Button>
                 <EditText
+                    android:inputType="date"
                     android:id="@+id/MonthSelectInput"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
@@ -125,7 +128,7 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/MonthSelector"
-                android:id="@id/YearSelector">
+                android:id="@+id/YearSelector">
                 <Button 
                     android:layout_centerHorizontal="true"
 
@@ -136,6 +139,7 @@
                     
                 </Button>
                 <EditText
+                    android:inputType="date"
                     android:id="@+id/YearSelectInput"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
