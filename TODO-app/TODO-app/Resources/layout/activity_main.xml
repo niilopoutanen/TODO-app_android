@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#000000"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="243dp"
@@ -16,26 +18,31 @@
         <LinearLayout
             android:id="@+id/NavBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:paddingTop="20dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="18dp"
             android:orientation="horizontal">
             <Button
                 android:layout_weight="1"
                 android:id="@+id/ShowAll"
                 android:layout_width="106dp"
-                android:layout_height="33dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/rounded10px"
                 app:backgroundTint="@color/buttonGrey"
                 android:text="@string/show_all"
                 android:textColor="@color/textSecondary"
                 android:textAllCaps="false"/>
-            <ImageButton
+            <EditText
+                android:paddingLeft="20dp"
+                android:text="@string/search"
+                android:textColor="@color/textSecondary"
+                android:inputType="text"
                 android:layout_weight="1"
                 android:id="@+id/SearchBar"
                 android:layout_alignParentRight="true"
                 android:layout_width="180dp"
-                android:layout_height="33dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/rounded10px"
                 android:backgroundTint="@color/buttonGrey"
                 android:contentDescription="@string/default_description" />
