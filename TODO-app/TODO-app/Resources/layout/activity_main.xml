@@ -69,21 +69,22 @@
             android:textSize="30dp"/>
 
         </RelativeLayout>
-        <GridLayout
+        <LinearLayout
             android:id="@+id/CalendarGrid"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_alignParentBottom="true"
-            android:columnCount="4"
-            android:useDefaultMargins="true"
-            android:layout_marginBottom="22dp">
+            android:layout_marginBottom="22dp"
+            android:orientation="horizontal">
             <Button
+                android:layout_weight="1"
                 android:id="@+id/Date1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
                 android:backgroundTint="@color/mainblue"/>
             <Button
+                android:layout_weight="1"
                 android:id="@+id/Date2"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
@@ -92,6 +93,7 @@
                 android:backgroundTint="@color/buttonGrey"/>
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/Date3"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
@@ -99,13 +101,14 @@
                 android:background="@drawable/calendar_item"
                 android:backgroundTint="@color/buttonGrey"/>
             <Button
+                android:layout_weight="1"
                 android:id="@+id/Date4"
                 android:layout_marginLeft="14dp"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
                 android:backgroundTint="@color/buttonGrey"/>
-        </GridLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 
