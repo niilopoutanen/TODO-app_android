@@ -21,4 +21,6 @@
     
     <string name="date4">17</string>
     <string name="date4string">To</string>
+
+	<string name="task_template">Ensimmäinen tehtävä</string>
 </resources>

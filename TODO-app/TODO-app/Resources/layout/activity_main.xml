@@ -90,7 +90,6 @@
             android:layout_marginBottom="22dp"
             android:orientation="horizontal">
             <RelativeLayout
-                android:layout_weight="1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
@@ -123,9 +122,11 @@
                 android:background="@android:color/transparent"/>
 
             </RelativeLayout>
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <RelativeLayout
-                android:layout_weight="1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
@@ -157,8 +158,11 @@
                 android:background="@android:color/transparent"/>
 
             </RelativeLayout>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <RelativeLayout
-                android:layout_weight="1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
@@ -191,9 +195,11 @@
 
             </RelativeLayout>
 
-
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <RelativeLayout
-                android:layout_weight="1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
@@ -237,19 +243,37 @@
         android:background="#000000">
         <TableLayout
             android:id="@+id/TasksTable"
-            android:layout_marginTop="21dp"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TableRow
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="21dp">
+                android:layout_height="80dp"
+                android:background="@drawable/rounded60px"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical"
+                android:padding="20dp">
                 <Button
-                    android:background="@drawable/rounded60px"
-                    android:layout_width="333dp"
-                    android:layout_height="68dp"/>
-            </TableRow>
+                    android:id="@+id/radiobutton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/task_radio_button"
+                    android:layout_marginRight="20dp"
+                    android:clickable="true"/>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_template"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+
 
 
 

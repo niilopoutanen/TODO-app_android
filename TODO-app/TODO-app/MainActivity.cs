@@ -2,6 +2,7 @@
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
@@ -17,6 +18,7 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private Button taskToggle;
         private TableLayout tableLayout;
         private Button btnCreateTask;
         private Button btnAddTask;
@@ -38,6 +40,9 @@ namespace TODO_app
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
 
+            taskToggle = FindViewById<Button>(Resource.Id.radiobutton);
+            taskToggle.Click += TaskToggle_Click;
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -48,6 +53,7 @@ namespace TODO_app
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
+            
             CreateTaskItem("testi");
             //SetContentView(Resource.Layout.create_task_popup);
             //TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
@@ -57,7 +63,11 @@ namespace TODO_app
             //dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
             //btnAddTask.Click += btnAddTask_Click;
         }
-
+        private void TaskToggle_Click(object sender, EventArgs e)
+        {
+            Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
+            taskToggle.Background = active;
+        }
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
@@ -147,20 +157,32 @@ namespace TODO_app
         }
 
 
-
         private void CreateTaskItem(string taskName)
         {
             tableLayout = FindViewById<TableLayout>(Resource.Id.TasksTable);
-            Button btn = new Button(this);
-            btn.SetWidth(400);
-            btn.SetHeight(200);
-            Drawable rounded60 = GetDrawable(Resource.Drawable.rounded60px);
-            btn.Background = rounded60;
-            TableRow row = new TableRow(this);
-            
 
-            tableLayout.AddView(row);
-            row.AddView(btn);
+            Drawable rounded60 = GetDrawable(Resource.Drawable.rounded60px);
+            Drawable toggleBG = GetDrawable(Resource.Drawable.task_radio_button);
+
+            RelativeLayout layout = new RelativeLayout(this);
+            layout.SetMinimumHeight(200);
+            layout.Background = rounded60;
+            layout.SetGravity(GravityFlags.CenterVertical);
+
+            Button toggle = new Button(this);
+            toggle.SetWidth(50);
+            toggle.SetHeight(50);
+            toggle.Background = toggleBG;
+
+            TextView header = new TextView(this);
+            header.Text = taskName;
+            header.SetTextColor(ContextCompat.GetColorStateList(this, Resource.Color.white));
+            header.SetTextSize(new Android.Util.ComplexUnitType(),60);
+
+
+            tableLayout.AddView(layout);
+            layout.AddView(header);
+            layout.AddView(toggle);
         }
     }
 }
