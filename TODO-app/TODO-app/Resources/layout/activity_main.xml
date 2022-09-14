@@ -32,7 +32,8 @@
                 app:backgroundTint="@color/buttonGrey"
                 android:text="@string/show_all"
                 android:textColor="@color/textSecondary"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:textSize="15dp"/>
             <EditText
                 android:paddingLeft="20dp"
                 android:text="@string/search"
@@ -45,7 +46,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded10px"
                 android:backgroundTint="@color/buttonGrey"
-                android:contentDescription="@string/default_description" />
+                android:contentDescription="@string/default_description"
+                android:textSize="15dp"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -57,8 +59,8 @@
 
             <TextView
                 android:id="@+id/DateText"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/date"
                 android:textColor="#FFFFFF"
                 android:gravity="top"
@@ -87,13 +89,40 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="22dp"
             android:orientation="horizontal">
-            <Button
+            <RelativeLayout
                 android:layout_weight="1"
-                android:id="@+id/Date1"
                 android:layout_width="66dp"
                 android:layout_height="70dp"
                 android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/mainblue"/>
+                android:backgroundTint="@color/mainblue">
+
+                    <TextView
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date1"
+                        android:textSize="30dp"
+                        android:textColor="@android:color/white"/>
+
+
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date1string"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="5dp"/>
+                <Button
+                android:id="@+id/Date1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
             <Button
                 android:layout_weight="1"
                 android:id="@+id/Date2"
@@ -154,6 +183,26 @@
                     android:layout_height="68dp"/>
             </TableRow>
             <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="21dp">
+                <Button
+                    android:background="@drawable/rounded60px"
+                    android:layout_width="333dp"
+                    android:layout_height="68dp"/>
+            </TableRow>
+                        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="21dp">
+                <Button
+                    android:background="@drawable/rounded60px"
+                    android:layout_width="333dp"
+                    android:layout_height="68dp"/>
+            </TableRow>
+                        <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
