@@ -21,30 +21,16 @@ namespace TODO_app
     internal class FileClass
     {
         //Folder location and filename
-        private static IFolder _folder = FileSystem.Current.LocalStorage;
-        private string _fileName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),"TODO2.0.json");
+        
+        private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
 
 
         public FileClass()
         {
             //Checks if everything is all right
             CreateFile();
-            CheckIfFileExists();
         }
 
-
-        /// <summary>
-        ///Throws an error if no path cant be found
-        /// </summary>
-        private void CheckIfFileExists()
-        {
-
-            //Check if file location is empty and throw exception
-            if (_folder == null)
-            {
-                throw new InvalidOperationException("File Path cannot be found");
-            }
-        }
 
         /// <summary>
         /// If file doesent exists it will create it
@@ -52,9 +38,9 @@ namespace TODO_app
         private void CreateFile()
         {
 
-            if (ExistenceCheckResult.FileExists != _folder.CheckExistsAsync(_fileName).Result)
+            if (!File.Exists(_fileName))
             {
-                _folder.CreateFileAsync(_fileName, CreationCollisionOption.ReplaceExisting);
+                File.Create(_fileName);
             }
         }
 
@@ -65,17 +51,17 @@ namespace TODO_app
         internal void WriteFile(List<TaskItem> tasks)
         {
             //Empty file
-            File.WriteAllText(_fileName, "");
+            //File.WriteAllText(_fileName, "");
 
             //Convert objects to string
-            List<string> writeTasks = new List<string>();
             foreach (TaskItem task in tasks)
             {
-               writeTasks.Add(JsonSerializer.Serialize<TaskItem>(task));
+                string writeTask =JsonSerializer.Serialize(task);
+                File.WriteAllText(_fileName, writeTask);
             }
 
             //Writes to file
-            File.WriteAllLines(_fileName,writeTasks);
+            
         }
 
 
@@ -85,9 +71,18 @@ namespace TODO_app
         /// <returns></returns>
         internal List<TaskItem> ReadFile()
         {
+            
             List<TaskItem> tasks = new List<TaskItem>();
-            string json = File.ReadAllText(_fileName);
-            tasks.Add(JsonSerializer.Deserialize<TaskItem>(json));
+
+            foreach (string line in System.IO.File.ReadLines(_fileName))
+            {
+                //Check that the line is not empty
+                if (line != null && line != "")
+                {
+                    tasks.Add(JsonSerializer.Deserialize<TaskItem>(line));
+                }
+                
+            }
             return tasks;
         }
     }
