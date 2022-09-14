@@ -1,35 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3a3a3a">
-    <TextView
+    android:background="#000000">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_name_header"
-        android:textColor="#FFFFFF"/>
-    <EditText
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#3a3a3a"
-        android:id="@+id/TaskNameInput"
-        android:textColor="#FFFFFF"/>
-    <Button
-        android:id="@+id/TaskNameSubmit"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:clickable="true"/>
-    <TextView
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:text="@string/date_select_header"
-         android:textColor="#FFFFFF"/>
-    <DatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker1"
-        android:datePickerMode="calendar"
-        android:calendarTextColor="#FFFFFF"/>
-</LinearLayout>
+        android:layout_height="300dp"
+        android:background="@drawable/bottomRounded"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/CreateTaskHeader"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/add_task_header"
+            android:textColor="@android:color/white"/>
+        <TextView
+            android:id="@+id/AddTaskHeader"
+            android:layout_below="@+id/CreateTaskHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_name_header"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/NameInputForm"
+            android:layout_below="@+id/AddTaskHeader"
+            android:background="@drawable/rounded10px"
+            android:backgroundTint="@color/buttonGrey"
+            android:layout_marginBottom="10dp"/>
+
+
+
+        <TextView
+            android:id="@+id/DateSelectHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date_select_header"
+            android:layout_below="@+id/NameInputForm"
+            android:textColor="@android:color/white"/>
+
+        <RelativeLayout
+            android:layout_below="@+id/DateSelectHeader"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical">
+            <RelativeLayout
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:id="@+id/DaySelector"
+                android:layout_marginRight="20dp"
+>
+                <Button 
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/DayDownButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true">
+                    
+                </Button>
+                <EditText
+                    android:id="@+id/DaySelectInput"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded10px"
+                    android:backgroundTint="@color/buttonGrey"/>
+
+                <Button 
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/DayUpButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true">
+                    
+                </Button>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/DaySelector"
+                android:id="@+id/MonthSelector"
+                android:layout_marginRight="20dp">
+
+
+                <Button 
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/MonthDownButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true">
+                    
+                </Button>
+                <EditText
+                    android:id="@+id/MonthSelectInput"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded10px"
+                    android:backgroundTint="@color/buttonGrey"/>
+
+                <Button 
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/MonthUpButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true">
+                    
+                </Button>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/MonthSelector"
+                android:id="@id/YearSelector">
+                <Button 
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/YearDownButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true">
+                    
+                </Button>
+                <EditText
+                    android:id="@+id/YearSelectInput"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded10px"
+                    android:backgroundTint="@color/buttonGrey"/>
+
+                <Button 
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/YearUpButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true">
+                    
+                </Button>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/rounded50px"
+            android:backgroundTint="@color/mainblue"
+            android:layout_marginBottom="20dp"
+            android:text="@string/add"
+            android:textColor="@android:color/white"
+            android:id="@+id/AddButton"/>
+    </RelativeLayout>
+
+</RelativeLayout>
