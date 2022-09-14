@@ -173,9 +173,9 @@ namespace TODO_app
             layout.Background = rounded60;
             layout.SetGravity(GravityFlags.CenterVertical);
             layout.Id = View.GenerateViewId();
-            var parameters = new TableLayout.LayoutParams(TableLayout.LayoutParams.MatchParent, TableLayout.LayoutParams.WrapContent);
+            TableLayout.LayoutParams parameters = new TableLayout.LayoutParams(TableLayout.LayoutParams.MatchParent, TableLayout.LayoutParams.WrapContent);
             parameters.SetMargins(0, 0, 0, 60);
-            layout.SetPadding(50, 50, 50, 50);
+            layout.SetPadding(65, 0,0,0);
             layout.LayoutParameters = parameters;
 
             Button toggle = new Button(this);
@@ -184,12 +184,13 @@ namespace TODO_app
             toggle.Background = toggleBG;
             toggle.LayoutParameters = buttonSize;
             toggle.Id = View.GenerateViewId();
+            toggle.Click += TaskToggle_Click;
             
 
-            RelativeLayout.LayoutParams headerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, RelativeLayout.LayoutParams.WrapContent);
+            RelativeLayout.LayoutParams headerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
             headerParams.AddRule(LayoutRules.RightOf, toggle.Id);
             TextView header = new TextView(this);
-            header.Text = taskName;
+            header.Text = taskName
             header.LayoutParameters = headerParams;
             header.SetTextColor(ContextCompat.GetColorStateList(this, Resource.Color.white));
             header.SetTextSize(new Android.Util.ComplexUnitType(),60);
