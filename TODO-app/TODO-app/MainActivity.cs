@@ -14,7 +14,6 @@ namespace TODO_app
     {
         private Button btnCreateTask;
         private Button btnAddTask;
-        private DatePicker datePicker;
         private EditText TaskNameInput;
         private List<TaskItem> taskList = new List<TaskItem>();
         protected override void OnCreate(Bundle savedInstanceState)
@@ -23,7 +22,6 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
 
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
@@ -41,10 +39,10 @@ namespace TODO_app
             SetContentView(Resource.Layout.create_task_popup);
             TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
             btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
-            btnAddTask.Click += btnAddTas_Click;
+            btnAddTask.Click += btnAddTask_Click;
         }
 
-        private void btnAddTas_Click(object sender, EventArgs e)
+        private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
             task.Text = TaskNameInput.Text;
