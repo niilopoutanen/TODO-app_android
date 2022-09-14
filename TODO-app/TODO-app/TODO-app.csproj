@@ -106,6 +106,9 @@
     <PackageReference Include="PCLStorage">
       <Version>1.0.2</Version>
     </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.6</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />

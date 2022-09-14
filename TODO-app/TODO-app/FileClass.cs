@@ -11,21 +11,23 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using PCLStorage;
+using Org.Json;
+using Android.Util;
+using System.Text.Json;
 
 namespace TODO_app
 {
     internal class FileClass
     {
         //Folder location and filename
-        IFolder folder = FileSystem.Current.LocalStorage;
-        string fileName = "TODO2.0";
+        private IFolder _folder = FileSystem.Current.LocalStorage;
+        private string _fileName = "TODO2.0.json";
 
         public FileClass()
         {
             //Checks if everything is all right
             
             CheckIfFileExists();
-            CreateFile();
         }
 
 
@@ -36,27 +38,40 @@ namespace TODO_app
         {
 
             //Check if file location is empty and throw exception
-            if (folder == null)
+            if (_folder == null)
             {
                 throw new InvalidOperationException("File Path cannot be found");
             }
         }
 
-
         /// <summary>
-        /// If file doesent exists it will creati it
+        /// If file doesent exists it will create it
         /// </summary>
         private void CreateFile()
         {
 
-            if (ExistenceCheckResult.FileExists != folder.CheckExistsAsync(fileName).Result)
+            if (ExistenceCheckResult.FileExists != _folder.CheckExistsAsync(_fileName).Result)
             {
-                folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                _folder.CreateFileAsync(_fileName, CreationCollisionOption.ReplaceExisting);
             }
         }
 
 
+        private void WriteFile(List<Task> tasks)
+        {
+            //Empty file
+            File.WriteAllText(_fileName, "");
 
+            //Convert objects to string
+            List<string> writeTasks = new List<string>();
+            foreach (Task task in tasks)
+            {
+               writeTasks.Add(JsonSerializer.Serialize(task));
+            }
+
+            //Writes to file
+            File.WriteAllLines(_fileName,writeTasks);
+        }
 
     }
 }
