@@ -79,7 +79,6 @@ namespace TODO_app
             int day = 0;
             int month = 0;
             int year = 0;
-            bool error = false;
             DateTime dueDate = DateTime.Today;
 
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
@@ -89,7 +88,6 @@ namespace TODO_app
 
             if (IsNull(TaskNameInput.Text))
             {
-                error = true;
                 alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
                 alert.Show();
             }
@@ -102,7 +100,6 @@ namespace TODO_app
 
                 if (month > 12)
                 {
-                    error = true;
                     alert.SetMessage("Vuodessa ei ole noin montaa kuukautta");
                     alert.Show();
                 }
