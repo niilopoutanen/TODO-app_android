@@ -15,8 +15,11 @@ namespace TODO_app
         private Button btnCreateTask;
         private Button btnAddTask;
         private EditText TaskNameInput;
-        private List<TaskItem> taskList;
-        private FileClass fileSaver = new FileClass();
+        private List<TaskItem> taskList = new List<TaskItem>();
+        private EditText yearInput;
+        private EditText monthInput;
+        private EditText dayInput;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -41,13 +44,39 @@ namespace TODO_app
             SetContentView(Resource.Layout.create_task_popup);
             TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
             btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
+            yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
+            monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
+            dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
             btnAddTask.Click += btnAddTask_Click;
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
-            task.Text = TaskNameInput.Text;
+
+
+            if (TaskNameInput.Text != "" && TaskNameInput.Text != null)
+            {
+                task.Text = TaskNameInput.Text;
+            }
+
+            else
+            {
+                Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+                Android.App.AlertDialog alert = dialog.Create();
+                alert.SetTitle("Huomio");
+                alert.SetMessage("Tehtävän nimi ei voi olla tyhjä");
+                alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
+                alert.Show();
+            }
+
+
+            int day = Convert.ToInt32(dayInput.Text);
+            int month = Convert.ToInt32(monthInput.Text);
+            int year = Convert.ToInt32(yearInput.Text);
+            DateTime dueDate = new DateTime(year, month, day);
+            task.DueDate = dueDate;
+
             taskList.Add(task);
             fileSaver.WriteFile(taskList);
         }
@@ -55,6 +84,11 @@ namespace TODO_app
         internal List<TaskItem> ReturnTasks()
         {
             return taskList;
+        }
+
+        private void ParseDate()
+        {
+
         }
     }
 }
