@@ -16,6 +16,7 @@ namespace TODO_app
         private DateTime creationTime;
         private DateTime dueDate;
         private string text;
+        private bool ready = false;
 
         public DateTime CreationTime
         {
@@ -30,6 +31,11 @@ namespace TODO_app
         {
             get { return text; }
             set { text = value; }
+        }
+        public bool Ready
+        {
+            get { return ready; }
+            set { ready = value; }
         }
 
         public TaskItem()
