@@ -27,7 +27,7 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            fileSaver.ReadFile();
+            taskList = fileSaver.ReadFile();
 
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += btnCreateTask_Click;
@@ -56,7 +56,7 @@ namespace TODO_app
             TaskItem task = new TaskItem();
 
 
-            if (TaskNameInput.Text != "" && TaskNameInput.Text != null)
+            if (!IsNull(TaskNameInput.Text))
             {
                 task.Text = TaskNameInput.Text;
             }
@@ -84,6 +84,24 @@ namespace TODO_app
         internal List<TaskItem> ReturnTasks()
         {
             return taskList;
+        }
+
+        private bool IsNull(string s)
+        {
+            if (s == "" && s == null)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        private void RightDay(int month, int year)
+        {
+
         }
     }
 }
