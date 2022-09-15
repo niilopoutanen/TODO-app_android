@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,10 +9,5 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/white</item>
-    </style>
-    <style name="LightTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="@color/mainBlue">@color/white</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColor"></item>
     </style>
 </resources>

@@ -13,6 +13,10 @@ using Java.Time.Format;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Android;
+using Android.Icu.Math;
+using Android.Views.Animations;
+using Android.Animation;
 
 namespace TODO_app
 {
@@ -20,7 +24,7 @@ namespace TODO_app
     public class MainActivity : AppCompatActivity
     {
         Button btnCreateTask;
-
+        LinearLayout header;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,6 +32,8 @@ namespace TODO_app
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask.Click += ToCreateTaskView;
+            header = FindViewById<LinearLayout>(Resource.Id.Header);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -41,7 +47,18 @@ namespace TODO_app
        
         private void ToCreateTaskView(object sender, EventArgs e)
         {
-            
+            int viewHeight = header.Height;
+            ValueAnimator animator = ValueAnimator.OfInt(viewHeight, viewHeight+200);
+            animator.SetDuration(500);
+            animator.Update += (object sender, ValueAnimator.AnimatorUpdateEventArgs e) =>
+            {
+                var value = (int)animator.AnimatedValue;
+                ViewGroup.LayoutParams layoutParams = header.LayoutParameters;
+                layoutParams.Height = value;
+                header.LayoutParameters = layoutParams;
+            };
+            animator.Start();
+            btnCreateTask.Visibility = ViewStates.Gone;
         }
     }
 }
