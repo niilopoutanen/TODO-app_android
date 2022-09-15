@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+>
     <LinearLayout
-            android:animateLayoutChanges="true"
+        android:animateLayoutChanges="true"
         
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +16,9 @@
         android:paddingRight="20dp"
         android:id="@+id/Header">
         <LinearLayout
+            android:visibility="gone"
+
+            android:animateLayoutChanges="true"
             android:paddingTop="20dp"
             android:id="@+id/mainHeader"
             android:layout_width="match_parent"
@@ -71,6 +74,24 @@
                     android:textColor="@color/textSecondary"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/NavBarSearch"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:paddingLeft="15dp"
+                    android:id="@+id/SearchBarField"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rounded10px"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:inputType="text" />
+
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp">
@@ -90,6 +111,7 @@
                     android:backgroundTint="@color/mainblue"/>
             </RelativeLayout>
             <HorizontalScrollView
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="20dp"
@@ -311,14 +333,57 @@
             </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/CreateTaskHeader"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                android:id="@+id/AddTask"
-                android:layout_width="200dp"
-                android:layout_height="100dp"/>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_task_header"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_name_header"
+                    android:textSize="15dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:inputType="text" 
+                    android:background="@drawable/rounded10px"
+                    android:backgroundTint="@color/buttonGrey"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_select_header"
+                    android:textSize="15dp"
+/>
+                <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="100dp"
+                     android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@drawable/rounded10px"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
