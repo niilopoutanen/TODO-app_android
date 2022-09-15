@@ -13,6 +13,17 @@ namespace TODO_app
 {
     internal class Settings
     {
-        private bool Darkmode = true;
+        private bool darkMode = true;
+
+        public bool DarkMode
+        {
+            get { return darkMode; }
+            set { darkMode = value; }
+        }
+
+        public Settings()
+        {
+
+        }
     }
 }

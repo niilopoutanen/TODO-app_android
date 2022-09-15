@@ -15,6 +15,12 @@ namespace TODO_app
     internal class UIclass 
     {
         //private ScrollView scrollView;
+
+        //public UIclass()
+        //{
+
+        //}
+
         //private void CreateTaskCard(string taskName)
         //{
         //    scrollView = )

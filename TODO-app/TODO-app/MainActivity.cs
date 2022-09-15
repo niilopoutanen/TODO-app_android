@@ -22,7 +22,7 @@ namespace TODO_app
         private Button taskToggle;
         private TableLayout tableLayout;
         private Button btnCreateTask;
-        private Button btnAddTask;
+        private Button btnSaveTask;
         private EditText TaskNameInput;
         private List<TaskItem> taskList = new List<TaskItem>();
         private EditText yearInput;
@@ -63,18 +63,18 @@ namespace TODO_app
 
             SetContentView(Resource.Layout.create_task_popup);
             TaskNameInput = FindViewById<EditText>(Resource.Id.NameInputForm);
-            btnAddTask = FindViewById<Button>(Resource.Id.AddButton);
+            btnSaveTask = FindViewById<Button>(Resource.Id.AddButton);
             yearInput = FindViewById<EditText>(Resource.Id.YearSelectInput);
             monthInput = FindViewById<EditText>(Resource.Id.MonthSelectInput);
             dayInput = FindViewById<EditText>(Resource.Id.DaySelectInput);
-            btnAddTask.Click += btnAddTask_Click;
+            btnSaveTask.Click += btnSaveTask_Click;
         }
         private void TaskToggle_Click(object sender, EventArgs e)
         {
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
             taskToggle.Background = active;
         }
-        private void btnAddTask_Click(object sender, EventArgs e)
+        private void btnSaveTask_Click(object sender, EventArgs e)
         {
             TaskItem task = new TaskItem();
             int day = 0;
