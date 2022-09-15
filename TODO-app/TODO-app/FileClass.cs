@@ -45,6 +45,10 @@ namespace TODO_app
             {
                 File.Create(_fileName);
             }
+            if (!File.Exists(_settingsFileName))
+            {
+                File.Create(_settingsFileName);
+            }
         }
 
         /// <summary>
