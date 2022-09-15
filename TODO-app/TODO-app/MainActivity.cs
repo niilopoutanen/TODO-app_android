@@ -85,6 +85,7 @@ namespace TODO_app
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
             alert.SetTitle("Huomio");
+            alert.SetIcon(Resource.Drawable.exclamation);
             alert.SetButton("OK", (c, ev) => { alert.Dismiss(); });
 
             if (IsNull(TaskNameInput.Text))
