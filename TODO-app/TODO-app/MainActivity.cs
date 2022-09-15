@@ -9,10 +9,10 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.Content;
-using Java.Time.Format;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net;
 
 namespace TODO_app
 {
@@ -95,9 +95,20 @@ namespace TODO_app
 
             else if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
             {
-                day = Convert.ToInt32(dayInput.Text);
-                month = Convert.ToInt32(monthInput.Text);
-                year = Convert.ToInt32(yearInput.Text);
+                try
+                {
+                    day = int.Parse(dayInput.Text);
+                    month = int.Parse(monthInput.Text);
+                    year = int.Parse(yearInput.Text);
+                }
+
+                catch
+                {
+                    alert.SetMessage("Annettu päivämäärä ei ole oikeassa muodossa");
+                    alert.Show();
+                    return;
+                }
+
 
                 if (month > 12)
                 {
@@ -107,7 +118,7 @@ namespace TODO_app
                 
                 else if (!IsDayInMonth(day, month, year))
                 {
-                    alert.SetMessage("Antamassasi kuukaudessa ei ole noin montaa päivää");
+                    alert.SetMessage("Tuota päivää ei ole antamassasi kuukaudessa");
                     alert.Show();
                 }
 
@@ -147,9 +158,15 @@ namespace TODO_app
             }
         }
 
+
+        /// <summary>
+        /// Returns true if given string is null or empty
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private bool IsNull(string s)
         {
-            if (s == "" || s == null)
+            if (s == "" || s == null || s == " ")
             {
                 return true;
             }
@@ -160,6 +177,14 @@ namespace TODO_app
             }
         }
 
+        /// <summary>
+        /// Checks if the given date is in the given month
+        /// Returns true if the day is in the month
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
@@ -167,6 +192,12 @@ namespace TODO_app
             {
                 return false;
             }
+
+            else if (day < 1)
+            {
+                return false;
+            }
+
             else
             {
                 return true;
