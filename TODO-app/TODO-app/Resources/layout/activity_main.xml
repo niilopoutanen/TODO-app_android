@@ -367,22 +367,109 @@
                     android:layout_height="wrap_content"
                     android:text="@string/date_select_header"
                     android:textSize="15dp"
+                    android:layout_marginBottom="10dp"
 />
                 <LinearLayout
                      android:layout_width="match_parent"
-                     android:layout_height="100dp"
-                     android:orientation="horizontal">
+                     android:layout_height="70dp"
+                     android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
                     <RelativeLayout
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent">
-
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp">
+                        <Button
+                            android:layout_alignParentTop="true"
+                            android:id="@+id/DayArrowUp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrow"
+                            android:clickable="true"/>
                         <EditText
+                            android:id="@+id/DayInput"
                             android:layout_centerVertical="true"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:background="@drawable/rounded10px"/>
+                            android:background="@drawable/rounded10px"
+                            android:inputType="date" 
+                            android:textAlignment="center"/>
+                        <Button
+                            android:layout_alignParentBottom="true"
+                            android:id="@+id/DayArrowDown"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrowdown"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp">
+                        <Button
+                            android:layout_alignParentTop="true"
+                            android:id="@+id/MonthArrowUp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrow"/>
+                        <EditText
+                            android:id="@+id/MonthInput"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@drawable/rounded10px"
+                            android:inputType="date"
+                            android:textAlignment="center"/>
+                        <Button
+                            android:layout_alignParentBottom="true"
+                            android:id="@+id/MonthArrowDown"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrowdown"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        >
+                        <Button
+                            android:layout_alignParentTop="true"
+                            android:id="@+id/YearArrowUp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrow"/>
+                        <EditText
+                            android:id="@+id/YearInput"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@drawable/rounded10px"
+                            android:inputType="date" 
+                            android:textAlignment="center"/>
+                        <Button
+                            android:layout_alignParentBottom="true"
+                            android:id="@+id/YearArrowDown"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="20dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/arrowdown"/>
                     </RelativeLayout>
                 </LinearLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/rounded50px"
+                        android:backgroundTint="@color/mainblue"
+                        android:id="@+id/AddTask"
+                        android:text="@string/add"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="20dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

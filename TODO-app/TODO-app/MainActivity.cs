@@ -37,6 +37,14 @@ namespace TODO_app
         LinearLayout navBar;
         LinearLayout navBarSearch;
         EditText searchField;
+
+
+        Button DayUp;
+        Button MonthUp;
+        Button YearUp;
+        Button DayDown;
+        Button MonthDown;
+        Button YearDown;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -59,6 +67,17 @@ namespace TODO_app
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
             navBarSearch = FindViewById<LinearLayout>(Resource.Id.NavBarSearch);
+
+            DayUp = FindViewById<Button>(Resource.Id.DayArrowUp);
+            MonthUp = FindViewById<Button>(Resource.Id.MonthArrowUp);
+            YearUp = FindViewById<Button>(Resource.Id.YearArrowDown);
+
+            DayDown = FindViewById<Button>(Resource.Id.DayArrowDown);
+            MonthDown = FindViewById<Button>(Resource.Id.MonthArrowDown);
+            YearDown = FindViewById<Button>(Resource.Id.YearArrowDown);
+
+            DayUp.Click += ArrowModify;
+            MonthUp.Click += ArrowModify;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -116,6 +135,24 @@ namespace TODO_app
                 navBarSearch.Visibility = ViewStates.Gone;
                 navBar.Visibility = ViewStates.Visible;
             }
+        }
+
+        private void ArrowModify(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var id = button.Id;
+
+            switch (button.Id)
+            {
+                case Resource.Id.DayArrowUp:
+
+                    break;
+
+                case Resource.Id.MonthArrowUp:
+                    break;
+            }
+
+
         }
     }
 }
