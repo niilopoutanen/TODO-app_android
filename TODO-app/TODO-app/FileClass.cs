@@ -50,18 +50,17 @@ namespace TODO_app
         /// <param name="tasks"></param>
         internal void WriteFile(List<TaskItem> tasks)
         {
-            //Empty file
-            //File.WriteAllText(_fileName, "");
+            List<String> taskList = new List<String>();
 
             //Convert objects to string
             foreach (TaskItem task in tasks)
             {
-                string writeTask =JsonSerializer.Serialize(task);
-                File.WriteAllText(_fileName, writeTask);
+                taskList.Add(JsonSerializer.Serialize(task));
+                
             }
-
+            File.WriteAllLines(_fileName, taskList);
             //Writes to file
-            
+
         }
 
 
