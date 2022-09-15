@@ -10,8 +10,29 @@
     android:animateLayoutChanges="true">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
-
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bottomrounded">
+        <RelativeLayout
+            android:id="@+id/SettingsReturn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:padding="17dp">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow"
+                android:contentDescription="@string/default_description" />
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
     </RelativeLayout>
     <ScrollView
         android:visibility="visible"
