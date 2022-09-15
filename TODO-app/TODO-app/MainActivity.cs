@@ -70,7 +70,7 @@ namespace TODO_app
                 };
                 mainHeader.Visibility = ViewStates.Visible;
                 createTaskHeader.Visibility = ViewStates.Gone;
-                animator.Start();
+                //animator.Start();
                 isTaskCreateVisible = false;
             }
 
@@ -95,7 +95,7 @@ namespace TODO_app
                 };
                 mainHeader.Visibility = ViewStates.Gone;
                 createTaskHeader.Visibility = ViewStates.Visible;
-                animator.Start();
+                //animator.Start();
                 isTaskCreateVisible = true;
             }
 

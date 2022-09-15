@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
     <LinearLayout
+            android:animateLayoutChanges="true"
+        
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bottomrounded"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -21,7 +24,7 @@
             <LinearLayout
                 android:id="@+id/NavBar"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="60dp"
                 android:orientation="horizontal">
 
 
@@ -86,6 +89,226 @@
                     android:background="@drawable/rounded50px"
                     android:backgroundTint="@color/mainblue"/>
             </RelativeLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/mainblue">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@string/date1"
+                            android:textColor="@color/white"
+                            android:textSize="30dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="@string/date1string"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/buttonGrey">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@string/date2"
+                            android:textColor="@color/white"
+                            android:textSize="30dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="@string/date2string"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                            android:paddingBottom="10dp"
+                            android:paddingTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="70dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/calendar_item"
+                            android:backgroundTint="@color/buttonGrey">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:text="@string/date3"
+                                android:textColor="@color/white"
+                                android:textSize="30dp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="@string/date3string"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold"/>
+
+                        </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                            android:paddingBottom="10dp"
+                            android:paddingTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="70dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/calendar_item"
+                            android:backgroundTint="@color/buttonGrey">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:text="@string/date4"
+                                android:textColor="@color/white"
+                                android:textSize="30dp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="@string/date4string"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold"/>
+
+                        </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/buttonGrey">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@string/date5"
+                            android:textColor="@color/white"
+                            android:textSize="30dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="@string/date5string"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/buttonGrey">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@string/date6"
+                            android:textColor="@color/white"
+                            android:textSize="30dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="@string/date6string"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/buttonGrey">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="@string/date7"
+                            android:textColor="@color/white"
+                            android:textSize="30dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="@string/date7string"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
             android:visibility="gone"

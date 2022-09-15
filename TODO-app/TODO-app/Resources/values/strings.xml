@@ -21,6 +21,15 @@
     
     <string name="date4">17</string>
     <string name="date4string">To</string>
+    
+    <string name="date5">18</string>
+    <string name="date5string">Pe</string>
+
+    <string name="date6">19</string>
+    <string name="date6string">La</string>
+
+    <string name="date7">20</string>
+    <string name="date7string">Su</string>
 
 	<string name="task_template">Ensimmäinen tehtävä</string>
 </resources>
