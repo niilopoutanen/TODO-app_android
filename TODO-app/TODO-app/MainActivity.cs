@@ -56,7 +56,7 @@ namespace TODO_app
         int thisMonth = DateTime.Today.Month;
         int thisYear = DateTime.Today.Year;
 
-        Button returnSettings;
+        RelativeLayout returnSettings;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -102,7 +102,7 @@ namespace TODO_app
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
 
-            returnSettings = FindViewById<Button>(Resource.Id.ReturnSettings);
+            returnSettings = FindViewById<RelativeLayout>(Resource.Id.ReturnSettings);
             returnSettings.Click += ButtonAction;
             settings = FindViewById<RelativeLayout>(Resource.Id.Settings);
         }
@@ -171,28 +171,18 @@ namespace TODO_app
         }
         private void ButtonAction(object sender, EventArgs e)
         {
-            try
+            var button = (RelativeLayout)sender;
+            switch (button.Id)
             {
-                var button = (Button)sender;
-                switch (button.Id)
-                {
-                    case Resource.Id.ReturnSettings:
-                        settings.Visibility = ViewStates.Gone;
-                        mainHeader.Visibility = ViewStates.Visible;
-                        break;
-                }
-            }
-            catch
-            {
-                var button = (RelativeLayout)sender;
-                switch (button.Id)
-                {
-                    case Resource.Id.SettingsButton:
-                        mainHeader.Visibility = ViewStates.Gone;
-                        createTaskHeader.Visibility = ViewStates.Gone;
-                        settings.Visibility = ViewStates.Visible;
-                        break;
-                }
+                case Resource.Id.ReturnSettings:
+                    settings.Visibility = ViewStates.Gone;
+                    mainHeader.Visibility = ViewStates.Visible;
+                    break;
+                case Resource.Id.SettingsButton:
+                    mainHeader.Visibility = ViewStates.Gone;
+                    createTaskHeader.Visibility = ViewStates.Gone;
+                    settings.Visibility = ViewStates.Visible;
+                    break;
             }
 
         }

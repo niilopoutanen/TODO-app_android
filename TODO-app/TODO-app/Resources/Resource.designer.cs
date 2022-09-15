@@ -3289,7 +3289,7 @@ namespace TODO_app
 			public const int abc_vector_test = 2131165275;
 			
 			// aapt resource value: 0x7F07005C
-			public const int arrow = 2131165276;
+			public const int Arrow = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
 			public const int arrowdown = 2131165277;
