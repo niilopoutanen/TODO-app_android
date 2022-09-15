@@ -28,6 +28,7 @@ namespace TODO_app
         private bool isTaskCreateVisible = false;
         Button btnCreateTask;
         Button btnAddTask;
+        
         LinearLayout header;
         LinearLayout mainHeader;
         LinearLayout createTaskHeader;
@@ -37,7 +38,7 @@ namespace TODO_app
         LinearLayout navBar;
         LinearLayout navBarSearch;
         EditText searchField;
-
+        RelativeLayout settingsOpen;
 
         RelativeLayout dayUp;
         RelativeLayout monthUp;
@@ -50,11 +51,12 @@ namespace TODO_app
         EditText monthInput;
         EditText yearInput;
 
+        RelativeLayout settings;
         int thisDay = DateTime.Today.Day;
         int thisMonth = DateTime.Today.Month;
         int thisYear = DateTime.Today.Year;
 
-
+        Button returnSettings;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -72,6 +74,8 @@ namespace TODO_app
             showAll = FindViewById<Button>(Resource.Id.ShowAll);
             showAll.Click += ShowAll;
 
+            settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
+            settingsOpen.Click += ButtonAction;
             searchField = FindViewById<EditText>(Resource.Id.SearchBarField);
             navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
@@ -97,6 +101,10 @@ namespace TODO_app
             dayDown.Click += ArrowModify;
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
+
+            returnSettings = FindViewById<Button>(Resource.Id.ReturnSettings);
+            returnSettings.Click += ButtonAction;
+            settings = FindViewById<RelativeLayout>(Resource.Id.Settings);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -161,7 +169,33 @@ namespace TODO_app
                 navBar.Visibility = ViewStates.Visible;
             }
         }
+        private void ButtonAction(object sender, EventArgs e)
+        {
+            try
+            {
+                var button = (Button)sender;
+                switch (button.Id)
+                {
+                    case Resource.Id.ReturnSettings:
+                        settings.Visibility = ViewStates.Gone;
+                        mainHeader.Visibility = ViewStates.Visible;
+                        break;
+                }
+            }
+            catch
+            {
+                var button = (RelativeLayout)sender;
+                switch (button.Id)
+                {
+                    case Resource.Id.SettingsButton:
+                        mainHeader.Visibility = ViewStates.Gone;
+                        createTaskHeader.Visibility = ViewStates.Gone;
+                        settings.Visibility = ViewStates.Visible;
+                        break;
+                }
+            }
 
+        }
         private void ArrowModify(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;

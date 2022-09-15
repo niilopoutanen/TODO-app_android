@@ -9,6 +9,8 @@
     <string name="add_task_header">Lisää uusi tehtävä</string>
     <string name="add">Lisää</string>
     <string name="search">Hae</string>
+	<string name="settings">Asetukset</string>
+	<string name="returnbtn">Takaisin</string>
     
     <string name="date1">14</string>
     <string name="date1string">Ma</string>
