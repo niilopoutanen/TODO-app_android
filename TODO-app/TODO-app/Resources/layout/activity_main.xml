@@ -7,279 +7,29 @@
     android:background="#000000"
     android:focusable="true"
     android:focusableInTouchMode="true">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="243dp"
-        android:id="@+id/Header"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:orientation="vertical"
-        android:background="@drawable/bottomrounded">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/NavBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="18dp"
-            android:orientation="horizontal">
+            android:layout_height="240dp"
+            android:layout_weight="0.4dp"
+            android:background="@drawable/bottomrounded"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:id="@+id/Header">
             <Button
-                android:layout_weight="1"
-                android:id="@+id/ShowAll"
-                android:layout_width="106dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded10px"
-                app:backgroundTint="@color/buttonGrey"
-                android:text="@string/show_all"
-                android:textColor="@color/textSecondary"
-                android:textAllCaps="false"
-                android:textSize="15dp"/>
-            <EditText
-                android:paddingLeft="20dp"
-                android:text="@string/search"
-                android:textColor="@color/textSecondary"
-                android:inputType="text"
-                android:layout_weight="1"
-                android:id="@+id/SearchBar"
-                android:layout_alignParentRight="true"
-                android:layout_width="180dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded10px"
-                android:backgroundTint="@color/buttonGrey"
-                android:contentDescription="@string/default_description"
-                android:textSize="15dp"/>
+                android:id="@+id/CreateTask"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/CreateTaskLayout"
-            android:layout_below="@id/NavBarLayout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id="@+id/DateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:textColor="#FFFFFF"
-                android:gravity="top"
-                android:textSize="21dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="0.0dp" >
-
-            </TextView>
-        <Button
-            android:id="@+id/CreateTask"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:background="@drawable/rounded50px"
-            android:backgroundTint="@color/mainblue"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:text="+"
-            android:textColor="@android:color/white"
-            android:textSize="30dp"/>
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/CalendarGrid"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="22dp"
-            android:orientation="horizontal">
-            <RelativeLayout
-                android:layout_width="66dp"
-                android:layout_height="70dp"
-                android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/mainblue">
-
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:gravity="center_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date1"
-                        android:textSize="30dp"
-                        android:textColor="@android:color/white"/>
-
-
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                    
-                        android:layout_height="wrap_content"
-                        android:text="@string/date1string"
-                        android:textSize="20dp"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="5dp"/>
-                <Button
-                android:id="@+id/Date1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"/>
-
-            </RelativeLayout>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <RelativeLayout
-                android:layout_width="66dp"
-                android:layout_height="70dp"
-                android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey">
-
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:gravity="center_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date2"
-                        android:textSize="30dp"
-                        android:textColor="@android:color/white"/>
-
-
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date2string"
-                        android:textSize="20dp"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="5dp"/>
-                <Button
-                android:id="@+id/Date2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"/>
-
-            </RelativeLayout>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <RelativeLayout
-                android:layout_width="66dp"
-                android:layout_height="70dp"
-                android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey">
-
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:gravity="center_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date3"
-                        android:textSize="30dp"
-                        android:textColor="@android:color/white"/>
-
-
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date3string"
-                        android:textSize="20dp"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="5dp"/>
-                <Button
-                android:id="@+id/Date3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"/>
-
-            </RelativeLayout>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <RelativeLayout
-                android:layout_width="66dp"
-                android:layout_height="70dp"
-                android:background="@drawable/calendar_item"
-                android:backgroundTint="@color/buttonGrey">
-
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:gravity="center_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date4"
-                        android:textSize="30dp"
-                        android:textColor="@android:color/white"/>
-
-
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date4string"
-                        android:textSize="20dp"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="5dp"/>
-                <Button
-                android:id="@+id/Date4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"/>
-
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-
-
-    <ScrollView
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="372dp"
-        android:id="@+id/scrollView1"
-        android:background="#000000">
-        <TableLayout
-            android:id="@+id/TasksTable"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@drawable/rounded60px"
-                android:layout_marginBottom="20dp"
-                android:gravity="center_vertical"
-                android:padding="20dp">
-                <Button
-                    android:id="@+id/radiobutton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/task_radio_button"
-                    android:layout_marginRight="20dp"
-                    android:clickable="true"/>
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/task_template"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-
-
-
-
-
-
-        </TableLayout>
-    </ScrollView>
-
+            android:layout_height="400dp"
+/>
+    </LinearLayout>
    
 </RelativeLayout>
