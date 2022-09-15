@@ -3,21 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:layout_height="match_parent">
     <LinearLayout
-        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:background="@drawable/bottomrounded"
         android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:id="@+id/Header">
-        <Button
-            android:id="@+id/CreateTask"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:id="@+id/mainHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/NavBar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:id="@+id/Settings"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rounded10px"
+                    android:padding="7dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/settingsvector"
+                        android:contentDescription="@string/default_description" />
+                </RelativeLayout>
+                <Space
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:paddingLeft="15dp"
+                    android:id="@+id/SearchBar"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rounded10px"
+                    android:text="@string/search"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textSecondary"/>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/ShowAll"
+                    android:layout_width="110dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rounded10px"
+                    android:text="@string/show_all"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textSecondary"/>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+                <Button
+                    android:id="@+id/CreateTask"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded50px"
+                    android:backgroundTint="@color/mainblue"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/CreateTaskHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/AddTask"
+                android:layout_width="200dp"
+                android:layout_height="100dp"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
    

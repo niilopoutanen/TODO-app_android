@@ -23,8 +23,12 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private bool isTaskCreateVisible = false;
         Button btnCreateTask;
+        Button btnAddTask;
         LinearLayout header;
+        LinearLayout mainHeader;
+        LinearLayout createTaskHeader;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,8 +36,12 @@ namespace TODO_app
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
-            btnCreateTask.Click += ToCreateTaskView;
+            btnCreateTask.Click += OpenCreateView;
+            btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
+            btnAddTask.Click += CloseCreateView;
             header = FindViewById<LinearLayout>(Resource.Id.Header);
+            createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
+            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -45,20 +53,52 @@ namespace TODO_app
 
 
        
-        private void ToCreateTaskView(object sender, EventArgs e)
+        private void CloseCreateView(object sender, EventArgs e)
         {
-            int viewHeight = header.Height;
-            ValueAnimator animator = ValueAnimator.OfInt(viewHeight, viewHeight+200);
-            animator.SetDuration(500);
-            animator.Update += (object sender, ValueAnimator.AnimatorUpdateEventArgs e) =>
+            if(isTaskCreateVisible == true)
             {
-                var value = (int)animator.AnimatedValue;
-                ViewGroup.LayoutParams layoutParams = header.LayoutParameters;
-                layoutParams.Height = value;
-                header.LayoutParameters = layoutParams;
-            };
-            animator.Start();
-            btnCreateTask.Visibility = ViewStates.Gone;
+                int viewHeight = header.Height;
+
+                ValueAnimator animator = ValueAnimator.OfInt(viewHeight, viewHeight - 200);
+                animator.SetDuration(500);
+                animator.Update += (object sender, ValueAnimator.AnimatorUpdateEventArgs e) =>
+                {
+                    var value = (int)animator.AnimatedValue;
+                    ViewGroup.LayoutParams layoutParams = header.LayoutParameters;
+                    layoutParams.Height = value;
+                    header.LayoutParameters = layoutParams;
+                };
+                mainHeader.Visibility = ViewStates.Visible;
+                createTaskHeader.Visibility = ViewStates.Gone;
+                animator.Start();
+                isTaskCreateVisible = false;
+            }
+
+
+
+        }
+
+        private void OpenCreateView(object sender, EventArgs e)
+        {
+            if(isTaskCreateVisible == false)
+            {
+                int viewHeight = header.Height;
+
+                ValueAnimator animator = ValueAnimator.OfInt(viewHeight, viewHeight + 200);
+                animator.SetDuration(500);
+                animator.Update += (object sender, ValueAnimator.AnimatorUpdateEventArgs e) =>
+                {
+                    var value = (int)animator.AnimatedValue;
+                    ViewGroup.LayoutParams layoutParams = header.LayoutParameters;
+                    layoutParams.Height = value;
+                    header.LayoutParameters = layoutParams;
+                };
+                mainHeader.Visibility = ViewStates.Gone;
+                createTaskHeader.Visibility = ViewStates.Visible;
+                animator.Start();
+                isTaskCreateVisible = true;
+            }
+
         }
     }
 }
