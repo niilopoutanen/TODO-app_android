@@ -15,6 +15,7 @@ using Org.Json;
 using Android.Util;
 using System.Text.Json;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace TODO_app
 {
@@ -23,6 +24,7 @@ namespace TODO_app
         //Folder location and filename
         
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
+        private string _settingsFileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Settings.JSON");
 
 
         public FileClass()
@@ -73,7 +75,7 @@ namespace TODO_app
             
             List<TaskItem> tasks = new List<TaskItem>();
 
-            foreach (string line in System.IO.File.ReadLines(_fileName))
+            foreach (string line in System.IO.File.ReadLines(_settingsFileName))
             {
                 //Check that the line is not empty
                 if (line != null && line != "")
@@ -83,6 +85,16 @@ namespace TODO_app
                 
             }
             return tasks;
+        }
+
+        internal void SaveSettings(Settings settings)
+        {
+            File.WriteAllText(_fileName, JsonSerializer.Serialize(settings));
+        }
+
+        internal Settings ReturnSettings()
+        {
+            return JsonSerializer.Deserialize<Settings>(File.ReadLines(_settingsFileName).ToString());
         }
     }
 }
