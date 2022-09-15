@@ -20,7 +20,7 @@
         android:layout_marginBottom="25dp"
         android:id="@+id/Header">
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:animateLayoutChanges="true"
             android:id="@+id/mainHeader"
             android:layout_width="match_parent"
@@ -522,7 +522,7 @@
                 android:layout_marginBottom="20dp"/>
         </LinearLayout>
         <RelativeLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:animateLayoutChanges="true"
             android:id="@+id/Settings"
             android:layout_width="match_parent"
@@ -565,7 +565,7 @@
         android:layout_height="wrap_content"/>
 
     <ScrollView
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/SettingsScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
