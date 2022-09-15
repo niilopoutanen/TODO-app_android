@@ -17,7 +17,7 @@
         android:paddingTop="20dp"
         android:id="@+id/Header">
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
 
             android:animateLayoutChanges="true"
             android:paddingTop="20dp"
@@ -335,7 +335,7 @@
             </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/CreateTaskHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
