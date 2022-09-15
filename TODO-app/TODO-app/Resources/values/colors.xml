@@ -7,8 +7,13 @@
     <color name="colorMain">#121212</color>
     <color name="colorButton">#202024</color>
 	<color name="buttonGrey">#38383C</color>
-	<color name="mainblue">#3178F6</color>
 	<color name="textSecondary">#A1A1A1</color>
     <color name="headerBackground">#1c1c20</color>
 	<color name="white">#FFFFFF</color>
+	
+	<color name="mainBlue">#3178F6</color>
+	<color name="mainGreen">#4DD040</color>
+	<color name="mainViolet">#BE55F3</color>
+	<color name="mainOrange">#FB9B22</color>
+	<color name="mainRed">#ED4636</color>
 </resources>

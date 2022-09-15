@@ -57,6 +57,8 @@ namespace TODO_app
         int thisYear = DateTime.Today.Year;
 
         RelativeLayout returnSettings;
+
+        ScrollView settingsScroller;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -105,6 +107,7 @@ namespace TODO_app
             returnSettings = FindViewById<RelativeLayout>(Resource.Id.ReturnSettings);
             returnSettings.Click += ButtonAction;
             settings = FindViewById<RelativeLayout>(Resource.Id.Settings);
+            settingsScroller = FindViewById<ScrollView>(Resource.Id.SettingsScroller);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -177,11 +180,13 @@ namespace TODO_app
                 case Resource.Id.ReturnSettings:
                     settings.Visibility = ViewStates.Gone;
                     mainHeader.Visibility = ViewStates.Visible;
+                    settingsScroller.Visibility = ViewStates.Gone;
                     break;
                 case Resource.Id.SettingsButton:
                     mainHeader.Visibility = ViewStates.Gone;
                     createTaskHeader.Visibility = ViewStates.Gone;
                     settings.Visibility = ViewStates.Visible;
+                    settingsScroller.Visibility = ViewStates.Visible;
                     break;
             }
 
