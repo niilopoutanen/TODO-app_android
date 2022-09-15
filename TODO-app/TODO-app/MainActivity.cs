@@ -39,12 +39,22 @@ namespace TODO_app
         EditText searchField;
 
 
-        Button DayUp;
-        Button MonthUp;
-        Button YearUp;
-        Button DayDown;
-        Button MonthDown;
-        Button YearDown;
+        RelativeLayout dayUp;
+        RelativeLayout monthUp;
+        RelativeLayout yearUp;
+        RelativeLayout dayDown;
+        RelativeLayout monthDown;
+        RelativeLayout yearDown;
+
+        EditText dayInput;
+        EditText monthInput;
+        EditText yearInput;
+
+        int thisDay = DateTime.Today.Day;
+        int thisMonth = DateTime.Today.Month;
+        int thisYear = DateTime.Today.Year;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -68,16 +78,25 @@ namespace TODO_app
             searchBar.Click += ToggleSearchMode;
             navBarSearch = FindViewById<LinearLayout>(Resource.Id.NavBarSearch);
 
-            DayUp = FindViewById<Button>(Resource.Id.DayArrowUp);
-            MonthUp = FindViewById<Button>(Resource.Id.MonthArrowUp);
-            YearUp = FindViewById<Button>(Resource.Id.YearArrowDown);
+            dayInput = FindViewById<EditText>(Resource.Id.DayInput);
+            monthInput = FindViewById<EditText>(Resource.Id.MonthInput);
+            yearInput = FindViewById<EditText>(Resource.Id.YearInput);
 
-            DayDown = FindViewById<Button>(Resource.Id.DayArrowDown);
-            MonthDown = FindViewById<Button>(Resource.Id.MonthArrowDown);
-            YearDown = FindViewById<Button>(Resource.Id.YearArrowDown);
+            dayUp = FindViewById<RelativeLayout>(Resource.Id.DayArrowUp);
+            monthUp = FindViewById<RelativeLayout>(Resource.Id.MonthArrowUp);
+            yearUp = FindViewById<RelativeLayout>(Resource.Id.YearArrowDown);
 
-            DayUp.Click += ArrowModify;
-            MonthUp.Click += ArrowModify;
+            dayDown = FindViewById<RelativeLayout>(Resource.Id.DayArrowDown);
+            monthDown = FindViewById<RelativeLayout>(Resource.Id.MonthArrowDown);
+            yearDown = FindViewById<RelativeLayout>(Resource.Id.YearArrowDown);
+
+            dayUp.Click += ArrowModify;
+            monthUp.Click += ArrowModify;
+            yearUp.Click += ArrowModify;
+
+            dayDown.Click += ArrowModify;
+            monthDown.Click += ArrowModify;
+            yearDown.Click += ArrowModify;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -109,6 +128,12 @@ namespace TODO_app
                 mainHeader.Visibility = ViewStates.Gone;
                 createTaskHeader.Visibility = ViewStates.Visible;
                 isTaskCreateVisible = true;
+
+
+
+                dayInput.Text = thisDay.ToString();
+                monthInput.Text = thisMonth.ToString();
+                yearInput.Text = thisYear.ToString();
             }
 
         }
@@ -139,17 +164,46 @@ namespace TODO_app
 
         private void ArrowModify(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            var id = button.Id;
-
+            var button = (RelativeLayout)sender;
+            string DayInputText = dayInput.Text;
+            int daySelected = int.Parse(DayInputText);
+            string MonthInputText = monthInput.Text;
+            int MonthSelected = int.Parse(MonthInputText);
+            string YearInputText = yearInput.Text;
+            int YearSelected = int.Parse(YearInputText);
             switch (button.Id)
             {
                 case Resource.Id.DayArrowUp:
+                    daySelected++;
+                    dayInput.Text = daySelected.ToString();
+                    break;
 
+                case Resource.Id.DayArrowDown:
+                    daySelected--;
+                    dayInput.Text = daySelected.ToString();
                     break;
 
                 case Resource.Id.MonthArrowUp:
+                    MonthSelected++;
+                    monthInput.Text = MonthSelected.ToString();
                     break;
+
+                case Resource.Id.YearArrowUp:
+                    YearSelected++;
+                    yearInput.Text = YearSelected.ToString();
+                    break;
+
+                case Resource.Id.YearArrowDown:
+                    YearSelected--;
+                    yearInput.Text = YearSelected.ToString();
+                    break;
+
+                case Resource.Id.MonthArrowDown:
+                    MonthSelected--;
+                    monthInput.Text = MonthSelected.ToString();
+                    break;
+
+
             }
 
 

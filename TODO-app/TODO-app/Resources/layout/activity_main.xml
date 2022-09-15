@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    android:layout_height="match_parent">
     <LinearLayout
         android:animateLayoutChanges="true"
         
@@ -14,9 +13,10 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:paddingTop="20dp"
         android:id="@+id/Header">
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
 
             android:animateLayoutChanges="true"
             android:paddingTop="20dp"
@@ -333,14 +333,11 @@
             </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/CreateTaskHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
                 <TextView
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -378,14 +375,21 @@
                         android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="20dp">
-                        <Button
-                            android:layout_alignParentTop="true"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/DayArrowUp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrow"
-                            android:clickable="true"/>
+                            android:clickable="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentTop="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrow"
+                                />
+                        </RelativeLayout>
+
                         <EditText
                             android:id="@+id/DayInput"
                             android:layout_centerVertical="true"
@@ -393,27 +397,42 @@
                             android:layout_height="30dp"
                             android:background="@drawable/rounded10px"
                             android:inputType="date" 
-                            android:textAlignment="center"/>
-                        <Button
-                            android:layout_alignParentBottom="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/DayArrowDown"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrowdown"/>
+                            android:clickable="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrowdown"
+                                />
+                        </RelativeLayout>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="20dp">
-                        <Button
-                            android:layout_alignParentTop="true"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/MonthArrowUp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrow"/>
+                            android:clickable="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentTop="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrow"
+                                />
+                        </RelativeLayout>
                         <EditText
                             android:id="@+id/MonthInput"
                             android:layout_centerVertical="true"
@@ -421,27 +440,41 @@
                             android:layout_height="30dp"
                             android:background="@drawable/rounded10px"
                             android:inputType="date"
-                            android:textAlignment="center"/>
-                        <Button
-                            android:layout_alignParentBottom="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/MonthArrowDown"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrowdown"/>
+                            android:clickable="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrowdown"
+                                />
+                        </RelativeLayout>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        >
-                        <Button
-                            android:layout_alignParentTop="true"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/YearArrowUp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrow"/>
+                            android:clickable="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentTop="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrow"
+                                />
+                        </RelativeLayout>
                         <EditText
                             android:id="@+id/YearInput"
                             android:layout_centerVertical="true"
@@ -449,14 +482,22 @@
                             android:layout_height="30dp"
                             android:background="@drawable/rounded10px"
                             android:inputType="date" 
-                            android:textAlignment="center"/>
-                        <Button
-                            android:layout_alignParentBottom="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
                             android:id="@+id/YearArrowDown"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="20dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/arrowdown"/>
+                            android:clickable="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center_horizontal">
+                            <Button
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="20dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/arrowdown"
+                                />
+                        </RelativeLayout>
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -471,7 +512,6 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="20dp"/>
             </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
    
