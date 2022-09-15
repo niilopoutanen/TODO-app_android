@@ -51,12 +51,9 @@ namespace TODO_app
         EditText monthInput;
         EditText yearInput;
 
-        RelativeLayout settings;
         int thisDay = DateTime.Today.Day;
         int thisMonth = DateTime.Today.Month;
         int thisYear = DateTime.Today.Year;
-
-        RelativeLayout returnSettings;
 
         ScrollView settingsScroller;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -104,9 +101,6 @@ namespace TODO_app
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
 
-            returnSettings = FindViewById<RelativeLayout>(Resource.Id.ReturnSettings);
-            returnSettings.Click += ButtonAction;
-            settings = FindViewById<RelativeLayout>(Resource.Id.Settings);
             settingsScroller = FindViewById<ScrollView>(Resource.Id.SettingsScroller);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -177,16 +171,8 @@ namespace TODO_app
             var button = (RelativeLayout)sender;
             switch (button.Id)
             {
-                case Resource.Id.ReturnSettings:
-                    settings.Visibility = ViewStates.Gone;
-                    mainHeader.Visibility = ViewStates.Visible;
-                    settingsScroller.Visibility = ViewStates.Gone;
-                    break;
                 case Resource.Id.SettingsButton:
-                    mainHeader.Visibility = ViewStates.Gone;
-                    createTaskHeader.Visibility = ViewStates.Gone;
-                    settings.Visibility = ViewStates.Visible;
-                    settingsScroller.Visibility = ViewStates.Visible;
+                    SetContentView(Resource.Layout.settings);
                     break;
             }
 
