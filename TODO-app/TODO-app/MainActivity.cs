@@ -113,22 +113,29 @@ namespace TODO_app
                 else
                 {
                     dueDate = new DateTime(year, month, day);
-                }
 
-                if (dueDate < DateTime.Today)
-                {
-                    alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
-                    alert.Show();
-                }
+                    if (dueDate < DateTime.Today)
+                    {
+                        alert.SetMessage("Eräpäivä ei voi olla menneisyydessä");
+                        alert.Show();
+                    }
 
-                else
-                {
-                    task.DueDate = dueDate;
-                    task.Text = TaskNameInput.Text;
-                    taskList.Add(task);
-                    fileSaver.WriteFile(taskList);
-                    SetContentView(Resource.Layout.activity_main);
-                    CreateTaskItem(task.Text);
+                    else
+                    {
+                        task.DueDate = dueDate;
+                        task.Text = TaskNameInput.Text;
+                        taskList.Add(task);
+                        fileSaver.WriteFile(taskList);
+
+                        SetContentView(Resource.Layout.activity_main);
+                        btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+                        btnCreateTask.Click += btnCreateTask_Click;
+
+                        foreach (TaskItem t in taskList)
+                        {
+                            CreateTaskItem(t.Text);
+                        }
+                    }
                 }
             }
 
@@ -137,11 +144,6 @@ namespace TODO_app
                 alert.SetMessage("Päivämäärä ei voi olla tyhjä");
                 alert.Show();
             }
-        }
-
-        internal List<TaskItem> ReturnTasks()
-        {
-            return taskList;
         }
 
         private bool IsNull(string s)
