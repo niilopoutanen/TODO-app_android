@@ -110,8 +110,13 @@ namespace TODO_app
                     return;
                 }
 
+                if (day < 1 || month < 1 || year < 1)
+                {
+                    alert.SetMessage("Annettu päivämäärä ei ole oikeassa muodossa");
+                    alert.Show();
+                }
 
-                if (month > 12)
+                else if (month > 12)
                 {
                     alert.SetMessage("Vuodessa ei ole noin montaa kuukautta");
                     alert.Show();
