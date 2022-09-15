@@ -127,8 +127,15 @@ namespace TODO_app
                     task.Text = TaskNameInput.Text;
                     taskList.Add(task);
                     fileSaver.WriteFile(taskList);
+
                     SetContentView(Resource.Layout.activity_main);
-                    CreateTaskItem(task.Text);
+                    btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+                    btnCreateTask.Click += btnCreateTask_Click;
+
+                    foreach (TaskItem t in taskList)
+                    {
+                        CreateTaskItem(t.Text);
+                    }
                 }
             }
 
@@ -137,11 +144,6 @@ namespace TODO_app
                 alert.SetMessage("Päivämäärä ei voi olla tyhjä");
                 alert.Show();
             }
-        }
-
-        internal List<TaskItem> ReturnTasks()
-        {
-            return taskList;
         }
 
         private bool IsNull(string s)
