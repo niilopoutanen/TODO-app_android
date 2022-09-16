@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="?attr/colorPrimary"
     android:orientation="vertical"
     android:animateLayoutChanges="true">
     <LinearLayout
@@ -160,7 +160,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="?attr/colorAccent">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date2number"
                             android:layout_width="match_parent"
