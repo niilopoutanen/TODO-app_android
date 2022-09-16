@@ -56,8 +56,6 @@ namespace TODO_app
         int thisMonth = DateTime.Today.Month;
         int thisYear = DateTime.Today.Year;
 
-        ScrollView settingsScroller;
-        RelativeLayout settingsReturn;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -103,7 +101,6 @@ namespace TODO_app
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
 
-            settingsScroller = FindViewById<ScrollView>(Resource.Id.SettingsScroller);
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -175,15 +172,10 @@ namespace TODO_app
             switch (button.Id)
             {
                 case Resource.Id.SettingsButton:
-                    Intent settingsStarter = new Intent(this, Resource.Layout.activity_settings.GetType());
+                    Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
                     StartActivity(settingsStarter);
                     settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
-                    settingsReturn.Click += ButtonAction;
-                    break;
-
-                case Resource.Id.SettingsReturn:
-                    Intent mainMenuStarter = new Intent(this, Resource.Layout.activity_main.GetType());
-                    StartActivity(mainMenuStarter);
+                    //settingsReturn.Click += ButtonAction;
                     break;
             }
 
