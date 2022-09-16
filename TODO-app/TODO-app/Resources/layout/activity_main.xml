@@ -160,7 +160,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="?attr/colorAccent">
                         <TextView
                             android:id="@+id/date2number"
                             android:layout_width="match_parent"
@@ -193,7 +193,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date3number"
                             android:layout_width="match_parent"
@@ -226,7 +226,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date4number"
                             android:layout_width="match_parent"
@@ -259,7 +259,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date5number"
                             android:layout_width="match_parent"
@@ -293,7 +293,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date6number"
                             android:layout_width="match_parent"
@@ -326,7 +326,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/buttonGrey">
+                        android:backgroundTint="@color/colorButton">
                         <TextView
                             android:id="@+id/date7number"
                             android:layout_width="match_parent"
@@ -377,7 +377,7 @@
                 android:layout_height="30dp"
                 android:inputType="text"
                 android:background="@drawable/rounded10px"
-                android:backgroundTint="@color/buttonGrey"
+                android:backgroundTint="@color/colorButton"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/white"/>
             <TextView
