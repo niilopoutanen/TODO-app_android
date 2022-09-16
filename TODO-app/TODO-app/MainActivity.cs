@@ -174,8 +174,6 @@ namespace TODO_app
                 case Resource.Id.SettingsButton:
                     Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
                     StartActivity(settingsStarter);
-                    settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
-                    //settingsReturn.Click += ButtonAction;
                     break;
             }
 
