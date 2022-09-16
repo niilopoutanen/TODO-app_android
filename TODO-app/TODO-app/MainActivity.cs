@@ -328,7 +328,7 @@ namespace TODO_app
             {
                 case Resource.Id.date1btn:
                     activeDate = 1;
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Style.MainBlue);
 
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
