@@ -9,12 +9,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.AppCompat.App;
+using System.Runtime.Remoting.Contexts;
+using Xamarin.Essentials;
 
 namespace TODO_app
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class SettingsActivity : AppCompatActivity
     {
+        TextView version;
+        RelativeLayout sendFeedbackButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,6 +28,11 @@ namespace TODO_app
             RelativeLayout settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
             settingsReturn.Click += BackToMenu;
 
+            version = FindViewById<TextView>(Resource.Id.VersionText);
+            version.Text = AppInfo.Version.ToString();
+
+            sendFeedbackButton = FindViewById<RelativeLayout>(Resource.Id.SendFeedbackBtn);
+            sendFeedbackButton.Click += SendFeedback;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -36,6 +45,12 @@ namespace TODO_app
         {
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
+        }
+        private void SendFeedback(object sender, EventArgs e)
+        {
+            var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
+            var intent = new Intent(Intent.ActionView, uri);
+            StartActivity(intent);
         }
     }
 }

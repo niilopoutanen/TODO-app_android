@@ -167,6 +167,68 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/headerBackground"
+                android:paddingLeft="25dp"
+
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sendFeedback"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/SendFeedbackBtn"
+                    android:paddingRight="20dp">
+                    <Button
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/arrow"
+                        android:backgroundTint="@color/white"
+                        android:rotation="180"
+                    />
+                    </RelativeLayout>
+
+            </RelativeLayout>
+
+                        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/headerBackground"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/versionHeader"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/VersionText"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

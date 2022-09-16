@@ -15,6 +15,8 @@
 	<string name="darkModeSetting">Tumma teema</string>
 	<string name="notificationSetting">Ilmoitukset</string>
 	<string name="colorTheme">Väriteema</string>
+	<string name="sendFeedback">Lähetä palautetta</string>
+	<string name="versionHeader">Versio:</string>
 	
 	
 	<string name="returnbtn">Takaisin</string>
