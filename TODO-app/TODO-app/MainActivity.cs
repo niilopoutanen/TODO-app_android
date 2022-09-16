@@ -166,10 +166,10 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Returns true if given string is null or empty
+        /// Checks for empty strings
         /// </summary>
         /// <param name="s"></param>
-        /// <returns></returns>
+        /// <returns>True if given string is null or empty</returns>
         private bool IsNull(string s)
         {
             if (s == "" || s == null || s == " ")
@@ -185,12 +185,11 @@ namespace TODO_app
 
         /// <summary>
         /// Checks if the given date is in the given month
-        /// Returns true if the day is in the month
         /// </summary>
         /// <param name="day"></param>
         /// <param name="month"></param>
         /// <param name="year"></param>
-        /// <returns></returns>
+        /// <returns>True if the day is in the month</returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
