@@ -30,7 +30,6 @@ namespace TODO_app
     public class MainActivity : AppCompatActivity
     {
         private int activeDate;
-        private bool isTaskCreateVisible = false;
         Button btnCreateTask;
         Button btnAddTask;
         
@@ -43,6 +42,7 @@ namespace TODO_app
         LinearLayout navBar;
         EditText searchField;
         RelativeLayout settingsOpen;
+        EditText taskNameField;
 
         RelativeLayout dayUp;
         RelativeLayout monthUp;
@@ -67,7 +67,11 @@ namespace TODO_app
         RelativeLayout date5Btn;
         RelativeLayout date6Btn;
         RelativeLayout date7Btn;
-  
+
+
+        LinearLayout scrollLayout;
+
+        Dictionary<string, int> elementIds = new Dictionary<string, int>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -87,6 +91,7 @@ namespace TODO_app
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
             showAll = FindViewById<Button>(Resource.Id.ShowAll);
             showAll.Click += ShowAll;
+            taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
@@ -131,6 +136,7 @@ namespace TODO_app
             date6Btn.Click += CalendarSelector;
             date7Btn.Click += CalendarSelector;
 
+            scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -144,11 +150,18 @@ namespace TODO_app
        
         private void CloseCreateView(object sender, EventArgs e)
         {
-            if(isTaskCreateVisible == true)
+            if(mainHeader.Visibility == ViewStates.Gone)
             {
+                string taskname = taskNameField.Text;
+                if (taskname == "")
+                {
+                    return;
+                }
+                CreateTaskElement(taskname);
                 mainHeader.Visibility = ViewStates.Visible;
                 createTaskHeader.Visibility = ViewStates.Gone;
-                isTaskCreateVisible = false;
+                scrollLayout.Visibility = ViewStates.Visible;
+                taskNameField.Text = "";
             }
 
 
@@ -157,17 +170,20 @@ namespace TODO_app
 
         private void OpenCreateView(object sender, EventArgs e)
         {
-            if(isTaskCreateVisible == false)
+
+            
+            if (createTaskHeader.Visibility == ViewStates.Gone)
             {
                 mainHeader.Visibility = ViewStates.Gone;
                 createTaskHeader.Visibility = ViewStates.Visible;
-                isTaskCreateVisible = true;
+                scrollLayout.Visibility = ViewStates.Gone;
 
 
 
                 dayInput.Text = thisDay.ToString();
                 monthInput.Text = thisMonth.ToString();
                 yearInput.Text = thisYear.ToString();
+                
             }
 
         }
@@ -393,7 +409,38 @@ namespace TODO_app
 
         private void CreateTaskElement(string taskName)
         {
+            RelativeLayout cardBG = new RelativeLayout(this);
+            Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
+            cardBG.Background = rounded50;
+            cardBG.SetPadding(50,0,0,0);
+            cardBG.Id = View.GenerateViewId();
+            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, 250);
+            cardparams.SetMargins(0, 0, 0, 60);
+            cardBG.LayoutParameters = cardparams;
 
+            Button toggleBtn = new Button(this);
+            Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
+            toggleBtn.Background = toggleDefault;
+            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(150, 150);
+            buttonparams.SetMargins(0, 0, 50, 0);
+            buttonparams.AddRule(LayoutRules.CenterVertical);
+            toggleBtn.LayoutParameters = buttonparams;
+            toggleBtn.Id = View.GenerateViewId();
+
+
+            TextView header = new TextView(this);
+            header.Text = taskName;
+            header.TextSize = 20;
+            RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+            headerparams.AddRule(LayoutRules.CenterVertical);
+            headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
+            header.LayoutParameters = headerparams;
+
+
+            scrollLayout.AddView(cardBG);
+            cardBG.AddView(toggleBtn);
+            cardBG.AddView(header);
+            elementIds.Add(taskName, cardBG.Id);
         }
 
     }
