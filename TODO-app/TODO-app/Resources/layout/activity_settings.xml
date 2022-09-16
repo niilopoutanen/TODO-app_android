@@ -197,7 +197,7 @@
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
                         android:backgroundTint="@color/white"
-                        android:rotation="180px"
+                        android:rotation="180"
                     />
                     </RelativeLayout>
 
