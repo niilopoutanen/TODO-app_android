@@ -540,17 +540,10 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="visible"
-        android:id="@+id/TaskScroller"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded50px"/>
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_weight="1"/>
 
    
 </LinearLayout>
