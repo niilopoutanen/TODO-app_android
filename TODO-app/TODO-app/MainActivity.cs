@@ -1,29 +1,17 @@
 ﻿using Android.App;
 using Android.Graphics.Drawables;
-using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
-using AndroidX.AppCompat.Widget;
-using AndroidX.Core.Content;
-using Java.Time.Format;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using Android;
-using Android.Icu.Math;
-using Android.Views.Animations;
-using Android.Animation;
-using Android.Provider;
 using Android.Content;
-using static Android.Widget.TextView;
-using System.Runtime.Remoting.Contexts;
-using AndroidX.Core.Content.Resources;
 using Android.Content.Res;
 using Android.Views.InputMethods;
+
 
 namespace TODO_app
 {
@@ -79,6 +67,7 @@ namespace TODO_app
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             SetContentView(Resource.Layout.activity_main);
             CalendarDater();
 
@@ -324,11 +313,14 @@ namespace TODO_app
         private void CalendarSelector(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
+            
             switch (button.Id)
             {
                 case Resource.Id.date1btn:
                     activeDate = 1;
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Style.MainBlue);
+                    
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
 
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);

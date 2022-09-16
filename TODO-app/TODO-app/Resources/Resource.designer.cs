@@ -4624,6 +4624,9 @@ namespace TODO_app
 			// aapt resource value: 0x7F0B003A
 			public const int support_simple_spinner_dropdown_item = 2131427386;
 			
+			// aapt resource value: 0x7F0B003B
+			public const int widget = 2131427387;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
