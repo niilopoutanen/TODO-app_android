@@ -23,6 +23,7 @@ using static Android.Widget.TextView;
 using System.Runtime.Remoting.Contexts;
 using AndroidX.Core.Content.Resources;
 using Android.Content.Res;
+using Android.Views.InputMethods;
 
 namespace TODO_app
 {
@@ -162,6 +163,9 @@ namespace TODO_app
                 createTaskHeader.Visibility = ViewStates.Gone;
                 scrollLayout.Visibility = ViewStates.Visible;
                 taskNameField.Text = "";
+
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             }
 
 
