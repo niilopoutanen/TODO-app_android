@@ -430,6 +430,7 @@ namespace TODO_app
             buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
+            toggleBtn.Click += TaskToggle;
 
 
             TextView header = new TextView(this);
@@ -446,6 +447,28 @@ namespace TODO_app
             cardBG.AddView(header);
             elementIds.Add(taskName, cardBG.Id);
         }
+        private void DeleteTaskElement(string taskToDelete)
+        {
+            RelativeLayout layoutToDelete = FindViewById<RelativeLayout>(elementIds[taskToDelete]);
+            
+            try
+            {
+                layoutToDelete.RemoveAllViews();
+                scrollLayout.RemoveView(layoutToDelete);
+            }
+            catch
+            {
+                Console.Write("error/ item not found");
+            }
+        }
 
+        private void TaskToggle(object sender, EventArgs e)
+        {
+            Button button =  (Button)sender;
+            RelativeLayout buttonParent = (RelativeLayout)button.Parent;
+
+            buttonParent.RemoveAllViews();
+            scrollLayout.RemoveView(buttonParent);
+        }
     }
 }
