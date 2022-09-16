@@ -53,6 +53,7 @@
                     android:layout_weight="1"/>
 
                 <Button
+                    android:visibility="visible"
                     android:paddingLeft="15dp"
                     android:id="@+id/SearchBar"
                     android:layout_width="150dp"
@@ -62,6 +63,15 @@
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/textSecondary"/>
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/SearchField"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:paddingLeft="15dp"
+                    android:background="@drawable/rounded10px"
+                    android:textColor="@color/white"
+                    android:inputType="text" />
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,24 +84,6 @@
                     android:text="@string/show_all"
                     android:textAllCaps="false"
                     android:textColor="@color/textSecondary"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/NavBarSearch"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
-                <EditText
-                    android:paddingLeft="15dp"
-                    android:id="@+id/SearchBarField"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:background="@drawable/rounded10px"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:inputType="text" />
 
             </LinearLayout>
             <RelativeLayout
@@ -111,7 +103,10 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:background="@drawable/rounded50px"
-                    android:backgroundTint="@color/mainBlue"/>
+                    android:backgroundTint="@color/mainBlue"
+                    android:text="@string/plus"
+                    android:textSize="30dp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
             <HorizontalScrollView
                 android:id="@+id/calendarView"
@@ -122,7 +117,7 @@
                 android:scrollbars="none">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <RelativeLayout
                         android:id="@+id/date1btn"

@@ -22,12 +22,14 @@ using Android.Content;
 using static Android.Widget.TextView;
 using System.Runtime.Remoting.Contexts;
 using AndroidX.Core.Content.Resources;
+using Android.Content.Res;
 
 namespace TODO_app
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private int activeDate;
         private bool isTaskCreateVisible = false;
         Button btnCreateTask;
         Button btnAddTask;
@@ -39,7 +41,6 @@ namespace TODO_app
         Button showAll;
         Button searchBar;
         LinearLayout navBar;
-        LinearLayout navBarSearch;
         EditText searchField;
         RelativeLayout settingsOpen;
 
@@ -89,11 +90,10 @@ namespace TODO_app
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
-            searchField = FindViewById<EditText>(Resource.Id.SearchBarField);
+            searchField = FindViewById<EditText>(Resource.Id.SearchField);
             navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
-            navBarSearch = FindViewById<LinearLayout>(Resource.Id.NavBarSearch);
 
             dayInput = FindViewById<EditText>(Resource.Id.DayInput);
             monthInput = FindViewById<EditText>(Resource.Id.MonthInput);
@@ -182,17 +182,23 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Visible;
             }
         }
+
+        /// <summary>
+        /// Call this when you want to toggle between search mode and normal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToggleSearchMode(object sender, EventArgs e)
         {
-            if(navBar.Visibility == ViewStates.Visible)
+            if(searchBar.Visibility == ViewStates.Visible)
             {
-                navBar.Visibility = ViewStates.Gone;
-                navBarSearch.Visibility = ViewStates.Visible;
+                searchBar.Visibility = ViewStates.Gone;
+                searchField.Visibility = ViewStates.Visible;
             }
-            else if (navBarSearch.Visibility == ViewStates.Visible)
+            else if (searchField.Visibility == ViewStates.Visible)
             {
-                navBarSearch.Visibility = ViewStates.Gone;
-                navBar.Visibility = ViewStates.Visible;
+                searchBar.Visibility = ViewStates.Visible;
+                searchField.Visibility = ViewStates.Gone;
             }
         }
         private void ButtonAction(object sender, EventArgs e)
@@ -300,7 +306,86 @@ namespace TODO_app
             switch (button.Id)
             {
                 case Resource.Id.date1btn:
-                    date1Btn.SetBackgroundColor(ApplicationContext.GetColor(Resource.Color.mainBlue);
+                    activeDate = 1;
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+
+                case Resource.Id.date2btn:
+                    activeDate = 2;
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+
+                case Resource.Id.date3btn:
+                    activeDate = 3;
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+                case Resource.Id.date4btn:
+                    activeDate = 4;
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+
+                case Resource.Id.date5btn:
+                    activeDate = 5;
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+
+                case Resource.Id.date6btn:
+                    activeDate = 6;
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    break;
+
+                case Resource.Id.date7btn:
+                    activeDate = 7;
+                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+
+                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
+                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.buttonGrey);
                     break;
             }
         }

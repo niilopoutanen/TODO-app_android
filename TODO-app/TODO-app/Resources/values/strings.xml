@@ -9,7 +9,7 @@
     <string name="add_task_header">Lisää uusi tehtävä</string>
     <string name="add">Lisää</string>
     <string name="search">Hae</string>
-	
+	<string name="plus">+</string>
 	
 	<string name="settings">Asetukset</string>
 	<string name="darkModeSetting">Tumma teema</string>
