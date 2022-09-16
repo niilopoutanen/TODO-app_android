@@ -18,6 +18,7 @@ using Android.Icu.Math;
 using Android.Views.Animations;
 using Android.Animation;
 using Android.Provider;
+using Android.Content;
 using static Android.Widget.TextView;
 
 namespace TODO_app
@@ -174,13 +175,15 @@ namespace TODO_app
             switch (button.Id)
             {
                 case Resource.Id.SettingsButton:
-                    SetContentView(Resource.Layout.settings);
+                    Intent settingsStarter = new Intent(this, Resource.Layout.activity_settings.GetType());
+                    StartActivity(settingsStarter);
                     settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
                     settingsReturn.Click += ButtonAction;
                     break;
 
                 case Resource.Id.SettingsReturn:
-                    SetContentView(Resource.Layout.activity_main);
+                    Intent mainMenuStarter = new Intent(this, Resource.Layout.activity_main.GetType());
+                    StartActivity(mainMenuStarter);
                     break;
             }
 

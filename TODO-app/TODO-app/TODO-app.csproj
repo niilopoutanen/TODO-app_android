@@ -151,7 +151,7 @@
     <AndroidResource Include="Resources\drawable\circle.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\settings.xml">
+    <AndroidResource Include="Resources\layout\activity_settings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
