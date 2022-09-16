@@ -20,6 +20,8 @@ using Android.Animation;
 using Android.Provider;
 using Android.Content;
 using static Android.Widget.TextView;
+using System.Runtime.Remoting.Contexts;
+using AndroidX.Core.Content.Resources;
 
 namespace TODO_app
 {
@@ -56,6 +58,15 @@ namespace TODO_app
         int thisMonth = DateTime.Today.Month;
         int thisYear = DateTime.Today.Year;
 
+
+        RelativeLayout date1Btn;
+        RelativeLayout date2Btn;
+        RelativeLayout date3Btn;
+        RelativeLayout date4Btn;
+        RelativeLayout date5Btn;
+        RelativeLayout date6Btn;
+        RelativeLayout date7Btn;
+  
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -104,6 +115,21 @@ namespace TODO_app
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
 
+            date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
+            date2Btn = FindViewById<RelativeLayout>(Resource.Id.date2btn);
+            date3Btn = FindViewById<RelativeLayout>(Resource.Id.date3btn);
+            date4Btn = FindViewById<RelativeLayout>(Resource.Id.date4btn);
+            date5Btn = FindViewById<RelativeLayout>(Resource.Id.date5btn);
+            date6Btn = FindViewById<RelativeLayout>(Resource.Id.date6btn);
+            date7Btn = FindViewById<RelativeLayout>(Resource.Id.date7btn);
+
+            date1Btn.Click += CalendarSelector;
+            date2Btn.Click += CalendarSelector;
+            date3Btn.Click += CalendarSelector;
+            date4Btn.Click += CalendarSelector;
+            date5Btn.Click += CalendarSelector;
+            date6Btn.Click += CalendarSelector;
+            date7Btn.Click += CalendarSelector;
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -270,7 +296,13 @@ namespace TODO_app
         }
         private void CalendarSelector(object sender, EventArgs e)
         {
-
+            var button = (RelativeLayout)sender;
+            switch (button.Id)
+            {
+                case Resource.Id.date1btn:
+                    date1Btn.SetBackgroundColor(ApplicationContext.GetColor(Resource.Color.mainBlue);
+                    break;
+            }
         }
 
 
