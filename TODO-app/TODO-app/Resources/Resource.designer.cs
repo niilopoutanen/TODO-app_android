@@ -4316,10 +4316,19 @@ namespace TODO_app
 			public const int visible_removing_fragment_view_tag = 2131231011;
 			
 			// aapt resource value: 0x7F080124
-			public const int withText = 2131231012;
+			public const int widgetBackground = 2131231012;
 			
 			// aapt resource value: 0x7F080125
-			public const int wrap_content = 2131231013;
+			public const int widgetMedium = 2131231013;
+			
+			// aapt resource value: 0x7F080126
+			public const int widgetSmall = 2131231014;
+			
+			// aapt resource value: 0x7F080127
+			public const int withText = 2131231015;
+			
+			// aapt resource value: 0x7F080128
+			public const int wrap_content = 2131231016;
 			
 			// aapt resource value: 0x7F080024
 			public const int YearArrowDown = 2131230756;
@@ -4623,6 +4632,9 @@ namespace TODO_app
 			
 			// aapt resource value: 0x7F0B003A
 			public const int support_simple_spinner_dropdown_item = 2131427386;
+			
+			// aapt resource value: 0x7F0B003B
+			public const int Widget = 2131427387;
 			
 			static Layout()
 			{
@@ -9517,10 +9529,13 @@ namespace TODO_app
 		{
 			
 			// aapt resource value: 0x7F100000
-			public const int image_share_filepaths = 2131755008;
+			public const int appwidgetprovider = 2131755008;
 			
 			// aapt resource value: 0x7F100001
-			public const int xamarin_essentials_fileprovider_file_paths = 2131755009;
+			public const int image_share_filepaths = 2131755009;
+			
+			// aapt resource value: 0x7F100002
+			public const int xamarin_essentials_fileprovider_file_paths = 2131755010;
 			
 			static Xml()
 			{
