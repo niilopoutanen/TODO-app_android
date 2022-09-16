@@ -62,6 +62,9 @@ namespace TODO_app
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            CalendarDater();
+
+
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += OpenCreateView;
             btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
@@ -225,6 +228,46 @@ namespace TODO_app
 
         }
 
+
+
+        private void CalendarDater()
+        {
+            DateTime today = DateTime.Today;
+            TextView todayHeader = FindViewById<TextView>(Resource.Id.todayHeader);
+            Dictionary<int, string> dayNames = new Dictionary<int, string>()
+            {
+                {0, "Sunnuntai"},
+                {1, "Maanantai"},
+                {2, "Tiistai"},
+                {3, "Keskiviikko"},
+                {4, "Torstai"},
+                {5, "Perjantai"},
+                {6, "Lauantai"}
+            };
+            string todaystr = dayNames[(int)today.DayOfWeek] + "\n" + today.Day.ToString() + "." + today.Month.ToString() + "." + today.Year.ToString();
+            todayHeader.Text = todaystr;
+
+            FindViewById<TextView>(Resource.Id.date1number).Text = today.Day.ToString();
+            FindViewById<TextView>(Resource.Id.date1str).Text = dayNames[(int)today.DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date2number).Text = today.AddDays(1).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date2str).Text = dayNames[(int)today.AddDays(1).DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date3number).Text = today.AddDays(2).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date3str).Text = dayNames[(int)today.AddDays(2).DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date4number).Text = today.AddDays(3).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date4str).Text = dayNames[(int)today.AddDays(3).DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date5number).Text = today.AddDays(4).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date5str).Text = dayNames[(int)today.AddDays(4).DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date6number).Text = today.AddDays(5).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date6str).Text = dayNames[(int)today.AddDays(5).DayOfWeek].Substring(0, 2);
+
+            FindViewById<TextView>(Resource.Id.date7number).Text = today.AddDays(6).Day.ToString();
+            FindViewById<TextView>(Resource.Id.date7str).Text = dayNames[(int)today.AddDays(6).DayOfWeek].Substring(0, 2);
+        }
         private void CalendarSelector(object sender, EventArgs e)
         {
 
