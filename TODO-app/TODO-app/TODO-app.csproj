@@ -144,9 +144,6 @@
     <AndroidResource Include="Resources\drawable\task_radio_button_active.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\anim\HeaderOut.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\SettingsVector.xml" />
   </ItemGroup>
   <ItemGroup>
