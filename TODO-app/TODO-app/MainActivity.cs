@@ -75,6 +75,7 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Resource.Style.MainOrange);
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource

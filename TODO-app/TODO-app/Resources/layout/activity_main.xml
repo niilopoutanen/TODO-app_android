@@ -103,7 +103,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:background="@drawable/rounded50px"
-                    android:backgroundTint="@color/mainBlue"
+                    android:backgroundTint="?attr/colorAccent"
                     android:text="@string/plus"
                     android:textSize="30dp"
                     android:textStyle="bold"/>
@@ -127,7 +127,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="@color/mainBlue">
+                        android:backgroundTint="?attr/colorAccent">
                         <TextView
                             android:id="@+id/date1number"
                             android:layout_width="match_parent"
@@ -532,7 +532,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded50px"
-                android:backgroundTint="@color/mainBlue"
+                android:backgroundTint="?attr/colorAccent"
                 android:id="@+id/AddTask"
                 android:text="@string/add"
                 android:textSize="18dp"

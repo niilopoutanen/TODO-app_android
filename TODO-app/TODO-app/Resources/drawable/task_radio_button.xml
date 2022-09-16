@@ -14,7 +14,7 @@
 	</solid>
 	<stroke
 		android:width="5dp"
-		android:color="@color/mainBlue"
+		android:color="?attr/colorAccent"
 	/>
 
 </shape>
