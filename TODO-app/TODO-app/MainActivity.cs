@@ -75,7 +75,7 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SetTheme(Resource.Style.MainOrange);
+            SetTheme(Resource.Style.MainViolet);
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -417,17 +417,17 @@ namespace TODO_app
             RelativeLayout cardBG = new RelativeLayout(this);
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
             cardBG.Background = rounded50;
-            cardBG.SetPadding(50,0,0,0);
+            cardBG.SetPadding(DpToPx(20),0,0,0);
             cardBG.Id = View.GenerateViewId();
-            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, 250);
-            cardparams.SetMargins(0, 0, 0, 60);
+            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
+            cardparams.SetMargins(0, 0, 0, DpToPx(20));
             cardBG.LayoutParameters = cardparams;
 
             Button toggleBtn = new Button(this);
             Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
             toggleBtn.Background = toggleDefault;
-            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(150, 150);
-            buttonparams.SetMargins(0, 0, 50, 0);
+            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
+            buttonparams.SetMargins(0, 0, DpToPx(10), 0);
             buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
@@ -436,7 +436,8 @@ namespace TODO_app
 
             TextView header = new TextView(this);
             header.Text = taskName;
-            header.TextSize = 20;
+            header.TextSize = DpToPx(6);
+            header.SetTypeface(header.Typeface, Android.Graphics.TypefaceStyle.Bold);
             RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
             headerparams.AddRule(LayoutRules.CenterVertical);
             headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
@@ -470,6 +471,12 @@ namespace TODO_app
 
             buttonParent.RemoveAllViews();
             scrollLayout.RemoveView(buttonParent);
+        }
+
+        private int DpToPx(int dpValue)
+        {
+            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
+            return pixel;
         }
     }
 }

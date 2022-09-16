@@ -25,6 +25,7 @@ namespace TODO_app
         TextView Tomibtn;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Resource.Style.MainViolet);
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
