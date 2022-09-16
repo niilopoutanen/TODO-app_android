@@ -19,6 +19,10 @@ namespace TODO_app
     {
         TextView version;
         RelativeLayout sendFeedbackButton;
+
+        TextView Niilobtn;
+        TextView Oskaribtn;
+        TextView Tomibtn;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,6 +37,14 @@ namespace TODO_app
 
             sendFeedbackButton = FindViewById<RelativeLayout>(Resource.Id.SendFeedbackBtn);
             sendFeedbackButton.Click += SendFeedback;
+
+            Niilobtn = FindViewById<TextView>(Resource.Id.CreditsNP);
+            Oskaribtn = FindViewById<TextView>(Resource.Id.CreditsOM);
+            Tomibtn = FindViewById<TextView>(Resource.Id.CreditsTV);
+
+            Niilobtn.Click += CreditsLinks;
+            Oskaribtn.Click += CreditsLinks;
+            Tomibtn.Click += CreditsLinks;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -51,6 +63,31 @@ namespace TODO_app
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
+        }
+        private void CreditsLinks(object sender, EventArgs e)
+        {
+            var button = (TextView)sender;
+            switch (button.Id)
+            {
+                case Resource.Id.CreditsNP:
+                    var uriN = Android.Net.Uri.Parse("https://github.com/niilopoutanen");
+                    var intentN = new Intent(Intent.ActionView, uriN);
+                    StartActivity(intentN);
+                    break;
+
+                case Resource.Id.CreditsOM:
+                    var uriO = Android.Net.Uri.Parse("https://github.com/osaama05");
+                    var intentO = new Intent(Intent.ActionView, uriO);
+                    StartActivity(intentO);
+                    break;
+
+                case Resource.Id.CreditsTV:
+                    var uriT = Android.Net.Uri.Parse("https://github.com/Tolpanjuuri");
+                    var intentT = new Intent(Intent.ActionView, uriT);
+                    StartActivity(intentT);
+                    break;
+            }
+
         }
     }
 }

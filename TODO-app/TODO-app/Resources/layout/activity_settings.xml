@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bottomrounded">
         <RelativeLayout
             android:id="@+id/SettingsReturn"
@@ -203,7 +203,7 @@
 
             </RelativeLayout>
 
-                        <RelativeLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/headerBackground"
@@ -228,6 +228,51 @@
                     android:textStyle="bold"
                     android:textSize="20dp"
                     />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/headerBackground"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="8dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/CreditsHeader"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CreditsHeader"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:id="@+id/CreditsNP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Credits1"
+                    android:layout_below="@+id/CreditsHeader"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/CreditsOM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Credits2"
+                    android:layout_below="@+id/CreditsNP"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/CreditsTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Credits3"
+                    android:layout_below="@+id/CreditsOM"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
