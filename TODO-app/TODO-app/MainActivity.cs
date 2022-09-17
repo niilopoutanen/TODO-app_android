@@ -350,7 +350,7 @@ namespace TODO_app
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
             View view = inflater.Inflate(Resource.Layout.delete_task_popup, null);
-
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
             alert.Window.SetLayout(DpToPx(300), DpToPx(150));
@@ -361,14 +361,16 @@ namespace TODO_app
                 button.RemoveAllViews();
                 scrollLayout.RemoveView(button);
                 alert.Dismiss();
+                UpdateTaskCount();
             };
 
             Button cancel = view.FindViewById<Button>(Resource.Id.deleteTaskCancel);
             cancel.Click += (s, e) =>
             {
+                button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-            UpdateTaskCount();
+            
         }
         private void CalendarDater()
         {
@@ -521,6 +523,7 @@ namespace TODO_app
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
             toggleBtn.Click += TaskToggle;
+            toggleBtn.Tag = "Inactive";
 
 
             TextView header = new TextView(this);
@@ -559,10 +562,22 @@ namespace TODO_app
             Button button =  (Button)sender;
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
-            button.Background = active;
+            Drawable inactive = GetDrawable(Resource.Drawable.task_radio_button);
+
+            if (button.Tag.ToString() == "Inactive")
+            {
+                button.Background = active;
+                button.Tag = "Active";
+            }
+            else if (button.Tag.ToString() == "Active")
+            {
+                button.Background = inactive;
+                button.Tag = "Inactive";
+            }
+            
             //buttonParent.RemoveAllViews();
             //scrollLayout.RemoveView(buttonParent);
-            //UpdateTaskCount();
+            UpdateTaskCount();
         }
 
         private int DpToPx(int dpValue)
