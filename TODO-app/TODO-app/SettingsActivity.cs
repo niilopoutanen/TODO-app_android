@@ -23,6 +23,12 @@ namespace TODO_app
         TextView Niilobtn;
         TextView Oskaribtn;
         TextView Tomibtn;
+
+        Button blueTheme;
+        Button greenTheme;
+        Button orangeTheme;
+        Button violetTheme;
+        Button redTheme;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SetTheme(Resource.Style.MainViolet);
@@ -46,6 +52,12 @@ namespace TODO_app
             Niilobtn.Click += CreditsLinks;
             Oskaribtn.Click += CreditsLinks;
             Tomibtn.Click += CreditsLinks;
+
+            blueTheme.Click += ChangeTheme;
+            greenTheme.Click += ChangeTheme;
+            violetTheme.Click += ChangeTheme;
+            orangeTheme.Click += ChangeTheme;
+            redTheme.Click += ChangeTheme;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -88,6 +100,12 @@ namespace TODO_app
                     StartActivity(intentT);
                     break;
             }
+
+        }
+
+
+        private void ChangeTheme(object sender, EventArgs e)
+        {
 
         }
     }
