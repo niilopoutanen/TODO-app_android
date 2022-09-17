@@ -81,7 +81,7 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SetTheme(Resource.Style.MainViolet);
+            LoadSettings();
             currentTheme = "mainViolet";
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -128,73 +128,96 @@ namespace TODO_app
             }
         }
 
-
-
+        private void LoadSettings()
+        {
+            ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            string color = colorTheme.GetString("colorTheme", default);
+            if (color == "blue")
+            {
+                SetTheme(Resource.Style.MainBlue);
+            }
+            else if (color == "green")
+            {
+                SetTheme(Resource.Style.MainGreen);
+            }
+            else if (color == "orange")
+            {
+                SetTheme(Resource.Style.MainOrange);
+            }
+            else if (color == "violet")
+            {
+                SetTheme(Resource.Style.MainViolet);
+            }
+            else if (color == "red")
+            {
+                SetTheme(Resource.Style.MainRed);
+            }
+        }
         /// <summary>
         /// Put all element connections here for cleaner code
         /// </summary>
         private void InitializeElements()
         {
 
-            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
-            btnCreateTask.Click += OpenCreateView;
-            btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
-            btnAddTask.Click += CloseCreateView;
-            header = FindViewById<LinearLayout>(Resource.Id.Header);
-            createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
-            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
-            calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
-            showAll = FindViewById<Button>(Resource.Id.ShowAll);
-            showAll.Click += ShowAll;
-            taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
-            taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
-            taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
+        btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+        btnCreateTask.Click += OpenCreateView;
+        btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
+        btnAddTask.Click += CloseCreateView;
+        header = FindViewById<LinearLayout>(Resource.Id.Header);
+        createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
+        mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
+        calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
+        showAll = FindViewById<Button>(Resource.Id.ShowAll);
+        showAll.Click += ShowAll;
+        taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
+        taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
+        taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
-            settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
-            settingsOpen.Click += ButtonAction;
-            searchField = FindViewById<EditText>(Resource.Id.SearchField);
-            navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
-            searchBar = FindViewById<Button>(Resource.Id.SearchBar);
-            searchBar.Click += ToggleSearchMode;
+        settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
+        settingsOpen.Click += ButtonAction;
+        searchField = FindViewById<EditText>(Resource.Id.SearchField);
+        navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
+        searchBar = FindViewById<Button>(Resource.Id.SearchBar);
+        searchBar.Click += ToggleSearchMode;
 
-            dayInput = FindViewById<EditText>(Resource.Id.DayInput);
-            monthInput = FindViewById<EditText>(Resource.Id.MonthInput);
-            yearInput = FindViewById<EditText>(Resource.Id.YearInput);
+        dayInput = FindViewById<EditText>(Resource.Id.DayInput);
+        monthInput = FindViewById<EditText>(Resource.Id.MonthInput);
+        yearInput = FindViewById<EditText>(Resource.Id.YearInput);
 
-            dayUp = FindViewById<RelativeLayout>(Resource.Id.DayArrowUp);
-            monthUp = FindViewById<RelativeLayout>(Resource.Id.MonthArrowUp);
-            yearUp = FindViewById<RelativeLayout>(Resource.Id.YearArrowUp);
+        dayUp = FindViewById<RelativeLayout>(Resource.Id.DayArrowUp);
+        monthUp = FindViewById<RelativeLayout>(Resource.Id.MonthArrowUp);
+        yearUp = FindViewById<RelativeLayout>(Resource.Id.YearArrowUp);
 
-            dayDown = FindViewById<RelativeLayout>(Resource.Id.DayArrowDown);
-            monthDown = FindViewById<RelativeLayout>(Resource.Id.MonthArrowDown);
-            yearDown = FindViewById<RelativeLayout>(Resource.Id.YearArrowDown);
+        dayDown = FindViewById<RelativeLayout>(Resource.Id.DayArrowDown);
+        monthDown = FindViewById<RelativeLayout>(Resource.Id.MonthArrowDown);
+        yearDown = FindViewById<RelativeLayout>(Resource.Id.YearArrowDown);
 
-            dayUp.Click += ArrowModify;
-            monthUp.Click += ArrowModify;
-            yearUp.Click += ArrowModify;
+        dayUp.Click += ArrowModify;
+        monthUp.Click += ArrowModify;
+        yearUp.Click += ArrowModify;
 
-            dayDown.Click += ArrowModify;
-            monthDown.Click += ArrowModify;
-            yearDown.Click += ArrowModify;
+        dayDown.Click += ArrowModify;
+        monthDown.Click += ArrowModify;
+        yearDown.Click += ArrowModify;
 
-            date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
-            date2Btn = FindViewById<RelativeLayout>(Resource.Id.date2btn);
-            date3Btn = FindViewById<RelativeLayout>(Resource.Id.date3btn);
-            date4Btn = FindViewById<RelativeLayout>(Resource.Id.date4btn);
-            date5Btn = FindViewById<RelativeLayout>(Resource.Id.date5btn);
-            date6Btn = FindViewById<RelativeLayout>(Resource.Id.date6btn);
-            date7Btn = FindViewById<RelativeLayout>(Resource.Id.date7btn);
+        date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
+        date2Btn = FindViewById<RelativeLayout>(Resource.Id.date2btn);
+        date3Btn = FindViewById<RelativeLayout>(Resource.Id.date3btn);
+        date4Btn = FindViewById<RelativeLayout>(Resource.Id.date4btn);
+        date5Btn = FindViewById<RelativeLayout>(Resource.Id.date5btn);
+        date6Btn = FindViewById<RelativeLayout>(Resource.Id.date6btn);
+        date7Btn = FindViewById<RelativeLayout>(Resource.Id.date7btn);
 
-            date1Btn.Click += CalendarSelector;
-            date2Btn.Click += CalendarSelector;
-            date3Btn.Click += CalendarSelector;
-            date4Btn.Click += CalendarSelector;
-            date5Btn.Click += CalendarSelector;
-            date6Btn.Click += CalendarSelector;
-            date7Btn.Click += CalendarSelector;
+        date1Btn.Click += CalendarSelector;
+        date2Btn.Click += CalendarSelector;
+        date3Btn.Click += CalendarSelector;
+        date4Btn.Click += CalendarSelector;
+        date5Btn.Click += CalendarSelector;
+        date6Btn.Click += CalendarSelector;
+        date7Btn.Click += CalendarSelector;
 
-            scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
-        }
+        scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
+    }
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;

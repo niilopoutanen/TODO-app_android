@@ -11,6 +11,7 @@ using System.Text;
 using AndroidX.AppCompat.App;
 using System.Runtime.Remoting.Contexts;
 using Xamarin.Essentials;
+using static Android.Renderscripts.Sampler;
 
 namespace TODO_app
 {
@@ -31,7 +32,7 @@ namespace TODO_app
         Button redTheme;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SetTheme(Resource.Style.MainViolet);
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -71,6 +72,32 @@ namespace TODO_app
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void LoadSettings()
+        {
+            ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            string color = colorTheme.GetString("colorTheme", default);
+            if (color == "blue")
+            {
+                SetTheme(Resource.Style.MainBlue);
+            }
+            else if (color == "green")
+            {
+                SetTheme(Resource.Style.MainGreen);
+            }
+            else if (color == "orange")
+            {
+                SetTheme(Resource.Style.MainOrange);
+            }
+            else if (color == "violet")
+            {
+                SetTheme(Resource.Style.MainViolet);
+            }
+            else if (color == "red")
+            {
+                SetTheme(Resource.Style.MainRed);
+            }
         }
         private void BackToMenu(object sender, EventArgs e)
         {
@@ -113,27 +140,28 @@ namespace TODO_app
         private void ChangeTheme(object sender, EventArgs e)
         {
             Button colorButton = (Button)sender;
-
+            ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             switch (colorButton.Id)
             {
                 case Resource.Id.MainBlueToggle:
-
+                    
+                    colorTheme.Edit().PutString("colorTheme", "blue").Commit();
                     break;
 
                 case Resource.Id.MainGreenToggle:
-
+                    colorTheme.Edit().PutString("colorTheme", "green").Commit();
                     break;
 
                 case Resource.Id.MainOrangeToggle:
-
+                    colorTheme.Edit().PutString("colorTheme", "orange").Commit();
                     break;
 
                 case Resource.Id.MainVioletToggle:
-
+                    colorTheme.Edit().PutString("colorTheme", "violet").Commit();
                     break;
 
                 case Resource.Id.MainRedToggle:
-
+                    colorTheme.Edit().PutString("colorTheme", "red").Commit();
                     break;
             }
         }
