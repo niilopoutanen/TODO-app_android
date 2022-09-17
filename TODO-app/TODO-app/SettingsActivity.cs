@@ -53,6 +53,12 @@ namespace TODO_app
             Oskaribtn.Click += CreditsLinks;
             Tomibtn.Click += CreditsLinks;
 
+            blueTheme = FindViewById<Button>(Resource.Id.MainBlueToggle);
+            greenTheme = FindViewById<Button>(Resource.Id.MainGreenToggle);
+            violetTheme = FindViewById<Button>(Resource.Id.MainVioletToggle);
+            orangeTheme = FindViewById<Button>(Resource.Id.MainOrangeToggle);
+            redTheme = FindViewById<Button>(Resource.Id.MainRedToggle);
+
             blueTheme.Click += ChangeTheme;
             greenTheme.Click += ChangeTheme;
             violetTheme.Click += ChangeTheme;

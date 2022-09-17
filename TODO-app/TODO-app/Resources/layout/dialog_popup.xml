@@ -3,32 +3,33 @@
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="150dp"
-    android:background="@drawable/rounded60px"
+    android:background="@drawable/rounded90px"
     android:gravity="center_horizontal"
-    android:padding="20dp">
+    android:padding="15dp">
 
     <TextView
         android:textAlignment="center"
-        android:id="@+id/deleteTaskHeader"
+        android:id="@+id/PopupHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/deleteTaskConfirm"
-        android:textSize="20dp"
+        android:text="header"
+        android:textSize="25dp"
         android:textStyle="bold"/>
     <TextView
+        android:id="@+id/PopupDescription"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/deleteTaskDescription"
-        android:layout_below="@+id/deleteTaskHeader"
+        android:text="description"
+        android:layout_below="@+id/PopupHeader"
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/deleteTaskConfirm"
+        android:id="@+id/PopupConfirm"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:background="@drawable/rounded60px"
         android:backgroundTint="?attr/colorAccent"
         android:text="@string/yes"
@@ -36,11 +37,11 @@
         android:textStyle="bold"/>
 
         <Button
-        android:id="@+id/deleteTaskCancel"
+        android:id="@+id/PopupCancel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:text="@string/no"
         android:textAllCaps="false"

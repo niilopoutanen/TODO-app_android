@@ -26,6 +26,7 @@ using Android.Content.Res;
 using Android.Views.InputMethods;
 using Android.Graphics;
 using System.Drawing.Imaging;
+using Android.Telephony;
 
 namespace TODO_app
 {
@@ -214,6 +215,7 @@ namespace TODO_app
                 string taskname = taskNameField.Text;
                 if (taskname == "")
                 {
+                    OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
                     return;
                 }
                 CreateTaskElement(taskname);
@@ -262,7 +264,6 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Visible;
             }
         }
-
         /// <summary>
         /// Call this when you want to toggle between search mode and normal
         /// </summary>
@@ -340,6 +341,39 @@ namespace TODO_app
 
         }
 
+
+        /// <summary>
+        /// Use this to show a popup on screen. Provide a text for the header, description, and the OK-button. Use resource values, not hardcoded strings.
+        /// </summary>
+        /// <param name="Header">Header of the popup.</param>
+        /// <param name="Desc">Description of the popup.</param>
+        /// <param name="YesText">Text of the OK-button.</param>
+        private void OpenPopup(string Header, string Desc, string YesText)
+        {
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm.Text = YesText;
+            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header.Text = Header;
+            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc.Text = Desc;
+            confirm.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+
+            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
+            cancel.Visibility = ViewStates.Gone;
+        }
         private void HoldTaskElement(object sender, EventArgs e)
         {
             RelativeLayout button = (RelativeLayout)sender;
@@ -349,13 +383,17 @@ namespace TODO_app
             Android.App.AlertDialog alert = dialog.Create();
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.delete_task_popup, null);
+            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
             view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
             alert.Window.SetLayout(DpToPx(300), DpToPx(150));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            Button confirm = view.FindViewById<Button>(Resource.Id.deleteTaskConfirm);
+            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
+            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header.Text = GetString(Resource.String.deleteTaskHeader);
+            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc.Text = GetString(Resource.String.deleteTaskDescription);
             confirm.Click += (s, e) =>
             {
                 button.RemoveAllViews();
@@ -364,7 +402,7 @@ namespace TODO_app
                 UpdateTaskCount();
             };
 
-            Button cancel = view.FindViewById<Button>(Resource.Id.deleteTaskCancel);
+            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Click += (s, e) =>
             {
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
