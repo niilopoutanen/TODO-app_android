@@ -338,7 +338,11 @@ namespace TODO_app
 
         }
 
-
+        private void HoldTaskElement(object sender, EventArgs e)
+        {
+            RelativeLayout button = (RelativeLayout)sender;
+            button.BackgroundTintList = GetColorStateList(GetStyle());
+        }
 
         private void CalendarDater()
         {
@@ -479,6 +483,8 @@ namespace TODO_app
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
             cardparams.SetMargins(0, 0, 0, DpToPx(20));
             cardBG.LayoutParameters = cardparams;
+            cardBG.LongClick += HoldTaskElement;
+
 
             Button toggleBtn = new Button(this);
             Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
