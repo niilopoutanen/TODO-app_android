@@ -17,7 +17,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/Header">
         <LinearLayout
             android:visibility="visible"
@@ -540,11 +540,22 @@
                 android:layout_marginBottom="20dp"/>
         </LinearLayout>
     </LinearLayout>
-
+    <RelativeLayout
+        android:id="@+id/taskCountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:id="@+id/taskCountText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/taskAmount"
+            android:textAlignment="center"/>
+    </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:animateLayoutChanges="true">
         <LinearLayout
             android:id="@+id/ScrollLayout"
             android:layout_width="match_parent"
@@ -552,28 +563,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@drawable/rounded50px"
-                android:paddingLeft="20dp"
-                android:layout_marginBottom="20dp">
-                <Button
-                    android:id="@+id/toggle"
-                    android:layout_centerVertical="true"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/task_radio_button"
-                    android:layout_marginRight="10dp"/>
-                <TextView
-                    android:layout_toRightOf="@+id/toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/task_template"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

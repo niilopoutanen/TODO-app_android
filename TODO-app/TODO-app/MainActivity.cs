@@ -31,6 +31,7 @@ namespace TODO_app
     public class MainActivity : AppCompatActivity
     {
         private int activeDate;
+        private string currentTheme;
         Button btnCreateTask;
         Button btnAddTask;
         
@@ -44,6 +45,8 @@ namespace TODO_app
         EditText searchField;
         RelativeLayout settingsOpen;
         EditText taskNameField;
+        RelativeLayout taskCountLayout;
+        TextView taskCount;
 
         RelativeLayout dayUp;
         RelativeLayout monthUp;
@@ -76,12 +79,59 @@ namespace TODO_app
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SetTheme(Resource.Style.MainViolet);
+            currentTheme = "mainViolet";
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            CalendarDater();
 
+            InitializeElements();
+            CalendarDater();
+            UpdateTaskCount();
+            GetStyle();
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private int GetStyle()
+        {
+            if(currentTheme == "mainblue")
+            {
+                return Resource.Color.mainBlue;
+            }
+            else if (currentTheme == "mainOrange")
+            {
+                return Resource.Color.mainOrange;
+            }
+            else if (currentTheme == "mainGreen")
+            {
+                return Resource.Color.mainGreen;
+            }
+            else if (currentTheme == "mainViolet")
+            {
+                return Resource.Color.mainViolet;
+            }
+            else if (currentTheme == "mainRed")
+            {
+                return Resource.Color.mainRed;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Put all element connections here for cleaner code
+        /// </summary>
+        private void InitializeElements()
+        {
 
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
             btnCreateTask.Click += OpenCreateView;
@@ -94,6 +144,8 @@ namespace TODO_app
             showAll = FindViewById<Button>(Resource.Id.ShowAll);
             showAll.Click += ShowAll;
             taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
+            taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
+            taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
@@ -108,7 +160,7 @@ namespace TODO_app
 
             dayUp = FindViewById<RelativeLayout>(Resource.Id.DayArrowUp);
             monthUp = FindViewById<RelativeLayout>(Resource.Id.MonthArrowUp);
-            yearUp = FindViewById<RelativeLayout>(Resource.Id.YearArrowDown);
+            yearUp = FindViewById<RelativeLayout>(Resource.Id.YearArrowUp);
 
             dayDown = FindViewById<RelativeLayout>(Resource.Id.DayArrowDown);
             monthDown = FindViewById<RelativeLayout>(Resource.Id.MonthArrowDown);
@@ -140,15 +192,18 @@ namespace TODO_app
 
             scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
         }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        private void UpdateTaskCount()
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            int elementCount = scrollLayout.ChildCount;
+            if(elementCount == 1)
+            {
+                taskCount.Text = elementCount.ToString() + " tehtävä";
+            }
+            else
+            {
+                taskCount.Text = elementCount.ToString() + " tehtävää";
+            }
         }
-
-
-
        
         private void CloseCreateView(object sender, EventArgs e)
         {
@@ -160,9 +215,11 @@ namespace TODO_app
                     return;
                 }
                 CreateTaskElement(taskname);
+                UpdateTaskCount();
                 mainHeader.Visibility = ViewStates.Visible;
                 createTaskHeader.Visibility = ViewStates.Gone;
                 scrollLayout.Visibility = ViewStates.Visible;
+                taskCountLayout.Visibility = ViewStates.Visible;
                 taskNameField.Text = "";
 
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
@@ -182,7 +239,7 @@ namespace TODO_app
                 mainHeader.Visibility = ViewStates.Gone;
                 createTaskHeader.Visibility = ViewStates.Visible;
                 scrollLayout.Visibility = ViewStates.Gone;
-
+                taskCountLayout.Visibility = ViewStates.Gone;
 
 
                 dayInput.Text = thisDay.ToString();
@@ -328,7 +385,7 @@ namespace TODO_app
             {
                 case Resource.Id.date1btn:
                     activeDate = 1;
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date1Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -340,7 +397,7 @@ namespace TODO_app
 
                 case Resource.Id.date2btn:
                     activeDate = 2;
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date2Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -352,7 +409,7 @@ namespace TODO_app
 
                 case Resource.Id.date3btn:
                     activeDate = 3;
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date3Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -363,7 +420,7 @@ namespace TODO_app
                     break;
                 case Resource.Id.date4btn:
                     activeDate = 4;
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date4Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -375,7 +432,7 @@ namespace TODO_app
 
                 case Resource.Id.date5btn:
                     activeDate = 5;
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date5Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -387,7 +444,7 @@ namespace TODO_app
 
                 case Resource.Id.date6btn:
                     activeDate = 6;
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date6Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -399,7 +456,7 @@ namespace TODO_app
 
                 case Resource.Id.date7btn:
                     activeDate = 7;
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.mainBlue);
+                    date7Btn.BackgroundTintList = GetColorStateList(GetStyle());
 
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -457,6 +514,7 @@ namespace TODO_app
             {
                 layoutToDelete.RemoveAllViews();
                 scrollLayout.RemoveView(layoutToDelete);
+                UpdateTaskCount();
             }
             catch
             {
@@ -471,6 +529,7 @@ namespace TODO_app
 
             buttonParent.RemoveAllViews();
             scrollLayout.RemoveView(buttonParent);
+            UpdateTaskCount();
         }
 
         private int DpToPx(int dpValue)
