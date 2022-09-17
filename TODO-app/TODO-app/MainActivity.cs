@@ -215,7 +215,7 @@ namespace TODO_app
                 string taskname = taskNameField.Text;
                 if (taskname == "")
                 {
-                    OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                    OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
                     return;
                 }
                 CreateTaskElement(taskname);
@@ -264,6 +264,8 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Visible;
             }
         }
+
+
         /// <summary>
         /// Call this when you want to toggle between search mode and normal
         /// </summary>
@@ -343,7 +345,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Use this to show a popup on screen. Provide a text for the header, description, and the OK-button. Use resource values, not hardcoded strings.
+        /// Use this to show a popup on screen. Provide a text for the header, description, and the OK-button.
         /// </summary>
         /// <param name="Header">Header of the popup.</param>
         /// <param name="Desc">Description of the popup.</param>

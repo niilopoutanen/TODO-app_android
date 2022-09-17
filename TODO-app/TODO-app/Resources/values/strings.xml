@@ -56,4 +56,7 @@
 
 	<string name="invalidValue">Virheellinen luku</string>
 	<string name="invalidDate">Antamasi päivämäärä ei kelpaa.</string>
+
+	<string name="invalidName">Virheellinen nimi</string>
+	<string name="invalidNameDesc">Antamasi nimi ei kelpaa.</string>
 </resources>

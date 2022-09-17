@@ -4891,70 +4891,76 @@ namespace TODO_app
 			public const int invalidDate = 2131558469;
 			
 			// aapt resource value: 0x7F0D0046
-			public const int invalidValue = 2131558470;
+			public const int invalidName = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int mtrl_chip_close_icon_content_description = 2131558471;
+			public const int invalidNameDesc = 2131558471;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int no = 2131558472;
+			public const int invalidValue = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int notificationSetting = 2131558473;
+			public const int mtrl_chip_close_icon_content_description = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int password_toggle_content_description = 2131558474;
+			public const int no = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int path_password_eye = 2131558475;
+			public const int notificationSetting = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int path_password_eye_mask_strike_through = 2131558476;
+			public const int password_toggle_content_description = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int path_password_eye_mask_visible = 2131558477;
+			public const int path_password_eye = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int path_password_strike_through = 2131558478;
+			public const int path_password_eye_mask_strike_through = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int plus = 2131558479;
+			public const int path_password_eye_mask_visible = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int returnbtn = 2131558480;
+			public const int path_password_strike_through = 2131558480;
 			
 			// aapt resource value: 0x7F0D0051
-			public const int search = 2131558481;
+			public const int plus = 2131558481;
 			
 			// aapt resource value: 0x7F0D0052
-			public const int search_menu_title = 2131558482;
+			public const int returnbtn = 2131558482;
 			
 			// aapt resource value: 0x7F0D0053
-			public const int sendFeedback = 2131558483;
+			public const int search = 2131558483;
 			
 			// aapt resource value: 0x7F0D0054
-			public const int settings = 2131558484;
+			public const int search_menu_title = 2131558484;
 			
 			// aapt resource value: 0x7F0D0055
-			public const int show_all = 2131558485;
+			public const int sendFeedback = 2131558485;
 			
 			// aapt resource value: 0x7F0D0056
-			public const int status_bar_notification_info_overflow = 2131558486;
+			public const int settings = 2131558486;
 			
 			// aapt resource value: 0x7F0D0057
-			public const int taskAmount = 2131558487;
+			public const int show_all = 2131558487;
 			
 			// aapt resource value: 0x7F0D0058
-			public const int task_name_header = 2131558488;
+			public const int status_bar_notification_info_overflow = 2131558488;
 			
 			// aapt resource value: 0x7F0D0059
-			public const int task_template = 2131558489;
+			public const int taskAmount = 2131558489;
 			
 			// aapt resource value: 0x7F0D005A
-			public const int versionHeader = 2131558490;
+			public const int task_name_header = 2131558490;
 			
 			// aapt resource value: 0x7F0D005B
-			public const int yes = 2131558491;
+			public const int task_template = 2131558491;
+			
+			// aapt resource value: 0x7F0D005C
+			public const int versionHeader = 2131558492;
+			
+			// aapt resource value: 0x7F0D005D
+			public const int yes = 2131558493;
 			
 			static String()
 			{
