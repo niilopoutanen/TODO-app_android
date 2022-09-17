@@ -82,7 +82,6 @@ namespace TODO_app
         protected override void OnCreate(Bundle savedInstanceState)
         {
             LoadSettings();
-            currentTheme = "mainViolet";
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -135,22 +134,27 @@ namespace TODO_app
             if (color == "blue")
             {
                 SetTheme(Resource.Style.MainBlue);
+                currentTheme = "mainBlue";
             }
             else if (color == "green")
             {
                 SetTheme(Resource.Style.MainGreen);
+                currentTheme = "mainGreen";
             }
             else if (color == "orange")
             {
                 SetTheme(Resource.Style.MainOrange);
+                currentTheme = "mainOrange";
             }
             else if (color == "violet")
             {
                 SetTheme(Resource.Style.MainViolet);
+                currentTheme = "mainViolet";
             }
             else if (color == "red")
             {
                 SetTheme(Resource.Style.MainRed);
+                currentTheme = "mainRed";
             }
         }
         /// <summary>

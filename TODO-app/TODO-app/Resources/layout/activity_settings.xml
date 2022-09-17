@@ -94,52 +94,103 @@
                     android:layout_height="60dp"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal">
-                    <Button
+                    <RelativeLayout
                         android:id="@+id/MainBlueToggle"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/mainBlue"/>
+                        android:backgroundTint="@color/mainBlue"
+                        android:gravity="center">
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/MainBlueActive"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/circle"
+                            android:tint="#0043BA"
+                            android:contentDescription="@string/default_description" />
+                    </RelativeLayout>
+
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
-                    <Button
+                    <RelativeLayout
                         android:id="@+id/MainGreenToggle"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/mainGreen"/>
+                        android:backgroundTint="@color/mainGreen"
+                        android:gravity="center">
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/MainGreenActive"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/circle"
+                            android:tint="#0C8600"
+                            android:contentDescription="@string/default_description" />
+                    </RelativeLayout>
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
-                    <Button
+                    <RelativeLayout
                         android:id="@+id/MainVioletToggle"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/mainViolet"/>
+                        android:backgroundTint="@color/mainViolet"
+                        android:gravity="center">
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/MainVioletActive"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/circle"
+                            android:tint="#7000A8"
+                            android:contentDescription="@string/default_description" />
+                    </RelativeLayout>
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
-                    <Button
+                    <RelativeLayout
                         android:id="@+id/MainOrangeToggle"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/mainOrange"/>
+                        android:backgroundTint="@color/mainOrange"
+                        android:gravity="center">
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/MainOrangeActive"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/circle"
+                            android:tint="#8C4E00"
+                            android:contentDescription="@string/default_description" />
+                    </RelativeLayout>
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"/>
-                    <Button
+                    <RelativeLayout
                         android:id="@+id/MainRedToggle"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/mainRed"/>
+                        android:backgroundTint="@color/mainRed"
+                        android:gravity="center">
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/MainRedActive"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/circle"
+                            android:tint="#A80F00"
+                            android:contentDescription="@string/default_description" />
+                    </RelativeLayout>
                 </LinearLayout>
 
             </RelativeLayout>

@@ -12,12 +12,14 @@ using AndroidX.AppCompat.App;
 using System.Runtime.Remoting.Contexts;
 using Xamarin.Essentials;
 using static Android.Renderscripts.Sampler;
+using System.Drawing.Imaging;
 
 namespace TODO_app
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class SettingsActivity : AppCompatActivity
     {
+        private string savedTheme = "";
         TextView version;
         RelativeLayout sendFeedbackButton;
 
@@ -25,14 +27,25 @@ namespace TODO_app
         TextView Oskaribtn;
         TextView Tomibtn;
 
-        Button blueTheme;
-        Button greenTheme;
-        Button orangeTheme;
-        Button violetTheme;
-        Button redTheme;
+        RelativeLayout blueTheme;
+        RelativeLayout greenTheme;
+        RelativeLayout orangeTheme;
+        RelativeLayout violetTheme;
+        RelativeLayout redTheme;
+
+
+        ImageView blueActive;
+        ImageView greenActive;
+        ImageView orangeActive;
+        ImageView violetActive;
+        ImageView redActive;
+
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
-
+            
+            LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -54,17 +67,46 @@ namespace TODO_app
             Oskaribtn.Click += CreditsLinks;
             Tomibtn.Click += CreditsLinks;
 
-            blueTheme = FindViewById<Button>(Resource.Id.MainBlueToggle);
-            greenTheme = FindViewById<Button>(Resource.Id.MainGreenToggle);
-            violetTheme = FindViewById<Button>(Resource.Id.MainVioletToggle);
-            orangeTheme = FindViewById<Button>(Resource.Id.MainOrangeToggle);
-            redTheme = FindViewById<Button>(Resource.Id.MainRedToggle);
+            blueTheme = FindViewById<RelativeLayout>(Resource.Id.MainBlueToggle);
+            greenTheme = FindViewById<RelativeLayout>(Resource.Id.MainGreenToggle);
+            violetTheme = FindViewById<RelativeLayout>(Resource.Id.MainVioletToggle);
+            orangeTheme = FindViewById<RelativeLayout>(Resource.Id.MainOrangeToggle);
+            redTheme = FindViewById<RelativeLayout>(Resource.Id.MainRedToggle);
 
             blueTheme.Click += ChangeTheme;
             greenTheme.Click += ChangeTheme;
             violetTheme.Click += ChangeTheme;
             orangeTheme.Click += ChangeTheme;
             redTheme.Click += ChangeTheme;
+
+            blueActive = FindViewById<ImageView>(Resource.Id.MainBlueActive);
+            greenActive = FindViewById<ImageView>(Resource.Id.MainGreenActive);
+            orangeActive = FindViewById<ImageView>(Resource.Id.MainOrangeActive);
+            violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
+            redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
+
+            switch (savedTheme)
+            {
+                case "blue":
+                    blueActive.Visibility = ViewStates.Visible;
+                    break;
+
+                case "orange":
+                    orangeActive.Visibility = ViewStates.Visible;
+                    break;
+
+                case "green":
+                    greenActive.Visibility = ViewStates.Visible;
+                    break;
+
+                case "violet":
+                    violetActive.Visibility = ViewStates.Visible;
+                    break;
+
+                case "red":
+                    redActive.Visibility = ViewStates.Visible;
+                    break;
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -80,6 +122,7 @@ namespace TODO_app
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
             {
+                
                 SetTheme(Resource.Style.MainBlue);
             }
             else if (color == "green")
@@ -98,6 +141,7 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainRed);
             }
+            savedTheme = color;  
         }
         private void BackToMenu(object sender, EventArgs e)
         {
@@ -139,28 +183,37 @@ namespace TODO_app
 
         private void ChangeTheme(object sender, EventArgs e)
         {
-            Button colorButton = (Button)sender;
+            blueActive.Visibility = ViewStates.Gone;
+            orangeActive.Visibility = ViewStates.Gone;
+            greenActive.Visibility = ViewStates.Gone;
+            violetActive.Visibility = ViewStates.Gone;
+            redActive.Visibility = ViewStates.Gone;
+            RelativeLayout colorButton = (RelativeLayout)sender;
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             switch (colorButton.Id)
             {
                 case Resource.Id.MainBlueToggle:
-                    
+                    blueActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "blue").Commit();
                     break;
 
                 case Resource.Id.MainGreenToggle:
+                    greenActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "green").Commit();
                     break;
 
                 case Resource.Id.MainOrangeToggle:
+                    orangeActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "orange").Commit();
                     break;
 
                 case Resource.Id.MainVioletToggle:
+                    violetActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "violet").Commit();
                     break;
 
                 case Resource.Id.MainRedToggle:
+                    redActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "red").Commit();
                     break;
             }
