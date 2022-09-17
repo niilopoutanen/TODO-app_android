@@ -10,6 +10,9 @@
     <string name="add">Lisää</string>
     <string name="search">Hae</string>
 	<string name="plus">+</string>
+	<string name="yes">Kyllä</string>
+	<string name="no">Ei</string>
+	
 	
 	<string name="settings">Asetukset</string>
 	<string name="darkModeSetting">Tumma teema</string>
@@ -47,4 +50,7 @@
     <string name="date7string">Su</string>
 
 	<string name="task_template">Ensimmäinen tehtävä</string>
+
+	<string name="deleteTaskConfirm">Poista tehtävä</string>
+	<string name="deleteTaskDescription">Haluatko varmasti poistaa tehtävän?</string>
 </resources>

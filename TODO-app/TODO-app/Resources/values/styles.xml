@@ -29,4 +29,9 @@
 	<style name="MainRed" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainRed</item>
 	</style>
+
+
+	<style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="android:background">@android:color/transparent</item>
+	</style>
 </resources>

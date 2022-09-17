@@ -24,6 +24,8 @@ using System.Runtime.Remoting.Contexts;
 using AndroidX.Core.Content.Resources;
 using Android.Content.Res;
 using Android.Views.InputMethods;
+using Android.Graphics;
+using System.Drawing.Imaging;
 
 namespace TODO_app
 {
@@ -342,8 +344,32 @@ namespace TODO_app
         {
             RelativeLayout button = (RelativeLayout)sender;
             button.BackgroundTintList = GetColorStateList(GetStyle());
-        }
 
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.delete_task_popup, null);
+
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.deleteTaskConfirm);
+            confirm.Click += (s, e) =>
+            {
+                button.RemoveAllViews();
+                scrollLayout.RemoveView(button);
+                alert.Dismiss();
+            };
+
+            Button cancel = view.FindViewById<Button>(Resource.Id.deleteTaskCancel);
+            cancel.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+            UpdateTaskCount();
+        }
         private void CalendarDater()
         {
             DateTime today = DateTime.Today;
@@ -532,10 +558,11 @@ namespace TODO_app
         {
             Button button =  (Button)sender;
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
-
-            buttonParent.RemoveAllViews();
-            scrollLayout.RemoveView(buttonParent);
-            UpdateTaskCount();
+            Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
+            button.Background = active;
+            //buttonParent.RemoveAllViews();
+            //scrollLayout.RemoveView(buttonParent);
+            //UpdateTaskCount();
         }
 
         private int DpToPx(int dpValue)
