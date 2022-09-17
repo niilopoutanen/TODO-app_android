@@ -101,7 +101,7 @@ namespace TODO_app
 
         private int GetStyle()
         {
-            if(currentTheme == "mainblue")
+            if(currentTheme == "mainBlue")
             {
                 return Resource.Color.mainBlue;
             }
@@ -123,7 +123,7 @@ namespace TODO_app
             }
             else
             {
-                return 0;
+                return Resource.Color.mainBlue;
             }
         }
 
