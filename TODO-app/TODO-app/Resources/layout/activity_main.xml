@@ -62,7 +62,8 @@
                     android:text="@string/search"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@color/textSecondary"/>
+                    android:textColor="@color/textSecondary"
+                    android:fontFamily="@font/inter_semibold"/>
                 <EditText
                     android:visibility="gone"
                     android:id="@+id/SearchField"
@@ -83,7 +84,8 @@
                     android:background="@drawable/rounded10px"
                     android:text="@string/show_all"
                     android:textAllCaps="false"
-                    android:textColor="@color/textSecondary"/>
+                    android:textColor="@color/textSecondary"
+                    android:fontFamily="@font/inter_semibold"/>
 
             </LinearLayout>
             <RelativeLayout
@@ -96,7 +98,7 @@
                     android:text="@string/date"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:fontFamily="@font/inter_bold"/>
                 <Button
                     android:id="@+id/CreateTask"
                     android:layout_alignParentRight="true"
@@ -106,7 +108,7 @@
                     android:backgroundTint="?attr/colorAccent"
                     android:text="@string/plus"
                     android:textSize="30dp"
-                    android:textStyle="bold"/>
+                    android:fontFamily="@font/inter_bold"/>
             </RelativeLayout>
             <HorizontalScrollView
                 android:id="@+id/calendarView"
@@ -136,7 +138,7 @@
                             android:text="@string/date1"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date1str"
                             android:textAlignment="center"
@@ -146,7 +148,7 @@
                             android:text="@string/date1string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -169,7 +171,7 @@
                             android:text="@string/date2"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date2str"
                             android:textAlignment="center"
@@ -179,7 +181,7 @@
                             android:text="@string/date2string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -202,7 +204,7 @@
                             android:text="@string/date3"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date3str"
                             android:textAlignment="center"
@@ -212,7 +214,7 @@
                             android:text="@string/date3string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -235,7 +237,7 @@
                             android:text="@string/date4"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date4str"
                             android:textAlignment="center"
@@ -245,7 +247,7 @@
                             android:text="@string/date4string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -268,7 +270,7 @@
                             android:text="@string/date5"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date5str"
                             android:textAlignment="center"
@@ -278,7 +280,7 @@
                             android:text="@string/date5string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -302,7 +304,7 @@
                             android:text="@string/date6"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date6str"
                             android:textAlignment="center"
@@ -312,7 +314,7 @@
                             android:text="@string/date6string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                     <Space
@@ -335,7 +337,7 @@
                             android:text="@string/date7"
                             android:textColor="@color/white"
                             android:textSize="30dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
                         <TextView
                             android:id="@+id/date7str"
                             android:textAlignment="center"
@@ -345,7 +347,7 @@
                             android:text="@string/date7string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:fontFamily="@font/inter_bold"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -363,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/add_task_header"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/inter_bold"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -536,7 +538,7 @@
                 android:id="@+id/AddTask"
                 android:text="@string/add"
                 android:textSize="18dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/inter_bold"
                 android:layout_marginBottom="20dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -549,7 +551,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/taskAmount"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:fontFamily="@font/inter_medium"/>
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"

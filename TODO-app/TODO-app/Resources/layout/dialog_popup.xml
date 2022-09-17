@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="header"
         android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/inter_bold"/>
     <TextView
         android:id="@+id/PopupDescription"
         android:textAlignment="center"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="description"
         android:layout_below="@+id/PopupHeader"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/inter_bold"/>
 
     <Button
         android:id="@+id/PopupConfirm"
@@ -34,7 +34,7 @@
         android:backgroundTint="?attr/colorAccent"
         android:text="@string/yes"
         android:textAllCaps="false"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/inter_bold"/>
 
         <Button
         android:id="@+id/PopupCancel"
@@ -45,5 +45,5 @@
         android:background="@android:color/transparent"
         android:text="@string/no"
         android:textAllCaps="false"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/inter_bold"/>
 </RelativeLayout>

@@ -27,6 +27,7 @@ using Android.Views.InputMethods;
 using Android.Graphics;
 using System.Drawing.Imaging;
 using Android.Telephony;
+using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
@@ -84,13 +85,21 @@ namespace TODO_app
             LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+           
 
             InitializeElements();
             CalendarDater();
             UpdateTaskCount();
             GetStyle();
+
+
+            //Start onboarding
+            //Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActitivty));
+            //StartActivity(onBoarderStarter);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
