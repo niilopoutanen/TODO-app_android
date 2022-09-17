@@ -106,7 +106,30 @@ namespace TODO_app
 
         private void ChangeTheme(object sender, EventArgs e)
         {
+            Button colorButton = (Button)sender;
 
+            switch (colorButton.Id)
+            {
+                case Resource.Id.MainBlueToggle:
+
+                    break;
+
+                case Resource.Id.MainGreenToggle:
+
+                    break;
+
+                case Resource.Id.MainOrangeToggle:
+
+                    break;
+
+                case Resource.Id.MainVioletToggle:
+
+                    break;
+
+                case Resource.Id.MainRedToggle:
+
+                    break;
+            }
         }
     }
 }
