@@ -98,8 +98,8 @@ namespace TODO_app
 
 
             //Start onboarding
-            //Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActitivty));
-            //StartActivity(onBoarderStarter);
+            Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActitivty));
+            StartActivity(onBoarderStarter);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -164,6 +164,11 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainRed);
                 currentTheme = "mainRed";
+            }
+            else if (color == null)
+            {
+                SetTheme(Resource.Style.MainBlue);
+                currentTheme = "mainBlue";
             }
         }
         /// <summary>

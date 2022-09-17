@@ -141,6 +141,10 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainRed);
             }
+            else if (color == null)
+            {
+                SetTheme(Resource.Style.MainBlue);
+            }
             savedTheme = color;  
         }
         private void BackToMenu(object sender, EventArgs e)

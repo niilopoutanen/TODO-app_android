@@ -61,6 +61,8 @@
 	<string name="invalidNameDesc">Antamasi nimi ei kelpaa.</string>
 
 	<string name="next">Seuraava</string>
+	<string name="skip">Ohita</string>
 	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
 	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
+	<string name="guide3">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
 </resources>

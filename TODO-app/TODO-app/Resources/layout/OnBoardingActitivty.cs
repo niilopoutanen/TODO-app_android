@@ -27,6 +27,8 @@ namespace TODO_app.Resources.layout
             next = FindViewById<Button>(Resource.Id.nextButton);
             next.Click += NextView;
 
+            skip = FindViewById<Button>(Resource.Id.skipButton);
+            skip.Click += ToMain;
             guideView = FindViewById<ImageView>(Resource.Id.guideScreen);
             onBoardHeader = FindViewById<TextView>(Resource.Id.onBoardHeader);
             // Create your application here
@@ -42,11 +44,21 @@ namespace TODO_app.Resources.layout
             }
             else if (onBoardHeader.Text == GetString(Resource.String.guide2))
             {
+                guideView.SetImageResource(Resource.Drawable.guide3);
+                onBoardHeader.Text = GetString(Resource.String.guide3);
+            }
+            else if (onBoardHeader.Text == GetString(Resource.String.guide3))
+            {
                 Intent backToMain = new Intent(this, typeof(MainActivity));
                 StartActivity(backToMain);
             }
 
 
+        }
+        private void ToMain(object sender, EventArgs e)
+        {
+            Intent backToMain = new Intent(this, typeof(MainActivity));
+            StartActivity(backToMain);
         }
     }
 }
