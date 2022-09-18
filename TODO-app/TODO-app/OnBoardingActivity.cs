@@ -60,6 +60,8 @@ namespace TODO_app.Resources.layout
         }
         private void ToMain(object sender, EventArgs e)
         {
+            ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
+            hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
             Intent backToMain = new Intent(this, typeof(MainActivity));
             StartActivity(backToMain);
         }

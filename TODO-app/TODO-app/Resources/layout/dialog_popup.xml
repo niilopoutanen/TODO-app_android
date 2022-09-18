@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="description"
         android:layout_below="@+id/PopupHeader"
-        android:fontFamily="@font/inter_bold"/>
+        android:fontFamily="@font/inter_medium"/>
 
     <Button
         android:id="@+id/PopupConfirm"

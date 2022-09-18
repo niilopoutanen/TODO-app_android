@@ -374,6 +374,8 @@
                 android:text="@string/task_name_header"
                 android:textSize="15dp"/>
             <EditText
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:id="@+id/TaskNameField"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
