@@ -196,6 +196,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/SendFeedbackBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/headerBackground"
@@ -217,6 +218,7 @@
                     android:id="@+id/SendFeedbackBtn"
                     android:paddingRight="20dp">
                     <Button
+                        android:clickable="false"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="15dp"

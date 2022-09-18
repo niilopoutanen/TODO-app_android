@@ -11,7 +11,6 @@ using System.Text;
 using AndroidX.AppCompat.App;
 using System.Runtime.Remoting.Contexts;
 using Xamarin.Essentials;
-using static Android.Renderscripts.Sampler;
 using System.Drawing.Imaging;
 
 namespace TODO_app

@@ -14,7 +14,7 @@ namespace TODO_app.Resources.layout
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
 
 
-    public class OnBoardingActitivty : Activity
+    public class OnBoardingActivity : Activity
     {
         Button next;
         Button skip;
@@ -23,6 +23,7 @@ namespace TODO_app.Resources.layout
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetTheme(Resource.Style.OnBoardTheme);
             SetContentView(Resource.Layout.onboarder);
             next = FindViewById<Button>(Resource.Id.nextButton);
             next.Click += NextView;
@@ -49,6 +50,8 @@ namespace TODO_app.Resources.layout
             }
             else if (onBoardHeader.Text == GetString(Resource.String.guide3))
             {
+                ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
+                hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
                 Intent backToMain = new Intent(this, typeof(MainActivity));
                 StartActivity(backToMain);
             }

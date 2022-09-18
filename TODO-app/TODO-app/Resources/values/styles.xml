@@ -9,7 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/white</item>
-		<item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
 	<style name="MainBlue" parent="@style/AppTheme">
@@ -34,5 +34,10 @@
 
 	<style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
 		<item name="android:background">@android:color/transparent</item>
+	</style>
+
+	<style name="OnBoardTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+		<item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 	</style>
 </resources>

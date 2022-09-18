@@ -36,6 +36,7 @@ namespace TODO_app
     {
         private int activeDate;
         private string currentTheme;
+        private bool guideDone;
         Button btnCreateTask;
         Button btnAddTask;
         
@@ -98,8 +99,12 @@ namespace TODO_app
 
 
             //Start onboarding
-            Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActitivty));
-            StartActivity(onBoarderStarter);
+            if(guideDone == false)
+            {
+                Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActivity));
+                StartActivity(onBoarderStarter);
+            }
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -138,6 +143,8 @@ namespace TODO_app
 
         private void LoadSettings()
         {
+            ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
+            guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
