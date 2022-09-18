@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Graphics.Drawables;
 using Android.Icu.Text;
 using Android.OS;

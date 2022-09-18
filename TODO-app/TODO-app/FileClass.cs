@@ -15,6 +15,8 @@ using Org.Json;
 using Android.Util;
 using System.Text.Json;
 using System.Reflection;
+using System.Threading.Tasks;
+using Android.Provider;
 
 namespace TODO_app
 {
@@ -23,6 +25,7 @@ namespace TODO_app
         //Folder location and filename
         
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
+        private string _settingsFileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Settings.JSON");
 
 
         public FileClass()
@@ -42,6 +45,10 @@ namespace TODO_app
             {
                 File.Create(_fileName);
             }
+            if (!File.Exists(_settingsFileName))
+            {
+                File.Create(_settingsFileName);
+            }
         }
 
         /// <summary>
@@ -50,18 +57,17 @@ namespace TODO_app
         /// <param name="tasks"></param>
         internal void WriteFile(List<TaskItem> tasks)
         {
-            //Empty file
-            //File.WriteAllText(_fileName, "");
+            List<String> taskList = new List<String>();
 
             //Convert objects to string
             foreach (TaskItem task in tasks)
             {
-                string writeTask =JsonSerializer.Serialize(task);
-                File.WriteAllText(_fileName, writeTask);
+                taskList.Add(JsonSerializer.Serialize(task));
+                
             }
-
+            File.WriteAllLines(_fileName, taskList);
             //Writes to file
-            
+
         }
 
 
@@ -74,7 +80,7 @@ namespace TODO_app
             
             List<TaskItem> tasks = new List<TaskItem>();
 
-            foreach (string line in System.IO.File.ReadLines(_fileName))
+            foreach (string line in System.IO.File.ReadLines(_settingsFileName))
             {
                 //Check that the line is not empty
                 if (line != null && line != "")
@@ -84,6 +90,16 @@ namespace TODO_app
                 
             }
             return tasks;
+        }
+
+        internal void SaveSettings(Settings settings)
+        {
+            File.WriteAllText(_fileName, JsonSerializer.Serialize(settings));
+        }
+
+        internal Settings ReturnSettings()
+        {
+            return JsonSerializer.Deserialize<Settings>(File.ReadLines(_settingsFileName).ToString());
         }
     }
 }
