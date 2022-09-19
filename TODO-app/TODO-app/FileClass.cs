@@ -36,7 +36,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// If file doesent exists it will create it
+        /// If file doesn't exists it will create it
         /// </summary>
         private void CreateFile()
         {
