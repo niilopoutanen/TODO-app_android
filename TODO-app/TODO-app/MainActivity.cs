@@ -100,6 +100,7 @@ namespace TODO_app
             try
             {
                 taskList = file.ReadFile();
+                taskList = TaskItem.SortListByIsDone(taskList);
             }
             catch
             {
