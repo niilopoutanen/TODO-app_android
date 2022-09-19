@@ -81,6 +81,11 @@ namespace TODO_app
         LinearLayout scrollLayout;
 
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
+
+
+        internal static  FileClass file = new FileClass();
+        List<TaskItem> taskList = file.ReadFile();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             LoadSettings();
