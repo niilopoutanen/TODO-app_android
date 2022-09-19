@@ -18,6 +18,7 @@ namespace TODO_app.Resources.layout
         Button skip;
         TextView onBoardHeader;
         ImageView guideView;
+        RelativeLayout imageLayout;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,6 +31,7 @@ namespace TODO_app.Resources.layout
             skip.Click += ToMain;
             guideView = FindViewById<ImageView>(Resource.Id.guideScreen);
             onBoardHeader = FindViewById<TextView>(Resource.Id.onBoardHeader);
+            imageLayout = FindViewById<RelativeLayout>(Resource.Id.imageLayout);
             // Create your application here
 
         }
@@ -53,8 +55,22 @@ namespace TODO_app.Resources.layout
                 guideView.Animate().Alpha(0).SetDuration(300).Start();
                 onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
                 await Task.Delay(400);
+
+
                 guideView.SetImageResource(Resource.Drawable.guide3);
                 onBoardHeader.Text = GetString(Resource.String.guide3);
+                guideView.Animate().Alpha(1).SetDuration(200).Start();
+                onBoardHeader.Animate().Alpha(1).SetDuration(300).Start();
+                await Task.Delay(300);
+
+            }
+            else if (onBoardHeader.Text == GetString(Resource.String.guide3))
+            {
+                guideView.Animate().Alpha(0).SetDuration(300).Start();
+                onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
+                await Task.Delay(400);
+                guideView.SetImageResource(Resource.Drawable.guide4);
+                onBoardHeader.Text = GetString(Resource.String.guide4);
 
                 skip.Visibility = ViewStates.Gone;
 
@@ -69,7 +85,7 @@ namespace TODO_app.Resources.layout
 
 
             }
-            else if (onBoardHeader.Text == GetString(Resource.String.guide3))
+            else if (onBoardHeader.Text == GetString(Resource.String.guide4))
             {
                 ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
                 hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();

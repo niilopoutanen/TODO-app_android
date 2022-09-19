@@ -850,7 +850,7 @@ namespace TODO_app
             TextView header = new TextView(this);
             header.Text = taskName;
             header.TextSize = DpToPx(6);
-            header.SetTypeface(Resources.GetFont(Resource.Font.inter_bold), TypefaceStyle.Normal);
+            header.SetTypeface(Resources.GetFont(Resource.Font.inter_bold), Android.Graphics.TypefaceStyle.Normal);
             RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
             headerparams.SetMargins(0, DpToPx(28), 0, 0);
             //headerparams.AddRule(LayoutRules.CenterVertical);
@@ -866,7 +866,7 @@ namespace TODO_app
             dateparams.SetMargins(0, 0, 0, DpToPx(5));
             date.LayoutParameters = dateparams;
             date.TextSize = DpToPx(6);
-            date.SetTypeface(Resources.GetFont(Resource.Font.inter_semibold), TypefaceStyle.Normal);
+            date.SetTypeface(Resources.GetFont(Resource.Font.inter_semibold), Android.Graphics.TypefaceStyle.Normal);
             if (isTrue == true)
             {
                 toggleBtn.Background = toggleActive;
