@@ -9,6 +9,7 @@
     android:orientation="vertical"
     android:animateLayoutChanges="true">
     <LinearLayout
+        android:layout_weight="0"
         android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -409,6 +410,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -434,6 +436,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -455,6 +458,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -479,6 +483,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -499,6 +504,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -523,6 +529,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -588,19 +595,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <ScrollView
+        android:layout_weight="1"
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:animateLayoutChanges="true"
-        android:layout_gravity="start">
+        android:gravity="start">
         <LinearLayout
-
+            android:layout_gravity="top"
             android:id="@+id/ScrollLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:orientation="vertical">
 
 

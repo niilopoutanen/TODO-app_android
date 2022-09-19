@@ -239,19 +239,19 @@ namespace TODO_app
         {
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
-        btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
-        btnCreateTask.Click += OpenCreateView;
-        btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
-        btnAddTask.Click += CloseCreateView;
-        header = FindViewById<LinearLayout>(Resource.Id.Header);
-        createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
-        mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
-        calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
-        showAll = FindViewById<Button>(Resource.Id.ShowAll);
-        showAll.Click += ShowAll;
-        taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
-        taskCountLayout = FindViewById<LinearLayout>(Resource.Id.taskCountLayout);
-        taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
+            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask.Click += OpenCreateView;
+            btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
+            btnAddTask.Click += CloseCreateView;
+            header = FindViewById<LinearLayout>(Resource.Id.Header);
+            createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
+            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
+            calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
+            showAll = FindViewById<Button>(Resource.Id.ShowAll);
+            showAll.Click += ShowAll;
+            taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
+            taskCountLayout = FindViewById<LinearLayout>(Resource.Id.taskCountLayout);
+            taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
@@ -296,7 +296,7 @@ namespace TODO_app
             date6Btn.Click += CalendarSelector;
             date7Btn.Click += CalendarSelector;
 
-        scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
+            scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
 
             sortByCreationDate = FindViewById<Button>(Resource.Id.SortByCreationDate);
             sortByCreationDate.Click += SortBy;
@@ -331,6 +331,8 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
         }
+
+
 
         private void CloseCreateView(object sender, EventArgs e)
         {
@@ -483,7 +485,14 @@ namespace TODO_app
             else if (calendarView.Visibility == ViewStates.Gone)
             {
                 scrollLayout.RemoveAllViews();
-                ShowDatestasks(DateTime.Today.AddDays(activeDate - 1));
+                if(activeDate == 1)
+                {
+                    ShowDatestasks(DateTime.Today);
+                }
+                else if (activeDate < 1)
+                {
+                    ShowDatestasks(DateTime.Today.AddDays(activeDate-1));
+                }
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
@@ -548,16 +557,28 @@ namespace TODO_app
             {
                 case Resource.Id.DayArrowUp:
                     daySelected++;
+                    if(daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
+                    {
+                        daySelected--;
+                    }
                     dayInput.Text = daySelected.ToString();
                     break;
 
                 case Resource.Id.DayArrowDown:
                     daySelected--;
+                    if (daySelected < DateTime.DaysInMonth(YearSelected, MonthSelected))
+                    {
+                        daySelected++;
+                    }
                     dayInput.Text = daySelected.ToString();
                     break;
 
                 case Resource.Id.MonthArrowUp:
                     MonthSelected++;
+                    if (MonthSelected > 12)
+                    {
+                        MonthSelected = 12;
+                    }
                     monthInput.Text = MonthSelected.ToString();
                     break;
 
@@ -568,11 +589,19 @@ namespace TODO_app
 
                 case Resource.Id.YearArrowDown:
                     YearSelected--;
+                    if (YearSelected < DateTime.Today.Year)
+                    {
+                        YearSelected = DateTime.Today.Year;
+                    }
                     yearInput.Text = YearSelected.ToString();
                     break;
 
                 case Resource.Id.MonthArrowDown:
                     MonthSelected--;
+                    if (MonthSelected < 1)
+                    {
+                        MonthSelected = 1;
+                    }
                     monthInput.Text = MonthSelected.ToString();
                     break;
 
@@ -812,9 +841,10 @@ namespace TODO_app
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
+            
             cardBG.Id = View.GenerateViewId();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
-            cardparams.SetMargins(0, 0, 0, DpToPx(20));
+            cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
             cardBG.LayoutParameters = cardparams;
             cardBG.LongClick += HoldTaskElement;
 
@@ -854,7 +884,7 @@ namespace TODO_app
             }
             catch
             {
-
+                elementIds[taskName] = cardBG.Id;
             }
             
         }
