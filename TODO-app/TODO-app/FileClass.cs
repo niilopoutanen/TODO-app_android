@@ -93,7 +93,7 @@ namespace TODO_app
 
         internal void SaveSettings(Settings settings)
         {
-            File.WriteAllText(_fileName, JsonSerializer.Serialize(settings));
+            File.WriteAllText(_settingsFileName, JsonSerializer.Serialize(settings));
         }
 
         internal Settings ReturnSettings()
