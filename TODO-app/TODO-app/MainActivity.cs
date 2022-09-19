@@ -201,7 +201,8 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
-
+            backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
+            backToMain.Click += BackToMain;
         btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
         btnCreateTask.Click += OpenCreateView;
         btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
@@ -261,6 +262,16 @@ namespace TODO_app
 
         scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
     }
+
+
+        private void BackToMain(object sender, EventArgs e)
+        {
+            mainHeader.Visibility = ViewStates.Visible;
+            createTaskHeader.Visibility = ViewStates.Gone;
+            scrollLayout.Visibility = ViewStates.Visible;
+            taskCountLayout.Visibility = ViewStates.Visible;
+            taskNameField.Text = "";
+        }
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
