@@ -1,14 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using Org.Json;
-using Android.Util;
 using System.Text.Json;
-using Android.Provider;
 
 namespace TODO_app
 {
