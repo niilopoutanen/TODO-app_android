@@ -311,7 +311,7 @@ namespace TODO_app
         private void BackToMain(object sender, EventArgs e)
         {
             InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
-            imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0)
+            imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             mainHeader.Visibility = ViewStates.Visible;
             createTaskHeader.Visibility = ViewStates.Gone;
             scrollLayout.Visibility = ViewStates.Visible;
