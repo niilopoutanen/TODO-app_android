@@ -145,10 +145,7 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
-            foreach (TaskItem t in taskList)
-            {
-                CreateTaskElement(t.Text, t.IsDone);
-            }
+            ShowDatestasks(DateTime.Today);
 
             UpdateTaskCount();
             GetStyle();
@@ -859,23 +856,18 @@ namespace TODO_app
                 if (t.Text == header.Text)
                 {
                     t.IsDone = !t.IsDone;
+                    if(t.IsDone == true)
+                    {
+                        button.Background = active;
+                    }
+                    else if (t.IsDone == false)
+                    {
+                        button.Background = inactive;
+                    }
                 }
             }
             file.WriteFile(taskList);
 
-
-
-
-            if (button.Tag.ToString() == "Inactive")
-            {
-                button.Background = active;
-                button.Tag = "Active";
-            }
-            else if (button.Tag.ToString() == "Active")
-            {
-                button.Background = inactive;
-                button.Tag = "Inactive";
-            }
 
             //buttonParent.RemoveAllViews();
             //scrollLayout.RemoveView(buttonParent);
@@ -976,6 +968,17 @@ namespace TODO_app
                     sortByCreationDate.BackgroundTintList = GetColorStateList(GetStyle());
 
                     break;
+            }
+        }
+
+        private void ShowDatestasks(DateTime date)
+        {
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate == date)
+                {
+                    CreateTaskElement(t.Text, t.IsDone);
+                }
             }
         }
     }
