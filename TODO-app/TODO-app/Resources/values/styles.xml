@@ -1,13 +1,43 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>    
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/white</item>
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
+	<style name="MainBlue" parent="@style/AppTheme">
+		<item name="colorAccent">@color/mainBlue</item>
+	</style>
+
+	<style name="MainGreen" parent="@style/AppTheme">
+		<item name="colorAccent">@color/mainGreen</item>
+	</style>
+
+	<style name="MainViolet" parent="@style/AppTheme">
+		<item name="colorAccent">@color/mainViolet</item>
+	</style>
+	<style name="MainOrange" parent="@style/AppTheme">
+		<item name="colorAccent">@color/mainOrange</item>
+		
+	</style>
+	<style name="MainRed" parent="@style/AppTheme">
+		<item name="colorAccent">@color/mainRed</item>
+	</style>
+
+
+	<style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="android:background">@android:color/transparent</item>
+	</style>
+
+	<style name="OnBoardTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+		<item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+	</style>
 </resources>
