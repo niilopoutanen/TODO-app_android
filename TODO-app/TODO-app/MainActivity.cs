@@ -114,6 +114,10 @@ namespace TODO_app
             CalendarDater();
             UpdateTaskCount();
             GetStyle();
+            foreach (TaskItem t in taskList)
+            {
+                CreateTaskElement(t.Text);
+            }
 
 
             //Start onboarding
@@ -271,6 +275,9 @@ namespace TODO_app
             scrollLayout.Visibility = ViewStates.Visible;
             taskCountLayout.Visibility = ViewStates.Visible;
             taskNameField.Text = "";
+            dayInput.Text = "";
+            monthInput.Text = "";
+            yearInput.Text = "";
         }
         private void UpdateTaskCount()
         {
@@ -359,9 +366,6 @@ namespace TODO_app
                 {
                     OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
                 }
-
-
-
 
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
                 imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
