@@ -355,7 +355,7 @@
             </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/CreateTaskHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -403,7 +403,7 @@
                     android:layout_marginRight="20dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/DayArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
@@ -428,7 +428,7 @@
                         android:textColor="@color/white"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/DayArrowDown"
                         android:clickable="true"
                         android:layout_alignParentBottom="true"
@@ -449,7 +449,7 @@
                     android:layout_marginRight="20dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/MonthArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
@@ -493,7 +493,7 @@
                     android:layout_height="match_parent">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/YearArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
@@ -517,7 +517,7 @@
                         android:textColor="@color/white"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/YearArrowDown"
                         android:clickable="true"
                         android:layout_alignParentBottom="true"
