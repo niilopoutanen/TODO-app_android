@@ -292,8 +292,6 @@ namespace TODO_app
             int month;
             int year;
             DateTime dueDate;
-
-
             if (mainHeader.Visibility == ViewStates.Gone)
             {
                 if (IsNull(taskname))
