@@ -147,7 +147,7 @@ namespace TODO_app
 
             foreach (TaskItem t in taskList)
             {
-                CreateTaskElement(t.Text);
+                CreateTaskElement(t.Text, false);
             }
 
             UpdateTaskCount();
@@ -311,6 +311,8 @@ namespace TODO_app
 
         private void BackToMain(object sender, EventArgs e)
         {
+            InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+            imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             mainHeader.Visibility = ViewStates.Visible;
             createTaskHeader.Visibility = ViewStates.Gone;
             scrollLayout.Visibility = ViewStates.Visible;
@@ -352,7 +354,7 @@ namespace TODO_app
                 {
                     if (t.Text.ToLower() == taskname.ToLower())
                     {
-                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
+                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.nameExists), "OK");
                         return;
                     }
                 }
@@ -373,19 +375,19 @@ namespace TODO_app
 
                     if (day < 1 || month < 1 || year < 1)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (month > 12)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (!IsDayInMonth(day, month, year))
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
                     else
@@ -394,7 +396,7 @@ namespace TODO_app
 
                         if (dueDate < DateTime.Today)
                         {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
                         else
@@ -402,7 +404,7 @@ namespace TODO_app
                             CreateTaskItem(taskNameField.Text, dueDate);
                             file.WriteFile(taskList);
 
-                            CreateTaskElement(taskname);
+                            CreateTaskElement(taskname,false);
                             UpdateTaskCount();
 
                             mainHeader.Visibility = ViewStates.Visible;
@@ -775,9 +777,8 @@ namespace TODO_app
         /// Dynamically creates task element
         /// </summary>
         /// <param name="taskName"></param>
-        private void CreateTaskElement(string taskName)
+        private void CreateTaskElement(string taskName, bool isTrue)
         {
-
 
             RelativeLayout cardBG = new RelativeLayout(this);
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
@@ -792,6 +793,7 @@ namespace TODO_app
 
             Button toggleBtn = new Button(this);
             Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
+            Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
             RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
             buttonparams.SetMargins(0, 0, DpToPx(10), 0);
@@ -811,7 +813,10 @@ namespace TODO_app
             headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
             header.LayoutParameters = headerparams;
 
-
+            if(isTrue == true)
+            {
+                toggleBtn.Background = toggleActive;
+            }
             scrollLayout.AddView(cardBG);
             cardBG.AddView(toggleBtn);
             cardBG.AddView(header);
