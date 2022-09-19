@@ -331,8 +331,10 @@ namespace TODO_app
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
                             file.WriteFile(taskList);
+
                             CreateTaskElement(taskname);
                             UpdateTaskCount();
+
                             mainHeader.Visibility = ViewStates.Visible;
                             createTaskHeader.Visibility = ViewStates.Gone;
                             scrollLayout.Visibility = ViewStates.Visible;
