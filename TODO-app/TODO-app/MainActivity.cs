@@ -32,6 +32,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Java.Lang;
 using System.Linq;
+using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
@@ -847,11 +848,16 @@ namespace TODO_app
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
             Drawable inactive = GetDrawable(Resource.Drawable.task_radio_button);
-            TextView header = button.FindViewById<TextView>(Resource.Id.Header);
-
-            List<TaskItem> tasks = taskList.Where(task => task.Text == header.ToString()).ToList(); ;
-            tasks[0].IsDone = !tasks[0].IsDone;
+            TextView header = (TextView)buttonParent.GetChildAt(1);
+            foreach (TaskItem t in taskList)
+            {
+                if (t.Text == header.ToString())
+                {
+                    t.IsDone = !t.IsDone;
+                }
+            }
             file.WriteFile(taskList);
+
 
 
 
