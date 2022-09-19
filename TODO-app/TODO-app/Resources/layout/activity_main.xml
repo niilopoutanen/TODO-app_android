@@ -595,15 +595,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <ScrollView
-        android:layout_weight="1"
+        android:id="@+id/scrollBase"
+        android:layout_weight="100"
         android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:animateLayoutChanges="true"
-        android:gravity="start">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_gravity="top"
             android:id="@+id/ScrollLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

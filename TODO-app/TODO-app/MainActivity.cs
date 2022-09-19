@@ -89,6 +89,7 @@ namespace TODO_app
 
         Button sortByCreationDate;
         Button sortByDueDate;
+        ScrollView scrollBase;
 
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
@@ -237,6 +238,7 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
             btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
@@ -422,11 +424,13 @@ namespace TODO_app
                                 }
                             }
 
-
+                            scrollBase.Visibility = ViewStates.Visible;
+                            scrollLayout.Visibility = ViewStates.Visible;
                             mainHeader.Visibility = ViewStates.Visible;
                             createTaskHeader.Visibility = ViewStates.Gone;
-                            scrollLayout.Visibility = ViewStates.Visible;
                             taskCountLayout.Visibility = ViewStates.Visible;
+
+
                             taskNameField.Text = "";
                             dayInput.Text = "";
                             monthInput.Text = "";
@@ -456,6 +460,7 @@ namespace TODO_app
             {
                 mainHeader.Visibility = ViewStates.Gone;
                 createTaskHeader.Visibility = ViewStates.Visible;
+                scrollBase.Visibility = ViewStates.Gone;
                 scrollLayout.Visibility = ViewStates.Gone;
                 taskCountLayout.Visibility = ViewStates.Gone;
                 backToMain.Visibility = ViewStates.Visible;
