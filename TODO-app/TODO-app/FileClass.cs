@@ -30,7 +30,6 @@ namespace TODO_app
 
         //Folder location and filename
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
-        private string _settingsFileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Settings.JSON");
 
 
         public FileClass()
@@ -49,10 +48,6 @@ namespace TODO_app
             if (!File.Exists(_fileName))
             {
                 File.Create(_fileName);
-            }
-            if (!File.Exists(_settingsFileName))
-            {
-                File.Create(_settingsFileName);
             }
         }
 
@@ -97,14 +92,5 @@ namespace TODO_app
             return tasks;
         }
 
-        internal void SaveSettings(Settings settings)
-        {
-            File.WriteAllText(_settingsFileName, JsonSerializer.Serialize(settings));
-        }
-
-        internal Settings ReturnSettings()
-        {
-            return JsonSerializer.Deserialize<Settings>(File.ReadLines(_settingsFileName).ToString());
-        }
     }
 }
