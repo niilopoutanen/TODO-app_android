@@ -613,8 +613,11 @@ namespace TODO_app
             header.Text = GetString(Resource.String.deleteTaskHeader);
             TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
             desc.Text = GetString(Resource.String.deleteTaskDescription);
+            TextView name = (TextView)button.GetChildAt(1);
+
             confirm.Click += (s, e) =>
             {
+                DeleteTaskItem(name.Text);
                 button.RemoveAllViews();
                 scrollLayout.RemoveView(button);
                 alert.Dismiss();
@@ -872,12 +875,26 @@ namespace TODO_app
             return pixel;
         }
 
-        public void CreateTaskItem(string name, DateTime dueDate)
+        private void CreateTaskItem(string name, DateTime dueDate)
         {
             TaskItem task = new TaskItem();
             task.Text = name;
             task.DueDate = dueDate;
             taskList.Add(task);
+        }
+
+        private void DeleteTaskItem(string name)
+        {
+            foreach (TaskItem t in taskList)
+            {
+                if (t.Text == name)
+                {
+                    taskList.Remove(t);
+                    file.WriteFile(taskList);
+                    break;
+                }
+            }
+            
         }
 
         /// <summary>
