@@ -65,4 +65,7 @@
 	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
 	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
 	<string name="guide3">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+
+    <string name="DueDate">Erääntymispäivä</string>
+    <string name="CreationDate">Luontipäivä</string>
 </resources>
