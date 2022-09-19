@@ -17,7 +17,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/Header">
         <LinearLayout
             android:visibility="visible"
@@ -111,6 +111,7 @@
                     android:fontFamily="@font/inter_bold"/>
             </RelativeLayout>
             <HorizontalScrollView
+                android:visibility="visible"
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -544,19 +545,41 @@
                 android:layout_marginBottom="20dp"/>
         </LinearLayout>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:visibility="visible"
         android:id="@+id/taskCountLayout"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-        <TextView
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <Button
+            android:visibility="gone"
+            android:id="@+id/SortByCreationDate"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded50px"
+            android:text="@string/CreationDate"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:visibility="gone"
+            android:id="@+id/SortByDueDate"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded50px"
+            android:text="@string/DueDate"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"/>
+        <Button
             android:id="@+id/taskCountText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded50px"
             android:text="@string/taskAmount"
-            android:textAlignment="center"
-            android:fontFamily="@font/inter_medium"/>
-    </RelativeLayout>
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
     <RelativeLayout
         android:visibility="gone"
         android:id="@+id/BackToMain"
