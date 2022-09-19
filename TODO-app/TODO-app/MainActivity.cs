@@ -399,7 +399,7 @@ namespace TODO_app
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
-                            file.WriteFile(taskList);
+                            //file.WriteFile(taskList);
 
                             for (int i = 1; i < 8; i++)
                             {
@@ -931,6 +931,7 @@ namespace TODO_app
             task.Text = name;
             task.DueDate = dueDate;
             taskList.Add(task);
+            file.WriteFile(taskList);
         }
 
         private void DeleteTaskItem(string name)
