@@ -482,7 +482,7 @@ namespace TODO_app
                 sortByCreationDate.Visibility = ViewStates.Visible;
                 foreach (TaskItem t in taskList)
                 {
-                    CreateTaskElement(t.Text, t.IsDone);
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
                 UpdateTaskCount();
 
@@ -839,19 +839,20 @@ namespace TODO_app
         /// Dynamically creates task element
         /// </summary>
         /// <param name="taskName"></param>
-        private void CreateTaskElement(string taskName, bool isTrue)
+        private void CreateTaskElement(string taskName, bool isTrue, DateTime dueDate)
         {
 
             RelativeLayout cardBG = new RelativeLayout(this);
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
-            
             cardBG.Id = View.GenerateViewId();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+            
             cardBG.LayoutParameters = cardparams;
             cardBG.LongClick += HoldTaskElement;
+            cardBG.Click += ExpandCard;
 
 
             Button toggleBtn = new Button(this);
@@ -859,8 +860,8 @@ namespace TODO_app
             Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
             RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
-            buttonparams.SetMargins(0, 0, DpToPx(10), 0);
-            buttonparams.AddRule(LayoutRules.CenterVertical);
+            buttonparams.SetMargins(0, DpToPx(17), DpToPx(10), 0);
+            //buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
             toggleBtn.Click += TaskToggle;
@@ -870,19 +871,32 @@ namespace TODO_app
             TextView header = new TextView(this);
             header.Text = taskName;
             header.TextSize = DpToPx(6);
-            header.SetTypeface(header.Typeface, Android.Graphics.TypefaceStyle.Bold);
+            header.SetTypeface(Resources.GetFont(Resource.Font.inter_bold), TypefaceStyle.Normal);
             RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
-            headerparams.AddRule(LayoutRules.CenterVertical);
+            headerparams.SetMargins(0, DpToPx(28), 0, 0);
+            //headerparams.AddRule(LayoutRules.CenterVertical);
             headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
             header.LayoutParameters = headerparams;
 
-            if(isTrue == true)
+
+            TextView date = new TextView(this);
+            date.Text = dueDate.Day.ToString() + "." + dueDate.Month.ToString() + "." + dueDate.Year.ToString();
+            RelativeLayout.LayoutParams dateparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+            dateparams.AddRule(LayoutRules.CenterHorizontal);
+            dateparams.AddRule(LayoutRules.AlignParentBottom);
+            dateparams.SetMargins(0, 0, 0, DpToPx(5));
+            date.LayoutParameters = dateparams;
+            date.TextSize = DpToPx(6);
+            date.SetTypeface(Resources.GetFont(Resource.Font.inter_semibold), TypefaceStyle.Normal);
+            if (isTrue == true)
             {
                 toggleBtn.Background = toggleActive;
             }
             scrollLayout.AddView(cardBG);
             cardBG.AddView(toggleBtn);
             cardBG.AddView(header);
+            cardBG.AddView(date);
+            date.Visibility = ViewStates.Gone;
             try
             {
                 elementIds.Add(taskName, cardBG.Id);
@@ -894,6 +908,27 @@ namespace TODO_app
             
         }
 
+
+        private void ExpandCard(object sender, EventArgs e)
+        {
+            
+            RelativeLayout card = (RelativeLayout)sender;
+            if (card.Height == DpToPx(100))
+            {
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(80));
+                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+                card.LayoutParameters = heightParam;
+                card.GetChildAt(2).Visibility = ViewStates.Gone;
+            }
+            else if (card.Height == DpToPx(80))
+            {
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(100));
+                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+                card.LayoutParameters = heightParam;
+                card.GetChildAt(2).Visibility = ViewStates.Visible;
+            }
+
+        }
         /// <summary>
         /// Not needed right now, use if you need
         /// </summary>
@@ -1037,7 +1072,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     foreach(TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone);
+                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
 
                     break;
@@ -1048,7 +1083,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone);
+                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
 
                     break;
@@ -1061,7 +1096,7 @@ namespace TODO_app
             {
                 if (t.DueDate == date)
                 {
-                    CreateTaskElement(t.Text, t.IsDone);
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
             }
         }
