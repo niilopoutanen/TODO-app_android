@@ -2,12 +2,14 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TODO_app.Resources.layout
 {
@@ -36,17 +38,40 @@ namespace TODO_app.Resources.layout
 
         }
 
-        private void NextView(object sender, EventArgs e)
+        private async void NextView(object sender, EventArgs e)
         {
             if (onBoardHeader.Text == GetString(Resource.String.guide1))
             {
+                guideView.Animate().Alpha(0).SetDuration(300).Start();
+                onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
+                await Task.Delay(400);
                 guideView.SetImageResource(Resource.Drawable.guide2);
                 onBoardHeader.Text = GetString(Resource.String.guide2);
+                guideView.Animate().Alpha(1).SetDuration(200).Start();
+                onBoardHeader.Animate().Alpha(1).SetDuration(300).Start();
+                await Task.Delay(300);
+
             }
             else if (onBoardHeader.Text == GetString(Resource.String.guide2))
             {
+                guideView.Animate().Alpha(0).SetDuration(300).Start();
+                onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
+                await Task.Delay(400);
                 guideView.SetImageResource(Resource.Drawable.guide3);
                 onBoardHeader.Text = GetString(Resource.String.guide3);
+
+                skip.Visibility = ViewStates.Gone;
+
+                RelativeLayout.LayoutParams startBtnParams = new RelativeLayout.LayoutParams(DpToPx(140), DpToPx(40));
+                startBtnParams.RemoveRule(LayoutRules.AlignParentRight);
+                startBtnParams.AddRule(LayoutRules.CenterInParent);
+                next.LayoutParameters = startBtnParams;
+                next.Text = GetString(Resource.String.Start);
+                guideView.Animate().Alpha(1).SetDuration(200).Start();
+                onBoardHeader.Animate().Alpha(1).SetDuration(300).Start();
+                await Task.Delay(300);
+
+
             }
             else if (onBoardHeader.Text == GetString(Resource.String.guide3))
             {
@@ -64,6 +89,13 @@ namespace TODO_app.Resources.layout
             hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
             Intent backToMain = new Intent(this, typeof(MainActivity));
             StartActivity(backToMain);
+        }
+
+
+        private int DpToPx(int dpValue)
+        {
+            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
+            return pixel;
         }
     }
 }

@@ -71,4 +71,6 @@
 
     <string name="DueDate">Erääntymispäivä</string>
     <string name="CreationDate">Luontipäivä</string>
+
+	<string name="Start">Aloita</string>
 </resources>
