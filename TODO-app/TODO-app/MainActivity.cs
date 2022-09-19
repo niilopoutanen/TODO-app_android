@@ -967,6 +967,8 @@ namespace TODO_app
             {
                 case Resource.Id.SortByDueDate:
                     sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
+                    TaskItem.SortListByDueDate(taskList);
+
 
                     break;
 
