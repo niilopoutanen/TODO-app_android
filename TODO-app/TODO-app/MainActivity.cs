@@ -350,7 +350,7 @@ namespace TODO_app
                 {
                     if (t.Text.ToLower() == taskname.ToLower())
                     {
-                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
+                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.nameExists), "OK");
                         return;
                     }
                 }
@@ -371,19 +371,19 @@ namespace TODO_app
 
                     if (day < 1 || month < 1 || year < 1)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (month > 12)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (!IsDayInMonth(day, month, year))
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
                     else
@@ -392,7 +392,7 @@ namespace TODO_app
 
                         if (dueDate < DateTime.Today)
                         {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
                         else
