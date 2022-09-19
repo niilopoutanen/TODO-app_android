@@ -53,7 +53,7 @@ namespace TODO_app
         EditText searchField;
         RelativeLayout settingsOpen;
         EditText taskNameField;
-        RelativeLayout taskCountLayout;
+        LinearLayout taskCountLayout;
         TextView taskCount;
 
         RelativeLayout dayUp;
@@ -84,6 +84,9 @@ namespace TODO_app
         LinearLayout scrollLayout;
 
         RelativeLayout backToMain;
+
+        Button sortByCreationDate;
+        Button sortByDueDate;
 
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
@@ -240,7 +243,7 @@ namespace TODO_app
         showAll = FindViewById<Button>(Resource.Id.ShowAll);
         showAll.Click += ShowAll;
         taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
-        taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
+        taskCountLayout = FindViewById<LinearLayout>(Resource.Id.taskCountLayout);
         taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
@@ -287,7 +290,13 @@ namespace TODO_app
             date7Btn.Click += CalendarSelector;
 
         scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
-    }
+
+            sortByCreationDate = FindViewById<Button>(Resource.Id.SortByCreationDate);
+            sortByCreationDate.Click += SortBy;
+
+            sortByDueDate = FindViewById<Button>(Resource.Id.SortByDueDate);
+            sortByDueDate.Click += SortBy;
+        }
 
 
         private void BackToMain(object sender, EventArgs e)
@@ -421,10 +430,15 @@ namespace TODO_app
             if (calendarView.Visibility == ViewStates.Visible)
             {
                 calendarView.Visibility = ViewStates.Gone;
+                sortByDueDate.Visibility = ViewStates.Visible;
+                sortByCreationDate.Visibility = ViewStates.Visible;
             }
             else if (calendarView.Visibility == ViewStates.Gone)
             {
                 calendarView.Visibility = ViewStates.Visible;
+                sortByDueDate.Visibility = ViewStates.Gone;
+                sortByCreationDate.Visibility = ViewStates.Gone;
+
             }
         }
 
@@ -882,6 +896,26 @@ namespace TODO_app
             else
             {
                 return true;
+            }
+        }
+
+        private void SortBy(object sender, EventArgs e)
+        {
+            Button clicked = (Button)sender;
+            sortByCreationDate.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            sortByDueDate.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+
+            switch (clicked.Id)
+            {
+                case Resource.Id.SortByDueDate:
+                    sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
+
+                    break;
+
+                case Resource.Id.SortByCreationDate:
+                    sortByCreationDate.BackgroundTintList = GetColorStateList(GetStyle());
+
+                    break;
             }
         }
     }
