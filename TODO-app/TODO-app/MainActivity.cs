@@ -774,9 +774,8 @@ namespace TODO_app
         /// Dynamically creates task element
         /// </summary>
         /// <param name="taskName"></param>
-        private void CreateTaskElement(string taskName)
+        private void CreateTaskElement(string taskName, bool isTrue)
         {
-
 
             RelativeLayout cardBG = new RelativeLayout(this);
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
@@ -791,6 +790,7 @@ namespace TODO_app
 
             Button toggleBtn = new Button(this);
             Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
+            Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
             RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
             buttonparams.SetMargins(0, 0, DpToPx(10), 0);
@@ -810,7 +810,10 @@ namespace TODO_app
             headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
             header.LayoutParameters = headerparams;
 
-
+            if(isTrue == true)
+            {
+                toggleBtn.Background = toggleActive;
+            }
             scrollLayout.AddView(cardBG);
             cardBG.AddView(toggleBtn);
             cardBG.AddView(header);
