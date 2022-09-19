@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
-using PCLStorage;
 using Org.Json;
 using Android.Util;
 using System.Text.Json;

@@ -88,7 +88,7 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
-        internal static  FileClass file = new FileClass();
+        internal static FileClass file = new FileClass();
         internal List<TaskItem> taskList;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -129,9 +129,9 @@ namespace TODO_app
                 cancel.Visibility = ViewStates.Gone;
                 
             }
-            
 
-            
+
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -227,7 +227,8 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
-
+            backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
+            backToMain.Click += BackToMain;
         btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
         btnCreateTask.Click += OpenCreateView;
         btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
@@ -287,6 +288,16 @@ namespace TODO_app
 
         scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
     }
+
+
+        private void BackToMain(object sender, EventArgs e)
+        {
+            mainHeader.Visibility = ViewStates.Visible;
+            createTaskHeader.Visibility = ViewStates.Gone;
+            scrollLayout.Visibility = ViewStates.Visible;
+            taskCountLayout.Visibility = ViewStates.Visible;
+            taskNameField.Text = "";
+        }
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
@@ -299,7 +310,7 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
         }
-       
+
         private void CloseCreateView(object sender, EventArgs e)
         {
             string taskname = taskNameField.Text;
@@ -307,8 +318,6 @@ namespace TODO_app
             int month;
             int year;
             DateTime dueDate;
-
-
             if (mainHeader.Visibility == ViewStates.Gone)
             {
                 if (IsNull(taskname))
@@ -356,8 +365,19 @@ namespace TODO_app
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
-                            //taskList.Add(task);
-                            //fileSaver.WriteFile(taskList);
+                            file.WriteFile(taskList);
+
+                            CreateTaskElement(taskname);
+                            UpdateTaskCount();
+
+                            mainHeader.Visibility = ViewStates.Visible;
+                            createTaskHeader.Visibility = ViewStates.Gone;
+                            scrollLayout.Visibility = ViewStates.Visible;
+                            taskCountLayout.Visibility = ViewStates.Visible;
+                            taskNameField.Text = "";
+                            dayInput.Text = "";
+                            monthInput.Text = "";
+                            yearInput.Text = "";
                         }
                     }
                 }
@@ -365,17 +385,13 @@ namespace TODO_app
                 {
                     OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
                 }
-                CreateTaskElement(taskname);
-                UpdateTaskCount();
-                mainHeader.Visibility = ViewStates.Visible;
-                createTaskHeader.Visibility = ViewStates.Gone;
-                scrollLayout.Visibility = ViewStates.Visible;
-                taskCountLayout.Visibility = ViewStates.Visible;
-                taskNameField.Text = "";
 
-            InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
-            imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
-        }
+
+
+
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
+            }
 
 
 
@@ -825,6 +841,7 @@ namespace TODO_app
             TaskItem task = new TaskItem();
             task.Text = name;
             task.DueDate = dueDate;
+            taskList.Add(task);
         }
 
         /// <summary>
