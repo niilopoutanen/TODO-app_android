@@ -147,7 +147,7 @@ namespace TODO_app
 
             foreach (TaskItem t in taskList)
             {
-                CreateTaskElement(t.Text, false);
+                CreateTaskElement(t.Text, t.IsDone);
             }
 
             UpdateTaskCount();
