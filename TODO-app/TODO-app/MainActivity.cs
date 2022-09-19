@@ -333,7 +333,16 @@ namespace TODO_app
                     return;
                 }
 
-                else if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
+                foreach (TaskItem t in taskList)
+                {
+                    if (t.Text.ToLower() == taskname.ToLower())
+                    {
+                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
+                        return;
+                    }
+                }
+
+                if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
                 {
                     try
                     {
@@ -350,16 +359,19 @@ namespace TODO_app
                     if (day < 1 || month < 1 || year < 1)
                     {
                         OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        return;
                     }
 
                     else if (month > 12)
                     {
                         OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        return;
                     }
 
                     else if (!IsDayInMonth(day, month, year))
                     {
                         OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        return;
                     }
                     else
                     {
@@ -368,6 +380,7 @@ namespace TODO_app
                         if (dueDate < DateTime.Today)
                         {
                             OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                            return;
                         }
                         else
                         {
@@ -391,6 +404,7 @@ namespace TODO_app
                 else
                 {
                     OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                    return;
                 }
 
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
