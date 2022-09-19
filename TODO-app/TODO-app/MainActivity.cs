@@ -401,8 +401,16 @@ namespace TODO_app
                             CreateTaskItem(taskNameField.Text, dueDate);
                             file.WriteFile(taskList);
 
-                            CreateTaskElement(taskname,false);
-                            UpdateTaskCount();
+                            for (int i = 1; i < 8; i++)
+                            {
+                                if (activeDate == i)
+                                {
+                                    ShowDatestasks(DateTime.Today.AddDays(i--));
+                                    UpdateTaskCount();
+                                    break;
+                                }
+                            }
+
 
                             mainHeader.Visibility = ViewStates.Visible;
                             createTaskHeader.Visibility = ViewStates.Gone;
