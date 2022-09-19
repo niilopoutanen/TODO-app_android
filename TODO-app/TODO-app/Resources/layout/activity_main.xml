@@ -355,7 +355,7 @@
             </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/CreateTaskHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -428,7 +428,7 @@
                         android:textColor="@color/white"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="20dp"
                         android:id="@+id/DayArrowDown"
                         android:clickable="true"
                         android:layout_alignParentBottom="true"
@@ -517,7 +517,7 @@
                         android:textColor="@color/white"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="20dp"
                         android:id="@+id/YearArrowDown"
                         android:clickable="true"
                         android:layout_alignParentBottom="true"
