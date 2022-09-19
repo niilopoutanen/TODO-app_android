@@ -853,7 +853,7 @@ namespace TODO_app
             TextView header = (TextView)buttonParent.GetChildAt(1);
             foreach (TaskItem t in taskList)
             {
-                if (t.Text == header.ToString())
+                if (t.Text == header.Text)
                 {
                     t.IsDone = !t.IsDone;
                 }
