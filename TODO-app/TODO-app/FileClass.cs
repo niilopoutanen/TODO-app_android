@@ -8,9 +8,7 @@ using System.Text;
 using Org.Json;
 using Android.Util;
 using System.Text.Json;
-
 using Android.Provider;
-using Java.IO;
 
 namespace TODO_app
 {
@@ -19,7 +17,7 @@ namespace TODO_app
 
 
 
-        //Java.IO ja FileOutputStream ennemmin kun windowsin file toolsit?
+        //using Java.IO ja FileOutputStream ennemmin kun windowsin file toolsit?
 
 
         //FileOutputStream fOut = openFileOutput(“ file_name ”, MODE_INTERNAL_READ);
