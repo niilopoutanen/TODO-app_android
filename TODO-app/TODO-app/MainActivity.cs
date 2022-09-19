@@ -280,6 +280,55 @@ namespace TODO_app
                     OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
                     return;
                 }
+
+                else if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
+                {
+                    try
+                    {
+                        day = int.Parse(dayInput.Text);
+                        month = int.Parse(monthInput.Text);
+                        year = int.Parse(yearInput.Text);
+                    }
+                    catch
+                    {
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        return;
+                    }
+
+                    if (day < 1 || month < 1 || year < 1)
+                    {
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                    }
+
+                    else if (month > 12)
+                    {
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                    }
+
+                    else if (!IsDayInMonth(day, month, year))
+                    {
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                    }
+                    else
+                    {
+                        dueDate = new DateTime(year, month, day);
+
+                        if (dueDate < DateTime.Today)
+                        {
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        }
+                        else
+                        {
+                            CreateTaskItem(taskNameField.Text, dueDate);
+                            //taskList.Add(task);
+                            //fileSaver.WriteFile(taskList);
+                        }
+                    }
+                }
+                else
+                {
+                    OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                }
                 CreateTaskElement(taskname);
                 UpdateTaskCount();
                 mainHeader.Visibility = ViewStates.Visible;
@@ -733,6 +782,13 @@ namespace TODO_app
         {
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
+        }
+
+        public void CreateTaskItem(string name, DateTime dueDate)
+        {
+            TaskItem task = new TaskItem();
+            task.Text = name;
+            task.DueDate = dueDate;
         }
 
         /// <summary>
