@@ -139,12 +139,15 @@ namespace TODO_app
 
             InitializeElements();
             CalendarDater();
-            UpdateTaskCount();
-            GetStyle();
+
             foreach (TaskItem t in taskList)
             {
                 CreateTaskElement(t.Text);
             }
+
+            UpdateTaskCount();
+            GetStyle();
+
 
 
             //Start onboarding
