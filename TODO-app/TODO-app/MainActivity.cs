@@ -32,6 +32,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Java.Lang;
 using System.Linq;
+using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
@@ -146,7 +147,7 @@ namespace TODO_app
 
             foreach (TaskItem t in taskList)
             {
-                CreateTaskElement(t.Text, false);
+                CreateTaskElement(t.Text, t.IsDone);
             }
 
             UpdateTaskCount();
@@ -353,7 +354,7 @@ namespace TODO_app
                 {
                     if (t.Text.ToLower() == taskname.ToLower())
                     {
-                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
+                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.nameExists), "OK");
                         return;
                     }
                 }
@@ -374,19 +375,19 @@ namespace TODO_app
 
                     if (day < 1 || month < 1 || year < 1)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (month > 12)
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
 
                     else if (!IsDayInMonth(day, month, year))
                     {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
                         return;
                     }
                     else
@@ -395,7 +396,7 @@ namespace TODO_app
 
                         if (dueDate < DateTime.Today)
                         {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
                         else
@@ -852,11 +853,16 @@ namespace TODO_app
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
             Drawable inactive = GetDrawable(Resource.Drawable.task_radio_button);
-            TextView header = button.FindViewById<TextView>(Resource.Id.Header);
-
-            List<TaskItem> tasks = taskList.Where(task => task.Text == header.ToString()).ToList(); ;
-            tasks[0].IsDone = !tasks[0].IsDone;
+            TextView header = (TextView)buttonParent.GetChildAt(1);
+            foreach (TaskItem t in taskList)
+            {
+                if (t.Text == header.ToString())
+                {
+                    t.IsDone = !t.IsDone;
+                }
+            }
             file.WriteFile(taskList);
+
 
 
 

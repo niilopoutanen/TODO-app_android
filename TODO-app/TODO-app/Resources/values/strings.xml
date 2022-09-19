@@ -59,6 +59,9 @@
 
 	<string name="invalidName">Virheellinen nimi</string>
 	<string name="invalidNameDesc">Antamasi nimi ei kelpaa.</string>
+	<string name="nameExists">Antamasi nimi on jo olemassa.</string>
+	<string name="dateDoesntExist">Antamaasi päivämäärää ei ole olemassa.</string>
+	<string name="dateInPast">Eräpäivä ei voi olla menneisyydessä.</string>
 
 	<string name="next">Seuraava</string>
 	<string name="skip">Ohita</string>
