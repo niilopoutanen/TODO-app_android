@@ -86,13 +86,23 @@ namespace TODO_app
 
 
         internal static  FileClass file = new FileClass();
-        List<TaskItem> taskList = file.ReadFile();
+        internal List<TaskItem> taskList;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            try
+            {
+                taskList = file.ReadFile();
+            }
+            catch
+            {
+                OpenPopup("ERROR","Sorry. You have to restart.", "Restart");
+            }
+            
 
             
             // Set our view from the "main" layout resource
