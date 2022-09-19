@@ -86,7 +86,7 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
-        internal static  FileClass file = new FileClass();
+        internal static FileClass file = new FileClass();
         internal List<TaskItem> taskList;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -101,11 +101,11 @@ namespace TODO_app
             }
             catch
             {
-                OpenPopup("ERROR","Sorry. You have to restart.", "Restart");
+                OpenPopup("ERROR", "Sorry. You have to restart.", "Restart");
             }
-            
 
-            
+
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -202,19 +202,19 @@ namespace TODO_app
         private void InitializeElements()
         {
 
-        btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
-        btnCreateTask.Click += OpenCreateView;
-        btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
-        btnAddTask.Click += CloseCreateView;
-        header = FindViewById<LinearLayout>(Resource.Id.Header);
-        createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
-        mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
-        calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
-        showAll = FindViewById<Button>(Resource.Id.ShowAll);
-        showAll.Click += ShowAll;
-        taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
-        taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
-        taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
+            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask.Click += OpenCreateView;
+            btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
+            btnAddTask.Click += CloseCreateView;
+            header = FindViewById<LinearLayout>(Resource.Id.Header);
+            createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
+            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
+            calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
+            showAll = FindViewById<Button>(Resource.Id.ShowAll);
+            showAll.Click += ShowAll;
+            taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
+            taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
+            taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
@@ -259,8 +259,8 @@ namespace TODO_app
             date6Btn.Click += CalendarSelector;
             date7Btn.Click += CalendarSelector;
 
-        scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
-    }
+            scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
+        }
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
@@ -273,7 +273,7 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
         }
-       
+
         private void CloseCreateView(object sender, EventArgs e)
         {
             string taskname = taskNameField.Text;
@@ -330,8 +330,17 @@ namespace TODO_app
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
-                            //taskList.Add(task);
-                            //fileSaver.WriteFile(taskList);
+                            file.WriteFile(taskList);
+                            CreateTaskElement(taskname);
+                            UpdateTaskCount();
+                            mainHeader.Visibility = ViewStates.Visible;
+                            createTaskHeader.Visibility = ViewStates.Gone;
+                            scrollLayout.Visibility = ViewStates.Visible;
+                            taskCountLayout.Visibility = ViewStates.Visible;
+                            taskNameField.Text = "";
+                            dayInput.Text = "";
+                            monthInput.Text = "";
+                            yearInput.Text = "";
                         }
                     }
                 }
@@ -339,17 +348,13 @@ namespace TODO_app
                 {
                     OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
                 }
-                CreateTaskElement(taskname);
-                UpdateTaskCount();
-                mainHeader.Visibility = ViewStates.Visible;
-                createTaskHeader.Visibility = ViewStates.Gone;
-                scrollLayout.Visibility = ViewStates.Visible;
-                taskCountLayout.Visibility = ViewStates.Visible;
-                taskNameField.Text = "";
 
-            InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
-            imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
-        }
+
+
+
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
+            }
 
 
 
@@ -799,6 +804,7 @@ namespace TODO_app
             TaskItem task = new TaskItem();
             task.Text = name;
             task.DueDate = dueDate;
+            taskList.Add(task);
         }
 
         /// <summary>
