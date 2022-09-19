@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Android.Provider.Contacts;
 
 namespace TODO_app
 {
@@ -39,14 +40,19 @@ namespace TODO_app
 
         internal static List<TaskItem> SortListByDueDate(List<TaskItem> taskList)
         {
-            taskList.OrderBy(x => x.dueDate).ToList();
-            return taskList;
+            var tasks = from t in taskList
+                          orderby t.dueDate
+                          select t;
+            return tasks.ToList();
         }
 
         internal static List<TaskItem> SortListByCreationDate(List<TaskItem> taskList)
         {
-            taskList.OrderBy(x => x.creationTime).ToList();
-            return taskList;
+            var tasks = from t in taskList
+                        orderby t.CreationTime
+                        select t;
+            return tasks.ToList();
+
         }
 
         internal static List<TaskItem> SortListByIsDone(List<TaskItem> taskList)
