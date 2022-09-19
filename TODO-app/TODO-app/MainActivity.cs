@@ -146,7 +146,7 @@ namespace TODO_app
 
             foreach (TaskItem t in taskList)
             {
-                CreateTaskElement(t.Text);
+                CreateTaskElement(t.Text, false);
             }
 
             UpdateTaskCount();
@@ -401,7 +401,7 @@ namespace TODO_app
                             CreateTaskItem(taskNameField.Text, dueDate);
                             file.WriteFile(taskList);
 
-                            CreateTaskElement(taskname);
+                            CreateTaskElement(taskname,false);
                             UpdateTaskCount();
 
                             mainHeader.Visibility = ViewStates.Visible;
