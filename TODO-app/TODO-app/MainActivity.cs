@@ -403,15 +403,17 @@ namespace TODO_app
 
                             for (int i = 1; i < 8; i++)
                             {
-                                if (activeDate == 1)
+                                if (activeDate == 1 || activeDate == 0)
                                 {
+                                    scrollLayout.RemoveAllViews();
                                     ShowDatestasks(DateTime.Today);
                                     UpdateTaskCount();
                                     break;
                                 }
 
-                                if (activeDate == i)
+                                else if (activeDate == i)
                                 {
+                                    scrollLayout.RemoveAllViews();
                                     ShowDatestasks(DateTime.Today.AddDays(i--));
                                     UpdateTaskCount();
                                     break;
