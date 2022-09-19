@@ -79,7 +79,7 @@ namespace TODO_app
             
             List<TaskItem> tasks = new List<TaskItem>();
 
-            foreach (string line in System.IO.File.ReadLines(_settingsFileName))
+            foreach (string line in System.IO.File.ReadLines(_fileName))
             {
                 //Check that the line is not empty
                 if (line != null && line != "")
