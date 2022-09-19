@@ -39,7 +39,7 @@ namespace TODO_app
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private int activeDate;
+        private int activeDate = 1;
         private string currentTheme;
         private bool guideDone;
         Button btnCreateTask;
@@ -469,15 +469,25 @@ namespace TODO_app
         {
             if (calendarView.Visibility == ViewStates.Visible)
             {
+                scrollLayout.RemoveAllViews();
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
+                foreach (TaskItem t in taskList)
+                {
+                    CreateTaskElement(t.Text, t.IsDone);
+                }
+                UpdateTaskCount();
+
             }
             else if (calendarView.Visibility == ViewStates.Gone)
             {
+                scrollLayout.RemoveAllViews();
+                ShowDatestasks(DateTime.Today.AddDays(activeDate - 1));
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
+                UpdateTaskCount();
 
             }
         }
