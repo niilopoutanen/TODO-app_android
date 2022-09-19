@@ -92,7 +92,7 @@ namespace TODO_app
 
 
         internal static FileClass file = new FileClass();
-        internal List<TaskItem> taskList;
+        internal List<TaskItem> taskList = new List<TaskItem>();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
