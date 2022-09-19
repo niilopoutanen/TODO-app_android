@@ -201,20 +201,21 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
-
-            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
-            btnCreateTask.Click += OpenCreateView;
-            btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
-            btnAddTask.Click += CloseCreateView;
-            header = FindViewById<LinearLayout>(Resource.Id.Header);
-            createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
-            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
-            calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
-            showAll = FindViewById<Button>(Resource.Id.ShowAll);
-            showAll.Click += ShowAll;
-            taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
-            taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
-            taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
+            backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
+            backToMain.Click += BackToMain;
+        btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+        btnCreateTask.Click += OpenCreateView;
+        btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
+        btnAddTask.Click += CloseCreateView;
+        header = FindViewById<LinearLayout>(Resource.Id.Header);
+        createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
+        mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
+        calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
+        showAll = FindViewById<Button>(Resource.Id.ShowAll);
+        showAll.Click += ShowAll;
+        taskNameField = FindViewById<EditText>(Resource.Id.TaskNameField);
+        taskCountLayout = FindViewById<RelativeLayout>(Resource.Id.taskCountLayout);
+        taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
@@ -259,7 +260,17 @@ namespace TODO_app
             date6Btn.Click += CalendarSelector;
             date7Btn.Click += CalendarSelector;
 
-            scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
+        scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
+    }
+
+
+        private void BackToMain(object sender, EventArgs e)
+        {
+            mainHeader.Visibility = ViewStates.Visible;
+            createTaskHeader.Visibility = ViewStates.Gone;
+            scrollLayout.Visibility = ViewStates.Visible;
+            taskCountLayout.Visibility = ViewStates.Visible;
+            taskNameField.Text = "";
         }
         private void UpdateTaskCount()
         {
@@ -281,8 +292,6 @@ namespace TODO_app
             int month;
             int year;
             DateTime dueDate;
-
-
             if (mainHeader.Visibility == ViewStates.Gone)
             {
                 if (IsNull(taskname))
