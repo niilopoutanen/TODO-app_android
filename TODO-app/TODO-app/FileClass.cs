@@ -14,9 +14,6 @@ namespace TODO_app
 {
     internal class FileClass
     {
-
-
-
         //Folder location and filename
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
 
@@ -33,10 +30,9 @@ namespace TODO_app
         /// </summary>
         private void CreateFile()
         {
-
             if (!File.Exists(_fileName))
             {
-                File.Create(_fileName);
+                File.Create(_fileName).Close();
             }
         }
 
