@@ -960,12 +960,22 @@ namespace TODO_app
                 case Resource.Id.SortByDueDate:
                     sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
                     TaskItem.SortListByDueDate(taskList);
-
+                    scrollLayout.RemoveAllViews();
+                    foreach(TaskItem task in taskList)
+                    {
+                        CreateTaskElement(task.Text, task.IsDone);
+                    }
 
                     break;
 
                 case Resource.Id.SortByCreationDate:
                     sortByCreationDate.BackgroundTintList = GetColorStateList(GetStyle());
+                    TaskItem.SortListByCreationDate(taskList);
+                    scrollLayout.RemoveAllViews();
+                    foreach (TaskItem task in taskList)
+                    {
+                        CreateTaskElement(task.Text, task.IsDone);
+                    }
 
                     break;
             }
