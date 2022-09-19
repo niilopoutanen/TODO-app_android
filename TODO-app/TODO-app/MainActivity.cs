@@ -248,6 +248,10 @@ namespace TODO_app
 
         scrollLayout = FindViewById<LinearLayout>(Resource.Id.ScrollLayout);
     }
+
+        /// <summary>
+        /// Call this every time task count is changed
+        /// </summary>
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
@@ -261,6 +265,12 @@ namespace TODO_app
             }
         }
        
+
+        /// <summary>
+        /// This starts when create task button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseCreateView(object sender, EventArgs e)
         {
             if(mainHeader.Visibility == ViewStates.Gone)
@@ -287,6 +297,12 @@ namespace TODO_app
 
         }
 
+
+        /// <summary>
+        /// this opens task creation screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenCreateView(object sender, EventArgs e)
         {
 
@@ -337,6 +353,12 @@ namespace TODO_app
                 searchField.Visibility = ViewStates.Gone;
             }
         }
+
+        /// <summary>
+        /// this opens settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAction(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
@@ -349,6 +371,12 @@ namespace TODO_app
             }
 
         }
+
+        /// <summary>
+        /// This modifies date values with arrows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ArrowModify(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
@@ -429,6 +457,12 @@ namespace TODO_app
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Visibility = ViewStates.Gone;
         }
+
+        /// <summary>
+        /// This happens when task element is pressed & held down.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
             RelativeLayout button = (RelativeLayout)sender;
@@ -465,6 +499,9 @@ namespace TODO_app
             };
             
         }
+        /// <summary>
+        /// Initializes calendar dates on creation
+        /// </summary>
         private void CalendarDater()
         {
             DateTime today = DateTime.Today;
@@ -503,6 +540,12 @@ namespace TODO_app
             FindViewById<TextView>(Resource.Id.date7number).Text = today.AddDays(6).Day.ToString();
             FindViewById<TextView>(Resource.Id.date7str).Text = dayNames[(int)today.AddDays(6).DayOfWeek].Substring(0, 2);
         }
+
+        /// <summary>
+        /// Triggers the colors with the calendar items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CalendarSelector(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
@@ -593,7 +636,10 @@ namespace TODO_app
             }
         }
 
-
+        /// <summary>
+        /// Dynamically creates task element
+        /// </summary>
+        /// <param name="taskName"></param>
         private void CreateTaskElement(string taskName)
         {
             RelativeLayout cardBG = new RelativeLayout(this);
@@ -634,6 +680,11 @@ namespace TODO_app
             cardBG.AddView(header);
             elementIds.Add(taskName, cardBG.Id);
         }
+
+        /// <summary>
+        /// Not needed right now, use if you need
+        /// </summary>
+        /// <param name="taskToDelete"></param>
         private void DeleteTaskElement(string taskToDelete)
         {
             RelativeLayout layoutToDelete = FindViewById<RelativeLayout>(elementIds[taskToDelete]);
@@ -649,7 +700,11 @@ namespace TODO_app
                 Console.Write("error/ item not found");
             }
         }
-
+        /// <summary>
+        /// Toggle between done and not done
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TaskToggle(object sender, EventArgs e)
         {
             Button button =  (Button)sender;
@@ -673,6 +728,12 @@ namespace TODO_app
             UpdateTaskCount();
         }
 
+
+        /// <summary>
+        /// Convers pixels to dots per inch
+        /// </summary>
+        /// <param name="dpValue"></param>
+        /// <returns></returns>
         private int DpToPx(int dpValue)
         {
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
