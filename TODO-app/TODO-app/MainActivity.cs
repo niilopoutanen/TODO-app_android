@@ -108,7 +108,7 @@ namespace TODO_app
                 taskList = file.ReadFile();
                 taskList = TaskItem.SortListByIsDone(taskList);
             }
-            catch
+            catch (System.NullReferenceException)
             {
                 Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
                 Android.App.AlertDialog alert = dialog.Create();

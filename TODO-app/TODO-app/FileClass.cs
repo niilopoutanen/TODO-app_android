@@ -17,17 +17,6 @@ namespace TODO_app
 
 
 
-        //using Java.IO ja FileOutputStream ennemmin kun windowsin file toolsit?
-
-
-        //FileOutputStream fOut = openFileOutput(“ file_name ”, MODE_INTERNAL_READ);
-        //String name = “demo”;
-        //fOut.write(name.getBytes());
-        //fOut.close()
-
-
-
-
         //Folder location and filename
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
 
