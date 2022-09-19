@@ -1,38 +1,17 @@
 using Android.App;
 using Android.Graphics.Drawables;
-using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
-using AndroidX.AppCompat.Widget;
-using AndroidX.Core.Content;
-using Java.Time.Format;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using Android;
-using Android.Icu.Math;
-using Android.Views.Animations;
-using Android.Animation;
-using Android.Provider;
 using Android.Content;
-using static Android.Widget.TextView;
-using System.Runtime.Remoting.Contexts;
-using AndroidX.Core.Content.Resources;
-using Android.Content.Res;
 using Android.Views.InputMethods;
-using Android.Graphics;
-using System.Drawing.Imaging;
-using Android.Telephony;
 using TODO_app.Resources.layout;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
 using Java.Lang;
-using System.Linq;
-using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
@@ -94,8 +73,8 @@ namespace TODO_app
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
-        internal static FileClass file = new FileClass();
-        internal List<TaskItem> taskList = new List<TaskItem>();
+        private static FileClass file = new FileClass();
+        private List<TaskItem> taskList = new List<TaskItem>();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
