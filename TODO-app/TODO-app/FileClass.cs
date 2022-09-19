@@ -27,6 +27,7 @@ namespace TODO_app
 
         /// <summary>
         /// If file doesn't exists it will create it
+        /// (File.create has to be closed because it opens a stream on openin)
         /// </summary>
         private void CreateFile()
         {
