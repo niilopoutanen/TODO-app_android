@@ -682,13 +682,14 @@ namespace TODO_app
         /// <param name="e"></param>
         private void CalendarSelector(object sender, EventArgs e)
         {
+            scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
             switch (button.Id)
             {
                 case Resource.Id.date1btn:
                     activeDate = 1;
                     date1Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -700,7 +701,7 @@ namespace TODO_app
                 case Resource.Id.date2btn:
                     activeDate = 2;
                     date2Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(1));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -712,7 +713,7 @@ namespace TODO_app
                 case Resource.Id.date3btn:
                     activeDate = 3;
                     date3Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(2));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -723,7 +724,7 @@ namespace TODO_app
                 case Resource.Id.date4btn:
                     activeDate = 4;
                     date4Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(3));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -735,7 +736,7 @@ namespace TODO_app
                 case Resource.Id.date5btn:
                     activeDate = 5;
                     date5Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(4));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -747,7 +748,7 @@ namespace TODO_app
                 case Resource.Id.date6btn:
                     activeDate = 6;
                     date6Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(5));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -759,7 +760,7 @@ namespace TODO_app
                 case Resource.Id.date7btn:
                     activeDate = 7;
                     date7Btn.BackgroundTintList = GetColorStateList(GetStyle());
-
+                    ShowDatestasks(DateTime.Today.AddDays(6));
                     date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -767,7 +768,10 @@ namespace TODO_app
                     date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
+
+                    
             }
+            UpdateTaskCount();
         }
 
         /// <summary>
@@ -817,7 +821,15 @@ namespace TODO_app
             scrollLayout.AddView(cardBG);
             cardBG.AddView(toggleBtn);
             cardBG.AddView(header);
-            elementIds.Add(taskName, cardBG.Id);
+            try
+            {
+                elementIds.Add(taskName, cardBG.Id);
+            }
+            catch
+            {
+
+            }
+            
         }
 
         /// <summary>
