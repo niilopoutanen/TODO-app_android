@@ -80,6 +80,8 @@ namespace TODO_app
 
         LinearLayout scrollLayout;
 
+        RelativeLayout backToMain;
+
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -183,7 +185,8 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
-
+        backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
+        backToMain.Click += BackToMain;
         btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
         btnCreateTask.Click += OpenCreateView;
         btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
@@ -260,7 +263,15 @@ namespace TODO_app
             }
         }
        
-
+        private void BackToMain(object sender, EventArgs e)
+        {
+            mainHeader.Visibility = ViewStates.Visible;
+            createTaskHeader.Visibility = ViewStates.Gone;
+            scrollLayout.Visibility = ViewStates.Visible;
+            taskCountLayout.Visibility = ViewStates.Visible;
+            backToMain.Visibility = ViewStates.Gone;
+            taskNameField.Text = "";
+        }
         /// <summary>
         /// This starts when create task button is clicked.
         /// </summary>
@@ -282,6 +293,7 @@ namespace TODO_app
                 createTaskHeader.Visibility = ViewStates.Gone;
                 scrollLayout.Visibility = ViewStates.Visible;
                 taskCountLayout.Visibility = ViewStates.Visible;
+                backToMain.Visibility = ViewStates.Gone;
                 taskNameField.Text = "";
 
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
@@ -308,7 +320,7 @@ namespace TODO_app
                 createTaskHeader.Visibility = ViewStates.Visible;
                 scrollLayout.Visibility = ViewStates.Gone;
                 taskCountLayout.Visibility = ViewStates.Gone;
-
+                backToMain.Visibility = ViewStates.Visible;
 
                 dayInput.Text = thisDay.ToString();
                 monthInput.Text = thisMonth.ToString();
