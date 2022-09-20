@@ -124,6 +124,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/missedTasksBtn"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/calendar_item"
+                        android:backgroundTint="@color/colorButton">
+
+                        <TextView
+                            android:id="@+id/missedTasksCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="20dp"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/inter_bold"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/alarm"
+                            android:contentDescription="@string/default_description"/>
+                    </RelativeLayout>
+
+                    <Space
+                        android:visibility="gone"
+                        android:id="@+id/missedTasksSpace"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
                         android:id="@+id/date1btn"
                         android:paddingBottom="10dp"
                         android:paddingTop="5dp"

@@ -70,11 +70,17 @@ namespace TODO_app
         Button sortByDueDate;
         ScrollView scrollBase;
 
+
+        RelativeLayout missedTasksBtn;
+        TextView missedTasksCount;
+        Space missedTaskSpace;
+
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
+        private int amountOfMissed;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -125,8 +131,23 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
-            ShowDatestasks(DateTime.Today);
 
+            
+
+            amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
+            }
+            ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
 
@@ -138,7 +159,6 @@ namespace TODO_app
                 Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActivity));
                 StartActivity(onBoarderStarter);
             }
-
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -147,6 +167,50 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void CheckIfMissedAnymore()
+        {
+            int amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed <= 0)
+            {
+                missedTasksBtn.Visibility = ViewStates.Gone;
+                missedTaskSpace.Visibility = ViewStates.Gone;
+                missedTasksCount.Text = "0";
+            }
+        }
+        private void ShowMissedTasksElement(int amountOfMissed)
+        {
+            missedTasksBtn.Visibility = ViewStates.Visible;
+            missedTaskSpace.Visibility = ViewStates.Visible;
+            missedTasksCount.Text = amountOfMissed.ToString();
+        }
+        private void ShowMissedTasks(object sender, EventArgs e)
+        {
+            scrollLayout.RemoveAllViews();
+            missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
+            date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                }
+            }
+            UpdateTaskCount();
+        }
         private int GetStyle()
         {
             if (currentTheme == "mainBlue")
@@ -217,6 +281,10 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            missedTasksBtn = FindViewById<RelativeLayout>(Resource.Id.missedTasksBtn);
+            missedTasksBtn.Click += ShowMissedTasks;
+            missedTasksCount = FindViewById<TextView>(Resource.Id.missedTasksCount);
+            missedTaskSpace = FindViewById<Space>(Resource.Id.missedTasksSpace);
             scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
@@ -395,6 +463,13 @@ namespace TODO_app
                             OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
+
+                        else if (dueDate > DateTime.MaxValue)
+                        {
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateTooBig), "OK");
+                            return;
+                        }
+
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
@@ -718,6 +793,7 @@ namespace TODO_app
                 scrollLayout.RemoveView(button);
                 alert.Dismiss();
                 UpdateTaskCount();
+                CheckIfMissedAnymore();
             };
 
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
@@ -726,7 +802,7 @@ namespace TODO_app
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-
+            
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -779,8 +855,11 @@ namespace TODO_app
         {
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
+            missedTasksBtn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             switch (button.Id)
             {
+
+
                 case Resource.Id.date1btn:
                     activeDate = 1;
                     date1Btn.BackgroundTintList = GetColorStateList(GetStyle());
@@ -939,7 +1018,7 @@ namespace TODO_app
             {
                 elementIds[taskName] = cardBG.Id;
             }
-            
+            CheckIfMissedAnymore();
         }
 
 
@@ -981,6 +1060,8 @@ namespace TODO_app
             {
                 Console.Write("error/ item not found");
             }
+
+            CheckIfMissedAnymore();
         }
         /// <summary>
         /// Toggle between done and not done
