@@ -80,6 +80,7 @@ namespace TODO_app
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
+        private int amountOfMissed;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -130,7 +131,21 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
+
             ShowDatestasks(DateTime.Today);
+
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
+            }
 
             UpdateTaskCount();
             GetStyle();
@@ -161,10 +176,13 @@ namespace TODO_app
         {
             scrollLayout.RemoveAllViews();
 
-
-
-
-
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                }
+            }
             UpdateTaskCount();
         }
         private int GetStyle()
