@@ -395,6 +395,13 @@ namespace TODO_app
                             OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
+
+                        else if (dueDate > DateTime.MaxValue)
+                        {
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateTooBig), "OK");
+                            return;
+                        }
+
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
