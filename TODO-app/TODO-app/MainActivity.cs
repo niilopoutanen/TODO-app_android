@@ -382,7 +382,7 @@ namespace TODO_app
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
-                            //file.WriteFile(taskList);
+                            file.WriteFile(taskList);
 
                             for (int i = 1; i < 8; i++)
                             {
@@ -396,8 +396,9 @@ namespace TODO_app
 
                                 else if (activeDate == i)
                                 {
+                                    DateTime date = DateTime.Today.AddDays(i - 1);
                                     scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today.AddDays(i--));
+                                    ShowDatestasks(date);
                                     UpdateTaskCount();
                                     break;
                                 }
