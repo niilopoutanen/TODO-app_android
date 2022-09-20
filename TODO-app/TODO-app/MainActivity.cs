@@ -153,6 +153,7 @@ namespace TODO_app
 
         private void ShowMissedTasksElement(int amountOfMissed)
         {
+            scrollLayout.RemoveAllViews();
             missedTasksBtn.Visibility = ViewStates.Visible;
             missedTaskSpace.Visibility = ViewStates.Visible;
             missedTasksCount.Text = amountOfMissed.ToString();
