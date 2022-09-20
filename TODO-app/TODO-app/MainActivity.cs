@@ -70,6 +70,11 @@ namespace TODO_app
         Button sortByDueDate;
         ScrollView scrollBase;
 
+
+        RelativeLayout missedTasksBtn;
+        TextView missedTasksCount;
+        Space missedTaskSpace;
+
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
@@ -138,7 +143,6 @@ namespace TODO_app
                 Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActivity));
                 StartActivity(onBoarderStarter);
             }
-
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -147,6 +151,22 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void ShowMissedTasksElement(int amountOfMissed)
+        {
+            missedTasksBtn.Visibility = ViewStates.Visible;
+            missedTaskSpace.Visibility = ViewStates.Visible;
+            missedTasksCount.Text = amountOfMissed.ToString();
+        }
+        private void ShowMissedTasks(object sender, EventArgs e)
+        {
+            scrollLayout.RemoveAllViews();
+
+
+
+
+
+            UpdateTaskCount();
+        }
         private int GetStyle()
         {
             if (currentTheme == "mainBlue")
@@ -217,6 +237,10 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            missedTasksBtn = FindViewById<RelativeLayout>(Resource.Id.missedTasksBtn);
+            missedTasksBtn.Click += ShowMissedTasks;
+            missedTasksCount = FindViewById<TextView>(Resource.Id.missedTasksCount);
+            missedTaskSpace = FindViewById<Space>(Resource.Id.missedTasksSpace);
             scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
