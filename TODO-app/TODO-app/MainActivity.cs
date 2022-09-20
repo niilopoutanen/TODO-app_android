@@ -476,14 +476,23 @@ namespace TODO_app
             }
             else if (calendarView.Visibility == ViewStates.Gone)
             {
-                scrollLayout.RemoveAllViews();
-                if(activeDate == 1)
+                for (int i = 1; i < 8; i++)
                 {
-                    ShowDatestasks(DateTime.Today);
-                }
-                else if (activeDate < 1)
-                {
-                    ShowDatestasks(DateTime.Today.AddDays(activeDate-1));
+                    if (activeDate == 1 || activeDate == 0)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        break;
+                    }
+
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        break;
+                    }
                 }
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
@@ -503,11 +512,13 @@ namespace TODO_app
         {
             if (searchBar.Visibility == ViewStates.Visible)
             {
+                scrollLayout.RemoveAllViews();
                 calendarView.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
                 searchField.Visibility = ViewStates.Visible;
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
                 imm.ToggleSoftInput(ShowFlags.Forced, 0);
+                UpdateTaskCount();
             }
             else if (searchField.Visibility == ViewStates.Visible)
             {
@@ -516,6 +527,25 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Visible;
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
                 imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
+                scrollLayout.RemoveAllViews();
+                for (int i = 1; i < 8; i++)
+                {
+                    if (activeDate == 1 || activeDate == 0)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        break;
+                    }
+
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        break;
+                    }
+                }
             }
         }
 
