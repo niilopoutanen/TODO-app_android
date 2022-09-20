@@ -9,6 +9,7 @@
     android:orientation="vertical"
     android:animateLayoutChanges="true">
     <LinearLayout
+        android:layout_weight="0"
         android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -403,12 +404,13 @@
                     android:layout_marginRight="20dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/DayArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -434,6 +436,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -449,12 +452,13 @@
                     android:layout_marginRight="20dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/MonthArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -479,6 +483,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -493,12 +498,13 @@
                     android:layout_height="match_parent">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:id="@+id/YearArrowUp"
                         android:clickable="true"
                         android:layout_alignParentTop="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -523,6 +529,7 @@
                         android:layout_alignParentBottom="true"
                         android:gravity="center_horizontal">
                         <Button
+                            android:clickable="false"
                             android:layout_alignParentTop="true"
                             android:layout_width="10dp"
                             android:layout_height="20dp"
@@ -588,21 +595,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <ScrollView
+        android:id="@+id/scrollBase"
+        android:layout_weight="100"
         android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:animateLayoutChanges="true"
-        android:layout_gravity="start">
+        android:layout_height="wrap_content">
         <LinearLayout
-
             android:id="@+id/ScrollLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
         </LinearLayout>
     </ScrollView>

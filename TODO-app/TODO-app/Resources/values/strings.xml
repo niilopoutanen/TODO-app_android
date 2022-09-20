@@ -67,8 +67,13 @@
 	<string name="skip">Ohita</string>
 	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
 	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
-	<string name="guide3">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+	<string name="guide3">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
+	<string name="guide4">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
 
-    <string name="DueDate">Erääntymispäivä</string>
+
+
+	<string name="DueDate">Erääntymispäivä</string>
     <string name="CreationDate">Luontipäivä</string>
+
+	<string name="Start">Aloita</string>
 </resources>

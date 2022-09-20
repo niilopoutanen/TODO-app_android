@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
     <RelativeLayout
+        android:id="@+id/imageLayout"
         android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="350dp">
@@ -37,8 +38,10 @@
         android:layout_weight="0.2"
         android:gravity="center_vertical"
         android:paddingRight="20dp"
-        android:paddingLeft="20dp">
+        android:paddingLeft="20dp"
+        android:animateLayoutChanges="true">
         <Button
+            android:animateLayoutChanges="true"
             android:id="@+id/nextButton"
             android:layout_alignParentRight="true"
             android:layout_width="140dp"
@@ -53,6 +56,8 @@
             />
 
         <Button
+            android:animateLayoutChanges="true"
+            android:visibility="visible"
             android:id="@+id/skipButton"
             android:layout_width="140dp"
             android:layout_height="40dp"

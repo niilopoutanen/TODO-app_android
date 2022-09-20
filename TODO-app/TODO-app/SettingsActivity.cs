@@ -5,13 +5,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AndroidX.AppCompat.App;
-using System.Runtime.Remoting.Contexts;
 using Xamarin.Essentials;
-using System.Drawing.Imaging;
 
 namespace TODO_app
 {
