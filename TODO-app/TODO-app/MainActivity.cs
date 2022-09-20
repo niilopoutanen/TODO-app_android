@@ -237,6 +237,7 @@ namespace TODO_app
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
             searchField = FindViewById<EditText>(Resource.Id.SearchField);
+            searchField.Click += ToggleSearchMode;
             navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
@@ -495,13 +496,19 @@ namespace TODO_app
         {
             if (searchBar.Visibility == ViewStates.Visible)
             {
+                calendarView.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
                 searchField.Visibility = ViewStates.Visible;
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+                imm.ToggleSoftInput(ShowFlags.Forced, 0);
             }
             else if (searchField.Visibility == ViewStates.Visible)
             {
                 searchBar.Visibility = ViewStates.Visible;
                 searchField.Visibility = ViewStates.Gone;
+                calendarView.Visibility = ViewStates.Visible;
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             }
         }
 
