@@ -1,30 +1,14 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using Org.Json;
-using Android.Util;
 using System.Text.Json;
-using System.Reflection;
-using System.Threading.Tasks;
-using Android.Provider;
 
 namespace TODO_app
 {
     internal class FileClass
     {
         //Folder location and filename
-        
         private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
-        private string _settingsFileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Settings.JSON");
 
 
         public FileClass()
@@ -36,17 +20,13 @@ namespace TODO_app
 
         /// <summary>
         /// If file doesn't exists it will create it
+        /// (File.create has to be closed because it opens a stream on openin)
         /// </summary>
         private void CreateFile()
         {
-
             if (!File.Exists(_fileName))
             {
-                File.Create(_fileName);
-            }
-            if (!File.Exists(_settingsFileName))
-            {
-                File.Create(_settingsFileName);
+                File.Create(_fileName).Close();
             }
         }
 
@@ -91,14 +71,5 @@ namespace TODO_app
             return tasks;
         }
 
-        internal void SaveSettings(Settings settings)
-        {
-            File.WriteAllText(_settingsFileName, JsonSerializer.Serialize(settings));
-        }
-
-        internal Settings ReturnSettings()
-        {
-            return JsonSerializer.Deserialize<Settings>(File.ReadLines(_settingsFileName).ToString());
-        }
     }
 }
