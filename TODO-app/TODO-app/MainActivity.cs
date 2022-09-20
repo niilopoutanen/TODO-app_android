@@ -134,6 +134,7 @@ namespace TODO_app
 
             ShowDatestasks(DateTime.Today);
 
+            amountOfMissed = 0;
             foreach (TaskItem t in taskList)
             {
                 if (t.DueDate < DateTime.Today)
@@ -166,6 +167,24 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void CheckIfMissedAnymore()
+        {
+            int amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed <= 0)
+            {
+                missedTasksBtn.Visibility = ViewStates.Gone;
+                missedTaskSpace.Visibility = ViewStates.Gone;
+                missedTasksCount.Text = "0";
+            }
+        }
         private void ShowMissedTasksElement(int amountOfMissed)
         {
             scrollLayout.RemoveAllViews();
@@ -768,6 +787,7 @@ namespace TODO_app
                 scrollLayout.RemoveView(button);
                 alert.Dismiss();
                 UpdateTaskCount();
+                CheckIfMissedAnymore();
             };
 
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
@@ -776,7 +796,7 @@ namespace TODO_app
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-
+            
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -989,7 +1009,7 @@ namespace TODO_app
             {
                 elementIds[taskName] = cardBG.Id;
             }
-            
+            CheckIfMissedAnymore();
         }
 
 
@@ -1031,6 +1051,8 @@ namespace TODO_app
             {
                 Console.Write("error/ item not found");
             }
+
+            CheckIfMissedAnymore();
         }
         /// <summary>
         /// Toggle between done and not done
