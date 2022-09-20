@@ -520,6 +520,7 @@ namespace TODO_app
         {
             if (searchBar.Visibility == ViewStates.Visible)
             {
+                searchField.Text = "";
                 scrollLayout.RemoveAllViews();
                 calendarView.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
