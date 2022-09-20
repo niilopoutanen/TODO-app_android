@@ -397,7 +397,7 @@ namespace TODO_app
                                 else if (activeDate == i)
                                 {
                                     scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today.AddDays(i--));
+                                    ShowDatestasks(DateTime.Today.AddDays((i-1)));
                                     UpdateTaskCount();
                                     break;
                                 }
