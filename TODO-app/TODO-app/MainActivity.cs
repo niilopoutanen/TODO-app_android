@@ -1034,6 +1034,7 @@ namespace TODO_app
             TaskItem task = new TaskItem();
             task.Text = name;
             task.DueDate = dueDate;
+            task.CreationTime = DateTime.Today;
             taskList.Add(task);
             file.WriteFile(taskList);
         }
