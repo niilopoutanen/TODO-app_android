@@ -134,7 +134,18 @@ namespace TODO_app
 
             ShowDatestasks(DateTime.Today);
 
-            CheckIfMissed();
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
+            }
 
             UpdateTaskCount();
             GetStyle();
@@ -155,28 +166,12 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        private void CheckIfMissed()
-        {
-            foreach (TaskItem t in taskList)
-            {
-                if (t.DueDate < DateTime.Today)
-                {
-                    amountOfMissed++;
-                }
-            }
-
-            if (amountOfMissed > 0)
-            {
-                ShowMissedTasksElement(amountOfMissed);
-            }
-        }
         private void ShowMissedTasksElement(int amountOfMissed)
         {
             scrollLayout.RemoveAllViews();
             missedTasksBtn.Visibility = ViewStates.Visible;
             missedTaskSpace.Visibility = ViewStates.Visible;
             missedTasksCount.Text = amountOfMissed.ToString();
-            CheckIfMissed();
         }
         private void ShowMissedTasks(object sender, EventArgs e)
         {
@@ -361,7 +356,6 @@ namespace TODO_app
             {
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
-            CheckIfMissed();
         }
 
         private void SearchChanged(object sender, EventArgs e)
@@ -498,7 +492,7 @@ namespace TODO_app
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
                 imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             }
-            CheckIfMissed();
+
 
 
         }
@@ -782,8 +776,6 @@ namespace TODO_app
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-
-            CheckIfMissed();
 
         }
         /// <summary>
