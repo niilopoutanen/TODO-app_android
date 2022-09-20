@@ -238,7 +238,7 @@ namespace TODO_app
             settingsOpen.Click += ButtonAction;
             searchField = FindViewById<EditText>(Resource.Id.SearchField);
             searchField.Click += ToggleSearchMode;
-            searchField.TextChanged
+            searchField.TextChanged += SearchChanged;
             navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
