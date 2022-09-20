@@ -525,6 +525,8 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
                 searchField.Visibility = ViewStates.Visible;
+                searchField.FocusableInTouchMode = true;
+                searchField.RequestFocus();
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
                 imm.ToggleSoftInput(ShowFlags.Forced, 0);
                 UpdateTaskCount();
