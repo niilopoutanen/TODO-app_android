@@ -132,7 +132,7 @@ namespace TODO_app
             CalendarDater();
 
 
-            ShowDatestasks(DateTime.Today);
+            
 
             amountOfMissed = 0;
             foreach (TaskItem t in taskList)
@@ -147,7 +147,7 @@ namespace TODO_app
             {
                 ShowMissedTasksElement(amountOfMissed);
             }
-
+            ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
 
@@ -187,7 +187,6 @@ namespace TODO_app
         }
         private void ShowMissedTasksElement(int amountOfMissed)
         {
-            scrollLayout.RemoveAllViews();
             missedTasksBtn.Visibility = ViewStates.Visible;
             missedTaskSpace.Visibility = ViewStates.Visible;
             missedTasksCount.Text = amountOfMissed.ToString();
@@ -195,7 +194,14 @@ namespace TODO_app
         private void ShowMissedTasks(object sender, EventArgs e)
         {
             scrollLayout.RemoveAllViews();
-
+            missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
+            date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             foreach (TaskItem t in taskList)
             {
                 if (t.DueDate < DateTime.Today)
@@ -849,8 +855,11 @@ namespace TODO_app
         {
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
+            missedTasksBtn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             switch (button.Id)
             {
+
+
                 case Resource.Id.date1btn:
                     activeDate = 1;
                     date1Btn.BackgroundTintList = GetColorStateList(GetStyle());

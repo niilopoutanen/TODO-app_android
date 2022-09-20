@@ -134,7 +134,7 @@
                         android:layout_width="70dp"
                         android:layout_height="80dp"
                         android:background="@drawable/calendar_item"
-                        android:backgroundTint="?attr/colorAccent">
+                        android:backgroundTint="@color/colorButton">
 
                         <TextView
                             android:id="@+id/missedTasksCount"
