@@ -321,6 +321,14 @@ namespace TODO_app
 
 
             string fieldText = searchField.Text;
+            scrollLayout.RemoveAllViews();
+            foreach(TaskItem task in taskList)
+            {
+                if(task.Text.Contains(fieldText))
+                {
+                    CreateTaskElement(task.Text, task.IsDone, task.DueDate);
+                }
+            }
         }
 
         private void CloseCreateView(object sender, EventArgs e)
