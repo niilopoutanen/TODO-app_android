@@ -75,6 +75,8 @@ namespace TODO_app
         TextView missedTasksCount;
         Space missedTaskSpace;
 
+        RelativeLayout mainInfo;
+        
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
@@ -281,6 +283,7 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            mainInfo = FindViewById<RelativeLayout>(Resource.Id.MainInfo);
             missedTasksBtn = FindViewById<RelativeLayout>(Resource.Id.missedTasksBtn);
             missedTasksBtn.Click += ShowMissedTasks;
             missedTasksCount = FindViewById<TextView>(Resource.Id.missedTasksCount);
@@ -547,6 +550,7 @@ namespace TODO_app
             if (calendarView.Visibility == ViewStates.Visible)
             {
                 scrollLayout.RemoveAllViews();
+                mainInfo.Visibility = ViewStates.Gone;
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
@@ -580,6 +584,8 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
+                mainInfo.Visibility = ViewStates.Visible;
+
                 UpdateTaskCount();
 
             }
