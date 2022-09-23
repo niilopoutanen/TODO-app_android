@@ -1113,9 +1113,9 @@ namespace TODO_app
         private void CreateTaskItem(string name, DateTime dueDate)
         {
             TaskItem task = new TaskItem();
+            task.CreationTime = DateTime.Now;
             task.Text = name;
             task.DueDate = dueDate;
-            task.CreationTime = DateTime.Today;
             taskList.Add(task);
             file.WriteFile(taskList);
         }
