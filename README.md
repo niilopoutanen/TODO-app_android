@@ -3,7 +3,7 @@
 ![preview](/preview.png) 
 
 ### Available on:
-<img src="/git.png" height=80/>
+[<img src="/git.png" height=80/>](https://github.com/niilopoutanen/TODO-app_android/releases)
 
 
 <br>
