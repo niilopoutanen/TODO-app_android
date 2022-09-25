@@ -1106,7 +1106,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Convers pixels to dots per inch
+        /// Converts pixels to dots per inch
         /// </summary>
         /// <param name="dpValue"></param>
         /// <returns></returns>
@@ -1145,7 +1145,9 @@ namespace TODO_app
         /// <param name="day"></param>
         /// <param name="month"></param>
         /// <param name="year"></param>
-        /// <returns>true if the day is in the month</returns>
+        /// <returns>
+        /// True if the day is in the month
+        /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
