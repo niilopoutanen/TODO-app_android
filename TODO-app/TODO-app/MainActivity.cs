@@ -70,11 +70,19 @@ namespace TODO_app
         Button sortByDueDate;
         ScrollView scrollBase;
 
+
+        RelativeLayout missedTasksBtn;
+        TextView missedTasksCount;
+        Space missedTaskSpace;
+
+        RelativeLayout mainInfo;
+        
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
+        private int amountOfMissed;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -125,8 +133,23 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
-            ShowDatestasks(DateTime.Today);
 
+            
+
+            amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
+            }
+            ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
 
@@ -138,7 +161,6 @@ namespace TODO_app
                 Intent onBoarderStarter = new Intent(this, typeof(OnBoardingActivity));
                 StartActivity(onBoarderStarter);
             }
-
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -147,6 +169,50 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void CheckIfMissedAnymore()
+        {
+            int amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed <= 0)
+            {
+                missedTasksBtn.Visibility = ViewStates.Gone;
+                missedTaskSpace.Visibility = ViewStates.Gone;
+                missedTasksCount.Text = "0";
+            }
+        }
+        private void ShowMissedTasksElement(int amountOfMissed)
+        {
+            missedTasksBtn.Visibility = ViewStates.Visible;
+            missedTaskSpace.Visibility = ViewStates.Visible;
+            missedTasksCount.Text = amountOfMissed.ToString();
+        }
+        private void ShowMissedTasks(object sender, EventArgs e)
+        {
+            scrollLayout.RemoveAllViews();
+            missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
+            date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                }
+            }
+            UpdateTaskCount();
+        }
         private int GetStyle()
         {
             if (currentTheme == "mainBlue")
@@ -217,6 +283,11 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            mainInfo = FindViewById<RelativeLayout>(Resource.Id.MainInfo);
+            missedTasksBtn = FindViewById<RelativeLayout>(Resource.Id.missedTasksBtn);
+            missedTasksBtn.Click += ShowMissedTasks;
+            missedTasksCount = FindViewById<TextView>(Resource.Id.missedTasksCount);
+            missedTaskSpace = FindViewById<Space>(Resource.Id.missedTasksSpace);
             scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
@@ -237,6 +308,8 @@ namespace TODO_app
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
             settingsOpen.Click += ButtonAction;
             searchField = FindViewById<EditText>(Resource.Id.SearchField);
+            searchField.Click += ToggleSearchMode;
+            searchField.TextChanged += SearchChanged;
             navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
@@ -313,7 +386,21 @@ namespace TODO_app
             }
         }
 
+        private void SearchChanged(object sender, EventArgs e)
+        {
+            TextView field = (TextView)sender;
 
+
+            string fieldText = searchField.Text;
+            scrollLayout.RemoveAllViews();
+            foreach(TaskItem task in taskList)
+            {
+                if(task.Text.Contains(fieldText))
+                {
+                    CreateTaskElement(task.Text, task.IsDone, task.DueDate);
+                }
+            }
+        }
 
         private void CloseCreateView(object sender, EventArgs e)
         {
@@ -379,10 +466,17 @@ namespace TODO_app
                             OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
                             return;
                         }
+
+                        else if (dueDate > DateTime.MaxValue)
+                        {
+                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateTooBig), "OK");
+                            return;
+                        }
+
                         else
                         {
                             CreateTaskItem(taskNameField.Text, dueDate);
-                            //file.WriteFile(taskList);
+                            file.WriteFile(taskList);
 
                             for (int i = 1; i < 8; i++)
                             {
@@ -397,7 +491,7 @@ namespace TODO_app
                                 else if (activeDate == i)
                                 {
                                     scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today.AddDays(i--));
+                                    ShowDatestasks(DateTime.Today.AddDays(i - 1));
                                     UpdateTaskCount();
                                     break;
                                 }
@@ -456,30 +550,42 @@ namespace TODO_app
             if (calendarView.Visibility == ViewStates.Visible)
             {
                 scrollLayout.RemoveAllViews();
+                mainInfo.Visibility = ViewStates.Gone;
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
                 foreach (TaskItem t in taskList)
                 {
-                    CreateTaskElement(t.Text, t.IsDone);
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
                 UpdateTaskCount();
 
             }
             else if (calendarView.Visibility == ViewStates.Gone)
             {
-                scrollLayout.RemoveAllViews();
-                if(activeDate == 1)
+                for (int i = 1; i < 8; i++)
                 {
-                    ShowDatestasks(DateTime.Today);
-                }
-                else if (activeDate < 1)
-                {
-                    ShowDatestasks(DateTime.Today.AddDays(activeDate-1));
+                    if (activeDate == 1 || activeDate == 0)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        break;
+                    }
+
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        break;
+                    }
                 }
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
+                mainInfo.Visibility = ViewStates.Visible;
+
                 UpdateTaskCount();
 
             }
@@ -495,13 +601,43 @@ namespace TODO_app
         {
             if (searchBar.Visibility == ViewStates.Visible)
             {
+                searchField.Text = "";
+                scrollLayout.RemoveAllViews();
+                calendarView.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
                 searchField.Visibility = ViewStates.Visible;
+                searchField.FocusableInTouchMode = true;
+                searchField.RequestFocus();
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+                imm.ToggleSoftInput(ShowFlags.Forced, 0);
+                UpdateTaskCount();
             }
             else if (searchField.Visibility == ViewStates.Visible)
             {
                 searchBar.Visibility = ViewStates.Visible;
                 searchField.Visibility = ViewStates.Gone;
+                calendarView.Visibility = ViewStates.Visible;
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
+                scrollLayout.RemoveAllViews();
+                for (int i = 1; i < 8; i++)
+                {
+                    if (activeDate == 1 || activeDate == 0)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        break;
+                    }
+
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        break;
+                    }
+                }
             }
         }
 
@@ -663,6 +799,7 @@ namespace TODO_app
                 scrollLayout.RemoveView(button);
                 alert.Dismiss();
                 UpdateTaskCount();
+                CheckIfMissedAnymore();
             };
 
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
@@ -671,7 +808,7 @@ namespace TODO_app
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-
+            
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -724,8 +861,11 @@ namespace TODO_app
         {
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
+            missedTasksBtn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             switch (button.Id)
             {
+
+
                 case Resource.Id.date1btn:
                     activeDate = 1;
                     date1Btn.BackgroundTintList = GetColorStateList(GetStyle());
@@ -818,19 +958,20 @@ namespace TODO_app
         /// Dynamically creates task element
         /// </summary>
         /// <param name="taskName"></param>
-        private void CreateTaskElement(string taskName, bool isTrue)
+        private void CreateTaskElement(string taskName, bool isTrue, DateTime dueDate)
         {
 
             RelativeLayout cardBG = new RelativeLayout(this);
             Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
-            
             cardBG.Id = View.GenerateViewId();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+            
             cardBG.LayoutParameters = cardparams;
             cardBG.LongClick += HoldTaskElement;
+            cardBG.Click += ExpandCard;
 
 
             Button toggleBtn = new Button(this);
@@ -838,8 +979,8 @@ namespace TODO_app
             Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
             RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
-            buttonparams.SetMargins(0, 0, DpToPx(10), 0);
-            buttonparams.AddRule(LayoutRules.CenterVertical);
+            buttonparams.SetMargins(0, DpToPx(17), DpToPx(10), 0);
+            //buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
             toggleBtn.Click += TaskToggle;
@@ -849,19 +990,32 @@ namespace TODO_app
             TextView header = new TextView(this);
             header.Text = taskName;
             header.TextSize = DpToPx(6);
-            header.SetTypeface(header.Typeface, Android.Graphics.TypefaceStyle.Bold);
+            header.SetTypeface(Resources.GetFont(Resource.Font.inter_bold), Android.Graphics.TypefaceStyle.Normal);
             RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
-            headerparams.AddRule(LayoutRules.CenterVertical);
+            headerparams.SetMargins(0, DpToPx(28), 0, 0);
+            //headerparams.AddRule(LayoutRules.CenterVertical);
             headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
             header.LayoutParameters = headerparams;
 
-            if(isTrue == true)
+
+            TextView date = new TextView(this);
+            date.Text = dueDate.Day.ToString() + "." + dueDate.Month.ToString() + "." + dueDate.Year.ToString();
+            RelativeLayout.LayoutParams dateparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+            dateparams.AddRule(LayoutRules.CenterHorizontal);
+            dateparams.AddRule(LayoutRules.AlignParentBottom);
+            dateparams.SetMargins(0, 0, 0, DpToPx(5));
+            date.LayoutParameters = dateparams;
+            date.TextSize = DpToPx(6);
+            date.SetTypeface(Resources.GetFont(Resource.Font.inter_semibold), Android.Graphics.TypefaceStyle.Normal);
+            if (isTrue == true)
             {
                 toggleBtn.Background = toggleActive;
             }
             scrollLayout.AddView(cardBG);
             cardBG.AddView(toggleBtn);
             cardBG.AddView(header);
+            cardBG.AddView(date);
+            date.Visibility = ViewStates.Gone;
             try
             {
                 elementIds.Add(taskName, cardBG.Id);
@@ -870,9 +1024,30 @@ namespace TODO_app
             {
                 elementIds[taskName] = cardBG.Id;
             }
-            
+            CheckIfMissedAnymore();
         }
 
+
+        private void ExpandCard(object sender, EventArgs e)
+        {
+            
+            RelativeLayout card = (RelativeLayout)sender;
+            if (card.Height == DpToPx(100))
+            {
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(80));
+                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+                card.LayoutParameters = heightParam;
+                card.GetChildAt(2).Visibility = ViewStates.Gone;
+            }
+            else if (card.Height == DpToPx(80))
+            {
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(100));
+                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+                card.LayoutParameters = heightParam;
+                card.GetChildAt(2).Visibility = ViewStates.Visible;
+            }
+
+        }
         /// <summary>
         /// Not needed right now, use if you need
         /// </summary>
@@ -891,6 +1066,8 @@ namespace TODO_app
             {
                 Console.Write("error/ item not found");
             }
+
+            CheckIfMissedAnymore();
         }
         /// <summary>
         /// Toggle between done and not done
@@ -942,6 +1119,7 @@ namespace TODO_app
         private void CreateTaskItem(string name, DateTime dueDate)
         {
             TaskItem task = new TaskItem();
+            task.CreationTime = DateTime.Now;
             task.Text = name;
             task.DueDate = dueDate;
             taskList.Add(task);
@@ -999,7 +1177,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     foreach(TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone);
+                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
 
                     break;
@@ -1010,7 +1188,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone);
+                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
 
                     break;
@@ -1023,7 +1201,7 @@ namespace TODO_app
             {
                 if (t.DueDate == date)
                 {
-                    CreateTaskElement(t.Text, t.IsDone);
+                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
             }
         }

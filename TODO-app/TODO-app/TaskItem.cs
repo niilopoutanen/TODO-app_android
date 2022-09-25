@@ -6,40 +6,40 @@ namespace TODO_app
 {
     internal class TaskItem
     {
-        private DateTime creationTime;
-        private DateTime dueDate;
-        private string text;
-        private bool isDone = false;
+        private DateTime _creationTime;
+        private DateTime _dueDate;
+        private string _text;
+        private bool _isDone = false;
 
         public DateTime CreationTime
         {
-            get { return creationTime; }
+            get { return _creationTime; }
+            set { _creationTime = value; }
         }
         public DateTime DueDate
         {
-            get { return dueDate; }
-            set { dueDate = value; }
+            get { return _dueDate; }
+            set { _dueDate = value; }
         }
         public string Text
         {
-            get { return text; }
-            set { text = value; }
+            get { return _text; }
+            set { _text = value; }
         }
         public bool IsDone
         {
-            get { return isDone; }
-            set { isDone = value; }
+            get { return _isDone; }
+            set { _isDone = value; }
         }
 
         public TaskItem()
         {
-            creationTime = DateTime.Now;
         }
 
         internal static List<TaskItem> SortListByDueDate(List<TaskItem> taskList)
         {
             var tasks = from t in taskList
-                          orderby t.dueDate
+                          orderby t._dueDate
                           select t;
             return tasks.ToList();
         }
@@ -55,7 +55,7 @@ namespace TODO_app
 
         internal static List<TaskItem> SortListByIsDone(List<TaskItem> taskList)
         {
-            taskList.OrderBy(x => x.isDone).ToList();
+            taskList.OrderBy(x => x._isDone).ToList();
             return taskList;
         }
     }
