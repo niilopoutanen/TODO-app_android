@@ -324,7 +324,7 @@ namespace TODO_app
             DateTime dueDate;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (IsNull(taskname))
+                if (string.IsNullOrWhiteSpace(taskname))
                 {
                     OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
                     return;
@@ -339,7 +339,7 @@ namespace TODO_app
                     }
                 }
 
-                if (!IsNull(dayInput.Text) && !IsNull(monthInput.Text) && !IsNull(yearInput.Text))
+                if (!string.IsNullOrWhiteSpace(dayInput.Text) && !string.IsNullOrWhiteSpace(monthInput.Text) && !string.IsNullOrWhiteSpace(yearInput.Text))
                 {
                     try
                     {
@@ -963,13 +963,12 @@ namespace TODO_app
         }
 
         /// <summary>
-        /// Returns true if given string is null or empty
         /// </summary>
         /// <param name="s"></param>
-        /// <returns></returns>
+        /// <returns>true if given string is null or empty</returns>
         private bool IsNull(string s)
         {
-            if (s == "" || s == null || s == " ")
+            if (string.IsNullOrWhiteSpace(s))
             {
                 return true;
             }
@@ -980,12 +979,11 @@ namespace TODO_app
         }
         /// <summary>
         /// Checks if the given date is in the given month
-        /// Returns true if the day is in the month
         /// </summary>
         /// <param name="day"></param>
         /// <param name="month"></param>
         /// <param name="year"></param>
-        /// <returns></returns>
+        /// <returns>true if the day is in the month</returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
