@@ -961,22 +961,7 @@ namespace TODO_app
             }
             
         }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns>true if given string is null or empty</returns>
-        private bool IsNull(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
         /// <summary>
         /// Checks if the given date is in the given month
         /// </summary>
