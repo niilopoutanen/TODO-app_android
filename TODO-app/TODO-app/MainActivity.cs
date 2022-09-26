@@ -366,6 +366,7 @@ namespace TODO_app
             imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             mainHeader.Visibility = ViewStates.Visible;
             createTaskHeader.Visibility = ViewStates.Gone;
+            scrollBase.Visibility = ViewStates.Visible;
             scrollLayout.Visibility = ViewStates.Visible;
             taskCountLayout.Visibility = ViewStates.Visible;
             taskNameField.Text = "";
@@ -1118,7 +1119,8 @@ namespace TODO_app
 
         private void CreateTaskItem(string name, DateTime dueDate)
         {
-            TaskItem task = new TaskItem(DateTime.Now);
+            TaskItem task = new TaskItem();
+            task.CreationTime = DateTime.Now;
             task.Text = name;
             task.DueDate = dueDate;
             taskList.Add(task);
