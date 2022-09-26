@@ -366,6 +366,7 @@ namespace TODO_app
             imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             mainHeader.Visibility = ViewStates.Visible;
             createTaskHeader.Visibility = ViewStates.Gone;
+            scrollBase.Visibility = ViewStates.Visible;
             scrollLayout.Visibility = ViewStates.Visible;
             taskCountLayout.Visibility = ViewStates.Visible;
             taskNameField.Text = "";
@@ -411,7 +412,7 @@ namespace TODO_app
             DateTime dueDate;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (string.IsNullOrWhiteSpace((taskname)))
+                if (string.IsNullOrWhiteSpace(taskname))
                 {
                     OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
                     return;
@@ -1106,7 +1107,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Convers pixels to dots per inch
+        /// Converts pixels to dots per inch
         /// </summary>
         /// <param name="dpValue"></param>
         /// <returns></returns>
@@ -1119,9 +1120,9 @@ namespace TODO_app
         private void CreateTaskItem(string name, DateTime dueDate)
         {
             TaskItem task = new TaskItem();
+            task.CreationTime = DateTime.Now;
             task.Text = name;
             task.DueDate = dueDate;
-            task.CreationTime = DateTime.Today;
             taskList.Add(task);
             file.WriteFile(taskList);
         }
@@ -1139,16 +1140,16 @@ namespace TODO_app
             }
             
         }
-
-
+        
         /// <summary>
         /// Checks if the given date is in the given month
-        /// Returns true if the day is in the month
         /// </summary>
         /// <param name="day"></param>
         /// <param name="month"></param>
         /// <param name="year"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// True if the day is in the month
+        /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
