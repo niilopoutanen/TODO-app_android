@@ -12,6 +12,7 @@ using Android.Content;
 using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
+using Firebase.Analytics;
 
 namespace TODO_app
 {
@@ -86,6 +87,13 @@ namespace TODO_app
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //GoogleAnalytics.Current.Config.TrackingId = "4095321217";
+            //GoogleAnalytics.Current.Config.AppId = "com.tiimi1.todo_app";
+            //GoogleAnalytics.Current.Config.AppName = "TODO-app";
+            //GoogleAnalytics.Current.Config.AppVersion = "1.3.0.0";
+            //GoogleAnalytics.Current.InitTracker();
+            //GoogleAnalytics.Current.Tracker.SendView("MainPage");
+            FirebaseAnalytics.GetInstance(this);
             LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
