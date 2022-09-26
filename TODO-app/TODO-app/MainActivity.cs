@@ -179,7 +179,7 @@ namespace TODO_app
                     amountOfMissed++;
                 }
             }
-
+            missedTasksCount.Text = amountOfMissed.ToString();
             if (amountOfMissed <= 0)
             {
                 missedTasksBtn.Visibility = ViewStates.Gone;
