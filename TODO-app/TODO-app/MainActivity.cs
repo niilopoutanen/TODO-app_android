@@ -411,7 +411,7 @@ namespace TODO_app
             DateTime dueDate;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (string.IsNullOrWhiteSpace((taskname)))
+                if (string.IsNullOrWhiteSpace(taskname))
                 {
                     OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
                     return;
@@ -1106,7 +1106,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Convers pixels to dots per inch
+        /// Converts pixels to dots per inch
         /// </summary>
         /// <param name="dpValue"></param>
         /// <returns></returns>
@@ -1138,16 +1138,16 @@ namespace TODO_app
             }
             
         }
-
-
+        
         /// <summary>
         /// Checks if the given date is in the given month
-        /// Returns true if the day is in the month
         /// </summary>
         /// <param name="day"></param>
         /// <param name="month"></param>
         /// <param name="year"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// True if the day is in the month
+        /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
