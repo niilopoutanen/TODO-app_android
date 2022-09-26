@@ -1118,8 +1118,7 @@ namespace TODO_app
 
         private void CreateTaskItem(string name, DateTime dueDate)
         {
-            TaskItem task = new TaskItem();
-            task.CreationTime = DateTime.Now;
+            TaskItem task = new TaskItem(DateTime.Now);
             task.Text = name;
             task.DueDate = dueDate;
             taskList.Add(task);
