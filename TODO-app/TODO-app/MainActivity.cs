@@ -1214,7 +1214,7 @@ namespace TODO_app
         {
             foreach (TaskItem t in taskList)
             {
-                if (t.IsDone && t.DueDate < DateTime.Today)
+                if (t.IsDone == true && t.DueDate < DateTime.Today)
                 {
                     DeleteTaskItem(t.Text);
                 }
