@@ -7,6 +7,7 @@ using Android.Widget;
 using System;
 using AndroidX.AppCompat.App;
 using Xamarin.Essentials;
+using Firebase.Analytics;
 
 namespace TODO_app
 {
@@ -38,7 +39,7 @@ namespace TODO_app
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            
+            FirebaseAnalytics.GetInstance(this);
             LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

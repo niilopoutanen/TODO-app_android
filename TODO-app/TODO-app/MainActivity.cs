@@ -1371,6 +1371,7 @@ namespace TODO_app
                 }
                 catch
                 {
+                    
                     return false;
                 }
 
@@ -1381,6 +1382,7 @@ namespace TODO_app
 
                 else if (intMonth > 12)
                 {
+                    ActivityMethods.InvalidInput(monthInput);
                     return false;
                 }
 
