@@ -28,6 +28,7 @@
         android:fontFamily="@font/inter_medium"
         android:layout_marginBottom="5dp"/>
     <EditText
+        android:paddingLeft="5dp"
         android:id="@+id/EditTaskInput"
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -197,7 +198,7 @@
         </RelativeLayout>
     </LinearLayout>
     <Button
-        android:id="@+id/PopupConfirm"
+        android:id="@+id/editPopupConfirm"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_width="90dp"
@@ -209,7 +210,7 @@
         android:fontFamily="@font/inter_bold"/>
 
     <Button
-        android:id="@+id/PopupCancel"
+        android:id="@+id/editPopupCancel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_width="90dp"

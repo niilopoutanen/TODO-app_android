@@ -13,6 +13,7 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
+using System.Security.Cryptography;
 
 namespace TODO_app
 {
@@ -750,6 +751,37 @@ namespace TODO_app
             cancel.Visibility = ViewStates.Gone;
         }
 
+        private void EditTaskPopup()
+        {
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.edit_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(300));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
+            editConfirm.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+
+            Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
+            editCancel.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+
+
+            EditText editTaskName = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
+            EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+        }
+        
         /// <summary>
         /// This happens when task element is pressed & held down.
         /// </summary>
@@ -815,13 +847,13 @@ namespace TODO_app
                 };
             };
 
-            Button cancel1 = view1.FindViewById<Button>(Resource.Id.PopupCancel);
-            cancel1.Text = GetString(Resource.String.edit);
+            Button edit = view1.FindViewById<Button>(Resource.Id.PopupCancel);
+            edit.Text = GetString(Resource.String.edit);
 
-            cancel1.Click += (s, e) =>
+            edit.Click += (s, e) =>
             {
-                button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert1.Dismiss();
+                EditTaskPopup();
             };
 
 
