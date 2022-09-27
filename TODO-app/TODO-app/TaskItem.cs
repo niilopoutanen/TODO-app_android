@@ -32,8 +32,9 @@ namespace TODO_app
             set { _isDone = value; }
         }
 
-        public TaskItem()
+        public TaskItem(DateTime createTime)
         {
+            _creationTime = createTime;
         }
 
         internal static List<TaskItem> SortListByDueDate(List<TaskItem> taskList)
