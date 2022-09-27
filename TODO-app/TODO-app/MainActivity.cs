@@ -556,6 +556,7 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
+                taskList = TaskItem.SortListByIsDone(taskList);
                 foreach (TaskItem t in taskList)
                 {
                     CreateTaskElement(t.Text, t.IsDone, t.DueDate);
