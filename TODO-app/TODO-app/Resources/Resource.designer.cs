@@ -5244,6 +5244,7 @@ namespace TODO_app
 			// aapt resource value: 0x7F0501DC
 			public const int material_dynamic_primary40 = 2131034588;
 			
+
 			// aapt resource value: 0x7F0501DD
 			public const int material_dynamic_primary50 = 2131034589;
 			
@@ -5345,10 +5346,11 @@ namespace TODO_app
 			
 			// aapt resource value: 0x7F0501FE
 			public const int material_grey_100 = 2131034622;
+
 			
 			// aapt resource value: 0x7F0501FF
 			public const int material_grey_300 = 2131034623;
-			
+
 			// aapt resource value: 0x7F050200
 			public const int material_grey_50 = 2131034624;
 			
@@ -5366,6 +5368,7 @@ namespace TODO_app
 			
 			// aapt resource value: 0x7F050205
 			public const int material_harmonized_color_error = 2131034629;
+
 			
 			// aapt resource value: 0x7F050206
 			public const int material_harmonized_color_error_container = 2131034630;
