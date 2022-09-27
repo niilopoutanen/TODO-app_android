@@ -13,8 +13,6 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
-using System.Security.Cryptography;
-using Android.Icu.Text;
 
 namespace TODO_app
 {
