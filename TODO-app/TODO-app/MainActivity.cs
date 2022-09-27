@@ -751,7 +751,7 @@ namespace TODO_app
             cancel.Visibility = ViewStates.Gone;
         }
 
-        private void EditTaskPopup()
+        private void EditTaskPopup(string oldTaskNAme)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
@@ -763,6 +763,11 @@ namespace TODO_app
             alert.Show();
             alert.Window.SetLayout(DpToPx(300), DpToPx(300));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            EditText editTaskName = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
+            EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+            editTaskName.Text = oldTaskNAme;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
             editConfirm.Click += (s, e) =>
             {
@@ -774,12 +779,6 @@ namespace TODO_app
             {
                 alert.Dismiss();
             };
-
-
-            EditText editTaskName = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
-            EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
-            EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
-            EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
         }
         
         /// <summary>
@@ -853,7 +852,7 @@ namespace TODO_app
             edit.Click += (s, e) =>
             {
                 alert1.Dismiss();
-                EditTaskPopup();
+                EditTaskPopup(taskName.Text);
             };
 
 
