@@ -77,4 +77,9 @@
     <string name="CreationDate">Luontipäivä</string>
 
 	<string name="Start">Aloita</string>
+
+    <string name="delete">Poista</string>
+    <string name="edit">Muokkaa</string>
+
+    <string name="editDesc">Valitse toiminto alta</string>
 </resources>

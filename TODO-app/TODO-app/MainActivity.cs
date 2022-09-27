@@ -776,42 +776,80 @@ namespace TODO_app
         private void HoldTaskElement(object sender, EventArgs e)
         {
             RelativeLayout button = (RelativeLayout)sender;
-            button.BackgroundTintList = GetColorStateList(GetStyle());
+            TextView taskName = (TextView)button.GetChildAt(1);
             CheckIfMissedAnymore();
 
-            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-            Android.App.AlertDialog alert = dialog.Create();
+            Android.App.AlertDialog.Builder dialog1 = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert1 = dialog1.Create();
 
-            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
-            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-            alert.SetView(view);
-            alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
-            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
-            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
-            header.Text = GetString(Resource.String.deleteTaskHeader);
-            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
-            desc.Text = GetString(Resource.String.deleteTaskDescription);
-            TextView name = (TextView)button.GetChildAt(1);
+            LayoutInflater inflater1 = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view1 = inflater1.Inflate(Resource.Layout.dialog_popup, null);
+            view1.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert1.SetView(view1);
+            alert1.Show();
+            alert1.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert1.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm1 = view1.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm1.Text = GetString(Resource.String.delete);
+            TextView header1 = view1.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header1.Text = taskName.Text;
+            TextView desc1 = view1.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc1.Text = GetString(Resource.String.editDesc);
 
-            confirm.Click += (s, e) =>
+            confirm1.Click += (s, e) =>
             {
-                DeleteTaskItem(name.Text);
-                button.RemoveAllViews();
-                scrollLayout.RemoveView(button);
-                alert.Dismiss();
-                UpdateTaskCount();
-                CheckIfMissedAnymore();
+                alert1.Dismiss();
+                Android.App.AlertDialog.Builder dialog2 = new Android.App.AlertDialog.Builder(this);
+                Android.App.AlertDialog alert2 = dialog2.Create();
+
+                LayoutInflater inflater2 = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+                View view2 = inflater2.Inflate(Resource.Layout.dialog_popup, null);
+                view2.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+                alert2.SetView(view2);
+                alert2.Show();
+                alert2.Window.SetLayout(DpToPx(300), DpToPx(150));
+                alert2.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+                Button confirm2 = view2.FindViewById<Button>(Resource.Id.PopupConfirm);
+                TextView header2 = view2.FindViewById<TextView>(Resource.Id.PopupHeader);
+                header2.Text = GetString(Resource.String.deleteTaskHeader);
+                TextView desc2 = view2.FindViewById<TextView>(Resource.Id.PopupDescription);
+                desc2.Text = GetString(Resource.String.deleteTaskDescription);
+
+                confirm2.Click += (s, e) =>
+                {
+                    DeleteTaskItem(taskName.Text);
+                    button.RemoveAllViews();
+                    scrollLayout.RemoveView(button);
+                    alert2.Dismiss();
+                    UpdateTaskCount();
+                    CheckIfMissedAnymore();
+                };
+
+                Button cancel2 = view2.FindViewById<Button>(Resource.Id.PopupCancel);
+                cancel2.Click += (s, e) =>
+                {
+                    button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+                    alert2.Dismiss();
+                };
             };
 
-            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
-            cancel.Click += (s, e) =>
+            Button cancel1 = view1.FindViewById<Button>(Resource.Id.PopupCancel);
+            cancel1.Text = GetString(Resource.String.edit);
+
+            cancel1.Click += (s, e) =>
             {
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-                alert.Dismiss();
+                alert1.Dismiss();
             };
+
+
+
+
+
+
+
+            
+
             
         }
         /// <summary>
