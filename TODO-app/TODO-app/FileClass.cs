@@ -51,7 +51,7 @@ namespace TODO_app
 
 
         /// <summary>
-        /// Reads from internal storage. Returns list of Task objects.
+        /// Reads from internal storage.
         /// </summary>
         /// <returns>A list of TaskItems that are in the file</returns>
         internal List<TaskItem> ReadFile()
