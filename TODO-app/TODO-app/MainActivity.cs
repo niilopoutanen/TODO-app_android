@@ -13,8 +13,6 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
-using System.Security.Cryptography;
-using Android.Icu.Text;
 
 namespace TODO_app
 {
@@ -361,6 +359,11 @@ namespace TODO_app
         }
 
 
+        /// <summary>
+        /// Back to main view, used below task creation view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackToMain(object sender, EventArgs e)
         {
             InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
@@ -375,6 +378,10 @@ namespace TODO_app
             monthInput.Text = "";
             yearInput.Text = "";
         }
+
+        /// <summary>
+        /// Updates task count element
+        /// </summary>
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
@@ -387,7 +394,11 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
         }
-
+        /// <summary>
+        /// Triggers every time search field text changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchChanged(object sender, EventArgs e)
         {
             TextView field = (TextView)sender;
@@ -402,8 +413,14 @@ namespace TODO_app
                     CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                 }
             }
-        }
 
+            UpdateTaskCount();
+        }
+        /// <summary>
+        /// Closes task creation menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseCreateView(object sender, EventArgs e)
         {
             string taskname = taskNameField.Text;
@@ -428,7 +445,11 @@ namespace TODO_app
                 }
             }
         }
-
+        /// <summary>
+        /// Opens task creation menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenCreateView(object sender, EventArgs e)
         {
 
@@ -449,6 +470,12 @@ namespace TODO_app
             }
 
         }
+
+        /// <summary>
+        /// Triggers show all menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowAll(object sender, EventArgs e)
         {
             if (calendarView.Visibility == ViewStates.Visible)
@@ -736,7 +763,10 @@ namespace TODO_app
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Visibility = ViewStates.Gone;
         }
-
+        /// <summary>
+        /// Opens task edit popup
+        /// </summary>
+        /// <param name="oldTaskNAme"></param>
         private void EditTaskPopup(string oldTaskNAme)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
@@ -1236,7 +1266,11 @@ namespace TODO_app
                 return true;
             }
         }
-
+        /// <summary>
+        /// Sorts show all view tasks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortBy(object sender, EventArgs e)
         {
             Button clicked = (Button)sender;
