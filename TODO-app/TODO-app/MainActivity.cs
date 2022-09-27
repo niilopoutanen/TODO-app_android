@@ -77,13 +77,12 @@ namespace TODO_app
         Space missedTaskSpace;
 
         RelativeLayout mainInfo;
-        
+
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
-        private int amountOfMissed;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -123,10 +122,7 @@ namespace TODO_app
 
                 Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
                 cancel.Visibility = ViewStates.Gone;
-                
             }
-
-
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -136,25 +132,11 @@ namespace TODO_app
             CalendarDater();
 
             DoneAndGone();
+            CountAndShowMissed();
 
-            amountOfMissed = 0;
-            foreach (TaskItem t in taskList)
-            {
-                if (t.DueDate < DateTime.Today)
-                {
-                    amountOfMissed++;
-                }
-            }
-
-            if (amountOfMissed > 0)
-            {
-                ShowMissedTasksElement(amountOfMissed);
-            }
-            
             ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
-
 
 
             //Start onboarding
@@ -396,9 +378,9 @@ namespace TODO_app
 
             string fieldText = searchField.Text;
             scrollLayout.RemoveAllViews();
-            foreach(TaskItem task in taskList)
+            foreach (TaskItem task in taskList)
             {
-                if(task.Text.Contains(fieldText))
+                if (task.Text.Contains(fieldText))
                 {
                     CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                 }
@@ -680,7 +662,7 @@ namespace TODO_app
             {
                 case Resource.Id.DayArrowUp:
                     daySelected++;
-                    if(daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
+                    if (daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
                     {
                         daySelected--;
                     }
@@ -689,7 +671,7 @@ namespace TODO_app
 
                 case Resource.Id.DayArrowDown:
                     daySelected--;
-                    if (daySelected < 1) 
+                    if (daySelected < 1)
                     {
                         daySelected++;
                     }
@@ -812,7 +794,7 @@ namespace TODO_app
                 button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
                 alert.Dismiss();
             };
-            
+
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -953,7 +935,7 @@ namespace TODO_app
                     date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
-                    
+
             }
             UpdateTaskCount();
         }
@@ -972,7 +954,7 @@ namespace TODO_app
             cardBG.Id = View.GenerateViewId();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-            
+
             cardBG.LayoutParameters = cardparams;
             cardBG.LongClick += HoldTaskElement;
             cardBG.Click += ExpandCard;
@@ -1034,7 +1016,7 @@ namespace TODO_app
 
         private void ExpandCard(object sender, EventArgs e)
         {
-            
+
             RelativeLayout card = (RelativeLayout)sender;
             if (card.Height == DpToPx(100))
             {
@@ -1090,7 +1072,7 @@ namespace TODO_app
                 if (t.Text == header.Text)
                 {
                     t.IsDone = !t.IsDone;
-                    if(t.IsDone == true)
+                    if (t.IsDone == true)
                     {
                         button.Background = active;
                     }
@@ -1140,9 +1122,9 @@ namespace TODO_app
                     break;
                 }
             }
-            
+
         }
-        
+
         /// <summary>
         /// Checks if the given date is in the given month
         /// </summary>
@@ -1180,7 +1162,7 @@ namespace TODO_app
                 case Resource.Id.SortByDueDate:
                     sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
                     scrollLayout.RemoveAllViews();
-                    foreach(TaskItem task in TaskItem.SortListByDueDate(taskList))
+                    foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
                         CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
@@ -1208,6 +1190,23 @@ namespace TODO_app
                 {
                     CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
+            }
+        }
+
+        private void CountAndShowMissed()
+        {
+            int amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
             }
         }
 
