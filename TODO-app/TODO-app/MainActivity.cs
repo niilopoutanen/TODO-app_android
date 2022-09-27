@@ -14,6 +14,7 @@ using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
 using System.Security.Cryptography;
+using Android.Icu.Text;
 
 namespace TODO_app
 {
@@ -49,6 +50,17 @@ namespace TODO_app
         EditText dayInput;
         EditText monthInput;
         EditText yearInput;
+
+        RelativeLayout dayUpEdit;
+        RelativeLayout monthUpEdit;
+        RelativeLayout yearUpEdit;
+        RelativeLayout dayDownEdit;
+        RelativeLayout monthDownEdit;
+        RelativeLayout yearDownEdit;
+
+        EditText dayInputEdit;
+        EditText monthInputEdit;
+        EditText yearInputEdit;
 
         int thisDay = DateTime.Today.Day;
         int thisMonth = DateTime.Today.Month;
@@ -318,6 +330,10 @@ namespace TODO_app
             dayDown.Click += ArrowModify;
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
+
+
+
+
 
             date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
             date2Btn = FindViewById<RelativeLayout>(Resource.Id.date2btn);
@@ -653,66 +669,133 @@ namespace TODO_app
         private void ArrowModify(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
-            string DayInputText = dayInput.Text;
-            int daySelected = int.Parse(DayInputText);
-            string MonthInputText = monthInput.Text;
-            int MonthSelected = int.Parse(MonthInputText);
-            string YearInputText = yearInput.Text;
-            int YearSelected = int.Parse(YearInputText);
-            switch (button.Id)
+            try
             {
-                case Resource.Id.DayArrowUp:
-                    daySelected++;
-                    if (daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
-                    {
-                        daySelected--;
-                    }
-                    dayInput.Text = daySelected.ToString();
-                    break;
-
-                case Resource.Id.DayArrowDown:
-                    daySelected--;
-                    if (daySelected < 1)
-                    {
+                string DayInputText = dayInput.Text;
+                int daySelected = int.Parse(DayInputText);
+                string MonthInputText = monthInput.Text;
+                int MonthSelected = int.Parse(MonthInputText);
+                string YearInputText = yearInput.Text;
+                int YearSelected = int.Parse(YearInputText);
+                switch (button.Id)
+                {
+                    case Resource.Id.DayArrowUp:
                         daySelected++;
-                    }
-                    dayInput.Text = daySelected.ToString();
-                    break;
+                        if (daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
+                        {
+                            daySelected--;
+                        }
+                        dayInput.Text = daySelected.ToString();
+                        break;
 
-                case Resource.Id.MonthArrowUp:
-                    MonthSelected++;
-                    if (MonthSelected > 12)
-                    {
-                        MonthSelected = 12;
-                    }
-                    monthInput.Text = MonthSelected.ToString();
-                    break;
+                    case Resource.Id.DayArrowDown:
+                        daySelected--;
+                        if (daySelected < 1)
+                        {
+                            daySelected++;
+                        }
+                        dayInput.Text = daySelected.ToString();
+                        break;
 
-                case Resource.Id.YearArrowUp:
-                    YearSelected++;
-                    yearInput.Text = YearSelected.ToString();
-                    break;
+                    case Resource.Id.MonthArrowUp:
+                        MonthSelected++;
+                        if (MonthSelected > 12)
+                        {
+                            MonthSelected = 12;
+                        }
+                        monthInput.Text = MonthSelected.ToString();
+                        break;
 
-                case Resource.Id.YearArrowDown:
-                    YearSelected--;
-                    if (YearSelected < DateTime.Today.Year)
-                    {
-                        YearSelected = DateTime.Today.Year;
-                    }
-                    yearInput.Text = YearSelected.ToString();
-                    break;
+                    case Resource.Id.YearArrowUp:
+                        YearSelected++;
+                        yearInput.Text = YearSelected.ToString();
+                        break;
 
-                case Resource.Id.MonthArrowDown:
-                    MonthSelected--;
-                    if (MonthSelected < 1)
-                    {
-                        MonthSelected = 1;
-                    }
-                    monthInput.Text = MonthSelected.ToString();
-                    break;
+                    case Resource.Id.YearArrowDown:
+                        YearSelected--;
+                        if (YearSelected < DateTime.Today.Year)
+                        {
+                            YearSelected = DateTime.Today.Year;
+                        }
+                        yearInput.Text = YearSelected.ToString();
+                        break;
+
+                    case Resource.Id.MonthArrowDown:
+                        MonthSelected--;
+                        if (MonthSelected < 1)
+                        {
+                            MonthSelected = 1;
+                        }
+                        monthInput.Text = MonthSelected.ToString();
+                        break;
 
 
+
+                }
             }
+            catch
+            {
+                string DayInputTextEdit = dayInputEdit.Text;
+                int daySelectedEdit = int.Parse(DayInputTextEdit);
+                string MonthInputTextEdit = monthInputEdit.Text;
+                int MonthSelectedEdit = int.Parse(MonthInputTextEdit);
+                string YearInputTextEdit = yearInputEdit.Text;
+                int YearSelectedEdit = int.Parse(YearInputTextEdit);
+                switch (button.Id)
+                {
+                    case Resource.Id.EditDayArrowUp:
+                        daySelectedEdit++;
+                        if (daySelectedEdit > DateTime.DaysInMonth(YearSelectedEdit, MonthSelectedEdit))
+                        {
+                            daySelectedEdit--;
+                        }
+                        dayInputEdit.Text = daySelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditDayArrowDown:
+                        daySelectedEdit--;
+                        if (daySelectedEdit < 1)
+                        {
+                            daySelectedEdit++;
+                        }
+                        dayInputEdit.Text = daySelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditMonthArrowUp:
+                        MonthSelectedEdit++;
+                        if (MonthSelectedEdit > 12)
+                        {
+                            MonthSelectedEdit = 12;
+                        }
+                        monthInputEdit.Text = MonthSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditYearArrowUp:
+                        YearSelectedEdit++;
+                        yearInputEdit.Text = YearSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditYearArrowDown:
+                        YearSelectedEdit--;
+                        if (YearSelectedEdit < DateTime.Today.Year)
+                        {
+                            YearSelectedEdit = DateTime.Today.Year;
+                        }
+                        yearInputEdit.Text = YearSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditMonthArrowDown:
+                        MonthSelectedEdit--;
+                        if (MonthSelectedEdit < 1)
+                        {
+                            MonthSelectedEdit = 1;
+                        }
+                        monthInputEdit.Text = MonthSelectedEdit.ToString();
+                        break;
+                }
+            }
+
+
 
 
         }
@@ -758,6 +841,27 @@ namespace TODO_app
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
             View view = inflater.Inflate(Resource.Layout.edit_popup, null);
+            dayInputEdit = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            monthInputEdit = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            yearInputEdit = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+            dayInputEdit.Text = DateTime.Today.Day.ToString();
+            monthInputEdit.Text = DateTime.Today.Month.ToString();
+            yearInputEdit.Text = DateTime.Today.Year.ToString();
+            dayUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowUp);
+            monthUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowUp);
+            yearUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowUp);
+
+            dayDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowDown);
+            monthDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowDown);
+            yearDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowDown);
+
+            dayUpEdit.Click += ArrowModify;
+            monthUpEdit.Click += ArrowModify;
+            yearUpEdit.Click += ArrowModify;
+
+            dayDownEdit.Click += ArrowModify;
+            monthDownEdit.Click += ArrowModify;
+            yearDownEdit.Click += ArrowModify;
             view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
