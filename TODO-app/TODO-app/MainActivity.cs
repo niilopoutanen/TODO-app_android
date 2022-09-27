@@ -135,8 +135,7 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
-
-            
+            DoneAndGone();
 
             amountOfMissed = 0;
             foreach (TaskItem t in taskList)
@@ -151,6 +150,7 @@ namespace TODO_app
             {
                 ShowMissedTasksElement(amountOfMissed);
             }
+            
             ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
@@ -1209,6 +1209,18 @@ namespace TODO_app
                     CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
             }
+        }
+
+        private void DoneAndGone()
+        {
+            foreach (TaskItem t in taskList)
+            {
+                if (t.IsDone && t.DueDate < DateTime.Today)
+                {
+                    DeleteTaskItem(t.Text);
+                }
+            }
+            file.WriteFile(taskList);
         }
     }
 }
