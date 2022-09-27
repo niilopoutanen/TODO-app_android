@@ -407,124 +407,26 @@ namespace TODO_app
         private void CloseCreateView(object sender, EventArgs e)
         {
             string taskname = taskNameField.Text;
-            int day;
-            int month;
-            int year;
-            DateTime dueDate;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (string.IsNullOrWhiteSpace(taskname))
+                if (CreateNewTask(taskname, dayInput.Text, monthInput.Text, yearInput.Text))
                 {
-                    OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
-                    return;
+                    scrollBase.Visibility = ViewStates.Visible;
+                    scrollLayout.Visibility = ViewStates.Visible;
+                    mainHeader.Visibility = ViewStates.Visible;
+                    createTaskHeader.Visibility = ViewStates.Gone;
+                    taskCountLayout.Visibility = ViewStates.Visible;
+
+
+                    taskNameField.Text = "";
+                    dayInput.Text = "";
+                    monthInput.Text = "";
+                    yearInput.Text = "";
+
+                    InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                    imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
                 }
-
-                foreach (TaskItem t in taskList)
-                {
-                    if (t.Text.ToLower() == taskname.ToLower())
-                    {
-                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.nameExists), "OK");
-                        return;
-                    }
-                }
-
-                if (!string.IsNullOrWhiteSpace(dayInput.Text) && !string.IsNullOrWhiteSpace(monthInput.Text) && !string.IsNullOrWhiteSpace(yearInput.Text))
-                {
-                    try
-                    {
-                        day = int.Parse(dayInput.Text);
-                        month = int.Parse(monthInput.Text);
-                        year = int.Parse(yearInput.Text);
-                    }
-                    catch
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
-                        return;
-                    }
-
-                    if (day < 1 || month < 1 || year < 1)
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-
-                    else if (month > 12)
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-
-                    else if (!IsDayInMonth(day, month, year))
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-                    else
-                    {
-                        dueDate = new DateTime(year, month, day);
-
-                        if (dueDate < DateTime.Today)
-                        {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
-                            return;
-                        }
-
-                        else if (dueDate > DateTime.MaxValue)
-                        {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateTooBig), "OK");
-                            return;
-                        }
-
-                        else
-                        {
-                            CreateTaskItem(taskNameField.Text, dueDate);
-                            file.WriteFile(taskList);
-
-                            for (int i = 1; i < 8; i++)
-                            {
-                                if (activeDate == 1 || activeDate == 0)
-                                {
-                                    scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today);
-                                    UpdateTaskCount();
-                                    break;
-                                }
-
-                                else if (activeDate == i)
-                                {
-                                    scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today.AddDays(i - 1));
-                                    UpdateTaskCount();
-                                    break;
-                                }
-                            }
-
-                            scrollBase.Visibility = ViewStates.Visible;
-                            scrollLayout.Visibility = ViewStates.Visible;
-                            mainHeader.Visibility = ViewStates.Visible;
-                            createTaskHeader.Visibility = ViewStates.Gone;
-                            taskCountLayout.Visibility = ViewStates.Visible;
-
-
-                            taskNameField.Text = "";
-                            dayInput.Text = "";
-                            monthInput.Text = "";
-                            yearInput.Text = "";
-                        }
-                    }
-                }
-                else
-                {
-                    OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
-                    return;
-                }
-
-                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
-                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             }
-
-
-
         }
 
         private void OpenCreateView(object sender, EventArgs e)
@@ -874,8 +776,18 @@ namespace TODO_app
             EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
             editTaskName.Text = oldTaskNAme;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
+            
             editConfirm.Click += (s, e) =>
             {
+                foreach (TaskItem t in taskList)
+                {
+                    if (t.Text.ToLower() == editTaskName.Text.ToLower())
+                    {
+                        DeleteTaskItem(t.Text);
+                    }
+                }
+
+                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
                 alert.Dismiss();
             };
 
@@ -1394,6 +1306,99 @@ namespace TODO_app
                 }
             }
             file.WriteFile(taskList);
+        }
+
+        private bool CreateNewTask(string taskname, string day, string month, string year)
+        {
+            int intDay;
+            int intMonth;
+            int intYear;
+            
+            if (string.IsNullOrWhiteSpace(taskname))
+            {
+                return false;
+            }
+
+            foreach (TaskItem t in taskList)
+            {
+                if (t.Text.ToLower() == taskname.ToLower())
+                {
+                    return false;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(dayInput.Text) && !string.IsNullOrWhiteSpace(monthInput.Text) && !string.IsNullOrWhiteSpace(yearInput.Text))
+            {
+                try
+                {
+                    intDay = int.Parse(day);
+                    intMonth = int.Parse(month);
+                    intYear = int.Parse(year);
+                }
+                catch
+                {
+                    return false;
+                }
+
+                if (intDay < 1 || intMonth < 1 || intYear < 1)
+                {
+                    return false;
+                }
+
+                else if (intMonth > 12)
+                {
+                    return false;
+                }
+
+                else if (!IsDayInMonth(intDay, intMonth, intYear))
+                {
+                    return false;
+                }
+                else
+                {
+                    DateTime dueDate = new DateTime(intYear, intMonth, intDay);
+
+                    if (dueDate < DateTime.Today)
+                    {
+                        return false;
+                    }
+
+                    else if (dueDate > DateTime.MaxValue)
+                    {
+                        return false;
+                    }
+
+                    else
+                    {
+                        CreateTaskItem(taskNameField.Text, dueDate);
+                        file.WriteFile(taskList);
+
+                        for (int i = 1; i < 8; i++)
+                        {
+                            if (activeDate == 1 || activeDate == 0)
+                            {
+                                scrollLayout.RemoveAllViews();
+                                ShowDatestasks(DateTime.Today);
+                                UpdateTaskCount();
+                                break;
+                            }
+
+                            else if (activeDate == i)
+                            {
+                                scrollLayout.RemoveAllViews();
+                                ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                                UpdateTaskCount();
+                                break;
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
