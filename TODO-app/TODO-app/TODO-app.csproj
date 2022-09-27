@@ -85,6 +85,7 @@
     <AndroidResource Include="Resources\font\inter_semibold.ttf" />
     <AndroidResource Include="Resources\font\inter_medium.ttf" />
     <AndroidResource Include="Resources\font\inter_bold.ttf" />
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -118,12 +119,12 @@
     <PackageReference Include="System.Text.Json">
       <Version>6.0.6</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Firebase.Messaging">
-      <Version>123.0.8</Version>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.1" />
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>121.1.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
       <Version>118.1.0</Version>
     </PackageReference>
