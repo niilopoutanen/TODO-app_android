@@ -777,6 +777,7 @@ namespace TODO_app
         {
             RelativeLayout button = (RelativeLayout)sender;
             button.BackgroundTintList = GetColorStateList(GetStyle());
+            CheckIfMissedAnymore();
 
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
