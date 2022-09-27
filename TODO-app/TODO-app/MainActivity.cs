@@ -187,7 +187,7 @@ namespace TODO_app
                     amountOfMissed++;
                 }
             }
-
+            missedTasksCount.Text = amountOfMissed.ToString();
             if (amountOfMissed <= 0)
             {
                 missedTasksBtn.Visibility = ViewStates.Gone;
@@ -695,7 +695,7 @@ namespace TODO_app
 
                 case Resource.Id.DayArrowDown:
                     daySelected--;
-                    if (daySelected < DateTime.DaysInMonth(YearSelected, MonthSelected))
+                    if (daySelected < 1) 
                     {
                         daySelected++;
                     }
