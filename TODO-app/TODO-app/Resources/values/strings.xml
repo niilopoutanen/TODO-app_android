@@ -7,7 +7,9 @@
 	<string name="default_description">description</string>
 	<string name="show_all">Näytä kaikki</string>
 	<string name="add_task_header">Lisää uusi tehtävä</string>
-	<string name="add">Lisää</string>
+    <string name="edit_task_header">Muokkaa tehtävää</string>
+
+    <string name="add">Lisää</string>
 	<string name="search">Hae</string>
 	<string name="plus">+</string>
 	<string name="yes">Kyllä</string>
@@ -80,6 +82,7 @@
 
     <string name="delete">Poista</string>
     <string name="edit">Muokkaa</string>
+    <string name="cancel">Peruuta</string>
 
     <string name="editDesc">Valitse toiminto alta</string>
 </resources>
