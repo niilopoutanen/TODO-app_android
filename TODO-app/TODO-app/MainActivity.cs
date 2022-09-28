@@ -430,6 +430,10 @@ namespace TODO_app
             string taskname = taskNameField.Text;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
+                taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 CreateNewTask(taskname, dayInput.Text, monthInput.Text, yearInput.Text);
                 if (ready == true)
                 {
@@ -1500,9 +1504,8 @@ namespace TODO_app
                 {
                     errorDesc.Text = errorName;
                 }
-                Drawable active = GetDrawable(Resource.Drawable.rounded50px);
-                Drawable invalid = GetDrawable(Resource.Drawable.rounded10px);
-                visual.Background = null;
+                visual.BackgroundTintList = GetColorStateList(Resource.Color.mainRed);
+
                 //await System.Threading.Tasks.Task.Delay(1000);
                 //visual.Background = active;
                 //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
