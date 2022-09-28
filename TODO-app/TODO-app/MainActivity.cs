@@ -820,11 +820,14 @@ namespace TODO_app
                     alert.Dismiss();
                 }
 
-                Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
-                editCancel.Click += (s, e) =>
-                {
-                    alert.Dismiss();
-                };
+                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
+                alert.Dismiss();
+            };
+
+            Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
+            editCancel.Click += (s, e) =>
+            {
+                alert.Dismiss();
             };
         }
         
@@ -835,6 +838,11 @@ namespace TODO_app
         /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
+            VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+            Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+            hapticSystem.Cancel();
+            hapticSystem.Vibrate(invalidHaptic);
+            
             RelativeLayout button = (RelativeLayout)sender;
             TextView taskName = (TextView)button.GetChildAt(1);
             CheckIfMissedAnymore();
@@ -1391,7 +1399,7 @@ namespace TODO_app
                 {
 
                     DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-                    
+
                     if (intDay < DateTime.Today.Day)
                     {
                     }
@@ -1451,18 +1459,26 @@ namespace TODO_app
             }
         }
         
-        public async System.Threading.Tasks.Task InvalidInput(EditText visual, TextView errorDesc, string errorName)
+        public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
         {
-            if (errorDesc != null)
+            if(visual != null)
             {
-                errorDesc.Text = errorName;
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+                if (errorDesc != null)
+                {
+                    errorDesc.Text = errorName;
+                }
+                Drawable active = GetDrawable(Resource.Drawable.rounded50px);
+                Drawable invalid = GetDrawable(Resource.Drawable.rounded10px);
+                visual.Background = null;
+                //await System.Threading.Tasks.Task.Delay(1000);
+                //visual.Background = active;
+                //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
             }
-            Drawable active = GetDrawable(Resource.Drawable.rounded50px);
-            Drawable invalid = GetDrawable(Resource.Drawable.rounded50pxInvalid);
-            visual.Background = invalid;
-            await System.Threading.Tasks.Task.Delay(1000);
-            visual.Background = active;
-            visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
         }
     }
 }
