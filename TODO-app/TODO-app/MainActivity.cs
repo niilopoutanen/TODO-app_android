@@ -15,6 +15,7 @@ using Java.Lang;
 using Firebase.Analytics;
 using Android.Gms.Tasks;
 using System.Threading.Tasks;
+using AndroidX.RecyclerView.Widget;
 
 namespace TODO_app
 {
@@ -1359,11 +1360,12 @@ namespace TODO_app
             int intMonth;
             int intYear;
             ready = false;
+            bool didFail = false;
             
             if (string.IsNullOrWhiteSpace(taskname))
             {
                 InvalidInput(taskNameField, null, "");
-
+                didFail = true;
             }
 
             foreach (TaskItem t in taskList)
@@ -1393,13 +1395,14 @@ namespace TODO_app
                 if (intMonth > 12)
                 {
                     InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
+                    didFail = true;
 
                 }
 
                 if (!IsDayInMonth(intDay, intMonth, intYear))
                 {
                 }
-                else
+                if ( true)
                 {
 
                     DateTime dueDate = new DateTime(intYear, intMonth, intDay);
@@ -1407,36 +1410,47 @@ namespace TODO_app
                     if (intDay < DateTime.Today.Day)
                     {
                         InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
+                        didFail = true;
+
                     }
 
                     if (intMonth < DateTime.Today.Month)
                     {
                         InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
+                        didFail = true;
+
                     }
 
                     if (intYear < DateTime.Today.Year)
                     {
                         InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+                        didFail = true;
 
                     }
 
                     if (intDay > DateTime.MaxValue.Day)
                     {
                         InvalidInput(dayInput, null, "Liian iso päivä");
+                        didFail = true;
+
                     }
 
                     if (intMonth > DateTime.MaxValue.Month)
                     {
                         InvalidInput(monthInput, null, "");
+                        didFail = true;
+
                     }
 
                     if (intYear > DateTime.MaxValue.Year)
                     {
                         InvalidInput(yearInput, null, "");
+                        didFail = true;
+
 
                     }
 
-                    else
+                    if (didFail == false)
                     {
                         DeleteTaskItem(taskname);
                         CreateTaskItem(taskNameField.Text, dueDate);
