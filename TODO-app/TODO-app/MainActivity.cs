@@ -1362,6 +1362,8 @@ namespace TODO_app
             
             if (string.IsNullOrWhiteSpace(taskname))
             {
+                InvalidInput(taskNameField, null, "");
+
             }
 
             foreach (TaskItem t in taskList)
@@ -1390,6 +1392,8 @@ namespace TODO_app
 
                 if (intMonth > 12)
                 {
+                    InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
+
                 }
 
                 if (!IsDayInMonth(intDay, intMonth, intYear))
@@ -1402,26 +1406,34 @@ namespace TODO_app
 
                     if (intDay < DateTime.Today.Day)
                     {
+                        InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
                     }
 
                     if (intMonth < DateTime.Today.Month)
                     {
+                        InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
                     }
 
                     if (intYear < DateTime.Today.Year)
                     {
+                        InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+
                     }
 
                     if (intDay > DateTime.MaxValue.Day)
                     {
+                        InvalidInput(dayInput, null, "Liian iso päivä");
                     }
 
                     if (intMonth > DateTime.MaxValue.Month)
                     {
+                        InvalidInput(monthInput, null, "");
                     }
 
                     if (intYear > DateTime.MaxValue.Year)
                     {
+                        InvalidInput(yearInput, null, "");
+
                     }
 
                     else
