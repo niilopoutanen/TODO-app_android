@@ -1257,14 +1257,12 @@ namespace TODO_app
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
             if (day > amountOfDaysInMonth)
             {
-                InvalidInput(dayInput);
-                InvalidInput(dayInputEdit);
+
                 return false;
             }
             else if (day < 1)
             {
-                InvalidInput(dayInput);
-                InvalidInput(dayInputEdit);
+
 
                 return false;
             }
