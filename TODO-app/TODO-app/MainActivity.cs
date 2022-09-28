@@ -816,6 +816,7 @@ namespace TODO_app
                     if (t.Text.ToLower() == editTaskName.Text.ToLower())
                     {
                         DeleteTaskItem(t.Text);
+                        break;
                     }
                 }
 
@@ -1396,17 +1397,39 @@ namespace TODO_app
                 }
                 else
                 {
+
                     DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-
-                    if (dueDate < DateTime.Today)
+                    
+                    if (intDay < DateTime.Today.Day)
                     {
                         return false;
                     }
 
-                    else if (dueDate > DateTime.MaxValue)
+                    if (intMonth < DateTime.Today.Month)
                     {
                         return false;
                     }
+
+                    if (intYear < DateTime.Today.Year)
+                    {
+                        return false;
+                    }
+
+                    if (intDay > DateTime.MaxValue.Day)
+                    {
+                        return false;
+                    }
+
+                    if (intMonth > DateTime.MaxValue.Month)
+                    {
+                        return false;
+                    }
+
+                    if (intYear > DateTime.MaxValue.Year)
+                    {
+                        return false;
+                    }
+
 
                     else
                     {
