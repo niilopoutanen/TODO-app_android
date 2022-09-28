@@ -1261,18 +1261,27 @@ namespace TODO_app
         /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
+            if (month > 12 || month < 1)
+            {
+                return false;
+            }
+            
+            else if (year > DateTime.MaxValue.Year)
+            {
+                return false;
+            }
+
+            else if (day < 1)
+            {
+                return false;
+            }
+
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
             if (day > amountOfDaysInMonth)
             {
-
                 return false;
             }
-            else if (day < 1)
-            {
-
-
-                return false;
-            }
+            
             else
             {
                 return true;
