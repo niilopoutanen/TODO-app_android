@@ -840,6 +840,11 @@ namespace TODO_app
         /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
+            VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+            Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+            hapticSystem.Cancel();
+            hapticSystem.Vibrate(invalidHaptic);
+            
             RelativeLayout button = (RelativeLayout)sender;
             TextView taskName = (TextView)button.GetChildAt(1);
             CheckIfMissedAnymore();
@@ -1355,7 +1360,7 @@ namespace TODO_app
             int intDay;
             int intMonth;
             int intYear;
-            
+
             if (string.IsNullOrWhiteSpace(taskname))
             {
                 InvalidInput(taskNameField, null, "Tehtävän nimi ei voi olla tyhjä");
@@ -1381,13 +1386,12 @@ namespace TODO_app
                 }
                 catch
                 {
-                    
+
                     return false;
                 }
 
                 if (intDay < 1 || intMonth < 1 || intYear < 1)
                 {
-                    return false;
                 }
 
                 else if (intMonth > 12)
@@ -1395,24 +1399,21 @@ namespace TODO_app
                     InvalidInput(monthInput, null, "Kuukausi ei voi olla isompi kuin 12");
                     InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla isompi kuin 12");
 
-                    return false;
                 }
 
                 else if (!IsDayInMonth(intDay, intMonth, intYear))
                 {
-                    return false;
                 }
                 else
                 {
 
                     DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-                    
+
                     if (intDay < DateTime.Today.Day)
                     {
                         InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
                         InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
 
-                        return false;
                     }
 
                     if (intMonth < DateTime.Today.Month)
@@ -1420,7 +1421,6 @@ namespace TODO_app
                         InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
                         InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
 
-                        return false;
                     }
 
                     if (intYear < DateTime.Today.Year)
@@ -1428,7 +1428,6 @@ namespace TODO_app
                         InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
                         InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
 
-                        return false;
                     }
 
                     if (intDay > DateTime.MaxValue.Day)
@@ -1436,7 +1435,6 @@ namespace TODO_app
                         InvalidInput(dayInput, null, "Päivä ei voi olla isompi kuin " + DateTime.MaxValue.Day);
                         InvalidInput(dayInputEdit, null, "Päivä ei voi olla isompi kuin " + DateTime.MaxValue.Day);
 
-                        return false;
                     }
 
                     if (intMonth > DateTime.MaxValue.Month)
@@ -1444,7 +1442,6 @@ namespace TODO_app
                         InvalidInput(monthInput, null, "Kuukausi ei voi olla isompi kuin " + DateTime.MaxValue.Month);
                         InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla isompi kuin " + DateTime.MaxValue.Month);
 
-                        return false;
                     }
 
                     if (intYear > DateTime.MaxValue.Year)
@@ -1452,7 +1449,6 @@ namespace TODO_app
                         InvalidInput(yearInput, null, "Vuosi ei voi olla isompi kuin " + DateTime.MaxValue.Year);
                         InvalidInput(yearInputEdit, null, "Vuosi ei voi olla isompi kuin " + DateTime.MaxValue.Year);
 
-                        return false;
                     }
 
 
@@ -1486,25 +1482,30 @@ namespace TODO_app
             else
             {
                 return false;
+
             }
         }
         
         public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
         {
-            VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
-            Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-            hapticSystem.Cancel();
-            hapticSystem.Vibrate(invalidHaptic);
-            if (errorDesc != null)
+            if(visual != null)
             {
-                errorDesc.Text = errorName;
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+                if (errorDesc != null)
+                {
+                    errorDesc.Text = errorName;
+                }
+                Drawable active = GetDrawable(Resource.Drawable.rounded50px);
+                Drawable invalid = GetDrawable(Resource.Drawable.rounded10px);
+                visual.Background = null;
+                //await System.Threading.Tasks.Task.Delay(1000);
+                //visual.Background = active;
+                //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
             }
-            Drawable active = GetDrawable(Resource.Drawable.rounded50px);
-            Drawable invalid = GetDrawable(Resource.Drawable.rounded10px);
-            visual.Background = invalid;
-            //await System.Threading.Tasks.Task.Delay(1000);
-            //visual.Background = active;
-            //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
         }
     }
 }
