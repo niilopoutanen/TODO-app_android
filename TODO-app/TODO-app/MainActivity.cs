@@ -96,6 +96,7 @@ namespace TODO_app
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
+        private bool ready = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -428,7 +429,8 @@ namespace TODO_app
             string taskname = taskNameField.Text;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (CreateNewTask(taskname, dayInput.Text, monthInput.Text, yearInput.Text))
+                CreateNewTask(taskname, dayInput.Text, monthInput.Text, yearInput.Text);
+                if (ready == true)
                 {
                     scrollBase.Visibility = ViewStates.Visible;
                     scrollLayout.Visibility = ViewStates.Visible;
@@ -808,26 +810,21 @@ namespace TODO_app
             EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
             editTaskName.Text = oldTaskNAme;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
-            
+
             editConfirm.Click += (s, e) =>
             {
-                foreach (TaskItem t in taskList)
+                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
+
+                if (ready == true)
                 {
-                    if (t.Text.ToLower() == editTaskName.Text.ToLower())
-                    {
-                        DeleteTaskItem(t.Text);
-                        break;
-                    }
+                    alert.Dismiss();
                 }
 
-                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
-                alert.Dismiss();
-            };
-
-            Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
-            editCancel.Click += (s, e) =>
-            {
-                alert.Dismiss();
+                Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
+                editCancel.Click += (s, e) =>
+                {
+                    alert.Dismiss();
+                };
             };
         }
         
@@ -1348,22 +1345,21 @@ namespace TODO_app
             file.WriteFile(taskList);
         }
 
-        private bool CreateNewTask(string taskname, string day, string month, string year)
+        private void CreateNewTask(string taskname, string day, string month, string year)
         {
             int intDay;
             int intMonth;
             int intYear;
+            ready = false;
             
             if (string.IsNullOrWhiteSpace(taskname))
             {
-                return false;
             }
 
             foreach (TaskItem t in taskList)
             {
                 if (t.Text.ToLower() == taskname.ToLower())
                 {
-                    return false;
                 }
             }
 
@@ -1377,23 +1373,19 @@ namespace TODO_app
                 }
                 catch
                 {
-                    
-                    return false;
+                    return;
                 }
 
                 if (intDay < 1 || intMonth < 1 || intYear < 1)
                 {
-                    return false;
                 }
 
-                else if (intMonth > 12)
+                if (intMonth > 12)
                 {
-                    return false;
                 }
 
-                else if (!IsDayInMonth(intDay, intMonth, intYear))
+                if (!IsDayInMonth(intDay, intMonth, intYear))
                 {
-                    return false;
                 }
                 else
                 {
@@ -1402,37 +1394,31 @@ namespace TODO_app
                     
                     if (intDay < DateTime.Today.Day)
                     {
-                        return false;
                     }
 
                     if (intMonth < DateTime.Today.Month)
                     {
-                        return false;
                     }
 
                     if (intYear < DateTime.Today.Year)
                     {
-                        return false;
                     }
 
                     if (intDay > DateTime.MaxValue.Day)
                     {
-                        return false;
                     }
 
                     if (intMonth > DateTime.MaxValue.Month)
                     {
-                        return false;
                     }
 
                     if (intYear > DateTime.MaxValue.Year)
                     {
-                        return false;
                     }
-
 
                     else
                     {
+                        DeleteTaskItem(taskname);
                         CreateTaskItem(taskNameField.Text, dueDate);
                         file.WriteFile(taskList);
 
@@ -1443,6 +1429,7 @@ namespace TODO_app
                                 scrollLayout.RemoveAllViews();
                                 ShowDatestasks(DateTime.Today);
                                 UpdateTaskCount();
+                                ready = true;
                                 break;
                             }
 
@@ -1451,16 +1438,16 @@ namespace TODO_app
                                 scrollLayout.RemoveAllViews();
                                 ShowDatestasks(DateTime.Today.AddDays(i - 1));
                                 UpdateTaskCount();
+                                ready = true;
                                 break;
                             }
                         }
-                        return true;
                     }
                 }
             }
             else
             {
-                return false;
+                
             }
         }
         
