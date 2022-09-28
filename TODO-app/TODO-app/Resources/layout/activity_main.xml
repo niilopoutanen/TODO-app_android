@@ -416,7 +416,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:inputType="text"
-                android:background="@drawable/rounded10px"
+                android:background="@drawable/rounded50px"
                 android:backgroundTint="@color/colorButton"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/white"/>
@@ -458,7 +458,8 @@
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:background="@drawable/rounded10px"
+                        android:background="@drawable/rounded50px"
+                        android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
                         android:textColor="@color/white"/>
@@ -505,7 +506,8 @@
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:background="@drawable/rounded10px"
+                        android:background="@drawable/rounded50px"
+                        android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
                         android:textColor="@color/white"/>
@@ -551,7 +553,8 @@
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:background="@drawable/rounded10px"
+                        android:background="@drawable/rounded50px"
+                        android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
                         android:textColor="@color/white"/>
@@ -643,6 +646,6 @@
         </LinearLayout>
     </ScrollView>
 
-   
+
 </LinearLayout>
    

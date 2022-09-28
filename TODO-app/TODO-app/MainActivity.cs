@@ -13,6 +13,8 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
+using Android.Gms.Tasks;
+using System.Threading.Tasks;
 
 namespace TODO_app
 {
@@ -1255,10 +1257,15 @@ namespace TODO_app
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
             if (day > amountOfDaysInMonth)
             {
+                InvalidInput(dayInput);
+                InvalidInput(dayInputEdit);
                 return false;
             }
             else if (day < 1)
             {
+                InvalidInput(dayInput);
+                InvalidInput(dayInputEdit);
+
                 return false;
             }
             else
@@ -1382,7 +1389,6 @@ namespace TODO_app
 
                 else if (intMonth > 12)
                 {
-                    ActivityMethods.InvalidInput(monthInput);
                     return false;
                 }
 
@@ -1435,6 +1441,20 @@ namespace TODO_app
             {
                 return false;
             }
+        }
+        
+        public async System.Threading.Tasks.Task InvalidInput(EditText visual, TextView errorDesc, string errorName)
+        {
+            if (errorDesc != null)
+            {
+                errorDesc.Text = errorName;
+            }
+            Drawable active = GetDrawable(Resource.Drawable.rounded50px);
+            Drawable invalid = GetDrawable(Resource.Drawable.rounded50pxInvalid);
+            visual.Background = invalid;
+            await System.Threading.Tasks.Task.Delay(1000);
+            visual.Background = active;
+            visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
         }
     }
 }

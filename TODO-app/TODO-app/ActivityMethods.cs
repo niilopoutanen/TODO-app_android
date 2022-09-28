@@ -14,14 +14,7 @@ namespace TODO_app
 {
     internal class ActivityMethods
     {
-        public static void InvalidInput(EditText visual)
-        {
-            MainActivity inherit = new MainActivity();
 
-            Drawable active = inherit.GetDrawable(Resource.Drawable.rounded50px);
-            Drawable invalid = inherit.GetDrawable(Resource.Drawable.rounded50pxInvalid);
 
-            visual.Background = invalid;
-        }
     }
 }
