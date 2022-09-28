@@ -820,8 +820,10 @@ namespace TODO_app
                     }
                 }
 
-                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
-                alert.Dismiss();
+                if (CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text))
+                {
+                    alert.Dismiss();
+                };
             };
 
             Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
@@ -1356,6 +1358,8 @@ namespace TODO_app
             
             if (string.IsNullOrWhiteSpace(taskname))
             {
+                InvalidInput(taskNameField, null, "Tehtävän nimi ei voi olla tyhjä");
+
                 return false;
             }
 
@@ -1388,6 +1392,9 @@ namespace TODO_app
 
                 else if (intMonth > 12)
                 {
+                    InvalidInput(monthInput, null, "Kuukausi ei voi olla isompi kuin 12");
+                    InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla isompi kuin 12");
+
                     return false;
                 }
 
@@ -1402,31 +1409,49 @@ namespace TODO_app
                     
                     if (intDay < DateTime.Today.Day)
                     {
+                        InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
+                        InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
+
                         return false;
                     }
 
                     if (intMonth < DateTime.Today.Month)
                     {
+                        InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
+                        InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
+
                         return false;
                     }
 
                     if (intYear < DateTime.Today.Year)
                     {
+                        InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+                        InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
+
                         return false;
                     }
 
                     if (intDay > DateTime.MaxValue.Day)
                     {
+                        InvalidInput(dayInput, null, "Päivä ei voi olla isompi kuin " + DateTime.MaxValue.Day);
+                        InvalidInput(dayInputEdit, null, "Päivä ei voi olla isompi kuin " + DateTime.MaxValue.Day);
+
                         return false;
                     }
 
                     if (intMonth > DateTime.MaxValue.Month)
                     {
+                        InvalidInput(monthInput, null, "Kuukausi ei voi olla isompi kuin " + DateTime.MaxValue.Month);
+                        InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla isompi kuin " + DateTime.MaxValue.Month);
+
                         return false;
                     }
 
                     if (intYear > DateTime.MaxValue.Year)
                     {
+                        InvalidInput(yearInput, null, "Vuosi ei voi olla isompi kuin " + DateTime.MaxValue.Year);
+                        InvalidInput(yearInputEdit, null, "Vuosi ei voi olla isompi kuin " + DateTime.MaxValue.Year);
+
                         return false;
                     }
 
@@ -1464,18 +1489,22 @@ namespace TODO_app
             }
         }
         
-        public async System.Threading.Tasks.Task InvalidInput(EditText visual, TextView errorDesc, string errorName)
+        public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
         {
+            VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+            Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+            hapticSystem.Cancel();
+            hapticSystem.Vibrate(invalidHaptic);
             if (errorDesc != null)
             {
                 errorDesc.Text = errorName;
             }
             Drawable active = GetDrawable(Resource.Drawable.rounded50px);
-            Drawable invalid = GetDrawable(Resource.Drawable.rounded50pxInvalid);
+            Drawable invalid = GetDrawable(Resource.Drawable.rounded10px);
             visual.Background = invalid;
-            await System.Threading.Tasks.Task.Delay(1000);
-            visual.Background = active;
-            visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //await System.Threading.Tasks.Task.Delay(1000);
+            //visual.Background = active;
+            //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
         }
     }
 }
