@@ -1377,9 +1377,6 @@ namespace TODO_app
 
         private void CreateNewTask(string taskname, string day, string month, string year)
         {
-            int intDay;
-            int intMonth;
-            int intYear;
             ready = false;
             bool didFail = false;
             
@@ -1398,115 +1395,128 @@ namespace TODO_app
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(day) && !string.IsNullOrWhiteSpace(month) && !string.IsNullOrWhiteSpace(year))
+            if (!int.TryParse(day, out int intDay))
             {
-                try
+                
+            }
+            
+            if (int.TryParse(month, out int intMonth))
+            {
+                
+            }
+
+            if (int.TryParse(year, out int intYear))
+            {
+
+            }
+
+            if (intDay < 1)
+            {
+                
+            }
+
+            if (intMonth < 1)
+            {
+                
+            }
+
+            if (intYear < 1)
+            {
+
+            }
+            
+            if (intMonth > 12)
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla suurempi kuin 12");
+
+                didFail = true;
+
+            }
+
+            if (!IsDayInMonth(intDay, intMonth, intYear))
+            {
+                
+            }
+
+            if (intDay < DateTime.Today.Day)
+            {
+                InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intMonth < DateTime.Today.Month)
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intYear < DateTime.Today.Year)
+            {
+                InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intDay > DateTime.MaxValue.Day)
+            {
+                InvalidInput(dayInput, null, "Liian iso päivä");
+                InvalidInput(dayInputEdit, null, "Liian iso päivä");
+
+                didFail = true;
+
+            }
+
+            if (intMonth > DateTime.MaxValue.Month)
+            {
+                InvalidInput(monthInput, null, "");
+                InvalidInput(monthInputEdit, null, "");
+
+                didFail = true;
+
+            }
+
+            if (intYear > DateTime.MaxValue.Year)
+            {
+                InvalidInput(yearInput, null, "");
+                InvalidInput(yearInputEdit, null, "");
+
+                didFail = true;
+            }
+
+            if (didFail == false)
+            {
+                DateTime dueDate = new DateTime(intYear, intMonth, intDay);
+                DeleteTaskItem(taskname);
+                CreateTaskItem(taskNameField.Text, dueDate);
+                file.WriteFile(taskList);
+
+                for (int i = 1; i < 8; i++)
                 {
-                    intDay = int.Parse(day);
-                    intMonth = int.Parse(month);
-                    intYear = int.Parse(year);
-                }
-                catch
-                {
-                    return;
-                }
-
-                if (intDay < 1 || intMonth < 1 || intYear < 1)
-                {
-                }
-
-                if (intMonth > 12)
-                {
-                    InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
-                    InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla suurempi kuin 12");
-
-                    didFail = true;
-
-                }
-
-                if (!IsDayInMonth(intDay, intMonth, intYear))
-                {
-                }
-
-                if (intDay < DateTime.Today.Day)
-                {
-                    InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
-                    InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
-
-                    didFail = true;
-
-                }
-
-                if (intMonth < DateTime.Today.Month)
-                {
-                    InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
-                    InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
-
-                    didFail = true;
-
-                }
-
-                if (intYear < DateTime.Today.Year)
-                {
-                    InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
-                    InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
-
-                    didFail = true;
-
-                }
-
-                if (intDay > DateTime.MaxValue.Day)
-                {
-                    InvalidInput(dayInput, null, "Liian iso päivä");
-                    InvalidInput(dayInputEdit, null, "Liian iso päivä");
-
-                    didFail = true;
-
-                }
-
-                if (intMonth > DateTime.MaxValue.Month)
-                {
-                    InvalidInput(monthInput, null, "");
-                    InvalidInput(monthInputEdit, null, "");
-
-                    didFail = true;
-
-                }
-
-                if (intYear > DateTime.MaxValue.Year)
-                {
-                    InvalidInput(yearInput, null, "");
-                    InvalidInput(yearInputEdit, null, "");
-
-                    didFail = true;
-                }
-
-                if (didFail == false)
-                {
-                    DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-                    DeleteTaskItem(taskname);
-                    CreateTaskItem(taskNameField.Text, dueDate);
-                    file.WriteFile(taskList);
-
-                    for (int i = 1; i < 8; i++)
+                    if (activeDate == 1 || activeDate == 0)
                     {
-                        if (activeDate == 1 || activeDate == 0)
-                        {
-                            scrollLayout.RemoveAllViews();
-                            ShowDatestasks(DateTime.Today);
-                            UpdateTaskCount();
-                            ready = true;
-                            break;
-                        }
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
+                    }
 
-                        else if (activeDate == i)
-                        {
-                            scrollLayout.RemoveAllViews();
-                            ShowDatestasks(DateTime.Today.AddDays(i - 1));
-                            UpdateTaskCount();
-                            ready = true;
-                            break;
-                        }
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
                     }
                 }
             }
