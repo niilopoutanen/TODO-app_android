@@ -113,6 +113,7 @@ namespace TODO_app
 
         private void LoadSettings()
         {
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
@@ -140,7 +141,13 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainBlue);
             }
-            savedTheme = color;  
+            savedTheme = color;
+
+            bool vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            if(vibration == true)
+            {
+
+            }
         }
         private void BackToMenu(object sender, EventArgs e)
         {
