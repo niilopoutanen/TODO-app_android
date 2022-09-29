@@ -68,10 +68,10 @@
 
 	<string name="next">Next</string>
 	<string name="skip">Skip</string>
-	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
-	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
-	<string name="guide3">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
-	<string name="guide4">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+	<string name="guide1">Add tasks from button in the home menu.</string>
+	<string name="guide2">Mark tasks as done or delete them \nby holding the task.</string>
+	<string name="guide3">Check tasks due date by pressing the task.</string>
+	<string name="guide4">Suggest new features from the link in the settings tab!</string>
 
 
 
