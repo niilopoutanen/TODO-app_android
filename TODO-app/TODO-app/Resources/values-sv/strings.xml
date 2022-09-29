@@ -59,7 +59,7 @@
 	<string name="invalidValue">Invalid input</string>
 	<string name="invalidDate">The date you gave is not valid.</string>
 
-	<string name="invalidName">Invalid name</string>
+	<string name="invalidName">Invalid namn</string>
 	<string name="invalidNameDesc">The name you gave is not valid.</string>
 	<string name="nameExists">The name you gave already exists.</string>
 	<string name="dateDoesntExist">The date you gave does not exist</string>
@@ -67,7 +67,7 @@
 	<string name="dateTooBig">The date is too big.</string>
 
 	<string name="next">Next</string>
-	<string name="skip">Skip</string>
+	<string name="skip">Skipparna</string>
 	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
 	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
 	<string name="guide3">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
