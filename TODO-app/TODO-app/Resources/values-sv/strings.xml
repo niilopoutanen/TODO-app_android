@@ -1,0 +1,88 @@
+<resources>
+	<string name="app_name">TODO-app</string>
+	<string name="action_settings">Settings</string>
+	<string name="date">Sunnuntai \n11.9.2022</string>
+	<string name="task_name_header">Namn på task</string>
+	<string name="date_select_header">Due datorna på task</string>
+	<string name="default_description">description</string>
+	<string name="show_all">shuv allt</string>
+	<string name="add_task_header">Addärare nu task</string>
+    <string name="edit_task_header">Editorna task</string>
+
+    <string name="add">Addärare</string>
+	<string name="search">Search</string>
+	<string name="plus">+</string>
+	<string name="yes">Ja</string>
+	<string name="no">Inte</string>
+
+
+	<string name="settings">Settings</string>
+	<string name="vibrationSettings">Vibratiorna</string>
+    <string name="deleteAllDone">Remove all completed</string>
+	<string name="colorTheme">Color theme</string>
+	<string name="sendFeedback">Send feedback</string>
+	<string name="versionHeader">Version:</string>
+	<string name="CreditsHeader">Creators:</string>
+	<string name="Credits1">Niilo Poutanen</string>
+	<string name="Credits2">Oskari Mäkelä</string>
+	<string name="Credits3">Tomi Vahdersalo</string>
+	<string name="taskAmount">0 Tasks</string>
+
+	<string name="returnbtn">Return</string>
+
+	<string name="date1">14</string>
+	<string name="date1string">Ma</string>
+
+	<string name="date2">15</string>
+	<string name="date2string">Ti</string>
+
+	<string name="date3">16</string>
+	<string name="date3string">Ke</string>
+
+	<string name="date4">17</string>
+	<string name="date4string">To</string>
+
+	<string name="date5">18</string>
+	<string name="date5string">Pe</string>
+
+	<string name="date6">19</string>
+	<string name="date6string">La</string>
+
+	<string name="date7">20</string>
+	<string name="date7string">Su</string>
+
+	<string name="task_template">First task</string>
+
+	<string name="deleteTaskHeader">Delete task</string>
+	<string name="deleteTaskDescription">Är du varma du gillar på remuv task</string>
+
+	<string name="invalidValue">Invalid input</string>
+	<string name="invalidDate">The date you gave is not valid.</string>
+
+	<string name="invalidName">Invalid namn</string>
+	<string name="invalidNameDesc">The name you gave is not valid.</string>
+	<string name="nameExists">The name you gave already exists.</string>
+	<string name="dateDoesntExist">The date you gave does not exist</string>
+	<string name="dateInPast">Due date can not be in the past.</string>
+	<string name="dateTooBig">The date is too big.</string>
+
+	<string name="next">Next</string>
+	<string name="skip">Skipparna</string>
+	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
+	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
+	<string name="guide3">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
+	<string name="guide4">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+
+
+
+	<string name="DueDate">Due date</string>
+    <string name="CreationDate">Creation date</string>
+
+	<string name="Start">Start</string>
+
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="editDesc">Select action from below</string>
+</resources>
