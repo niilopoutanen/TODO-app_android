@@ -292,6 +292,10 @@ namespace TODO_app
                 hapticSystem.Cancel();
                 hapticSystem.Vibrate(invalidHaptic);
             }
+            if(amountRemoved > 0)
+            {
+                OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+            }
         }
 
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
