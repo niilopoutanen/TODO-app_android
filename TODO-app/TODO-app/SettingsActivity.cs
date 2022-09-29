@@ -234,7 +234,17 @@ namespace TODO_app
 
         private void ToggleVibration(object sender, EventArgs e)
         {
+            Switch sw = (Switch)sender;
+
+            if (sw.Checked)
+            {
+                
+            }
             
+            else
+            {
+                
+            }
         }
     }
 }
