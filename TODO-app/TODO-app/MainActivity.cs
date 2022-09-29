@@ -1535,8 +1535,6 @@ namespace TODO_app
 
                     else if (activeDate == -1)
                     {
-
-
                         UpdateTaskCount();
                         ready = true;
                         break;
