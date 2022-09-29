@@ -465,6 +465,12 @@ namespace TODO_app
         private void OpenCreateView(object sender, EventArgs e)
         {
 
+            taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
+
 
             if (createTaskHeader.Visibility == ViewStates.Gone)
             {
