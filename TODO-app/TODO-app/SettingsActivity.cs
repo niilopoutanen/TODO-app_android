@@ -48,6 +48,8 @@ namespace TODO_app
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            LoadSettings();
+            SetTheme(GetStyle());
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_settings);
             RelativeLayout settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
@@ -89,9 +91,15 @@ namespace TODO_app
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
 
             deleteAllDone.Click += DeleteAllDone_Click;
-            vibrationToggle.Click += ToggleVibration;
-            LoadSettings();
-
+            vibrationToggle.CheckedChange += ToggleVibration;
+            if (vibration == true)
+            {
+                vibrationToggle.Checked = true;
+            }
+            else if (vibration == false)
+            {
+                vibrationToggle.Checked = false;
+            }
 
             switch (savedTheme)
             {
@@ -124,6 +132,34 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+
+        private int GetStyle()
+        {
+            if (savedTheme == "blue")
+            {
+                return Resource.Color.mainBlue;
+            }
+            else if (savedTheme == "orange")
+            {
+                return Resource.Color.mainOrange;
+            }
+            else if (savedTheme == "green")
+            {
+                return Resource.Color.mainGreen;
+            }
+            else if (savedTheme == "violet")
+            {
+                return Resource.Color.mainViolet;
+            }
+            else if (savedTheme == "red")
+            {
+                return Resource.Color.mainRed;
+            }
+            else
+            {
+                return Resource.Color.mainBlue;
+            }
+        }
         private void LoadSettings()
         {
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
@@ -150,21 +186,14 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainRed);
             }
-            else if (color == null)
+            else
             {
                 SetTheme(Resource.Style.MainBlue);
             }
             savedTheme = color;
 
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
-            if (vibration == true)
-            {
-                vibrationToggle.Checked = true;
-            }
-            else if (vibration == false)
-            {
-                vibrationToggle.Checked = false;
-            }
+
         }
         private void BackToMenu(object sender, EventArgs e)
         {
@@ -253,22 +282,35 @@ namespace TODO_app
                 }
             }
             files.WriteFile(taskList);
+            if (vibration == true)
+            {
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+            }
         }
 
-        private void ToggleVibration(object sender, EventArgs e)
+        private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            Switch sw = (Switch)sender;
+
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
-
-            if (!sw.Checked)
+            
+            if (e.IsChecked == true)
             {
-                vibrationPref.Edit().PutBoolean("vibrationEnabled", true);
-
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
+                vibration = true;
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
             }
 
-            else
+            else if (e.IsChecked == false)
             {
-                vibrationPref.Edit().PutBoolean("vibrationEnabled", false);
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", false).Commit();
+                vibration = false;
+
 
             }
         }

@@ -866,7 +866,7 @@ namespace TODO_app
         {
             if(vibration == true)
             {
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
                 Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
                 hapticSystem.Cancel();
                 hapticSystem.Vibrate(invalidHaptic);
