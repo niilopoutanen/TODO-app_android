@@ -18,7 +18,8 @@
 
 	<string name="settings">Asetukset</string>
 	<string name="darkModeSetting">Tumma teema</string>
-	<string name="notificationSetting">Ilmoitukset</string>
+	<string name="vibrationSettings">Värinä</string>
+    <string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="colorTheme">Väriteema</string>
 	<string name="sendFeedback">Lähetä palautetta</string>
 	<string name="versionHeader">Versio:</string>
