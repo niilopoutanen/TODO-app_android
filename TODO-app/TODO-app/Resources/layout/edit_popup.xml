@@ -36,7 +36,7 @@
         android:backgroundTint="@color/colorButton"
         android:layout_below="@+id/EditTaskName"
         android:inputType="text"
-        android:textColor="@color/textSecondary"/>
+        android:textColor="@color/textPrimary"/>
     <TextView
         android:id="@+id/invalidEditName"
         android:layout_width="match_parent"

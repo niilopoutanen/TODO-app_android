@@ -834,6 +834,10 @@ namespace TODO_app
 
             editConfirm.Click += (s, e) =>
             {
+                editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 CreateNewTask(editTaskField.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
 
                 if (ready == true)
@@ -1403,32 +1407,41 @@ namespace TODO_app
 
             if (!int.TryParse(day, out int intDay))
             {
-                
-            }
-            
-            if (int.TryParse(month, out int intMonth))
-            {
-                
+                InvalidInput(dayInput, null, "Päivä ei voi olla tyhjä");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla tyhjä");
+
             }
 
-            if (int.TryParse(year, out int intYear))
+            if (!int.TryParse(month, out int intMonth))
             {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla tyhjä");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla tyhjä");
+            }
 
+            if (!int.TryParse(year, out int intYear))
+            {
+                InvalidInput(yearInput, null, "Vuosi ei voi olla tyhjä");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla tyhjä");
             }
 
             if (intDay < 1)
             {
-                
+                InvalidInput(dayInput, null, "Päivä ei voi olla pienempi kuin 1");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla pienempi kuin 1");
+
             }
 
             if (intMonth < 1)
             {
-                
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla pienempi kuin 1");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla pienempi kuin 1");
+
             }
 
             if (intYear < 1)
             {
-
+                InvalidInput(yearInput, null, "Vuosi ei voi olla pienempi kuin 1");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla pienempi kuin 1");
             }
             
             if (intMonth > 12)
