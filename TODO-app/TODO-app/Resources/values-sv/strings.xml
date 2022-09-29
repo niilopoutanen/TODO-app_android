@@ -1,0 +1,83 @@
+<resources>
+	<string name="app_name">TODO-appor</string>
+	<string name="action_settings">Inställningar</string>
+	<string name="date">Söndag \n11.9.2022</string>
+	<string name="task_name_header">Namn på uppgift</string>
+	<string name="date_select_header">Due datorna på uppgift</string>
+	<string name="default_description">Description</string>
+	<string name="show_all">Shuv allt</string>
+	<string name="add_task_header">Addärare nu uppgift</string>
+    <string name="edit_task_header">Editorna uppgift</string>
+
+    <string name="add">Addärare</string>
+	<string name="search">Sök</string>
+	<string name="plus">+</string>
+	<string name="yes">Ja</string>
+	<string name="no">Inte</string>
+
+
+	<string name="settings">Inställningar</string>
+	<string name="vibrationSettings">Vibratiorna</string>
+    <string name="deleteAllDone">Radera allt gjort</string>
+	<string name="colorTheme">Färgtema</string>
+	<string name="sendFeedback">Skicka synpunkter</string>
+	<string name="versionHeader">Version:</string>
+	<string name="CreditsHeader">Faktorerna:</string>
+	<string name="Credits1">Niilo Poutanen</string>
+	<string name="Credits2">Oskari Mäkelä</string>
+	<string name="Credits3">Tomi Vahdersalo</string>
+	<string name="taskAmount">0 uppgiftar</string>
+
+	<string name="returnbtn">Returna</string>
+
+    <string name="MondayShort">Må</string>
+    <string name="Monday">Måndag</string>
+    <string name="TuesdayShort">Ti</string>
+    <string name="Tuesday">Tisdag</string>
+    <string name="WednesdayShort">Ons</string>
+    <string name="Wednesday">Onsdag</string>
+    <string name="ThursdayShort">Tu</string>
+    <string name="Thursday">Tursdag</string>
+    <string name="FridayShort">Fri</string>
+    <string name="Friday">Fridåg</string>
+    <string name="SaturdayShort">Lön</string>
+    <string name="Saturday">Lönsdag</string>
+    <string name="SundayShort">Sun</string>
+    <string name="Sunday">Sundag</string>
+
+	<string name="task_template">Första uppgift</string>
+
+	<string name="deleteTaskHeader">Remuv uppgift</string>
+	<string name="deleteTaskDescription">Är du varma du gillar på remuv uppgift</string>
+
+	<string name="invalidValue">Ogiltig inputar</string>
+	<string name="invalidDate">De dagen du gav är inte giltig.</string>
+
+	<string name="invalidName">Ogiltig namn</string>
+	<string name="invalidNameDesc">De namn du gav är inte giltig.</string>
+	<string name="nameExists">De namn du gav existerar redan.</string>
+	<string name="dateDoesntExist">De dagen du gav existerar inte.</string>
+	<string name="dateInPast">Due dagaen kan inte vara i det förflutna.</string>
+	<string name="dateTooBig">De dagen är för stor.</string>
+
+	<string name="next">Nästa</string>
+	<string name="skip">Skipparna</string>
+	<string name="guide1">Adda uppgiftar från hemmenus \n+buttorna.</string>
+	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
+	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
+	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
+
+
+
+	<string name="DueDate">Due dagen</string>
+    <string name="CreationDate">Skapa dag</string>
+
+	<string name="Start">Starta</string>
+
+    <string name="delete">Remuv</string>
+    <string name="edit">Redigera</string>
+    <string name="cancel">Avbryt</string>
+
+    <string name="editDesc">Välj en funktion nedan.</string>
+    <string name="task">taskarna</string>
+</resources>

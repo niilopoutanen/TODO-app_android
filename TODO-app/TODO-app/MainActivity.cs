@@ -397,11 +397,11 @@ namespace TODO_app
             int elementCount = scrollLayout.ChildCount;
             if (elementCount == 1)
             {
-                taskCount.Text = elementCount.ToString() + " tehtävä";
+                taskCount.Text = elementCount.ToString() + " "+ GetString(Resource.String.task);
             }
             else
             {
-                taskCount.Text = elementCount.ToString() + " tehtävää";
+                taskCount.Text = elementCount.ToString() + " " + GetString(Resource.String.task);
             }
         }
         /// <summary>
@@ -933,37 +933,47 @@ namespace TODO_app
             TextView todayHeader = FindViewById<TextView>(Resource.Id.todayHeader);
             Dictionary<int, string> dayNames = new Dictionary<int, string>()
             {
-                {0, "Sunnuntai"},
-                {1, "Maanantai"},
-                {2, "Tiistai"},
-                {3, "Keskiviikko"},
-                {4, "Torstai"},
-                {5, "Perjantai"},
-                {6, "Lauantai"}
+                {0, GetString(Resource.String.Sunday)},
+                {1, GetString(Resource.String.Monday)},
+                {2, GetString(Resource.String.Tuesday)},
+                {3, GetString(Resource.String.Wednesday)},
+                {4, GetString(Resource.String.Thursday)},
+                {5, GetString(Resource.String.Friday)},
+                {6, GetString(Resource.String.Saturday)}
+            };
+            Dictionary<int, string> dayNamesShort = new Dictionary<int, string>()
+            {
+                {0, GetString(Resource.String.SundayShort)},
+                {1, GetString(Resource.String.MondayShort)},
+                {2, GetString(Resource.String.TuesdayShort)},
+                {3, GetString(Resource.String.WednesdayShort)},
+                {4, GetString(Resource.String.ThursdayShort)},
+                {5, GetString(Resource.String.FridayShort)},
+                {6, GetString(Resource.String.SaturdayShort)}
             };
             string todaystr = dayNames[(int)today.DayOfWeek] + "\n" + today.Day.ToString() + "." + today.Month.ToString() + "." + today.Year.ToString();
             todayHeader.Text = todaystr;
 
             FindViewById<TextView>(Resource.Id.date1number).Text = today.Day.ToString();
-            FindViewById<TextView>(Resource.Id.date1str).Text = dayNames[(int)today.DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date1str).Text = dayNamesShort[(int)today.DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date2number).Text = today.AddDays(1).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date2str).Text = dayNames[(int)today.AddDays(1).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date2str).Text = dayNamesShort[(int)today.AddDays(1).DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date3number).Text = today.AddDays(2).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date3str).Text = dayNames[(int)today.AddDays(2).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date3str).Text = dayNamesShort[(int)today.AddDays(2).DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date4number).Text = today.AddDays(3).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date4str).Text = dayNames[(int)today.AddDays(3).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date4str).Text = dayNamesShort[(int)today.AddDays(3).DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date5number).Text = today.AddDays(4).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date5str).Text = dayNames[(int)today.AddDays(4).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date5str).Text = dayNamesShort[(int)today.AddDays(4).DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date6number).Text = today.AddDays(5).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date6str).Text = dayNames[(int)today.AddDays(5).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date6str).Text = dayNamesShort[(int)today.AddDays(5).DayOfWeek];
 
             FindViewById<TextView>(Resource.Id.date7number).Text = today.AddDays(6).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date7str).Text = dayNames[(int)today.AddDays(6).DayOfWeek].Substring(0, 2);
+            FindViewById<TextView>(Resource.Id.date7str).Text = dayNamesShort[(int)today.AddDays(6).DayOfWeek];
         }
 
         /// <summary>
