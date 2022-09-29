@@ -68,7 +68,7 @@
 
 	<string name="next">Nästa</string>
 	<string name="skip">Skipparna</string>
-	<string name="guide1">Adda uppgiftar hemmenu \n+ buttorna.</string>
+	<string name="guide1">Adda uppgiftar från hemmenus \n+buttorna.</string>
 	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
 	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
 	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
