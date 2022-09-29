@@ -1531,6 +1531,15 @@ namespace TODO_app
                         break;
                     }
 
+                    else if (activeDate == -1)
+                    {
+
+
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
+                    }
+                    
                     else if (activeDate == i)
                     {
                         scrollLayout.RemoveAllViews();
@@ -1540,10 +1549,6 @@ namespace TODO_app
                         break;
                     }
                 }
-            }
-            else
-            {
-                
             }
         }
         
