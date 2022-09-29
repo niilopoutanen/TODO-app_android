@@ -31,28 +31,23 @@
 
 	<string name="returnbtn">Takaisin</string>
 
-	<string name="date1">14</string>
-	<string name="date1string">Ma</string>
+	<string name="MondayShort">Ma</string>
+    <string name="Monday">Maanantai</string>
+	<string name="TuesdayShort">Ti</string>
+    <string name="Tuesday">Tiistai</string>
+	<string name="WednesdayShort">Ke</string>
+    <string name="Wednesday">Keskiviikko</string>
+	<string name="ThursdayShort">To</string>
+    <string name="Thursday">Torstai</string>
+    <string name="FridayShort">Pe</string>
+    <string name="Friday">Perjantai</string>
+	<string name="SaturdayShort">La</string>
+    <string name="Saturday">Lauantai</string>
+    <string name="SundayShort">Su</string>
+    <string name="Sunday">Sunnuntai</string>
 
-	<string name="date2">15</string>
-	<string name="date2string">Ti</string>
 
-	<string name="date3">16</string>
-	<string name="date3string">Ke</string>
-
-	<string name="date4">17</string>
-	<string name="date4string">To</string>
-
-	<string name="date5">18</string>
-	<string name="date5string">Pe</string>
-
-	<string name="date6">19</string>
-	<string name="date6string">La</string>
-
-	<string name="date7">20</string>
-	<string name="date7string">Su</string>
-
-	<string name="task_template">Ensimmäinen tehtävä</string>
+    <string name="task_template">Ensimmäinen tehtävä</string>
 
 	<string name="deleteTaskHeader">Poista tehtävä</string>
 	<string name="deleteTaskDescription">Haluatko varmasti poistaa tämän tehtävän?</string>
@@ -86,4 +81,6 @@
     <string name="cancel">Peruuta</string>
 
     <string name="editDesc">Valitse toiminto alta</string>
+    <string name="task">tehtävää</string>
+
 </resources>

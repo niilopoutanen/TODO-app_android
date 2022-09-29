@@ -10544,188 +10544,188 @@ namespace TODO_app
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7F100007
-			public const int abc_action_bar_home_description = 2131755015;
-			
-			// aapt resource value: 0x7F100008
-			public const int abc_action_bar_up_description = 2131755016;
-			
-			// aapt resource value: 0x7F100009
-			public const int abc_action_menu_overflow_description = 2131755017;
-			
-			// aapt resource value: 0x7F10000A
-			public const int abc_action_mode_done = 2131755018;
-			
-			// aapt resource value: 0x7F10000C
-			public const int abc_activitychooserview_choose_application = 2131755020;
-			
-			// aapt resource value: 0x7F10000B
-			public const int abc_activity_chooser_view_see_all = 2131755019;
-			
-			// aapt resource value: 0x7F10000D
-			public const int abc_capital_off = 2131755021;
-			
-			// aapt resource value: 0x7F10000E
-			public const int abc_capital_on = 2131755022;
-			
-			// aapt resource value: 0x7F10000F
-			public const int abc_menu_alt_shortcut_label = 2131755023;
-			
-			// aapt resource value: 0x7F100010
-			public const int abc_menu_ctrl_shortcut_label = 2131755024;
-			
-			// aapt resource value: 0x7F100011
-			public const int abc_menu_delete_shortcut_label = 2131755025;
-			
-			// aapt resource value: 0x7F100012
-			public const int abc_menu_enter_shortcut_label = 2131755026;
-			
-			// aapt resource value: 0x7F100013
-			public const int abc_menu_function_shortcut_label = 2131755027;
-			
-			// aapt resource value: 0x7F100014
-			public const int abc_menu_meta_shortcut_label = 2131755028;
-			
 			// aapt resource value: 0x7F100015
-			public const int abc_menu_shift_shortcut_label = 2131755029;
+			public const int abc_action_bar_home_description = 2131755029;
 			
 			// aapt resource value: 0x7F100016
-			public const int abc_menu_space_shortcut_label = 2131755030;
+			public const int abc_action_bar_up_description = 2131755030;
 			
 			// aapt resource value: 0x7F100017
-			public const int abc_menu_sym_shortcut_label = 2131755031;
+			public const int abc_action_menu_overflow_description = 2131755031;
 			
 			// aapt resource value: 0x7F100018
-			public const int abc_prepend_shortcut_label = 2131755032;
+			public const int abc_action_mode_done = 2131755032;
 			
 			// aapt resource value: 0x7F10001A
-			public const int abc_searchview_description_clear = 2131755034;
-			
-			// aapt resource value: 0x7F10001B
-			public const int abc_searchview_description_query = 2131755035;
-			
-			// aapt resource value: 0x7F10001C
-			public const int abc_searchview_description_search = 2131755036;
-			
-			// aapt resource value: 0x7F10001D
-			public const int abc_searchview_description_submit = 2131755037;
-			
-			// aapt resource value: 0x7F10001E
-			public const int abc_searchview_description_voice = 2131755038;
+			public const int abc_activitychooserview_choose_application = 2131755034;
 			
 			// aapt resource value: 0x7F100019
-			public const int abc_search_hint = 2131755033;
+			public const int abc_activity_chooser_view_see_all = 2131755033;
+			
+			// aapt resource value: 0x7F10001B
+			public const int abc_capital_off = 2131755035;
+			
+			// aapt resource value: 0x7F10001C
+			public const int abc_capital_on = 2131755036;
+			
+			// aapt resource value: 0x7F10001D
+			public const int abc_menu_alt_shortcut_label = 2131755037;
+			
+			// aapt resource value: 0x7F10001E
+			public const int abc_menu_ctrl_shortcut_label = 2131755038;
 			
 			// aapt resource value: 0x7F10001F
-			public const int abc_shareactionprovider_share_with = 2131755039;
+			public const int abc_menu_delete_shortcut_label = 2131755039;
 			
 			// aapt resource value: 0x7F100020
-			public const int abc_shareactionprovider_share_with_application = 2131755040;
+			public const int abc_menu_enter_shortcut_label = 2131755040;
 			
 			// aapt resource value: 0x7F100021
-			public const int abc_toolbar_collapse_description = 2131755041;
+			public const int abc_menu_function_shortcut_label = 2131755041;
 			
 			// aapt resource value: 0x7F100022
-			public const int action_settings = 2131755042;
+			public const int abc_menu_meta_shortcut_label = 2131755042;
 			
 			// aapt resource value: 0x7F100023
-			public const int add = 2131755043;
+			public const int abc_menu_shift_shortcut_label = 2131755043;
 			
 			// aapt resource value: 0x7F100024
-			public const int add_task_header = 2131755044;
+			public const int abc_menu_space_shortcut_label = 2131755044;
 			
 			// aapt resource value: 0x7F100025
-			public const int androidx_startup = 2131755045;
-			
-			// aapt resource value: 0x7F100027
-			public const int appbar_scrolling_view_behavior = 2131755047;
+			public const int abc_menu_sym_shortcut_label = 2131755045;
 			
 			// aapt resource value: 0x7F100026
-			public const int app_name = 2131755046;
-			
-			// aapt resource value: 0x7F100029
-			public const int bottomsheet_action_expand_halfway = 2131755049;
+			public const int abc_prepend_shortcut_label = 2131755046;
 			
 			// aapt resource value: 0x7F100028
-			public const int bottom_sheet_behavior = 2131755048;
+			public const int abc_searchview_description_clear = 2131755048;
+			
+			// aapt resource value: 0x7F100029
+			public const int abc_searchview_description_query = 2131755049;
 			
 			// aapt resource value: 0x7F10002A
-			public const int cancel = 2131755050;
+			public const int abc_searchview_description_search = 2131755050;
 			
 			// aapt resource value: 0x7F10002B
-			public const int character_counter_content_description = 2131755051;
+			public const int abc_searchview_description_submit = 2131755051;
 			
 			// aapt resource value: 0x7F10002C
-			public const int character_counter_overflowed_content_description = 2131755052;
+			public const int abc_searchview_description_voice = 2131755052;
+			
+			// aapt resource value: 0x7F100027
+			public const int abc_search_hint = 2131755047;
 			
 			// aapt resource value: 0x7F10002D
-			public const int character_counter_pattern = 2131755053;
+			public const int abc_shareactionprovider_share_with = 2131755053;
 			
 			// aapt resource value: 0x7F10002E
-			public const int chip_text = 2131755054;
+			public const int abc_shareactionprovider_share_with_application = 2131755054;
 			
 			// aapt resource value: 0x7F10002F
-			public const int clear_text_end_icon_content_description = 2131755055;
+			public const int abc_toolbar_collapse_description = 2131755055;
 			
 			// aapt resource value: 0x7F100030
-			public const int colorTheme = 2131755056;
+			public const int action_settings = 2131755056;
 			
 			// aapt resource value: 0x7F100031
-			public const int common_google_play_services_enable_button = 2131755057;
+			public const int add = 2131755057;
 			
 			// aapt resource value: 0x7F100032
-			public const int common_google_play_services_enable_text = 2131755058;
+			public const int add_task_header = 2131755058;
 			
 			// aapt resource value: 0x7F100033
-			public const int common_google_play_services_enable_title = 2131755059;
-			
-			// aapt resource value: 0x7F100034
-			public const int common_google_play_services_install_button = 2131755060;
+			public const int androidx_startup = 2131755059;
 			
 			// aapt resource value: 0x7F100035
-			public const int common_google_play_services_install_text = 2131755061;
+			public const int appbar_scrolling_view_behavior = 2131755061;
 			
-			// aapt resource value: 0x7F100036
-			public const int common_google_play_services_install_title = 2131755062;
+			// aapt resource value: 0x7F100034
+			public const int app_name = 2131755060;
 			
 			// aapt resource value: 0x7F100037
-			public const int common_google_play_services_notification_channel_name = 2131755063;
+			public const int bottomsheet_action_expand_halfway = 2131755063;
+			
+			// aapt resource value: 0x7F100036
+			public const int bottom_sheet_behavior = 2131755062;
 			
 			// aapt resource value: 0x7F100038
-			public const int common_google_play_services_notification_ticker = 2131755064;
+			public const int cancel = 2131755064;
 			
 			// aapt resource value: 0x7F100039
-			public const int common_google_play_services_unknown_issue = 2131755065;
+			public const int character_counter_content_description = 2131755065;
 			
 			// aapt resource value: 0x7F10003A
-			public const int common_google_play_services_unsupported_text = 2131755066;
+			public const int character_counter_overflowed_content_description = 2131755066;
 			
 			// aapt resource value: 0x7F10003B
-			public const int common_google_play_services_update_button = 2131755067;
+			public const int character_counter_pattern = 2131755067;
 			
 			// aapt resource value: 0x7F10003C
-			public const int common_google_play_services_update_text = 2131755068;
+			public const int chip_text = 2131755068;
 			
 			// aapt resource value: 0x7F10003D
-			public const int common_google_play_services_update_title = 2131755069;
+			public const int clear_text_end_icon_content_description = 2131755069;
 			
 			// aapt resource value: 0x7F10003E
-			public const int common_google_play_services_updating_text = 2131755070;
+			public const int colorTheme = 2131755070;
 			
 			// aapt resource value: 0x7F10003F
-			public const int common_google_play_services_wear_update_text = 2131755071;
+			public const int common_google_play_services_enable_button = 2131755071;
 			
 			// aapt resource value: 0x7F100040
-			public const int common_open_on_phone = 2131755072;
+			public const int common_google_play_services_enable_text = 2131755072;
 			
 			// aapt resource value: 0x7F100041
-			public const int common_signin_button_text = 2131755073;
+			public const int common_google_play_services_enable_title = 2131755073;
 			
 			// aapt resource value: 0x7F100042
-			public const int common_signin_button_text_long = 2131755074;
+			public const int common_google_play_services_install_button = 2131755074;
 			
 			// aapt resource value: 0x7F100043
-			public const int copy_toast_msg = 2131755075;
+			public const int common_google_play_services_install_text = 2131755075;
+			
+			// aapt resource value: 0x7F100044
+			public const int common_google_play_services_install_title = 2131755076;
+			
+			// aapt resource value: 0x7F100045
+			public const int common_google_play_services_notification_channel_name = 2131755077;
+			
+			// aapt resource value: 0x7F100046
+			public const int common_google_play_services_notification_ticker = 2131755078;
+			
+			// aapt resource value: 0x7F100047
+			public const int common_google_play_services_unknown_issue = 2131755079;
+			
+			// aapt resource value: 0x7F100048
+			public const int common_google_play_services_unsupported_text = 2131755080;
+			
+			// aapt resource value: 0x7F100049
+			public const int common_google_play_services_update_button = 2131755081;
+			
+			// aapt resource value: 0x7F10004A
+			public const int common_google_play_services_update_text = 2131755082;
+			
+			// aapt resource value: 0x7F10004B
+			public const int common_google_play_services_update_title = 2131755083;
+			
+			// aapt resource value: 0x7F10004C
+			public const int common_google_play_services_updating_text = 2131755084;
+			
+			// aapt resource value: 0x7F10004D
+			public const int common_google_play_services_wear_update_text = 2131755085;
+			
+			// aapt resource value: 0x7F10004E
+			public const int common_open_on_phone = 2131755086;
+			
+			// aapt resource value: 0x7F10004F
+			public const int common_signin_button_text = 2131755087;
+			
+			// aapt resource value: 0x7F100050
+			public const int common_signin_button_text_long = 2131755088;
+			
+			// aapt resource value: 0x7F100051
+			public const int copy_toast_msg = 2131755089;
 			
 			// aapt resource value: 0x7F100000
 			public const int CreationDate = 2131755008;
@@ -10742,53 +10742,11 @@ namespace TODO_app
 			// aapt resource value: 0x7F100004
 			public const int CreditsHeader = 2131755012;
 			
-			// aapt resource value: 0x7F100044
-			public const int darkModeSetting = 2131755076;
-			
-			// aapt resource value: 0x7F100045
-			public const int date = 2131755077;
-			
-			// aapt resource value: 0x7F100046
-			public const int date1 = 2131755078;
-			
-			// aapt resource value: 0x7F100047
-			public const int date1string = 2131755079;
-			
-			// aapt resource value: 0x7F100048
-			public const int date2 = 2131755080;
-			
-			// aapt resource value: 0x7F100049
-			public const int date2string = 2131755081;
-			
-			// aapt resource value: 0x7F10004A
-			public const int date3 = 2131755082;
-			
-			// aapt resource value: 0x7F10004B
-			public const int date3string = 2131755083;
-			
-			// aapt resource value: 0x7F10004C
-			public const int date4 = 2131755084;
-			
-			// aapt resource value: 0x7F10004D
-			public const int date4string = 2131755085;
-			
-			// aapt resource value: 0x7F10004E
-			public const int date5 = 2131755086;
-			
-			// aapt resource value: 0x7F10004F
-			public const int date5string = 2131755087;
-			
-			// aapt resource value: 0x7F100050
-			public const int date6 = 2131755088;
-			
-			// aapt resource value: 0x7F100051
-			public const int date6string = 2131755089;
-			
 			// aapt resource value: 0x7F100052
-			public const int date7 = 2131755090;
+			public const int darkModeSetting = 2131755090;
 			
 			// aapt resource value: 0x7F100053
-			public const int date7string = 2131755091;
+			public const int date = 2131755091;
 			
 			// aapt resource value: 0x7F100054
 			public const int dateDoesntExist = 2131755092;
@@ -10852,6 +10810,12 @@ namespace TODO_app
 			
 			// aapt resource value: 0x7F100067
 			public const int fallback_menu_item_share_link = 2131755111;
+			
+			// aapt resource value: 0x7F100006
+			public const int Friday = 2131755014;
+			
+			// aapt resource value: 0x7F100007
+			public const int FridayShort = 2131755015;
 			
 			// aapt resource value: 0x7F100068
 			public const int gcm_defaultSenderId = 2131755112;
@@ -11009,6 +10973,12 @@ namespace TODO_app
 			// aapt resource value: 0x7F10009B
 			public const int material_timepicker_text_input_mode_description = 2131755163;
 			
+			// aapt resource value: 0x7F100008
+			public const int Monday = 2131755016;
+			
+			// aapt resource value: 0x7F100009
+			public const int MondayShort = 2131755017;
+			
 			// aapt resource value: 0x7F10009C
 			public const int mtrl_badge_numberless_content_description = 2131755164;
 			
@@ -11150,6 +11120,12 @@ namespace TODO_app
 			// aapt resource value: 0x7F1000CA
 			public const int returnbtn = 2131755210;
 			
+			// aapt resource value: 0x7F10000A
+			public const int Saturday = 2131755018;
+			
+			// aapt resource value: 0x7F10000B
+			public const int SaturdayShort = 2131755019;
+			
 			// aapt resource value: 0x7F1000CB
 			public const int search = 2131755211;
 			
@@ -11168,29 +11144,56 @@ namespace TODO_app
 			// aapt resource value: 0x7F1000D0
 			public const int skip = 2131755216;
 			
-			// aapt resource value: 0x7F100006
-			public const int Start = 2131755014;
+			// aapt resource value: 0x7F10000C
+			public const int Start = 2131755020;
 			
 			// aapt resource value: 0x7F1000D1
 			public const int status_bar_notification_info_overflow = 2131755217;
 			
+			// aapt resource value: 0x7F10000D
+			public const int Sunday = 2131755021;
+			
+			// aapt resource value: 0x7F10000E
+			public const int SundayShort = 2131755022;
+			
 			// aapt resource value: 0x7F1000D2
-			public const int taskAmount = 2131755218;
+			public const int task = 2131755218;
 			
 			// aapt resource value: 0x7F1000D3
-			public const int task_name_header = 2131755219;
+			public const int taskAmount = 2131755219;
 			
 			// aapt resource value: 0x7F1000D4
-			public const int task_template = 2131755220;
+			public const int task_name_header = 2131755220;
 			
 			// aapt resource value: 0x7F1000D5
-			public const int versionHeader = 2131755221;
+			public const int task_template = 2131755221;
+			
+			// aapt resource value: 0x7F10000F
+			public const int Thursday = 2131755023;
+			
+			// aapt resource value: 0x7F100010
+			public const int ThursdayShort = 2131755024;
+			
+			// aapt resource value: 0x7F100011
+			public const int Tuesday = 2131755025;
+			
+			// aapt resource value: 0x7F100012
+			public const int TuesdayShort = 2131755026;
 			
 			// aapt resource value: 0x7F1000D6
-			public const int vibrationSettings = 2131755222;
+			public const int versionHeader = 2131755222;
 			
 			// aapt resource value: 0x7F1000D7
-			public const int yes = 2131755223;
+			public const int vibrationSettings = 2131755223;
+			
+			// aapt resource value: 0x7F100013
+			public const int Wednesday = 2131755027;
+			
+			// aapt resource value: 0x7F100014
+			public const int WednesdayShort = 2131755028;
+			
+			// aapt resource value: 0x7F1000D8
+			public const int yes = 2131755224;
 			
 			static String()
 			{
