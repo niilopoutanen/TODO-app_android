@@ -8,6 +8,7 @@ using System;
 using AndroidX.AppCompat.App;
 using Xamarin.Essentials;
 using Firebase.Analytics;
+using System.Collections.Generic;
 
 namespace TODO_app
 {
@@ -38,7 +39,8 @@ namespace TODO_app
         Switch vibrationToggle;
         Button deleteAllDone;
 
-
+        private List<TaskItem> taskList = new List<TaskItem>();
+        FileClass files = new FileClass();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseAnalytics.GetInstance(this);
@@ -240,7 +242,15 @@ namespace TODO_app
 
         private void DeleteAllDone_Click(object sender, EventArgs e)
         {
-            
+            files.ReadFile();
+            foreach (TaskItem task in taskList)
+            {
+                if (task.IsDone == true)
+                {
+                    taskList.Remove(task);
+                }
+            }
+            files.WriteFile(taskList);
         }
 
         private void ToggleVibration(object sender, EventArgs e)
