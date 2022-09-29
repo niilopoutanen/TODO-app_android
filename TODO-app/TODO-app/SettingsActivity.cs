@@ -274,11 +274,11 @@ namespace TODO_app
         private void DeleteAllDone_Click(object sender, EventArgs e)
         {
             taskList = files.ReadFile();
-            foreach (TaskItem task in taskList)
+            for (int i = 0; i < taskList.Count; i++)
             {
-                if (task.IsDone == true)
+                if (taskList[i].IsDone == true)
                 {
-                    taskList.Remove(task);
+                    taskList.Remove(taskList[i]);
                 }
             }
             files.WriteFile(taskList);
