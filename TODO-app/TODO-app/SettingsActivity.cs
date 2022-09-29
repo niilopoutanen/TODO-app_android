@@ -9,6 +9,7 @@ using AndroidX.AppCompat.App;
 using Xamarin.Essentials;
 using Firebase.Analytics;
 using System.Collections.Generic;
+using Android.Util;
 
 namespace TODO_app
 {
@@ -314,5 +315,37 @@ namespace TODO_app
 
             }
         }
+        private void OpenPopup(string Header, string Desc, string YesText)
+        {
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm.Text = YesText;
+            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header.Text = Header;
+            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc.Text = Desc;
+            confirm.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+
+            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
+            cancel.Visibility = ViewStates.Gone;
+        }
+        private int DpToPx(int dpValue)
+        {
+            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
+            return pixel;
+        }
+
     }
 }
