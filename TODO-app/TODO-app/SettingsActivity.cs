@@ -246,15 +246,18 @@ namespace TODO_app
         private void ToggleVibration(object sender, EventArgs e)
         {
             Switch sw = (Switch)sender;
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
 
             if (sw.Checked)
             {
-                
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", true);
+
             }
-            
+
             else
             {
-                
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", false);
+
             }
         }
     }

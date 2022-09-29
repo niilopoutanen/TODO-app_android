@@ -25,6 +25,7 @@ namespace TODO_app
         private int activeDate = 1;
         private string currentTheme;
         private bool guideDone;
+        private bool vibration;
         Button btnCreateTask;
         Button btnAddTask;
 
@@ -248,6 +249,8 @@ namespace TODO_app
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
             guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
             {
@@ -861,10 +864,14 @@ namespace TODO_app
         /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
-            VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
-            Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-            hapticSystem.Cancel();
-            hapticSystem.Vibrate(invalidHaptic);
+            if(vibration == true)
+            {
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+            }
+
             
             RelativeLayout button = (RelativeLayout)sender;
             TextView taskName = (TextView)button.GetChildAt(1);
@@ -1556,10 +1563,14 @@ namespace TODO_app
         {
             if(visual != null)
             {
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
+                if(vibration == true)
+                {
+                    VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                    Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                    hapticSystem.Cancel();
+                    hapticSystem.Vibrate(invalidHaptic);
+                }
+
                 if (errorDesc != null)
                 {
                     errorDesc.Text = errorName;
