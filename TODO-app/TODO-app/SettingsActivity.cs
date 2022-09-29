@@ -153,9 +153,13 @@ namespace TODO_app
             savedTheme = color;
 
             bool vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
-            if(vibration == true)
+            if (vibration == true)
             {
-
+                vibrationToggle.Checked = true;
+            }
+            else if (vibration == false)
+            {
+                vibrationToggle.Checked = false;
             }
         }
         private void BackToMenu(object sender, EventArgs e)
