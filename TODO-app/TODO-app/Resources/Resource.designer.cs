@@ -10743,10 +10743,10 @@ namespace TODO_app
 			public const int CreditsHeader = 2131755012;
 			
 			// aapt resource value: 0x7F100052
-			public const int darkModeSetting = 2131755090;
+			public const int date = 2131755090;
 			
 			// aapt resource value: 0x7F100053
-			public const int date = 2131755091;
+			public const int dateDoesntExist = 2131755091;
 			
 			// aapt resource value: 0x7F100054
 			public const int dateInPast = 2131755092;
@@ -10808,14 +10808,14 @@ namespace TODO_app
 			// aapt resource value: 0x7F100066
 			public const int fallback_menu_item_share_link = 2131755110;
 			
-			// aapt resource value: 0x7F100067
-			public const int gcm_defaultSenderId = 2131755111;
-			
 			// aapt resource value: 0x7F100006
 			public const int Friday = 2131755014;
 			
 			// aapt resource value: 0x7F100007
 			public const int FridayShort = 2131755015;
+			
+			// aapt resource value: 0x7F100067
+			public const int gcm_defaultSenderId = 2131755111;
 			
 			// aapt resource value: 0x7F100068
 			public const int google_api_key = 2131755112;
@@ -10970,14 +10970,14 @@ namespace TODO_app
 			// aapt resource value: 0x7F10009A
 			public const int material_timepicker_text_input_mode_description = 2131755162;
 			
-			// aapt resource value: 0x7F10009B
-			public const int mtrl_badge_numberless_content_description = 2131755163;
-			
 			// aapt resource value: 0x7F100008
 			public const int Monday = 2131755016;
 			
 			// aapt resource value: 0x7F100009
 			public const int MondayShort = 2131755017;
+			
+			// aapt resource value: 0x7F10009B
+			public const int mtrl_badge_numberless_content_description = 2131755163;
 			
 			// aapt resource value: 0x7F10009C
 			public const int mtrl_chip_close_icon_content_description = 2131755164;
@@ -11117,14 +11117,14 @@ namespace TODO_app
 			// aapt resource value: 0x7F1000C9
 			public const int returnbtn = 2131755209;
 			
-			// aapt resource value: 0x7F1000CA
-			public const int search = 2131755210;
-			
 			// aapt resource value: 0x7F10000A
 			public const int Saturday = 2131755018;
 			
 			// aapt resource value: 0x7F10000B
 			public const int SaturdayShort = 2131755019;
+			
+			// aapt resource value: 0x7F1000CA
+			public const int search = 2131755210;
 			
 			// aapt resource value: 0x7F1000CB
 			public const int search_menu_title = 2131755211;
@@ -11147,26 +11147,23 @@ namespace TODO_app
 			// aapt resource value: 0x7F1000D0
 			public const int status_bar_notification_info_overflow = 2131755216;
 			
-			// aapt resource value: 0x7F1000D1
-			public const int taskAmount = 2131755217;
-			
 			// aapt resource value: 0x7F10000D
 			public const int Sunday = 2131755021;
 			
 			// aapt resource value: 0x7F10000E
 			public const int SundayShort = 2131755022;
 			
+			// aapt resource value: 0x7F1000D1
+			public const int task = 2131755217;
+			
 			// aapt resource value: 0x7F1000D2
-			public const int task = 2131755218;
+			public const int taskAmount = 2131755218;
 			
 			// aapt resource value: 0x7F1000D3
-			public const int taskAmount = 2131755219;
+			public const int task_name_header = 2131755219;
 			
 			// aapt resource value: 0x7F1000D4
-			public const int task_name_header = 2131755220;
-			
-			// aapt resource value: 0x7F1000D5
-			public const int task_template = 2131755221;
+			public const int task_template = 2131755220;
 			
 			// aapt resource value: 0x7F10000F
 			public const int Thursday = 2131755023;
@@ -11180,11 +11177,11 @@ namespace TODO_app
 			// aapt resource value: 0x7F100012
 			public const int TuesdayShort = 2131755026;
 			
-			// aapt resource value: 0x7F1000D6
-			public const int versionHeader = 2131755222;
+			// aapt resource value: 0x7F1000D5
+			public const int versionHeader = 2131755221;
 			
-			// aapt resource value: 0x7F1000D7
-			public const int vibrationSettings = 2131755223;
+			// aapt resource value: 0x7F1000D6
+			public const int vibrationSettings = 2131755222;
 			
 			// aapt resource value: 0x7F100013
 			public const int Wednesday = 2131755027;
@@ -11192,8 +11189,8 @@ namespace TODO_app
 			// aapt resource value: 0x7F100014
 			public const int WednesdayShort = 2131755028;
 			
-			// aapt resource value: 0x7F1000D8
-			public const int yes = 2131755224;
+			// aapt resource value: 0x7F1000D7
+			public const int yes = 2131755223;
 			
 			static String()
 			{
