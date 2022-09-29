@@ -90,6 +90,8 @@ namespace TODO_app
         TextView missedTasksCount;
         Space missedTaskSpace;
 
+        EditText editTaskField;
+
         RelativeLayout mainInfo;
 
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
@@ -194,6 +196,7 @@ namespace TODO_app
         }
         private void ShowMissedTasks(object sender, EventArgs e)
         {
+            activeDate = -1;
             scrollLayout.RemoveAllViews();
             missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
             date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -674,6 +677,10 @@ namespace TODO_app
             }
             catch
             {
+
+            }
+            try
+            {
                 string DayInputTextEdit = dayInputEdit.Text;
                 int daySelectedEdit = int.Parse(DayInputTextEdit);
                 string MonthInputTextEdit = monthInputEdit.Text;
@@ -733,7 +740,10 @@ namespace TODO_app
                         break;
                 }
             }
-
+            catch
+            {
+                
+            }
 
 
 
@@ -809,24 +819,22 @@ namespace TODO_app
             alert.Show();
             alert.Window.SetLayout(DpToPx(300), DpToPx(300));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            EditText editTaskName = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
+            editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
             EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
             EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
             EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
-            editTaskName.Text = oldTaskNAme;
+            editTaskField.Text = oldTaskNAme;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
 
             editConfirm.Click += (s, e) =>
             {
-                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
+                CreateNewTask(editTaskField.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
 
                 if (ready == true)
                 {
                     alert.Dismiss();
                 }
 
-                CreateNewTask(editTaskName.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
-                alert.Dismiss();
             };
 
             Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
@@ -1378,6 +1386,8 @@ namespace TODO_app
             if (string.IsNullOrWhiteSpace(taskname))
             {
                 InvalidInput(taskNameField, null, "");
+                InvalidInput(editTaskField, null, "");
+
                 didFail = true;
             }
 
@@ -1388,7 +1398,7 @@ namespace TODO_app
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(dayInput.Text) && !string.IsNullOrWhiteSpace(monthInput.Text) && !string.IsNullOrWhiteSpace(yearInput.Text))
+            if (!string.IsNullOrWhiteSpace(day) && !string.IsNullOrWhiteSpace(month) && !string.IsNullOrWhiteSpace(year))
             {
                 try
                 {
@@ -1408,6 +1418,8 @@ namespace TODO_app
                 if (intMonth > 12)
                 {
                     InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
+                    InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla suurempi kuin 12");
+
                     didFail = true;
 
                 }
@@ -1419,6 +1431,8 @@ namespace TODO_app
                 if (intDay < DateTime.Today.Day)
                 {
                     InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
+                    InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
+
                     didFail = true;
 
                 }
@@ -1426,6 +1440,8 @@ namespace TODO_app
                 if (intMonth < DateTime.Today.Month)
                 {
                     InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
+                    InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
+
                     didFail = true;
 
                 }
@@ -1433,6 +1449,8 @@ namespace TODO_app
                 if (intYear < DateTime.Today.Year)
                 {
                     InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+                    InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
+
                     didFail = true;
 
                 }
@@ -1440,6 +1458,8 @@ namespace TODO_app
                 if (intDay > DateTime.MaxValue.Day)
                 {
                     InvalidInput(dayInput, null, "Liian iso päivä");
+                    InvalidInput(dayInputEdit, null, "Liian iso päivä");
+
                     didFail = true;
 
                 }
@@ -1447,6 +1467,8 @@ namespace TODO_app
                 if (intMonth > DateTime.MaxValue.Month)
                 {
                     InvalidInput(monthInput, null, "");
+                    InvalidInput(monthInputEdit, null, "");
+
                     didFail = true;
 
                 }
@@ -1454,6 +1476,8 @@ namespace TODO_app
                 if (intYear > DateTime.MaxValue.Year)
                 {
                     InvalidInput(yearInput, null, "");
+                    InvalidInput(yearInputEdit, null, "");
+
                     didFail = true;
                 }
 
