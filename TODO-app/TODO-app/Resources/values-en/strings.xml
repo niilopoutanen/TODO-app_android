@@ -1,7 +1,7 @@
 <resources>
 	<string name="app_name">TODO-app</string>
 	<string name="action_settings">Settings</string>
-	<string name="date">Sunnuntai 11.9.2022</string>
+	<string name="date">Sunday \n11.9.2022</string>
 	<string name="task_name_header">Name of task</string>
 	<string name="date_select_header">Due date of the task</string>
 	<string name="default_description">description</string>

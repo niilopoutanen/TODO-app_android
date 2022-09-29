@@ -24,7 +24,7 @@
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Faktorerna:</string>
 	<string name="Credits1">Niilo Poutanen</string>
-	<string name="Credits2">Oskar Mäkelä</string>
+	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
 	<string name="taskAmount">0 uppgiftar</string>
 
@@ -62,7 +62,7 @@
 
 	<string name="next">Nästa</string>
 	<string name="skip">Skipparna</string>
-	<string name="guide1">Adda uppgiftar hemmenu \n+ buttorna.</string>
+	<string name="guide1">Adda uppgiftar från hemmenus \n+buttorna.</string>
 	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
 	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
 	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
@@ -70,7 +70,7 @@
 
 
 	<string name="DueDate">Due dagen</string>
-    <string name="CreationDate">Skapande dag</string>
+    <string name="CreationDate">Skapa dag</string>
 
 	<string name="Start">Starta</string>
 
