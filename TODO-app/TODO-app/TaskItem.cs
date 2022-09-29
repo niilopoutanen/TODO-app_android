@@ -55,8 +55,24 @@ namespace TODO_app
 
         internal static List<TaskItem> SortListByIsDone(List<TaskItem> taskList)
         {
-            taskList.OrderBy(x => x._isDone).ToList();
-            return taskList;
+            List<TaskItem> newOrder = new List<TaskItem>();
+            foreach (TaskItem t in taskList)
+            {
+                if (t.IsDone == false)
+                {
+                    newOrder.Add(t);
+                }
+            }
+
+            foreach (TaskItem t in taskList)
+            {
+                if (!newOrder.Contains(t))
+                {
+                    newOrder.Add(t);
+                }
+            }
+            
+            return newOrder;
         }
     }
 }

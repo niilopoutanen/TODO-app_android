@@ -7,6 +7,9 @@ using Android.Widget;
 using System;
 using AndroidX.AppCompat.App;
 using Xamarin.Essentials;
+using Firebase.Analytics;
+using System.Collections.Generic;
+using Android.Util;
 
 namespace TODO_app
 {
@@ -14,6 +17,7 @@ namespace TODO_app
     public class SettingsActivity : AppCompatActivity
     {
         private string savedTheme = "";
+        private bool vibration;
         TextView version;
         RelativeLayout sendFeedbackButton;
 
@@ -34,14 +38,19 @@ namespace TODO_app
         ImageView violetActive;
         ImageView redActive;
 
+        Switch vibrationToggle;
+        Button deleteAllDone;
 
-
+        private List<TaskItem> taskList = new List<TaskItem>();
+        FileClass files = new FileClass();
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            
-            LoadSettings();
+            FirebaseAnalytics.GetInstance(this);
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            LoadSettings();
+            SetTheme(GetStyle());
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_settings);
             RelativeLayout settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
@@ -79,6 +88,20 @@ namespace TODO_app
             violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
 
+            deleteAllDone = FindViewById<Button>(Resource.Id.deleteAllDoneButton);
+            vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
+
+            deleteAllDone.Click += DeleteAllDone_Click;
+            vibrationToggle.CheckedChange += ToggleVibration;
+            if (vibration == true)
+            {
+                vibrationToggle.Checked = true;
+            }
+            else if (vibration == false)
+            {
+                vibrationToggle.Checked = false;
+            }
+
             switch (savedTheme)
             {
                 case "blue":
@@ -110,8 +133,37 @@ namespace TODO_app
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+
+        private int GetStyle()
+        {
+            if (savedTheme == "blue")
+            {
+                return Resource.Color.mainBlue;
+            }
+            else if (savedTheme == "orange")
+            {
+                return Resource.Color.mainOrange;
+            }
+            else if (savedTheme == "green")
+            {
+                return Resource.Color.mainGreen;
+            }
+            else if (savedTheme == "violet")
+            {
+                return Resource.Color.mainViolet;
+            }
+            else if (savedTheme == "red")
+            {
+                return Resource.Color.mainRed;
+            }
+            else
+            {
+                return Resource.Color.mainBlue;
+            }
+        }
         private void LoadSettings()
         {
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
@@ -135,11 +187,14 @@ namespace TODO_app
             {
                 SetTheme(Resource.Style.MainRed);
             }
-            else if (color == null)
+            else
             {
                 SetTheme(Resource.Style.MainBlue);
             }
-            savedTheme = color;  
+            savedTheme = color;
+
+            vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+
         }
         private void BackToMenu(object sender, EventArgs e)
         {
@@ -216,5 +271,87 @@ namespace TODO_app
                     break;
             }
         }
+
+        private void DeleteAllDone_Click(object sender, EventArgs e)
+        {
+            int amountRemoved = 0;
+            taskList = files.ReadFile();
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                if (taskList[i].IsDone == true)
+                {
+                    taskList.Remove(taskList[i]);
+                    amountRemoved++;
+                }
+            }
+            files.WriteFile(taskList);
+            if (vibration == true)
+            {
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+            }
+            if(amountRemoved > 0)
+            {
+                OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+            }
+        }
+
+        private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            
+            if (e.IsChecked == true)
+            {
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
+                vibration = true;
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+            }
+
+            else if (e.IsChecked == false)
+            {
+                vibrationPref.Edit().PutBoolean("vibrationEnabled", false).Commit();
+                vibration = false;
+
+
+            }
+        }
+        private void OpenPopup(string Header, string Desc, string YesText)
+        {
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm.Text = YesText;
+            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header.Text = Header;
+            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc.Text = Desc;
+            confirm.Click += (s, e) =>
+            {
+                alert.Dismiss();
+            };
+
+            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
+            cancel.Visibility = ViewStates.Gone;
+        }
+        private int DpToPx(int dpValue)
+        {
+            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
+            return pixel;
+        }
+
     }
 }

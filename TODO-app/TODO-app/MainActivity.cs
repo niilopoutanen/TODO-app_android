@@ -13,6 +13,9 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Java.Lang;
 using Firebase.Analytics;
+using Android.Gms.Tasks;
+using System.Threading.Tasks;
+using AndroidX.RecyclerView.Widget;
 
 namespace TODO_app
 {
@@ -22,6 +25,7 @@ namespace TODO_app
         private int activeDate = 1;
         private string currentTheme;
         private bool guideDone;
+        private bool vibration;
         Button btnCreateTask;
         Button btnAddTask;
 
@@ -48,6 +52,17 @@ namespace TODO_app
         EditText dayInput;
         EditText monthInput;
         EditText yearInput;
+
+        RelativeLayout dayUpEdit;
+        RelativeLayout monthUpEdit;
+        RelativeLayout yearUpEdit;
+        RelativeLayout dayDownEdit;
+        RelativeLayout monthDownEdit;
+        RelativeLayout yearDownEdit;
+
+        EditText dayInputEdit;
+        EditText monthInputEdit;
+        EditText yearInputEdit;
 
         int thisDay = DateTime.Today.Day;
         int thisMonth = DateTime.Today.Month;
@@ -76,14 +91,16 @@ namespace TODO_app
         TextView missedTasksCount;
         Space missedTaskSpace;
 
+        EditText editTaskField;
+
         RelativeLayout mainInfo;
-        
+
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
-        private int amountOfMissed;
+        private bool ready = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -123,10 +140,7 @@ namespace TODO_app
 
                 Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
                 cancel.Visibility = ViewStates.Gone;
-                
             }
-
-
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -135,26 +149,12 @@ namespace TODO_app
             InitializeElements();
             CalendarDater();
 
+            DoneAndGone();
+            CountAndShowMissed();
 
-            
-
-            amountOfMissed = 0;
-            foreach (TaskItem t in taskList)
-            {
-                if (t.DueDate < DateTime.Today)
-                {
-                    amountOfMissed++;
-                }
-            }
-
-            if (amountOfMissed > 0)
-            {
-                ShowMissedTasksElement(amountOfMissed);
-            }
             ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
-
 
 
             //Start onboarding
@@ -197,6 +197,7 @@ namespace TODO_app
         }
         private void ShowMissedTasks(object sender, EventArgs e)
         {
+            activeDate = -1;
             scrollLayout.RemoveAllViews();
             missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
             date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -248,6 +249,8 @@ namespace TODO_app
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
             guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             string color = colorTheme.GetString("colorTheme", default);
             if (color == "blue")
             {
@@ -336,6 +339,10 @@ namespace TODO_app
             monthDown.Click += ArrowModify;
             yearDown.Click += ArrowModify;
 
+
+
+
+
             date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
             date2Btn = FindViewById<RelativeLayout>(Resource.Id.date2btn);
             date3Btn = FindViewById<RelativeLayout>(Resource.Id.date3btn);
@@ -362,6 +369,11 @@ namespace TODO_app
         }
 
 
+        /// <summary>
+        /// Back to main view, used below task creation view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackToMain(object sender, EventArgs e)
         {
             InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
@@ -376,6 +388,10 @@ namespace TODO_app
             monthInput.Text = "";
             yearInput.Text = "";
         }
+
+        /// <summary>
+        /// Updates task count element
+        /// </summary>
         private void UpdateTaskCount()
         {
             int elementCount = scrollLayout.ChildCount;
@@ -388,7 +404,11 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " tehtävää";
             }
         }
-
+        /// <summary>
+        /// Triggers every time search field text changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchChanged(object sender, EventArgs e)
         {
             TextView field = (TextView)sender;
@@ -396,140 +416,63 @@ namespace TODO_app
 
             string fieldText = searchField.Text;
             scrollLayout.RemoveAllViews();
-            foreach(TaskItem task in taskList)
+            foreach (TaskItem task in taskList)
             {
-                if(task.Text.Contains(fieldText))
+                if (task.Text.Contains(fieldText))
                 {
                     CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                 }
             }
-        }
 
+            UpdateTaskCount();
+        }
+        /// <summary>
+        /// Closes task creation menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseCreateView(object sender, EventArgs e)
         {
             string taskname = taskNameField.Text;
-            int day;
-            int month;
-            int year;
-            DateTime dueDate;
             if (mainHeader.Visibility == ViewStates.Gone)
             {
-                if (string.IsNullOrWhiteSpace(taskname))
+                taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                CreateNewTask(taskname, null, dayInput.Text, monthInput.Text, yearInput.Text, true);
+                if (ready == true)
                 {
-                    OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.invalidNameDesc), "OK");
-                    return;
+                    scrollBase.Visibility = ViewStates.Visible;
+                    scrollLayout.Visibility = ViewStates.Visible;
+                    mainHeader.Visibility = ViewStates.Visible;
+                    createTaskHeader.Visibility = ViewStates.Gone;
+                    taskCountLayout.Visibility = ViewStates.Visible;
+
+
+                    taskNameField.Text = "";
+                    dayInput.Text = "";
+                    monthInput.Text = "";
+                    yearInput.Text = "";
+
+                    InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                    imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
                 }
-
-                foreach (TaskItem t in taskList)
-                {
-                    if (t.Text.ToLower() == taskname.ToLower())
-                    {
-                        OpenPopup(GetString(Resource.String.invalidName), GetString(Resource.String.nameExists), "OK");
-                        return;
-                    }
-                }
-
-                if (!string.IsNullOrWhiteSpace(dayInput.Text) && !string.IsNullOrWhiteSpace(monthInput.Text) && !string.IsNullOrWhiteSpace(yearInput.Text))
-                {
-                    try
-                    {
-                        day = int.Parse(dayInput.Text);
-                        month = int.Parse(monthInput.Text);
-                        year = int.Parse(yearInput.Text);
-                    }
-                    catch
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
-                        return;
-                    }
-
-                    if (day < 1 || month < 1 || year < 1)
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-
-                    else if (month > 12)
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-
-                    else if (!IsDayInMonth(day, month, year))
-                    {
-                        OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateDoesntExist), "OK");
-                        return;
-                    }
-                    else
-                    {
-                        dueDate = new DateTime(year, month, day);
-
-                        if (dueDate < DateTime.Today)
-                        {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateInPast), "OK");
-                            return;
-                        }
-
-                        else if (dueDate > DateTime.MaxValue)
-                        {
-                            OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.dateTooBig), "OK");
-                            return;
-                        }
-
-                        else
-                        {
-                            CreateTaskItem(taskNameField.Text, dueDate);
-                            file.WriteFile(taskList);
-
-                            for (int i = 1; i < 8; i++)
-                            {
-                                if (activeDate == 1 || activeDate == 0)
-                                {
-                                    scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today);
-                                    UpdateTaskCount();
-                                    break;
-                                }
-
-                                else if (activeDate == i)
-                                {
-                                    scrollLayout.RemoveAllViews();
-                                    ShowDatestasks(DateTime.Today.AddDays(i - 1));
-                                    UpdateTaskCount();
-                                    break;
-                                }
-                            }
-
-                            scrollBase.Visibility = ViewStates.Visible;
-                            scrollLayout.Visibility = ViewStates.Visible;
-                            mainHeader.Visibility = ViewStates.Visible;
-                            createTaskHeader.Visibility = ViewStates.Gone;
-                            taskCountLayout.Visibility = ViewStates.Visible;
-
-
-                            taskNameField.Text = "";
-                            dayInput.Text = "";
-                            monthInput.Text = "";
-                            yearInput.Text = "";
-                        }
-                    }
-                }
-                else
-                {
-                    OpenPopup(GetString(Resource.String.invalidValue), GetString(Resource.String.invalidDate), "OK");
-                    return;
-                }
-
-                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
-                imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
             }
-
-
-
         }
-
+        /// <summary>
+        /// Opens task creation menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenCreateView(object sender, EventArgs e)
         {
+
+            taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
 
 
             if (createTaskHeader.Visibility == ViewStates.Gone)
@@ -548,6 +491,12 @@ namespace TODO_app
             }
 
         }
+
+        /// <summary>
+        /// Triggers show all menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowAll(object sender, EventArgs e)
         {
             if (calendarView.Visibility == ViewStates.Visible)
@@ -557,6 +506,7 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
+                taskList = TaskItem.SortListByIsDone(taskList);
                 foreach (TaskItem t in taskList)
                 {
                     CreateTaskElement(t.Text, t.IsDone, t.DueDate);
@@ -670,66 +620,140 @@ namespace TODO_app
         private void ArrowModify(object sender, EventArgs e)
         {
             var button = (RelativeLayout)sender;
-            string DayInputText = dayInput.Text;
-            int daySelected = int.Parse(DayInputText);
-            string MonthInputText = monthInput.Text;
-            int MonthSelected = int.Parse(MonthInputText);
-            string YearInputText = yearInput.Text;
-            int YearSelected = int.Parse(YearInputText);
-            switch (button.Id)
+            try
             {
-                case Resource.Id.DayArrowUp:
-                    daySelected++;
-                    if(daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
-                    {
-                        daySelected--;
-                    }
-                    dayInput.Text = daySelected.ToString();
-                    break;
-
-                case Resource.Id.DayArrowDown:
-                    daySelected--;
-                    if (daySelected < 1) 
-                    {
+                string DayInputText = dayInput.Text;
+                int daySelected = int.Parse(DayInputText);
+                string MonthInputText = monthInput.Text;
+                int MonthSelected = int.Parse(MonthInputText);
+                string YearInputText = yearInput.Text;
+                int YearSelected = int.Parse(YearInputText);
+                switch (button.Id)
+                {
+                    case Resource.Id.DayArrowUp:
                         daySelected++;
-                    }
-                    dayInput.Text = daySelected.ToString();
-                    break;
+                        if (daySelected > DateTime.DaysInMonth(YearSelected, MonthSelected))
+                        {
+                            daySelected--;
+                        }
+                        dayInput.Text = daySelected.ToString();
+                        break;
 
-                case Resource.Id.MonthArrowUp:
-                    MonthSelected++;
-                    if (MonthSelected > 12)
-                    {
-                        MonthSelected = 12;
-                    }
-                    monthInput.Text = MonthSelected.ToString();
-                    break;
+                    case Resource.Id.DayArrowDown:
+                        daySelected--;
+                        if (daySelected < 1)
+                        {
+                            daySelected++;
+                        }
+                        dayInput.Text = daySelected.ToString();
+                        break;
 
-                case Resource.Id.YearArrowUp:
-                    YearSelected++;
-                    yearInput.Text = YearSelected.ToString();
-                    break;
+                    case Resource.Id.MonthArrowUp:
+                        MonthSelected++;
+                        if (MonthSelected > 12)
+                        {
+                            MonthSelected = 12;
+                        }
+                        monthInput.Text = MonthSelected.ToString();
+                        break;
 
-                case Resource.Id.YearArrowDown:
-                    YearSelected--;
-                    if (YearSelected < DateTime.Today.Year)
-                    {
-                        YearSelected = DateTime.Today.Year;
-                    }
-                    yearInput.Text = YearSelected.ToString();
-                    break;
+                    case Resource.Id.YearArrowUp:
+                        YearSelected++;
+                        yearInput.Text = YearSelected.ToString();
+                        break;
 
-                case Resource.Id.MonthArrowDown:
-                    MonthSelected--;
-                    if (MonthSelected < 1)
-                    {
-                        MonthSelected = 1;
-                    }
-                    monthInput.Text = MonthSelected.ToString();
-                    break;
+                    case Resource.Id.YearArrowDown:
+                        YearSelected--;
+                        if (YearSelected < DateTime.Today.Year)
+                        {
+                            YearSelected = DateTime.Today.Year;
+                        }
+                        yearInput.Text = YearSelected.ToString();
+                        break;
 
+                    case Resource.Id.MonthArrowDown:
+                        MonthSelected--;
+                        if (MonthSelected < 1)
+                        {
+                            MonthSelected = 1;
+                        }
+                        monthInput.Text = MonthSelected.ToString();
+                        break;
+
+
+
+                }
+            }
+            catch
+            {
 
             }
+            try
+            {
+                string DayInputTextEdit = dayInputEdit.Text;
+                int daySelectedEdit = int.Parse(DayInputTextEdit);
+                string MonthInputTextEdit = monthInputEdit.Text;
+                int MonthSelectedEdit = int.Parse(MonthInputTextEdit);
+                string YearInputTextEdit = yearInputEdit.Text;
+                int YearSelectedEdit = int.Parse(YearInputTextEdit);
+                switch (button.Id)
+                {
+                    case Resource.Id.EditDayArrowUp:
+                        daySelectedEdit++;
+                        if (daySelectedEdit > DateTime.DaysInMonth(YearSelectedEdit, MonthSelectedEdit))
+                        {
+                            daySelectedEdit--;
+                        }
+                        dayInputEdit.Text = daySelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditDayArrowDown:
+                        daySelectedEdit--;
+                        if (daySelectedEdit < 1)
+                        {
+                            daySelectedEdit++;
+                        }
+                        dayInputEdit.Text = daySelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditMonthArrowUp:
+                        MonthSelectedEdit++;
+                        if (MonthSelectedEdit > 12)
+                        {
+                            MonthSelectedEdit = 12;
+                        }
+                        monthInputEdit.Text = MonthSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditYearArrowUp:
+                        YearSelectedEdit++;
+                        yearInputEdit.Text = YearSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditYearArrowDown:
+                        YearSelectedEdit--;
+                        if (YearSelectedEdit < DateTime.Today.Year)
+                        {
+                            YearSelectedEdit = DateTime.Today.Year;
+                        }
+                        yearInputEdit.Text = YearSelectedEdit.ToString();
+                        break;
+
+                    case Resource.Id.EditMonthArrowDown:
+                        MonthSelectedEdit--;
+                        if (MonthSelectedEdit < 1)
+                        {
+                            MonthSelectedEdit = 1;
+                        }
+                        monthInputEdit.Text = MonthSelectedEdit.ToString();
+                        break;
+                }
+            }
+            catch
+            {
+                
+            }
+
 
 
         }
@@ -741,33 +765,72 @@ namespace TODO_app
         /// <param name="Header">Header of the popup.</param>
         /// <param name="Desc">Description of the popup.</param>
         /// <param name="YesText">Text of the OK-button.</param>
-        private void OpenPopup(string Header, string Desc, string YesText)
+        /// <summary>
+        /// Opens task edit popup
+        /// </summary>
+        /// <param name="oldTaskName"></param>
+        private void EditTaskPopup(string oldTaskName)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
+            View view = inflater.Inflate(Resource.Layout.edit_popup, null);
+            dayInputEdit = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            monthInputEdit = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            yearInputEdit = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+            dayInputEdit.Text = DateTime.Today.Day.ToString();
+            monthInputEdit.Text = DateTime.Today.Month.ToString();
+            yearInputEdit.Text = DateTime.Today.Year.ToString();
+            dayUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowUp);
+            monthUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowUp);
+            yearUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowUp);
+
+            dayDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowDown);
+            monthDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowDown);
+            yearDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowDown);
+
+            dayUpEdit.Click += ArrowModify;
+            monthUpEdit.Click += ArrowModify;
+            yearUpEdit.Click += ArrowModify;
+
+            dayDownEdit.Click += ArrowModify;
+            monthDownEdit.Click += ArrowModify;
+            yearDownEdit.Click += ArrowModify;
             view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert.Window.SetLayout(DpToPx(300), DpToPx(300));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
-            confirm.Text = YesText;
-            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
-            header.Text = Header;
-            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
-            desc.Text = Desc;
-            confirm.Click += (s, e) =>
+            editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
+            EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+            editTaskField.Text = oldTaskName;
+            Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
+
+            editConfirm.Click += (s, e) =>
+            {
+                editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                CreateNewTask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
+
+                if (ready == true)
+                {
+                    alert.Dismiss();
+                }
+
+            };
+
+            Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
+            editCancel.Click += (s, e) =>
             {
                 alert.Dismiss();
             };
-
-            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
-            cancel.Visibility = ViewStates.Gone;
         }
-
+        
         /// <summary>
         /// This happens when task element is pressed & held down.
         /// </summary>
@@ -775,43 +838,90 @@ namespace TODO_app
         /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
+            if(vibration == true)
+            {
+                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
+                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                hapticSystem.Cancel();
+                hapticSystem.Vibrate(invalidHaptic);
+            }
+
+            
             RelativeLayout button = (RelativeLayout)sender;
-            button.BackgroundTintList = GetColorStateList(GetStyle());
+            TextView taskName = (TextView)button.GetChildAt(1);
             CheckIfMissedAnymore();
 
-            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-            Android.App.AlertDialog alert = dialog.Create();
+            Android.App.AlertDialog.Builder dialog1 = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert1 = dialog1.Create();
 
-            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
-            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-            alert.SetView(view);
-            alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(150));
-            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
-            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
-            header.Text = GetString(Resource.String.deleteTaskHeader);
-            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
-            desc.Text = GetString(Resource.String.deleteTaskDescription);
-            TextView name = (TextView)button.GetChildAt(1);
+            LayoutInflater inflater1 = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view1 = inflater1.Inflate(Resource.Layout.dialog_popup, null);
+            view1.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert1.SetView(view1);
+            alert1.Show();
+            alert1.Window.SetLayout(DpToPx(300), DpToPx(150));
+            alert1.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm1 = view1.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm1.Text = GetString(Resource.String.delete);
+            TextView header1 = view1.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header1.Text = taskName.Text;
+            TextView desc1 = view1.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc1.Text = GetString(Resource.String.editDesc);
 
-            confirm.Click += (s, e) =>
+            confirm1.Click += (s, e) =>
             {
-                DeleteTaskItem(name.Text);
-                button.RemoveAllViews();
-                scrollLayout.RemoveView(button);
-                alert.Dismiss();
-                UpdateTaskCount();
-                CheckIfMissedAnymore();
+                alert1.Dismiss();
+                Android.App.AlertDialog.Builder dialog2 = new Android.App.AlertDialog.Builder(this);
+                Android.App.AlertDialog alert2 = dialog2.Create();
+
+                LayoutInflater inflater2 = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+                View view2 = inflater2.Inflate(Resource.Layout.dialog_popup, null);
+                view2.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+                alert2.SetView(view2);
+                alert2.Show();
+                alert2.Window.SetLayout(DpToPx(300), DpToPx(150));
+                alert2.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+                Button confirm2 = view2.FindViewById<Button>(Resource.Id.PopupConfirm);
+                TextView header2 = view2.FindViewById<TextView>(Resource.Id.PopupHeader);
+                header2.Text = GetString(Resource.String.deleteTaskHeader);
+                TextView desc2 = view2.FindViewById<TextView>(Resource.Id.PopupDescription);
+                desc2.Text = GetString(Resource.String.deleteTaskDescription);
+
+                confirm2.Click += (s, e) =>
+                {
+                    DeleteTaskItem(taskName.Text);
+                    button.RemoveAllViews();
+                    scrollLayout.RemoveView(button);
+                    alert2.Dismiss();
+                    UpdateTaskCount();
+                    CheckIfMissedAnymore();
+                };
+
+                Button cancel2 = view2.FindViewById<Button>(Resource.Id.PopupCancel);
+                cancel2.Click += (s, e) =>
+                {
+                    button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+                    alert2.Dismiss();
+                };
             };
 
-            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
-            cancel.Click += (s, e) =>
+            Button edit = view1.FindViewById<Button>(Resource.Id.PopupCancel);
+            edit.Text = GetString(Resource.String.edit);
+
+            edit.Click += (s, e) =>
             {
-                button.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-                alert.Dismiss();
+                alert1.Dismiss();
+                EditTaskPopup(taskName.Text);
             };
+
+
+
+
+
+
+
+            
+
             
         }
         /// <summary>
@@ -953,7 +1063,7 @@ namespace TODO_app
                     date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
-                    
+
             }
             UpdateTaskCount();
         }
@@ -972,7 +1082,7 @@ namespace TODO_app
             cardBG.Id = View.GenerateViewId();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-            
+
             cardBG.LayoutParameters = cardparams;
             cardBG.LongClick += HoldTaskElement;
             cardBG.Click += ExpandCard;
@@ -1034,7 +1144,7 @@ namespace TODO_app
 
         private void ExpandCard(object sender, EventArgs e)
         {
-            
+
             RelativeLayout card = (RelativeLayout)sender;
             if (card.Height == DpToPx(100))
             {
@@ -1090,7 +1200,7 @@ namespace TODO_app
                 if (t.Text == header.Text)
                 {
                     t.IsDone = !t.IsDone;
-                    if(t.IsDone == true)
+                    if (t.IsDone == true)
                     {
                         button.Background = active;
                     }
@@ -1140,9 +1250,9 @@ namespace TODO_app
                     break;
                 }
             }
-            
+
         }
-        
+
         /// <summary>
         /// Checks if the given date is in the given month
         /// </summary>
@@ -1154,21 +1264,37 @@ namespace TODO_app
         /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
+            if (month > 12 || month < 1)
+            {
+                return false;
+            }
+            
+            else if (year > DateTime.MaxValue.Year)
+            {
+                return false;
+            }
+
+            else if (day < 1)
+            {
+                return false;
+            }
+
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
             if (day > amountOfDaysInMonth)
             {
                 return false;
             }
-            else if (day < 1)
-            {
-                return false;
-            }
+            
             else
             {
                 return true;
             }
         }
-
+        /// <summary>
+        /// Sorts show all view tasks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortBy(object sender, EventArgs e)
         {
             Button clicked = (Button)sender;
@@ -1180,7 +1306,7 @@ namespace TODO_app
                 case Resource.Id.SortByDueDate:
                     sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
                     scrollLayout.RemoveAllViews();
-                    foreach(TaskItem task in TaskItem.SortListByDueDate(taskList))
+                    foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
                         CreateTaskElement(task.Text, task.IsDone, task.DueDate);
                     }
@@ -1209,6 +1335,227 @@ namespace TODO_app
                     CreateTaskElement(t.Text, t.IsDone, t.DueDate);
                 }
             }
+        }
+
+        private void CountAndShowMissed()
+        {
+            int amountOfMissed = 0;
+            foreach (TaskItem t in taskList)
+            {
+                if (t.DueDate < DateTime.Today)
+                {
+                    amountOfMissed++;
+                }
+            }
+
+            if (amountOfMissed > 0)
+            {
+                ShowMissedTasksElement(amountOfMissed);
+            }
+        }
+
+        private void DoneAndGone()
+        {
+            foreach (TaskItem t in taskList)
+            {
+                if (t.IsDone == true && t.DueDate < DateTime.Today)
+                {
+                    DeleteTaskItem(t.Text);
+                }
+            }
+            file.WriteFile(taskList);
+        }
+
+        private void CreateNewTask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
+        {
+            ready = false;
+            bool didFail = false;
+            
+            if (string.IsNullOrWhiteSpace(taskName))
+            {
+                InvalidInput(taskNameField, null, "");
+                InvalidInput(editTaskField, null, "");
+
+                didFail = true;
+            }
+
+            if(isNew == true)
+            {
+                foreach (TaskItem t in taskList)
+                {
+                    if (t.Text.ToLower() == taskName.ToLower())
+                    {
+                        InvalidInput(taskNameField, null, "");
+                        InvalidInput(editTaskField, null, "");
+                    }
+                }
+            }
+
+            if (!int.TryParse(day, out int intDay))
+            {
+                InvalidInput(dayInput, null, "Päivä ei voi olla tyhjä");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla tyhjä");
+
+            }
+
+            if (!int.TryParse(month, out int intMonth))
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla tyhjä");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla tyhjä");
+            }
+
+            if (!int.TryParse(year, out int intYear))
+            {
+                InvalidInput(yearInput, null, "Vuosi ei voi olla tyhjä");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla tyhjä");
+            }
+
+            if (intDay < 1)
+            {
+                InvalidInput(dayInput, null, "Päivä ei voi olla pienempi kuin 1");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla pienempi kuin 1");
+
+            }
+
+            if (intMonth < 1)
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla pienempi kuin 1");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla pienempi kuin 1");
+
+            }
+
+            if (intYear < 1)
+            {
+                InvalidInput(yearInput, null, "Vuosi ei voi olla pienempi kuin 1");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla pienempi kuin 1");
+            }
+            
+            if (intMonth > 12)
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla suurempi kuin 12");
+
+                didFail = true;
+
+            }
+
+            if (!IsDayInMonth(intDay, intMonth, intYear))
+            {
+                
+            }
+
+            if (intDay < DateTime.Today.Day)
+            {
+                InvalidInput(dayInput, null, "Päivä ei voi olla menneisyydessä");
+                InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intMonth < DateTime.Today.Month)
+            {
+                InvalidInput(monthInput, null, "Kuukausi ei voi olla menneisyydessä");
+                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intYear < DateTime.Today.Year)
+            {
+                InvalidInput(yearInput, null, "Vuosi ei voi olla menneisyydessä");
+                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
+
+                didFail = true;
+
+            }
+
+            if (intDay > DateTime.MaxValue.Day)
+            {
+                InvalidInput(dayInput, null, "Liian iso päivä");
+                InvalidInput(dayInputEdit, null, "Liian iso päivä");
+
+                didFail = true;
+
+            }
+
+            if (intMonth > DateTime.MaxValue.Month)
+            {
+                InvalidInput(monthInput, null, "");
+                InvalidInput(monthInputEdit, null, "");
+
+                didFail = true;
+
+            }
+
+            if (intYear > DateTime.MaxValue.Year)
+            {
+                InvalidInput(yearInput, null, "");
+                InvalidInput(yearInputEdit, null, "");
+
+                didFail = true;
+            }
+
+            if (didFail == false)
+            {
+                DateTime dueDate = new DateTime(intYear, intMonth, intDay);
+                DeleteTaskItem(oldTaskName);
+                CreateTaskItem(taskName, dueDate);
+
+                for (int i = 1; i < 8; i++)
+                {
+                    if (activeDate == 1 || activeDate == 0)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today);
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
+                    }
+
+                    else if (activeDate == -1)
+                    {
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
+                    }
+                    
+                    else if (activeDate == i)
+                    {
+                        scrollLayout.RemoveAllViews();
+                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
+                        UpdateTaskCount();
+                        ready = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
+        {
+            if(visual != null)
+            {
+                if(vibration == true)
+                {
+                    VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
+                    Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
+                    hapticSystem.Cancel();
+                    hapticSystem.Vibrate(invalidHaptic);
+                }
+
+                if (errorDesc != null)
+                {
+                    errorDesc.Text = errorName;
+                }
+                visual.BackgroundTintList = GetColorStateList(Resource.Color.mainRed);
+
+                //await System.Threading.Tasks.Task.Delay(1000);
+                //visual.Background = active;
+                //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
+            }
+
         }
     }
 }

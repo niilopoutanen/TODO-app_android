@@ -7,7 +7,9 @@
 	<string name="default_description">description</string>
 	<string name="show_all">Näytä kaikki</string>
 	<string name="add_task_header">Lisää uusi tehtävä</string>
-	<string name="add">Lisää</string>
+    <string name="edit_task_header">Muokkaa tehtävää</string>
+
+    <string name="add">Lisää</string>
 	<string name="search">Hae</string>
 	<string name="plus">+</string>
 	<string name="yes">Kyllä</string>
@@ -16,7 +18,8 @@
 
 	<string name="settings">Asetukset</string>
 	<string name="darkModeSetting">Tumma teema</string>
-	<string name="notificationSetting">Ilmoitukset</string>
+	<string name="vibrationSettings">Värinä</string>
+    <string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="colorTheme">Väriteema</string>
 	<string name="sendFeedback">Lähetä palautetta</string>
 	<string name="versionHeader">Versio:</string>
@@ -77,4 +80,10 @@
     <string name="CreationDate">Luontipäivä</string>
 
 	<string name="Start">Aloita</string>
+
+    <string name="delete">Poista</string>
+    <string name="edit">Muokkaa</string>
+    <string name="cancel">Peruuta</string>
+
+    <string name="editDesc">Valitse toiminto alta</string>
 </resources>

@@ -59,10 +59,12 @@
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/notificationSetting"
+                    android:text="@string/vibrationSettings"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
                 <Switch
+                    android:checked="true"
+                    android:id="@+id/vibrationSwitch"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
@@ -72,6 +74,32 @@
                     />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/headerBackground"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deleteAllDone"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/inter_bold"/>
+                <Button
+                    android:id="@+id/deleteAllDoneButton"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/toggle_thumb"/>
+            </RelativeLayout>
+
+            
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
