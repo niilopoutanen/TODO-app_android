@@ -437,7 +437,7 @@ namespace TODO_app
                 dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateNewTask(taskname, dayInput.Text, monthInput.Text, yearInput.Text);
+                CreateNewTask(taskname, null, dayInput.Text, monthInput.Text, yearInput.Text, true);
                 if (ready == true)
                 {
                     scrollBase.Visibility = ViewStates.Visible;
@@ -791,8 +791,8 @@ namespace TODO_app
         /// <summary>
         /// Opens task edit popup
         /// </summary>
-        /// <param name="oldTaskNAme"></param>
-        private void EditTaskPopup(string oldTaskNAme)
+        /// <param name="oldTaskName"></param>
+        private void EditTaskPopup(string oldTaskName)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
             Android.App.AlertDialog alert = dialog.Create();
@@ -829,7 +829,7 @@ namespace TODO_app
             EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
             EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
             EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
-            editTaskField.Text = oldTaskNAme;
+            editTaskField.Text = oldTaskName;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
 
             editConfirm.Click += (s, e) =>
@@ -838,7 +838,7 @@ namespace TODO_app
                 dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateNewTask(editTaskField.Text, editDayInput.Text, editMonthInput.Text, editYearInput.Text);
+                CreateNewTask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
 
                 if (ready == true)
                 {
@@ -1385,12 +1385,12 @@ namespace TODO_app
             file.WriteFile(taskList);
         }
 
-        private void CreateNewTask(string taskname, string day, string month, string year)
+        private void CreateNewTask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
         {
             ready = false;
             bool didFail = false;
             
-            if (string.IsNullOrWhiteSpace(taskname))
+            if (string.IsNullOrWhiteSpace(taskName))
             {
                 InvalidInput(taskNameField, null, "");
                 InvalidInput(editTaskField, null, "");
@@ -1398,10 +1398,13 @@ namespace TODO_app
                 didFail = true;
             }
 
-            foreach (TaskItem t in taskList)
+            if(isNew == true)
             {
-                if (t.Text.ToLower() == taskname.ToLower())
+                foreach (TaskItem t in taskList)
                 {
+                    if (t.Text.ToLower() == taskName.ToLower())
+                    {
+                    }
                 }
             }
 
@@ -1514,9 +1517,8 @@ namespace TODO_app
             if (didFail == false)
             {
                 DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-                DeleteTaskItem(taskname);
-                CreateTaskItem(taskNameField.Text, dueDate);
-                file.WriteFile(taskList);
+                DeleteTaskItem(oldTaskName);
+                CreateTaskItem(taskName, dueDate);
 
                 for (int i = 1; i < 8; i++)
                 {
