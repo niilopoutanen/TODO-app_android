@@ -16,6 +16,7 @@ namespace TODO_app
     public class SettingsActivity : AppCompatActivity
     {
         private string savedTheme = "";
+        private bool vibration;
         TextView version;
         RelativeLayout sendFeedbackButton;
 
@@ -44,7 +45,7 @@ namespace TODO_app
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseAnalytics.GetInstance(this);
-            LoadSettings();
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -89,6 +90,7 @@ namespace TODO_app
 
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.Click += ToggleVibration;
+            LoadSettings();
 
 
             switch (savedTheme)
@@ -154,7 +156,7 @@ namespace TODO_app
             }
             savedTheme = color;
 
-            bool vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             if (vibration == true)
             {
                 vibrationToggle.Checked = true;
@@ -258,7 +260,7 @@ namespace TODO_app
             Switch sw = (Switch)sender;
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
 
-            if (sw.Checked)
+            if (!sw.Checked)
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true);
 
