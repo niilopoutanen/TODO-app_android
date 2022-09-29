@@ -35,6 +35,8 @@ namespace TODO_app
         ImageView violetActive;
         ImageView redActive;
 
+        Switch vibrationToggle;
+        Button deleteAllDone;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -79,6 +81,13 @@ namespace TODO_app
             orangeActive = FindViewById<ImageView>(Resource.Id.MainOrangeActive);
             violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
+
+            deleteAllDone = FindViewById<Button>(Resource.Id.deleteAllDoneButton);
+            vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
+
+            deleteAllDone.Click += DeleteAllDone_Click;
+            vibrationToggle.Click += ToggleVibration;
+
 
             switch (savedTheme)
             {
@@ -216,6 +225,16 @@ namespace TODO_app
                     colorTheme.Edit().PutString("colorTheme", "red").Commit();
                     break;
             }
+        }
+
+        private void DeleteAllDone_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ToggleVibration(object sender, EventArgs e)
+        {
+            
         }
     }
 }
