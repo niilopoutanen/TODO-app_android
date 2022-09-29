@@ -1404,6 +1404,8 @@ namespace TODO_app
                 {
                     if (t.Text.ToLower() == taskName.ToLower())
                     {
+                        InvalidInput(taskNameField, null, "");
+                        InvalidInput(editTaskField, null, "");
                     }
                 }
             }
