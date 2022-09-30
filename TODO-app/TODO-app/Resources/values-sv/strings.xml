@@ -6,7 +6,7 @@
 	<string name="date_select_header">Due datorna på uppgift</string>
 	<string name="default_description">Description</string>
 	<string name="show_all">Shuv allt</string>
-	<string name="add_task_header">Addärare nu uppgift</string>
+	<string name="add_task_header">Addärare en nu uppgift</string>
     <string name="edit_task_header">Editorna uppgift</string>
 
     <string name="add">Addärare</string>
@@ -40,8 +40,8 @@
     <string name="Thursday">Tursdag</string>
     <string name="FridayShort">Fri</string>
     <string name="Friday">Fridåg</string>
-    <string name="SaturdayShort">Lön</string>
-    <string name="Saturday">Lönsdag</string>
+    <string name="SaturdayShort">Lör</string>
+    <string name="Saturday">Lördag</string>
     <string name="SundayShort">Sun</string>
     <string name="Sunday">Sundag</string>
 
@@ -62,7 +62,7 @@
 
 	<string name="next">Nästa</string>
 	<string name="skip">Skipparna</string>
-	<string name="guide1">Adda uppgiftar från hemmenus \n+buttorna.</string>
+	<string name="guide1">Adda uppgiftar från hemmenus buttorna.</string>
 	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
 	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
 	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
@@ -79,5 +79,5 @@
     <string name="cancel">Avbryt</string>
 
     <string name="editDesc">Välj en funktion nedan.</string>
-    <string name="task">taskarna</string>
+    <string name="task">Taskarna</string>
 </resources>

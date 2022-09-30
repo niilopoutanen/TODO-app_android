@@ -57,7 +57,7 @@
 	<string name="invalidName">Invalid name</string>
 	<string name="invalidNameDesc">The name you gave is not valid.</string>
 	<string name="nameExists">The name you gave already exists.</string>
-	<string name="dateDoesntExist">The date you gave does not exist</string>
+	<string name="dateDoesntExist">The date you gave does not exist.</string>
 	<string name="dateInPast">Due date can not be in the past.</string>
 	<string name="dateTooBig">The date is too big.</string>
 
@@ -66,7 +66,7 @@
 	<string name="guide1">Add tasks from button in the home menu.</string>
 	<string name="guide2">Mark tasks as done or delete them by holding the task.</string>
 	<string name="guide3">Check tasks due date by pressing the task.</string>
-	<string name="guide4">Suggest new features from the link in the settings tab</string>
+	<string name="guide4">Suggest new features from the link in the settings tab!</string>
 
 
 

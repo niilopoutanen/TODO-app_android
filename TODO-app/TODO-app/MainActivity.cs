@@ -1343,6 +1343,15 @@ namespace TODO_app
             file.WriteFile(taskList);
         }
 
+        /// <summary>
+        /// Creates a new TaskItem and adds it to the taskList
+        /// </summary>
+        /// <param name="taskName"></param>
+        /// <param name="oldTaskName"></param>
+        /// <param name="day"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <param name="isNew"></param>
         private void CreateNewTask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
         {
             taskCreated = false;
@@ -1425,7 +1434,6 @@ namespace TODO_app
                 InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla suurempi kuin 12");
 
                 didFail = true;
-
             }
 
             if (intDay < DateTime.Today.Day)
@@ -1434,7 +1442,6 @@ namespace TODO_app
                 InvalidInput(dayInputEdit, null, "Päivä ei voi olla menneisyydessä");
 
                 didFail = true;
-
             }
 
             if (intMonth < DateTime.Today.Month)
@@ -1460,7 +1467,6 @@ namespace TODO_app
                 InvalidInput(dayInputEdit, null, "Liian suuri päivä");
 
                 didFail = true;
-
             }
 
             if (intMonth > DateTime.MaxValue.Month)
@@ -1469,7 +1475,6 @@ namespace TODO_app
                 InvalidInput(monthInputEdit, null, "Liian suuri kuukausi");
 
                 didFail = true;
-
             }
 
             if (intYear > DateTime.MaxValue.Year)
