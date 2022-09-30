@@ -116,30 +116,7 @@ namespace TODO_app
             }
             catch (System.NullReferenceException)
             {
-                Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-                Android.App.AlertDialog alert = dialog.Create();
 
-                LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-                View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
-                view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-                alert.SetView(view);
-                alert.Show();
-                alert.Window.SetLayout(DpToPx(300), DpToPx(150));
-                alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-                Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
-                confirm.Text = "Close application";
-                TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
-                header.Text = "Error";
-                TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
-                desc.Text = "Sorry. You have to restart";
-                confirm.Click += (s, e) =>
-                {
-
-                    JavaSystem.Exit(0);
-                };
-
-                Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
-                cancel.Visibility = ViewStates.Gone;
             }
 
             // Set our view from the "main" layout resource
