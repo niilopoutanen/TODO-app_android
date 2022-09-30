@@ -30,26 +30,20 @@
 
 	<string name="returnbtn">Returna</string>
 
-	<string name="date1">14</string>
-	<string name="date1string">Måndag</string>
-
-	<string name="date2">15</string>
-	<string name="date2string">Tisdag</string>
-
-	<string name="date3">16</string>
-	<string name="date3string">Onsdag</string>
-
-	<string name="date4">17</string>
-	<string name="date4string">Thursdag</string>
-
-	<string name="date5">18</string>
-	<string name="date5string">Fridag</string>
-
-	<string name="date6">19</string>
-	<string name="date6string">Lördag</string>
-
-	<string name="date7">20</string>
-	<string name="date7string">Söndag</string>
+    <string name="MondayShort">Må</string>
+    <string name="Monday">Måndag</string>
+    <string name="TuesdayShort">Ti</string>
+    <string name="Tuesday">Tisdag</string>
+    <string name="WednesdayShort">Ons</string>
+    <string name="Wednesday">Onsdag</string>
+    <string name="ThursdayShort">Tu</string>
+    <string name="Thursday">Tursdag</string>
+    <string name="FridayShort">Fri</string>
+    <string name="Friday">Fridåg</string>
+    <string name="SaturdayShort">Lön</string>
+    <string name="Saturday">Lönsdag</string>
+    <string name="SundayShort">Sun</string>
+    <string name="Sunday">Sundag</string>
 
 	<string name="task_template">Första uppgift</string>
 
@@ -85,4 +79,5 @@
     <string name="cancel">Avbryt</string>
 
     <string name="editDesc">Välj en funktion nedan.</string>
+    <string name="task">taskarna</string>
 </resources>

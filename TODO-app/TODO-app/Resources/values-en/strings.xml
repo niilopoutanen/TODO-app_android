@@ -30,31 +30,26 @@
 
 	<string name="returnbtn">Return</string>
 
-	<string name="date1">14</string>
-	<string name="date1string">Monday</string>
 
-	<string name="date2">15</string>
-	<string name="date2string">Tuesday</string>
-
-	<string name="date3">16</string>
-	<string name="date3string">Wednesday</string>
-
-	<string name="date4">17</string>
-	<string name="date4string">Thursady</string>
-
-	<string name="date5">18</string>
-	<string name="date5string">Friday</string>
-
-	<string name="date6">19</string>
-	<string name="date6string">Saturday</string>
-
-	<string name="date7">20</string>
-	<string name="date7string">Sunday</string>
+	<string name="MondayShort">Mon</string>
+    <string name="Monday">Monday</string>
+	<string name="TuesdayShort">Tue</string>
+    <string name="Tuesday">Tuesday</string>
+	<string name="WednesdayShort">Wed</string>
+    <string name="Wednesday">Wednesday</string>
+	<string name="ThursdayShort">Thu</string>
+    <string name="Thursday">Thursday</string>
+    <string name="FridayShort">Fri</string>
+    <string name="Friday">Friday</string>
+	<string name="SaturdayShort">Sat</string>
+    <string name="Saturday">Saturday</string>
+    <string name="SundayShort">Sun</string>
+    <string name="Sunday">Sunday</string>
 
 	<string name="task_template">First task</string>
 
 	<string name="deleteTaskHeader">Delete task</string>
-	<string name="deleteTaskDescription">Are you sure you want to delete this task</string>
+	<string name="deleteTaskDescription">Are you sure you want to delete this task?</string>
 
 	<string name="invalidValue">Invalid input</string>
 	<string name="invalidDate">The date you gave is not valid.</string>
@@ -69,9 +64,9 @@
 	<string name="next">Next</string>
 	<string name="skip">Skip</string>
 	<string name="guide1">Add tasks from button in the home menu.</string>
-	<string name="guide2">Mark tasks as done or delete them \nby holding the task.</string>
+	<string name="guide2">Mark tasks as done or delete them by holding the task.</string>
 	<string name="guide3">Check tasks due date by pressing the task.</string>
-	<string name="guide4">Suggest new features from the link in the settings tab!</string>
+	<string name="guide4">Suggest new features from the link in the settings tab</string>
 
 
 
@@ -85,4 +80,6 @@
     <string name="cancel">Cancel</string>
 
     <string name="editDesc">Select action from below</string>
+
+    <string name="task">tasks</string>
 </resources>

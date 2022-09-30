@@ -171,7 +171,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date1"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -181,7 +180,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date1string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -204,7 +202,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date2"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -214,7 +211,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date2string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -237,7 +233,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date3"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -247,7 +242,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date3string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -270,7 +264,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date4"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -280,7 +273,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date4string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -303,7 +295,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date5"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -313,7 +304,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date5string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -337,7 +327,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date6"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -347,7 +336,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date6string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -370,7 +358,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="@string/date7"
                             android:textColor="@color/white"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
@@ -380,7 +367,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="@string/date7string"
                             android:textColor="@color/white"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
