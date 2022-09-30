@@ -109,16 +109,9 @@ namespace TODO_app
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
-            try
-            {
-                taskList = file.ReadFile();
-                taskList = TaskItem.SortListByIsDone(taskList);
-            }
-            catch (System.NullReferenceException)
-            {
-
-            }
-
+            taskList = file.ReadFile();
+            taskList = TaskItem.SortListByIsDone(taskList);
+            
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -220,7 +213,6 @@ namespace TODO_app
                 return Resource.Color.mainBlue;
             }
         }
-
         private void LoadSettings()
         {
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
@@ -374,13 +366,14 @@ namespace TODO_app
             int elementCount = scrollLayout.ChildCount;
             if (elementCount == 1)
             {
-                taskCount.Text = elementCount.ToString() + " "+ GetString(Resource.String.task);
+                taskCount.Text = elementCount.ToString() + " " + GetString(Resource.String.task);
             }
             else
             {
                 taskCount.Text = elementCount.ToString() + " " + GetString(Resource.String.task);
             }
         }
+        
         /// <summary>
         /// Triggers every time search field text changes
         /// </summary>
@@ -403,6 +396,7 @@ namespace TODO_app
 
             UpdateTaskCount();
         }
+        
         /// <summary>
         /// Closes task creation menu
         /// </summary>
@@ -417,7 +411,7 @@ namespace TODO_app
                 dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateNewTask(taskname, null, dayInput.Text, monthInput.Text, yearInput.Text, true);
+                CreateATask(taskname, null, dayInput.Text, monthInput.Text, yearInput.Text, true);
                 if (taskCreated == true)
                 {
                     scrollBase.Visibility = ViewStates.Visible;
@@ -437,6 +431,7 @@ namespace TODO_app
                 }
             }
         }
+        
         /// <summary>
         /// Opens task creation menu
         /// </summary>
@@ -728,13 +723,12 @@ namespace TODO_app
             }
             catch
             {
-                
+
             }
 
 
 
         }
-
 
         /// <summary>
         /// Use this to show a popup on screen. Provide a text for the header, description, and the OK-button.
@@ -792,7 +786,7 @@ namespace TODO_app
                 dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateNewTask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
+                CreateATask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
 
                 if (taskCreated == true)
                 {
@@ -807,7 +801,7 @@ namespace TODO_app
                 alert.Dismiss();
             };
         }
-        
+
         /// <summary>
         /// This happens when task element is pressed & held down.
         /// </summary>
@@ -815,7 +809,7 @@ namespace TODO_app
         /// <param name="e"></param>
         private void HoldTaskElement(object sender, EventArgs e)
         {
-            if(vibration == true)
+            if (vibration == true)
             {
                 VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
                 Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
@@ -823,7 +817,7 @@ namespace TODO_app
                 hapticSystem.Vibrate(invalidHaptic);
             }
 
-            
+
             RelativeLayout button = (RelativeLayout)sender;
             TextView taskName = (TextView)button.GetChildAt(1);
             CheckIfMissedAnymore();
@@ -897,9 +891,9 @@ namespace TODO_app
 
 
 
-            
 
-            
+
+
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -1128,7 +1122,6 @@ namespace TODO_app
             CheckIfMissedAnymore();
         }
 
-
         private void ExpandCard(object sender, EventArgs e)
         {
 
@@ -1149,6 +1142,8 @@ namespace TODO_app
             }
 
         }
+        
+        
         /// <summary>
         /// Not needed right now, use if you need
         /// </summary>
@@ -1170,6 +1165,7 @@ namespace TODO_app
 
             CheckIfMissedAnymore();
         }
+        
         /// <summary>
         /// Toggle between done and not done
         /// </summary>
@@ -1205,7 +1201,6 @@ namespace TODO_app
             UpdateTaskCount();
         }
 
-
         /// <summary>
         /// Converts pixels to dots per inch
         /// </summary>
@@ -1237,7 +1232,6 @@ namespace TODO_app
                     break;
                 }
             }
-
         }
 
         /// <summary>
@@ -1261,7 +1255,7 @@ namespace TODO_app
             {
                 return false;
             }
-            
+
             else
             {
                 return true;
@@ -1331,6 +1325,9 @@ namespace TODO_app
             }
         }
 
+        /// <summary>
+        /// Deletes all missed tasks that are marked as done
+        /// </summary>
         private void DoneAndGone()
         {
             foreach (TaskItem t in taskList)
@@ -1352,15 +1349,15 @@ namespace TODO_app
         /// <param name="month"></param>
         /// <param name="year"></param>
         /// <param name="isNew"></param>
-        private void CreateNewTask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
+        private void CreateATask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
         {
             taskCreated = false;
             bool didFail = false;
-            
+
             if (string.IsNullOrWhiteSpace(taskName))
             {
-                InvalidInput(taskNameField, null, "");
-                InvalidInput(editTaskField, null, "");
+                InvalidInput(taskNameField, null, "Tehtävän nimi ei voi olla tyhjä");
+                InvalidInput(editTaskField, null, "Tehtävän nimi ei voi olla tyhjä");
 
                 didFail = true;
             }
@@ -1371,9 +1368,9 @@ namespace TODO_app
                 {
                     if (t.Text.ToLower() == taskName.ToLower())
                     {
-                        InvalidInput(taskNameField, null, "");
-                        InvalidInput(editTaskField, null, "");
-                        
+                        InvalidInput(taskNameField, null, "Tämän niminen tehtävä on jo olemassa");
+                        InvalidInput(editTaskField, null, "Tämän niminen tehtävä on jo olemassa");
+
                         didFail = true;
                     }
                 }
@@ -1381,8 +1378,8 @@ namespace TODO_app
 
             if (!int.TryParse(day, out int intDay))
             {
-                InvalidInput(dayInput, null, "Päivä ei voi olla tyhjä");
-                InvalidInput(dayInputEdit, null, "Päivä ei voi olla tyhjä");
+                InvalidInput(dayInput, null, "Virheellinen päivä");
+                InvalidInput(dayInputEdit, null, "Virheellinen päivä");
 
                 didFail = true;
 
@@ -1390,16 +1387,16 @@ namespace TODO_app
 
             if (!int.TryParse(month, out int intMonth))
             {
-                InvalidInput(monthInput, null, "Kuukausi ei voi olla tyhjä");
-                InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla tyhjä");
+                InvalidInput(monthInput, null, "Virheellinen kuukausi");
+                InvalidInput(monthInputEdit, null, "Virheellinen kuukausi");
 
                 didFail = true;
             }
 
             if (!int.TryParse(year, out int intYear))
             {
-                InvalidInput(yearInput, null, "Vuosi ei voi olla tyhjä");
-                InvalidInput(yearInputEdit, null, "Vuosi ei voi olla tyhjä");
+                InvalidInput(yearInput, null, "Virheellinen vuosi");
+                InvalidInput(yearInputEdit, null, "Virheellinen vuosi");
 
                 didFail = true;
             }
@@ -1427,7 +1424,7 @@ namespace TODO_app
 
                 didFail = true;
             }
-            
+
             if (intMonth > 12)
             {
                 InvalidInput(monthInput, null, "Kuukausi ei voi olla suurempi kuin 12");
@@ -1499,8 +1496,10 @@ namespace TODO_app
                 DeleteTaskItem(oldTaskName);
                 CreateTaskItem(taskName, dueDate);
 
+                //Checks which date the user is currently focused on and then shows the tasks for that date
                 for (int i = 1; i < 8; i++)
                 {
+                    //1 or 0 = Today
                     if (activeDate == 1 || activeDate == 0)
                     {
                         scrollLayout.RemoveAllViews();
@@ -1510,13 +1509,15 @@ namespace TODO_app
                         break;
                     }
 
+                    //-1 = Missed tasks
                     else if (activeDate == -1)
                     {
                         UpdateTaskCount();
                         taskCreated = true;
                         break;
                     }
-                    
+
+                    //2-7 = Rest of the days
                     else if (activeDate == i)
                     {
                         scrollLayout.RemoveAllViews();
@@ -1528,12 +1529,18 @@ namespace TODO_app
                 }
             }
         }
-        
+
+        /// <summary>
+        /// When input is invalid, this method is called to change the color of the input field and vibrate the phone (if toggled on)
+        /// </summary>
+        /// <param name="visual"></param>
+        /// <param name="errorDesc"></param>
+        /// <param name="errorName"></param>
         public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
         {
-            if(visual != null)
+            if (visual != null)
             {
-                if(vibration == true)
+                if (vibration == true)
                 {
                     VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
                     Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
