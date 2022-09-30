@@ -161,6 +161,7 @@ namespace TODO_app
                 return Resource.Color.mainBlue;
             }
         }
+        
         private void LoadSettings()
         {
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
@@ -194,19 +195,21 @@ namespace TODO_app
             savedTheme = color;
 
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
-
         }
+        
         private void BackToMenu(object sender, EventArgs e)
         {
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
         }
+        
         private void SendFeedback(object sender, EventArgs e)
         {
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
         }
+
         private void CreditsLinks(object sender, EventArgs e)
         {
             var button = (TextView)sender;
@@ -230,9 +233,7 @@ namespace TODO_app
                     StartActivity(intentT);
                     break;
             }
-
         }
-
 
         private void ChangeTheme(object sender, EventArgs e)
         {
@@ -300,7 +301,6 @@ namespace TODO_app
 
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             
             if (e.IsChecked == true)
@@ -317,10 +317,9 @@ namespace TODO_app
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", false).Commit();
                 vibration = false;
-
-
             }
         }
+
         private void OpenPopup(string Header, string Desc, string YesText)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
@@ -347,6 +346,7 @@ namespace TODO_app
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Visibility = ViewStates.Gone;
         }
+        
         private int DpToPx(int dpValue)
         {
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);

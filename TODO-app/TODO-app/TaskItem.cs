@@ -11,6 +11,9 @@ namespace TODO_app
         private string _text;
         private bool _isDone = false;
 
+        /// <summary>
+        /// The time when the object was created
+        /// </summary>
         public DateTime CreationTime
         {
             get { return _creationTime; }

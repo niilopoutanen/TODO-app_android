@@ -1261,6 +1261,7 @@ namespace TODO_app
                 return true;
             }
         }
+        
         /// <summary>
         /// Sorts show all view tasks
         /// </summary>
@@ -1447,7 +1448,6 @@ namespace TODO_app
                 InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla menneisyydessä");
 
                 didFail = true;
-
             }
 
             if (intYear < DateTime.Today.Year)
