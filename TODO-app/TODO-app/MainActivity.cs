@@ -100,7 +100,7 @@ namespace TODO_app
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
-        private bool ready = false;
+        private bool taskCreated = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -441,7 +441,7 @@ namespace TODO_app
                 monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 CreateNewTask(taskname, null, dayInput.Text, monthInput.Text, yearInput.Text, true);
-                if (ready == true)
+                if (taskCreated == true)
                 {
                     scrollBase.Visibility = ViewStates.Visible;
                     scrollLayout.Visibility = ViewStates.Visible;
@@ -817,7 +817,7 @@ namespace TODO_app
                 yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 CreateNewTask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
 
-                if (ready == true)
+                if (taskCreated == true)
                 {
                     alert.Dismiss();
                 }
@@ -1264,17 +1264,7 @@ namespace TODO_app
         /// </returns>
         private bool IsDayInMonth(int day, int month, int year)
         {
-            if (month > 12 || month < 1)
-            {
-                return false;
-            }
-            
-            else if (year > DateTime.MaxValue.Year)
-            {
-                return false;
-            }
-
-            else if (day < 1)
+            if (day < 1)
             {
                 return false;
             }
@@ -1368,7 +1358,7 @@ namespace TODO_app
 
         private void CreateNewTask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
         {
-            ready = false;
+            taskCreated = false;
             bool didFail = false;
             
             if (string.IsNullOrWhiteSpace(taskName))
@@ -1379,7 +1369,7 @@ namespace TODO_app
                 didFail = true;
             }
 
-            if(isNew == true)
+            if (isNew == true)
             {
                 foreach (TaskItem t in taskList)
                 {
@@ -1387,6 +1377,8 @@ namespace TODO_app
                     {
                         InvalidInput(taskNameField, null, "");
                         InvalidInput(editTaskField, null, "");
+                        
+                        didFail = true;
                     }
                 }
             }
@@ -1396,18 +1388,24 @@ namespace TODO_app
                 InvalidInput(dayInput, null, "Päivä ei voi olla tyhjä");
                 InvalidInput(dayInputEdit, null, "Päivä ei voi olla tyhjä");
 
+                didFail = true;
+
             }
 
             if (!int.TryParse(month, out int intMonth))
             {
                 InvalidInput(monthInput, null, "Kuukausi ei voi olla tyhjä");
                 InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla tyhjä");
+
+                didFail = true;
             }
 
             if (!int.TryParse(year, out int intYear))
             {
                 InvalidInput(yearInput, null, "Vuosi ei voi olla tyhjä");
                 InvalidInput(yearInputEdit, null, "Vuosi ei voi olla tyhjä");
+
+                didFail = true;
             }
 
             if (intDay < 1)
@@ -1415,6 +1413,7 @@ namespace TODO_app
                 InvalidInput(dayInput, null, "Päivä ei voi olla pienempi kuin 1");
                 InvalidInput(dayInputEdit, null, "Päivä ei voi olla pienempi kuin 1");
 
+                didFail = true;
             }
 
             if (intMonth < 1)
@@ -1422,12 +1421,15 @@ namespace TODO_app
                 InvalidInput(monthInput, null, "Kuukausi ei voi olla pienempi kuin 1");
                 InvalidInput(monthInputEdit, null, "Kuukausi ei voi olla pienempi kuin 1");
 
+                didFail = true;
             }
 
             if (intYear < 1)
             {
                 InvalidInput(yearInput, null, "Vuosi ei voi olla pienempi kuin 1");
                 InvalidInput(yearInputEdit, null, "Vuosi ei voi olla pienempi kuin 1");
+
+                didFail = true;
             }
             
             if (intMonth > 12)
@@ -1437,11 +1439,6 @@ namespace TODO_app
 
                 didFail = true;
 
-            }
-
-            if (!IsDayInMonth(intDay, intMonth, intYear))
-            {
-                
             }
 
             if (intDay < DateTime.Today.Day)
@@ -1468,13 +1465,12 @@ namespace TODO_app
                 InvalidInput(yearInputEdit, null, "Vuosi ei voi olla menneisyydessä");
 
                 didFail = true;
-
             }
 
             if (intDay > DateTime.MaxValue.Day)
             {
-                InvalidInput(dayInput, null, "Liian iso päivä");
-                InvalidInput(dayInputEdit, null, "Liian iso päivä");
+                InvalidInput(dayInput, null, "Liian suuri päivä");
+                InvalidInput(dayInputEdit, null, "Liian suuri päivä");
 
                 didFail = true;
 
@@ -1482,8 +1478,8 @@ namespace TODO_app
 
             if (intMonth > DateTime.MaxValue.Month)
             {
-                InvalidInput(monthInput, null, "");
-                InvalidInput(monthInputEdit, null, "");
+                InvalidInput(monthInput, null, "Liian suuri kuukausi");
+                InvalidInput(monthInputEdit, null, "Liian suuri kuukausi");
 
                 didFail = true;
 
@@ -1491,8 +1487,16 @@ namespace TODO_app
 
             if (intYear > DateTime.MaxValue.Year)
             {
-                InvalidInput(yearInput, null, "");
-                InvalidInput(yearInputEdit, null, "");
+                InvalidInput(yearInput, null, "Liian suuri vuosi");
+                InvalidInput(yearInputEdit, null, "Liian suuri vuosi");
+
+                didFail = true;
+            }
+
+            if (!IsDayInMonth(intDay, intMonth, intYear))
+            {
+                InvalidInput(dayInput, null, "Päivä ei kuulu annettuun kuukauteen");
+                InvalidInput(dayInputEdit, null, "Päivä ei kuulu annettuun kuukauteen");
 
                 didFail = true;
             }
@@ -1510,14 +1514,14 @@ namespace TODO_app
                         scrollLayout.RemoveAllViews();
                         ShowDatestasks(DateTime.Today);
                         UpdateTaskCount();
-                        ready = true;
+                        taskCreated = true;
                         break;
                     }
 
                     else if (activeDate == -1)
                     {
                         UpdateTaskCount();
-                        ready = true;
+                        taskCreated = true;
                         break;
                     }
                     
@@ -1526,7 +1530,7 @@ namespace TODO_app
                         scrollLayout.RemoveAllViews();
                         ShowDatestasks(DateTime.Today.AddDays(i - 1));
                         UpdateTaskCount();
-                        ready = true;
+                        taskCreated = true;
                         break;
                     }
                 }
