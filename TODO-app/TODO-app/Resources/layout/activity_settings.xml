@@ -90,13 +90,23 @@
                     android:text="@string/deleteAllDone"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
-                <Button
+                <RelativeLayout
                     android:id="@+id/deleteAllDoneButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/toggle_thumb"/>
+                    android:background="@drawable/toggle_thumb"
+                    android:backgroundTint="?android:attr/colorAccent">
+                    <ImageView
+                        android:contentDescription="@string/default_description"
+                        android:layout_centerInParent="true"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/trashicon"/>
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
             

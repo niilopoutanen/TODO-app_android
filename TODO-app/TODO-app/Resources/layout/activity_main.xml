@@ -40,6 +40,7 @@
                     android:layout_height="35dp"
                     android:background="@drawable/rounded10px"
                     android:padding="7dp"
+                    android:layout_weight="1"
                     >
 
                     <ImageView
@@ -49,13 +50,12 @@
                         android:contentDescription="@string/default_description" />
                 </RelativeLayout>
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"/>
 
                 <Button
                     android:visibility="visible"
-                    android:paddingLeft="15dp"
+                    android:paddingLeft="10dp"
                     android:id="@+id/SearchBar"
                     android:layout_width="150dp"
                     android:layout_height="35dp"
@@ -64,20 +64,26 @@
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/textSecondary"
-                    android:fontFamily="@font/inter_semibold"/>
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/searchicon"
+                    android:drawablePadding="5dp"/>
                 <EditText
                     android:visibility="gone"
                     android:id="@+id/SearchField"
                     android:layout_width="150dp"
                     android:layout_height="35dp"
-                    android:paddingLeft="15dp"
+                    android:paddingLeft="10dp"
                     android:background="@drawable/rounded10px"
                     android:textColor="@color/white"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/searchicon"
+                    android:drawablePadding="5dp"/>
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"/>
+
                 <Button
                     android:id="@+id/ShowAll"
                     android:layout_width="110dp"
@@ -86,7 +92,8 @@
                     android:text="@string/show_all"
                     android:textAllCaps="false"
                     android:textColor="@color/textSecondary"
-                    android:fontFamily="@font/inter_semibold"/>
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
             <RelativeLayout

@@ -39,7 +39,7 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
-        Button deleteAllDone;
+        RelativeLayout deleteAllDone;
 
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
@@ -88,7 +88,7 @@ namespace TODO_app
             violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
 
-            deleteAllDone = FindViewById<Button>(Resource.Id.deleteAllDoneButton);
+            deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
 
             deleteAllDone.Click += DeleteAllDone_Click;
@@ -296,6 +296,11 @@ namespace TODO_app
             if(amountRemoved > 0)
             {
                 OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+            }
+            else if (amountRemoved <= 0)
+            {
+                OpenPopup("Ei poistettavia tehtäviä", "Sinulla ei ole yhtään valmista tehtävää", "OK");
+
             }
         }
 
