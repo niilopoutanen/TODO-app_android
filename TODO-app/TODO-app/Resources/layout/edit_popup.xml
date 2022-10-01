@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_height="310dp"
     android:background="@drawable/rounded90px"
     android:backgroundTint="@color/popupBG"
     android:gravity="center_horizontal"
@@ -41,8 +41,11 @@
     <TextView
         android:id="@+id/invalidEditName"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:layout_below="@+id/EditTaskInput"/>
+        android:layout_height="20dp"
+        android:layout_below="@+id/EditTaskInput"
+        android:textSize="12dp"
+        android:textColor="@color/errorColor"
+        android:textAlignment="center"/>
     <TextView
         android:id="@+id/EditDateHeader"
         android:textAlignment="center"
@@ -53,11 +56,12 @@
         android:fontFamily="@font/inter_medium"/>
 
     <LinearLayout
+        android:id="@+id/dateSelectorEdit"
         android:layout_below="@+id/EditDateHeader"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+>
         <RelativeLayout
             android:layout_width="70dp"
             android:layout_height="match_parent"
@@ -204,6 +208,14 @@
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
+    <TextView
+        android:id="@+id/invalidEditDate"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/dateSelectorEdit"
+        android:textSize="12dp"
+        android:textColor="@color/errorColor"
+        android:textAlignment="center"/>
     <Button
         android:id="@+id/editPopupConfirm"
         android:layout_alignParentRight="true"
