@@ -295,7 +295,7 @@ namespace TODO_app
             }
             if(amountRemoved > 0)
             {
-                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + amountRemoved + GetString(Resource.String.task), "OK");
+                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
             else if (amountRemoved <= 0)
             {
