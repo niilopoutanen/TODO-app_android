@@ -115,7 +115,7 @@ namespace TODO_app
             LoadSettings();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             taskList = file.ReadFile();
             taskList = TaskItem.SortListByIsDone(taskList);
             

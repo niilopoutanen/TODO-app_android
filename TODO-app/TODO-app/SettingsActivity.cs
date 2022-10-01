@@ -49,6 +49,8 @@ namespace TODO_app
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             LoadSettings();
             SetTheme(GetStyle());
             // Set our view from the "main" layout resource
