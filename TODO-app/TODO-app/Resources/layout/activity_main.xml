@@ -401,18 +401,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_name_header"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
             <EditText
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:id="@+id/TaskNameField"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:inputType="text"
-                android:background="@drawable/rounded50px"
+                android:background="@drawable/rounded10px"
                 android:backgroundTint="@color/colorButton"
-                android:layout_marginBottom="10dp"
                 android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/invalidTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/EditTaskInput"
+                android:textSize="12dp"
+                android:textColor="@color/errorColor"
+                android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -422,9 +430,8 @@
 />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp">
+                android:layout_height="90dp"
+                android:orientation="horizontal">
                 <RelativeLayout
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
@@ -450,8 +457,8 @@
                         android:id="@+id/DayInput"
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/rounded50px"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rounded10px"
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
@@ -498,8 +505,8 @@
                         android:id="@+id/MonthInput"
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/rounded50px"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rounded10px"
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
@@ -545,8 +552,8 @@
                         android:id="@+id/YearInput"
                         android:layout_centerVertical="true"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/rounded50px"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rounded10px"
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
@@ -569,7 +576,14 @@
                     </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/invalidDate"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/EditTaskInput"
+                android:textSize="12dp"
+                android:textColor="@color/errorColor"
+                android:textAlignment="center"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
