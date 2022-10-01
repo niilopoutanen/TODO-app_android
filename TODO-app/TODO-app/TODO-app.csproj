@@ -76,6 +76,7 @@
     <Compile Include="ActivityMethods.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OnBoardingActivity.cs" />
+    <Compile Include="Resources\layout\SplashScreen.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileClass.cs" />
@@ -222,6 +223,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\rounded90px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splashScreen.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -19,7 +19,7 @@ using AndroidX.RecyclerView.Widget;
 
 namespace TODO_app
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity
     {
         private int activeDate = 1;
