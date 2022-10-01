@@ -295,11 +295,11 @@ namespace TODO_app
             }
             if(amountRemoved > 0)
             {
-                OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + amountRemoved + GetString(Resource.String.task), "OK");
             }
             else if (amountRemoved <= 0)
             {
-                OpenPopup("Ei poistettavia tehtäviä", "Sinulla ei ole yhtään valmista tehtävää", "OK");
+                OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
 
             }
         }

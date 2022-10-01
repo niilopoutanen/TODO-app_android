@@ -82,4 +82,9 @@
     <string name="editDesc">Valitse toiminto alta</string>
     <string name="task">tehtävää</string>
 
+
+	<string name="nothingToDelete">Ei poistettavaa</string>
+	<string name="noCompletedTasks">Sinulla ei ole yhtään valmista tehtävää.</string>
+	<string name="tasksDeleted">Tehtävät poistettu</string>
+	<string name="deleted">Poistettiin</string>
 </resources>

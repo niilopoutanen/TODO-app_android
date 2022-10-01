@@ -80,4 +80,9 @@
 
     <string name="editDesc">Välj en funktion nedan.</string>
     <string name="task">Taskarna</string>
+
+	<string name="nothingToDelete">inte har deleter</string>
+	<string name="noCompletedTasks">Du har 0 uppgiftar to remuv</string>
+	<string name="tasksDeleted">Uppgiftar remuven</string>
+	<string name="deleted">Remuven</string>
 </resources>

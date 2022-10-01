@@ -82,4 +82,9 @@
     <string name="editDesc">Select action from below</string>
 
     <string name="task">tasks</string>
+
+	<string name="nothingToDelete">Nothing to delete</string>
+	<string name="noCompletedTasks">You have no completed tasks to delete.</string>
+	<string name="tasksDeleted">Tasks deleted</string>
+	<string name="deleted">Deleted</string>
 </resources>
