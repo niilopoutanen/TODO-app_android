@@ -16,6 +16,7 @@ using Firebase.Analytics;
 using Android.Gms.Tasks;
 using System.Threading.Tasks;
 using AndroidX.RecyclerView.Widget;
+using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
@@ -782,15 +783,25 @@ namespace TODO_app
             dayDownEdit.Click += ArrowModify;
             monthDownEdit.Click += ArrowModify;
             yearDownEdit.Click += ArrowModify;
+
+            foreach (TaskItem task in taskList)
+            {
+                if (task.Text == oldTaskName)
+                {
+                    dayInputEdit.Text = task.DueDate.Day.ToString();
+                    monthInputEdit.Text = task.DueDate.Month.ToString();
+                    yearInputEdit.Text = task.DueDate.Year.ToString();
+                    break;
+                }
+            }
+
+
             view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
             alert.Window.SetLayout(DpToPx(300), DpToPx(310));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
             editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
-            EditText editDayInput = view.FindViewById<EditText>(Resource.Id.EditDayInput);
-            EditText editMonthInput = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
-            EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
             editTaskField.Text = oldTaskName;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
             editConfirm.Text = "OK";
@@ -800,7 +811,7 @@ namespace TODO_app
                 dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                 yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateATask(editTaskField.Text, oldTaskName, editDayInput.Text, editMonthInput.Text, editYearInput.Text, false);
+                CreateATask(editTaskField.Text, oldTaskName, dayInputEdit.Text, monthInputEdit.Text, yearInputEdit.Text, false);
 
                 if (taskCreated == true)
                 {
@@ -1573,6 +1584,10 @@ namespace TODO_app
                 //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
             }
 
+        }
+        public override void OnBackPressed()
+        {
+            this.FinishAffinity();
         }
     }
 }
