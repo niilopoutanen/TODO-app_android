@@ -793,7 +793,7 @@ namespace TODO_app
             EditText editYearInput = view.FindViewById<EditText>(Resource.Id.EditYearInput);
             editTaskField.Text = oldTaskName;
             Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
-
+            editConfirm.Text = "OK";
             editConfirm.Click += (s, e) =>
             {
                 editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);

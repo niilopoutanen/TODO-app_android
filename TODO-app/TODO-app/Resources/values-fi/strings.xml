@@ -1,0 +1,90 @@
+<resources>
+	<string name="app_name">TODO-app</string>
+	<string name="action_settings">Settings</string>
+	<string name="date">Sunnuntai \n11.9.2022</string>
+	<string name="task_name_header">Anna tehtävän nimi</string>
+	<string name="date_select_header">Anna tehtävän erääntymispäivä</string>
+	<string name="default_description">description</string>
+	<string name="show_all">Näytä kaikki</string>
+	<string name="add_task_header">Lisää uusi tehtävä</string>
+	<string name="edit_task_header">Muokkaa tehtävää</string>
+
+	<string name="add">Lisää</string>
+	<string name="search">Hae</string>
+	<string name="plus">+</string>
+	<string name="yes">Kyllä</string>
+	<string name="no">Ei</string>
+
+
+	<string name="settings">Asetukset</string>
+	<string name="vibrationSettings">Värinä</string>
+	<string name="deleteAllDone">Poista kaikki valmiit</string>
+	<string name="colorTheme">Väriteema</string>
+	<string name="sendFeedback">Lähetä palautetta</string>
+	<string name="versionHeader">Versio:</string>
+	<string name="CreditsHeader">Tekijät:</string>
+	<string name="Credits1">Niilo Poutanen</string>
+	<string name="Credits2">Oskari Mäkelä</string>
+	<string name="Credits3">Tomi Vahdersalo</string>
+	<string name="taskAmount">0 Tehtävää</string>
+
+	<string name="returnbtn">Takaisin</string>
+
+	<string name="MondayShort">Ma</string>
+	<string name="Monday">Maanantai</string>
+	<string name="TuesdayShort">Ti</string>
+	<string name="Tuesday">Tiistai</string>
+	<string name="WednesdayShort">Ke</string>
+	<string name="Wednesday">Keskiviikko</string>
+	<string name="ThursdayShort">To</string>
+	<string name="Thursday">Torstai</string>
+	<string name="FridayShort">Pe</string>
+	<string name="Friday">Perjantai</string>
+	<string name="SaturdayShort">La</string>
+	<string name="Saturday">Lauantai</string>
+	<string name="SundayShort">Su</string>
+	<string name="Sunday">Sunnuntai</string>
+
+
+	<string name="task_template">Ensimmäinen tehtävä</string>
+
+	<string name="deleteTaskHeader">Poista tehtävä</string>
+	<string name="deleteTaskDescription">Haluatko varmasti poistaa tämän tehtävän?</string>
+
+	<string name="invalidValue">Virheellinen luku</string>
+	<string name="invalidDate">Antamasi päivämäärä ei kelpaa.</string>
+
+	<string name="invalidName">Virheellinen nimi</string>
+	<string name="invalidNameDesc">Antamasi nimi ei kelpaa.</string>
+	<string name="nameExists">Antamasi nimi on jo olemassa.</string>
+	<string name="dateDoesntExist">Antamaasi päivämäärää ei ole olemassa.</string>
+	<string name="dateInPast">Eräpäivä ei voi olla menneisyydessä.</string>
+	<string name="dateTooBig">Päivämäärä on liian suuri.</string>
+
+	<string name="next">Seuraava</string>
+	<string name="skip">Ohita</string>
+	<string name="guide1">Lisää tehtäviä kotivalikon \n+ napista.</string>
+	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
+	<string name="guide3">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
+	<string name="guide4">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+
+
+
+	<string name="DueDate">Erääntymispäivä</string>
+	<string name="CreationDate">Luontipäivä</string>
+
+	<string name="Start">Aloita</string>
+
+	<string name="delete">Poista</string>
+	<string name="edit">Muokkaa</string>
+	<string name="cancel">Peruuta</string>
+
+	<string name="editDesc">Valitse toiminto alta</string>
+	<string name="task">tehtävää</string>
+
+
+	<string name="nothingToDelete">Ei poistettavaa</string>
+	<string name="noCompletedTasks">Sinulla ei ole yhtään valmista tehtävää.</string>
+	<string name="tasksDeleted">Tehtävät poistettu</string>
+	<string name="deleted">Poistettiin</string>
+</resources>
