@@ -1086,7 +1086,8 @@ namespace TODO_app
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
             cardBG.Id = View.GenerateViewId();
-            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, DpToPx(80));
+            cardBG.Tag = "Collapsed";
+            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, RelativeLayout.LayoutParams.WrapContent);
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
 
             cardBG.LayoutParameters = cardparams;
@@ -1099,7 +1100,7 @@ namespace TODO_app
             Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
             RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
-            buttonparams.SetMargins(0, DpToPx(17), DpToPx(10), 0);
+            buttonparams.SetMargins(0, DpToPx(17), DpToPx(10), DpToPx(17));
             //buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
@@ -1151,19 +1152,19 @@ namespace TODO_app
         {
 
             RelativeLayout card = (RelativeLayout)sender;
-            if (card.Height == DpToPx(100))
+            if (card.LayoutParameters.Height == RelativeLayout.LayoutParams.WrapContent)
             {
-                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(80));
-                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-                card.LayoutParameters = heightParam;
-                card.GetChildAt(2).Visibility = ViewStates.Gone;
-            }
-            else if (card.Height == DpToPx(80))
-            {
-                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, DpToPx(100));
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, card.Height + DpToPx(30));
                 heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
                 card.LayoutParameters = heightParam;
                 card.GetChildAt(2).Visibility = ViewStates.Visible;
+            }
+            else if (card.LayoutParameters.Height != RelativeLayout.LayoutParams.WrapContent)
+            {
+                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
+                card.LayoutParameters = heightParam;
+                card.GetChildAt(2).Visibility = ViewStates.Gone;
             }
 
         }
