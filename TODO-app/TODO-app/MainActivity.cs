@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using AndroidX.RecyclerView.Widget;
 using static Java.Util.Jar.Attributes;
 using Android.Animation;
+using System.ComponentModel;
 
 namespace TODO_app
 {
@@ -1087,6 +1088,7 @@ namespace TODO_app
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
             cardBG.Id = View.GenerateViewId();
+            cardBG.LayoutTransition = new LayoutTransition();
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, RelativeLayout.LayoutParams.WrapContent);
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
 
