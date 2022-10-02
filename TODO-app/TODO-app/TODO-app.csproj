@@ -76,7 +76,7 @@
     <Compile Include="ActivityMethods.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OnBoardingActivity.cs" />
-    <Compile Include="Resources\layout\SplashScreen.cs" />
+    <Compile Include="SplashScreen.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileClass.cs" />

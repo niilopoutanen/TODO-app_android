@@ -20,6 +20,7 @@ namespace TODO_app.Resources.layout
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
+            SetTheme(Resource.Style.AppTheme_Splash);
             base.OnCreate(savedInstanceState, persistentState);
         }
 
