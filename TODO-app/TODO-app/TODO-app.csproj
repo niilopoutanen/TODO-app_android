@@ -219,9 +219,6 @@
     <AndroidResource Include="Resources\drawable\SearchIcon.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\TrashIcon.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\rounded90px.xml" />
   </ItemGroup>
   <ItemGroup>

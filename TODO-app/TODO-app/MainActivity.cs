@@ -29,16 +29,14 @@ namespace TODO_app
         private string currentTheme;
         private bool guideDone;
         private bool vibration;
-        Button btnCreateTask;
+        RelativeLayout btnCreateTask;
         Button btnAddTask;
 
-        LinearLayout header;
         LinearLayout mainHeader;
         LinearLayout createTaskHeader;
         HorizontalScrollView calendarView;
         Button showAll;
         Button searchBar;
-        LinearLayout navBar;
         EditText searchField;
         RelativeLayout settingsOpen;
         EditText taskNameField;
@@ -274,11 +272,10 @@ namespace TODO_app
             scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             backToMain = FindViewById<RelativeLayout>(Resource.Id.BackToMain);
             backToMain.Click += BackToMain;
-            btnCreateTask = FindViewById<Button>(Resource.Id.CreateTask);
+            btnCreateTask = FindViewById<RelativeLayout>(Resource.Id.CreateTask);
             btnCreateTask.Click += OpenCreateView;
             btnAddTask = FindViewById<Button>(Resource.Id.AddTask);
             btnAddTask.Click += CloseCreateView;
-            header = FindViewById<LinearLayout>(Resource.Id.Header);
             createTaskHeader = FindViewById<LinearLayout>(Resource.Id.CreateTaskHeader);
             mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
@@ -293,7 +290,6 @@ namespace TODO_app
             searchField = FindViewById<EditText>(Resource.Id.SearchField);
             searchField.Click += ToggleSearchMode;
             searchField.TextChanged += SearchChanged;
-            navBar = FindViewById<LinearLayout>(Resource.Id.NavBar);
             searchBar = FindViewById<Button>(Resource.Id.SearchBar);
             searchBar.Click += ToggleSearchMode;
 
