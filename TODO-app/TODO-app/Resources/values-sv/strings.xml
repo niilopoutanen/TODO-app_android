@@ -21,6 +21,7 @@
     <string name="deleteAllDone">Radera allt gjort</string>
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
+	<string name="replayTutorial">Rewatchär tutorialen</string>
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Faktorerna:</string>
 	<string name="Credits1">Niilo Poutanen</string>

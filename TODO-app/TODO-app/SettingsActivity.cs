@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
+using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
@@ -20,6 +21,7 @@ namespace TODO_app
         private bool vibration;
         TextView version;
         RelativeLayout sendFeedbackButton;
+        RelativeLayout replayTutorial;
 
         TextView Niilobtn;
         TextView Oskaribtn;
@@ -63,6 +65,9 @@ namespace TODO_app
 
             sendFeedbackButton = FindViewById<RelativeLayout>(Resource.Id.SendFeedbackBtn);
             sendFeedbackButton.Click += SendFeedback;
+
+            replayTutorial = FindViewById<RelativeLayout>(Resource.Id.ReplayTutorialbtn);
+            replayTutorial.Click += ReplayTutorial;
 
             Niilobtn = FindViewById<TextView>(Resource.Id.CreditsNP);
             Oskaribtn = FindViewById<TextView>(Resource.Id.CreditsOM);
@@ -210,6 +215,12 @@ namespace TODO_app
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
+        }
+
+        private void ReplayTutorial(object sender, EventArgs e)
+        {
+            Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
+            StartActivity(onBoraderStarter);
         }
 
         private void CreditsLinks(object sender, EventArgs e)

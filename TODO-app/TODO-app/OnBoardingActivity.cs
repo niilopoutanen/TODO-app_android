@@ -109,5 +109,9 @@ namespace TODO_app.Resources.layout
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
+        public override void OnBackPressed()
+        {
+        }
+
     }
 }

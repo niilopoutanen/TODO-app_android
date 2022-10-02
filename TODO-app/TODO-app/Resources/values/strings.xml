@@ -21,6 +21,7 @@
 	<string name="deleteAllDone">Remove all completed</string>
 	<string name="colorTheme">Color theme</string>
 	<string name="sendFeedback">Send feedback</string>
+	<string name="replayTutorial">Replay tutorial</string>
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Creators:</string>
 	<string name="Credits1">Niilo Poutanen</string>

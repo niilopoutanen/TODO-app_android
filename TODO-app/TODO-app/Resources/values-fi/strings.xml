@@ -21,6 +21,7 @@
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="colorTheme">Väriteema</string>
 	<string name="sendFeedback">Lähetä palautetta</string>
+	<string name="replayTutorial">Katso ohje uudestaan</string>
 	<string name="versionHeader">Versio:</string>
 	<string name="CreditsHeader">Tekijät:</string>
 	<string name="Credits1">Niilo Poutanen</string>
