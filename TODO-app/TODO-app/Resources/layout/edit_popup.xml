@@ -63,9 +63,9 @@
         android:orientation="horizontal"
 >
         <RelativeLayout
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -92,7 +92,9 @@
                 android:backgroundTint="@color/colorButton"
                 android:inputType="date"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
@@ -112,9 +114,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -140,7 +142,9 @@
                 android:inputType="date"
                 android:backgroundTint="@color/colorButton"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -161,7 +165,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="90dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -189,7 +193,8 @@
                 android:inputType="date"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-/>
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"

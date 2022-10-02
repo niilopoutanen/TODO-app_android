@@ -410,6 +410,7 @@
                 android:layout_height="40dp"
                 android:inputType="text"
                 android:background="@drawable/rounded10pxinvalid"
+                android:backgroundTint="@color/colorButton"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/invalidTaskName"
@@ -431,7 +432,7 @@
                 android:layout_height="90dp"
                 android:orientation="horizontal">
                 <RelativeLayout
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="20dp">
                     <RelativeLayout
@@ -460,7 +461,9 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="20dp"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
@@ -480,7 +483,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="80dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="20dp">
                     <RelativeLayout
@@ -508,7 +511,9 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="20dp"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
@@ -528,7 +533,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -555,7 +560,9 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="20dp"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="20dp"

@@ -17,6 +17,7 @@ using Android.Gms.Tasks;
 using System.Threading.Tasks;
 using AndroidX.RecyclerView.Widget;
 using static Java.Util.Jar.Attributes;
+using Android.Animation;
 
 namespace TODO_app
 {
@@ -799,7 +800,7 @@ namespace TODO_app
             view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert.SetView(view);
             alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(310));
+            alert.Window.SetLayout(DpToPx(300), DpToPx(320));
             alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
             editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
             editTaskField.Text = oldTaskName;
@@ -1086,7 +1087,6 @@ namespace TODO_app
             cardBG.Background = rounded50;
             cardBG.SetPadding(DpToPx(20), 0, 0, 0);
             cardBG.Id = View.GenerateViewId();
-            cardBG.Tag = "Collapsed";
             RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, RelativeLayout.LayoutParams.WrapContent);
             cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
 
@@ -1150,7 +1150,6 @@ namespace TODO_app
 
         private void ExpandCard(object sender, EventArgs e)
         {
-
             RelativeLayout card = (RelativeLayout)sender;
             if (card.LayoutParameters.Height == RelativeLayout.LayoutParams.WrapContent)
             {
@@ -1167,29 +1166,6 @@ namespace TODO_app
                 card.GetChildAt(2).Visibility = ViewStates.Gone;
             }
 
-        }
-        
-        
-        /// <summary>
-        /// Not needed right now, use if you need
-        /// </summary>
-        /// <param name="taskToDelete"></param>
-        private void DeleteTaskElement(string taskToDelete)
-        {
-            RelativeLayout layoutToDelete = FindViewById<RelativeLayout>(elementIds[taskToDelete]);
-
-            try
-            {
-                layoutToDelete.RemoveAllViews();
-                scrollLayout.RemoveView(layoutToDelete);
-                UpdateTaskCount();
-            }
-            catch
-            {
-                Console.Write("error/ item not found");
-            }
-
-            CheckIfMissedAnymore();
         }
         
         /// <summary>
