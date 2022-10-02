@@ -1573,12 +1573,13 @@ namespace TODO_app
                     hapticSystem.Cancel();
                     hapticSystem.Vibrate(invalidHaptic);
                 }
-
+                Drawable invalid = GetDrawable(Resource.Drawable.rounded10pxinvalid);
                 if (errorDesc != null)
                 {
                     errorDesc.Text = errorName;
                 }
-                visual.BackgroundTintList = GetColorStateList(Resource.Color.errorColor);
+                visual.BackgroundTintList = null;
+                //visual.BackgroundTintList = GetColorStateList(Resource.Color.errorColor);
 
                 //await System.Threading.Tasks.Task.Delay(1000);
                 //visual.Background = active;

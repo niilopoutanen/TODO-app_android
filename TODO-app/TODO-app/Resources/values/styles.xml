@@ -11,7 +11,8 @@
         <item name="android:textColor">@color/white</item>
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
 		<item name="android:windowBackground">@drawable/splashscreen</item>
-    </style>
+		<item name="android:windowBackground">@color/colorPrimary</item>
+	</style>
 
 	<style name="MainBlue" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainBlue</item>
