@@ -857,8 +857,8 @@ namespace TODO_app
             view1.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
             alert1.SetView(view1);
             alert1.Show();
-            alert1.Window.SetLayout(DpToPx(300), DpToPx(150));
             alert1.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            alert1.Window.SetLayout(DpToPx(300), RelativeLayout.LayoutParams.WrapContent);
             Button confirm1 = view1.FindViewById<Button>(Resource.Id.PopupConfirm);
             confirm1.Text = GetString(Resource.String.delete);
             TextView header1 = view1.FindViewById<TextView>(Resource.Id.PopupHeader);
