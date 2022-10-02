@@ -107,17 +107,23 @@
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
-                <Button
-                    android:layout_centerVertical="true"
+                <RelativeLayout
                     android:id="@+id/CreateTask"
+                    android:background="@drawable/rounded50px"
+                    android:backgroundTint="?attr/colorAccent"
                     android:layout_alignParentRight="true"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/rounded50px"
-                    android:backgroundTint="?attr/colorAccent"
-                    android:text="@string/plus"
-                    android:textSize="30dp"
-                    android:fontFamily="@font/inter_bold"/>
+                    android:layout_centerVertical="true">
+                    <ImageView
+                        android:contentDescription="@string/default_description"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/plus"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+/>
+
             </RelativeLayout>
             <HorizontalScrollView
                 android:visibility="visible"
