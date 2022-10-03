@@ -101,7 +101,8 @@ namespace TODO_app
         TextView invalidTaskName;
         TextView invalidDate;
 
-
+        Vibrator vibrator;
+        VibratorManager vibratorManager;
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
         ActivityMethods methods = new ActivityMethods();
@@ -177,7 +178,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
+                methods.Vibrate(vibrator,vibratorManager, 60);
             }
             activeDate = -1;
             scrollLayout.RemoveAllViews();
@@ -269,6 +270,8 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            vibrator = (Vibrator)GetSystemService(VibratorService);
+            vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
             mainInfo = FindViewById<RelativeLayout>(Resource.Id.MainInfo);
             missedTasksBtn = FindViewById<RelativeLayout>(Resource.Id.missedTasksBtn);
             missedTasksBtn.Click += ShowMissedTasks;
@@ -456,7 +459,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -492,7 +495,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             if (calendarView.Visibility == ViewStates.Visible)
             {
@@ -551,7 +554,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             if (searchBar.Visibility == ViewStates.Visible)
             {
@@ -564,7 +567,7 @@ namespace TODO_app
                 searchField.FocusableInTouchMode = true;
                 searchField.RequestFocus();
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-                imm.ToggleSoftInput(ShowFlags.Forced, 0);
+                imm.ShowSoftInput(searchField, ShowFlags.Forced);
                 UpdateTaskCount();
             }
             else if (searchField.Visibility == ViewStates.Visible)
@@ -859,7 +862,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate(vibrator, vibratorManager, 100);
             }
 
 
@@ -1001,7 +1004,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
@@ -1176,7 +1179,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             RelativeLayout card = (RelativeLayout)sender;
             if (card.LayoutParameters.Height == RelativeLayout.LayoutParams.WrapContent)
@@ -1205,7 +1208,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
             Button button = (Button)sender;
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
@@ -1324,7 +1327,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     if (vibration == true)
                     {
-                        methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                        methods.Vibrate(vibrator, vibratorManager, 45);
                     }
                     foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
@@ -1339,7 +1342,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     if (vibration == true)
                     {
-                        methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                        methods.Vibrate(vibrator, vibratorManager, 45);
                     }
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
@@ -1594,7 +1597,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 200);
+                    methods.Vibrate(vibrator, vibratorManager, 200);
                 }
                 Drawable invalid = GetDrawable(Resource.Drawable.rounded10pxinvalid);
                 if (errorDesc != null)

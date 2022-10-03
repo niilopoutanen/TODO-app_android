@@ -42,6 +42,8 @@ namespace TODO_app
 
         Switch vibrationToggle;
         RelativeLayout deleteAllDone;
+        Vibrator vibrator;
+        VibratorManager vibratorManager;
         ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
@@ -97,6 +99,9 @@ namespace TODO_app
 
             deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
+
+            vibrator = (Vibrator)GetSystemService(VibratorService);
+            vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
@@ -208,7 +213,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate(vibrator, vibratorManager, 100);
             }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
@@ -218,7 +223,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
+                methods.Vibrate(vibrator, vibratorManager, 50);
             }
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
@@ -229,7 +234,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
+                methods.Vibrate(vibrator, vibratorManager, 50);
             }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
@@ -239,7 +244,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
+                methods.Vibrate(vibrator, vibratorManager, 50);
 
             }
             var button = (TextView)sender;
@@ -276,7 +281,7 @@ namespace TODO_app
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
+                methods.Vibrate(vibrator,vibratorManager, 60);
             }
             switch (colorButton.Id)
             {
@@ -325,7 +330,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
+                    methods.Vibrate(vibrator, vibratorManager, 60);
                 }
                 OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
@@ -333,7 +338,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 200);
+                    methods.Vibrate(vibrator, vibratorManager, 200);
                 }
                 OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
 
@@ -348,7 +353,7 @@ namespace TODO_app
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
                 vibration = true;
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate(vibrator, vibratorManager, 100);
 
             }
 
