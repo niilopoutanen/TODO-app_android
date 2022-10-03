@@ -206,6 +206,10 @@ namespace TODO_app
         
         private void BackToMenu(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+            }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
         }
@@ -214,7 +218,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
             }
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
@@ -225,7 +229,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
             }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
@@ -235,7 +239,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 50);
 
             }
             var button = (TextView)sender;
@@ -272,7 +276,7 @@ namespace TODO_app
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             if (vibration == true)
             {
-                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
             }
             switch (colorButton.Id)
             {
@@ -321,7 +325,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
                 }
                 OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
