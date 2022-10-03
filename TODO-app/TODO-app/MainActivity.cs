@@ -175,6 +175,10 @@ namespace TODO_app
         }
         private void ShowMissedTasks(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 60);
+            }
             activeDate = -1;
             scrollLayout.RemoveAllViews();
             missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
@@ -497,6 +501,8 @@ namespace TODO_app
                 calendarView.Visibility = ViewStates.Gone;
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
+                showAll.BackgroundTintList = GetColorStateList(GetStyle());
+                showAll.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
                 taskList = TaskItem.SortListByIsDone(taskList);
                 foreach (TaskItem t in taskList)
                 {
@@ -529,7 +535,8 @@ namespace TODO_app
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
                 mainInfo.Visibility = ViewStates.Visible;
-
+                showAll.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                showAll.SetTextColor(GetColorStateList(Resource.Color.textSecondary));
                 UpdateTaskCount();
 
             }
@@ -1109,8 +1116,8 @@ namespace TODO_app
             Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
             Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
             toggleBtn.Background = toggleDefault;
-            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(45), DpToPx(45));
-            buttonparams.SetMargins(0, DpToPx(17), DpToPx(10), DpToPx(17));
+            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(37), DpToPx(37));
+            buttonparams.SetMargins(0, DpToPx(21), DpToPx(10), DpToPx(21));
             //buttonparams.AddRule(LayoutRules.CenterVertical);
             toggleBtn.LayoutParameters = buttonparams;
             toggleBtn.Id = View.GenerateViewId();
