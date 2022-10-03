@@ -42,7 +42,7 @@ namespace TODO_app
 
         Switch vibrationToggle;
         RelativeLayout deleteAllDone;
-
+        ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
         protected override void OnCreate(Bundle savedInstanceState)
@@ -212,6 +212,10 @@ namespace TODO_app
         
         private void SendFeedback(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+            }
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
@@ -219,12 +223,21 @@ namespace TODO_app
 
         private void ReplayTutorial(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+            }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
         }
 
         private void CreditsLinks(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+
+            }
             var button = (TextView)sender;
             switch (button.Id)
             {
@@ -257,6 +270,10 @@ namespace TODO_app
             redActive.Visibility = ViewStates.Gone;
             RelativeLayout colorButton = (RelativeLayout)sender;
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+            }
             switch (colorButton.Id)
             {
                 case Resource.Id.MainBlueToggle:
@@ -299,19 +316,21 @@ namespace TODO_app
                 }
             }
             files.WriteFile(taskList);
-            if (vibration == true)
+
+            if (amountRemoved > 0)
             {
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
-            }
-            if(amountRemoved > 0)
-            {
+                if (vibration == true)
+                {
+                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+                }
                 OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
             else if (amountRemoved <= 0)
             {
+                if (vibration == true)
+                {
+                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 200);
+                }
                 OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
 
             }
@@ -325,10 +344,8 @@ namespace TODO_app
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
                 vibration = true;
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
+
             }
 
             else if (e.IsChecked == false)

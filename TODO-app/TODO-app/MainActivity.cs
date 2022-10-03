@@ -104,6 +104,7 @@ namespace TODO_app
 
         Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
+        ActivityMethods methods = new ActivityMethods();
 
         private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
@@ -449,7 +450,10 @@ namespace TODO_app
         /// <param name="e"></param>
         private void OpenCreateView(object sender, EventArgs e)
         {
-
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -482,6 +486,10 @@ namespace TODO_app
         /// <param name="e"></param>
         private void ShowAll(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             if (calendarView.Visibility == ViewStates.Visible)
             {
                 scrollLayout.RemoveAllViews();
@@ -527,7 +535,6 @@ namespace TODO_app
             }
         }
 
-
         /// <summary>
         /// Call this when you want to toggle between search mode and normal
         /// </summary>
@@ -535,6 +542,10 @@ namespace TODO_app
         /// <param name="e"></param>
         private void ToggleSearchMode(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             if (searchBar.Visibility == ViewStates.Visible)
             {
                 searchField.Text = "";
@@ -834,10 +845,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 100);
             }
 
 
@@ -977,6 +985,10 @@ namespace TODO_app
         /// <param name="e"></param>
         private void CalendarSelector(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
             missedTasksBtn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -1148,6 +1160,10 @@ namespace TODO_app
 
         private void ExpandCard(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             RelativeLayout card = (RelativeLayout)sender;
             if (card.LayoutParameters.Height == RelativeLayout.LayoutParams.WrapContent)
             {
@@ -1173,6 +1189,10 @@ namespace TODO_app
         /// <param name="e"></param>
         private void TaskToggle(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+            }
             Button button = (Button)sender;
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
@@ -1552,10 +1572,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(200, VibrationEffect.DefaultAmplitude);
-                    Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                    hapticSystem.Cancel();
-                    hapticSystem.Vibrate(invalidHaptic);
+                    methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 200);
                 }
                 Drawable invalid = GetDrawable(Resource.Drawable.rounded10pxinvalid);
                 if (errorDesc != null)
