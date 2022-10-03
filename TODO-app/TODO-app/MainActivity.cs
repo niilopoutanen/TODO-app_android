@@ -11,14 +11,8 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
-using Java.Lang;
 using Firebase.Analytics;
-using Android.Gms.Tasks;
-using System.Threading.Tasks;
-using AndroidX.RecyclerView.Widget;
-using static Java.Util.Jar.Attributes;
 using Android.Animation;
-using System.ComponentModel;
 
 namespace TODO_app
 {
