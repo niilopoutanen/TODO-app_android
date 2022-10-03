@@ -65,8 +65,9 @@
 	<string name="skip">Skipparna</string>
 	<string name="guide1">Adda uppgiftar från hemmenus buttorna.</string>
 	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
-	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
-	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
+	<string name="guide3">Remuv or editarna uppgiftar by holdarna down</string>
+	<string name="guide4">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
+	<string name="guide5">Senda utvecklingsförslag från regleringmenus linkka!</string>
 
 
 
