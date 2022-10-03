@@ -1322,6 +1322,10 @@ namespace TODO_app
                 case Resource.Id.SortByDueDate:
                     sortByDueDate.BackgroundTintList = GetColorStateList(GetStyle());
                     scrollLayout.RemoveAllViews();
+                    if (vibration == true)
+                    {
+                        methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                    }
                     foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
                         CreateTaskElement(task.Text, task.IsDone, task.DueDate);
@@ -1333,6 +1337,10 @@ namespace TODO_app
                     sortByCreationDate.BackgroundTintList = GetColorStateList(GetStyle());
 
                     scrollLayout.RemoveAllViews();
+                    if (vibration == true)
+                    {
+                        methods.Vibrate((Vibrator)GetSystemService(VibratorService), (VibratorManager)GetSystemService(VibratorManagerService), 45);
+                    }
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
                         CreateTaskElement(task.Text, task.IsDone, task.DueDate);
