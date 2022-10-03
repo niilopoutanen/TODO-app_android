@@ -112,7 +112,7 @@
                     android:background="@drawable/rounded50px"
                     android:backgroundTint="?attr/colorAccent"
                     android:layout_alignParentRight="true"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true">
                     <ImageView

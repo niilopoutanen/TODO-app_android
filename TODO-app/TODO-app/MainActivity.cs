@@ -571,6 +571,11 @@ namespace TODO_app
                 searchBar.Visibility = ViewStates.Visible;
                 searchField.Visibility = ViewStates.Gone;
                 calendarView.Visibility = ViewStates.Visible;
+                sortByDueDate.Visibility = ViewStates.Gone;
+                sortByCreationDate.Visibility = ViewStates.Gone;
+                mainInfo.Visibility = ViewStates.Visible;
+                showAll.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+                showAll.SetTextColor(GetColorStateList(Resource.Color.textSecondary));
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
                 imm.HideSoftInputFromWindow(taskNameField.WindowToken, 0);
                 scrollLayout.RemoveAllViews();
