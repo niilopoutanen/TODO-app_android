@@ -1250,6 +1250,16 @@ namespace TODO_app
                 return false;
             }
 
+            if (month > 12 || month < 1)
+            {
+                return false;
+            }
+
+            if (year > DateTime.MaxValue.Year || year < DateTime.MinValue.Year)
+            {
+                return false;
+            }
+
             int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
             if (day > amountOfDaysInMonth)
             {
