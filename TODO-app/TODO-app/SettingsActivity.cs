@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
+using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
@@ -20,6 +21,7 @@ namespace TODO_app
         private bool vibration;
         TextView version;
         RelativeLayout sendFeedbackButton;
+        RelativeLayout replayTutorial;
 
         TextView Niilobtn;
         TextView Oskaribtn;
@@ -39,7 +41,7 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
-        Button deleteAllDone;
+        RelativeLayout deleteAllDone;
 
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
@@ -49,6 +51,8 @@ namespace TODO_app
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             LoadSettings();
             SetTheme(GetStyle());
             // Set our view from the "main" layout resource
@@ -61,6 +65,9 @@ namespace TODO_app
 
             sendFeedbackButton = FindViewById<RelativeLayout>(Resource.Id.SendFeedbackBtn);
             sendFeedbackButton.Click += SendFeedback;
+
+            replayTutorial = FindViewById<RelativeLayout>(Resource.Id.ReplayTutorialbtn);
+            replayTutorial.Click += ReplayTutorial;
 
             Niilobtn = FindViewById<TextView>(Resource.Id.CreditsNP);
             Oskaribtn = FindViewById<TextView>(Resource.Id.CreditsOM);
@@ -88,7 +95,7 @@ namespace TODO_app
             violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
 
-            deleteAllDone = FindViewById<Button>(Resource.Id.deleteAllDoneButton);
+            deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
 
             deleteAllDone.Click += DeleteAllDone_Click;
@@ -210,6 +217,12 @@ namespace TODO_app
             StartActivity(intent);
         }
 
+        private void ReplayTutorial(object sender, EventArgs e)
+        {
+            Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
+            StartActivity(onBoraderStarter);
+        }
+
         private void CreditsLinks(object sender, EventArgs e)
         {
             var button = (TextView)sender;
@@ -295,7 +308,12 @@ namespace TODO_app
             }
             if(amountRemoved > 0)
             {
-                OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
+            }
+            else if (amountRemoved <= 0)
+            {
+                OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
+
             }
         }
 
@@ -352,6 +370,10 @@ namespace TODO_app
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
-
+        public override void OnBackPressed() 
+        {
+            Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
+            StartActivity(mainMenuStarter);
+        }
     }
 }
