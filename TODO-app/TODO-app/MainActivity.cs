@@ -558,6 +558,7 @@ namespace TODO_app
                 searchField.Text = "";
                 scrollLayout.RemoveAllViews();
                 calendarView.Visibility = ViewStates.Gone;
+                mainInfo.Visibility = ViewStates.Gone;
                 searchBar.Visibility = ViewStates.Gone;
                 searchField.Visibility = ViewStates.Visible;
                 searchField.FocusableInTouchMode = true;
@@ -570,6 +571,7 @@ namespace TODO_app
             {
                 searchBar.Visibility = ViewStates.Visible;
                 searchField.Visibility = ViewStates.Gone;
+                mainInfo.Visibility = ViewStates.Visible;
                 calendarView.Visibility = ViewStates.Visible;
                 sortByDueDate.Visibility = ViewStates.Gone;
                 sortByCreationDate.Visibility = ViewStates.Gone;
