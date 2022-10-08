@@ -89,4 +89,7 @@
 	<string name="noCompletedTasks">Sinulla ei ole yhtään valmista tehtävää.</string>
 	<string name="tasksDeleted">Tehtävät poistettu</string>
 	<string name="deleted">Poistettiin</string>
+
+	<string name="widgetLargeDesc">Näyttää tehtävät mitä ei ole vielä tehty</string>
+	<string name="widgetMediumDesc">Näyttää tämän päivän tehtävät mitä ei ole vielä tehty</string>
 </resources>

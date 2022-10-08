@@ -12,7 +12,7 @@ using System.Text;
 
 namespace TODO_app
 {
-    [BroadcastReceiver(Label = "TODO-app widget", Exported = true)]
+    [BroadcastReceiver(Label = "TODO medium", Exported = true)]
     [IntentFilter(new string[] { "android.appwidget.action.APPWIDGET_UPDATE" })]
     [MetaData("android.appwidget.provider", Resource = "@xml/appwidgetprovider")]
     internal class AppWidget : AppWidgetProvider
@@ -52,7 +52,7 @@ namespace TODO_app
     }
 
 
-    [BroadcastReceiver(Label = "TODO-large", Exported = true)]
+    [BroadcastReceiver(Label = "TODO large", Exported = true)]
     [IntentFilter(new string[] { "android.appwidget.action.APPWIDGET_UPDATE" })]
     [MetaData("android.appwidget.provider", Resource = "@xml/appwidgetprovider_large")]
     internal class LargeWidget : AppWidgetProvider

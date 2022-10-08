@@ -87,4 +87,7 @@
 	<string name="noCompletedTasks">Du har 0 uppgiftar to remuv</string>
 	<string name="tasksDeleted">Uppgiftar remuven</string>
 	<string name="deleted">Remuven</string>
+
+	<string name="widgetLargeDesc">Shuv uppgiftar de är inte done</string>
+	<string name="widgetMediumDesc">Shuv uppgiftar de är inte done todag</string>
 </resources>
