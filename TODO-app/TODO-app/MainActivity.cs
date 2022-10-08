@@ -13,6 +13,7 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Firebase.Analytics;
 using Android.Animation;
+using Android.Appwidget;
 
 namespace TODO_app
 {
@@ -117,7 +118,7 @@ namespace TODO_app
             
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
+            UpdateWidget();
 
             InitializeElements();
             CalendarDater();
@@ -1225,7 +1226,7 @@ namespace TODO_app
                 }
             }
             file.WriteFile(taskList);
-
+            UpdateWidget();
 
             //buttonParent.RemoveAllViews();
             //scrollLayout.RemoveView(buttonParent);
@@ -1250,6 +1251,7 @@ namespace TODO_app
             task.DueDate = dueDate;
             taskList.Add(task);
             file.WriteFile(taskList);
+            UpdateWidget();
         }
 
         private void DeleteTaskItem(string name)
@@ -1263,6 +1265,8 @@ namespace TODO_app
                     break;
                 }
             }
+            UpdateWidget();
+
         }
 
         /// <summary>
@@ -1610,6 +1614,28 @@ namespace TODO_app
         public override void OnBackPressed()
         {
             this.FinishAffinity();
+        }
+
+        public void UpdateWidget()
+        {
+            int taskNotDoneCount = 0;
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                if (taskList[i].DueDate == DateTime.Today)
+                {
+                    if (taskList[i].IsDone == false)
+                    {
+                        taskNotDoneCount++;
+                    }
+
+                }
+            }
+            Context context = this;
+            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(context);
+            RemoteViews remoteViews = new RemoteViews(context.PackageName, Resource.Layout.widget);
+            ComponentName thisWidget = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
+            remoteViews.SetTextViewText(Resource.Id.widgetCount, taskNotDoneCount.ToString());
+            appWidgetManager.UpdateAppWidget(thisWidget, remoteViews);
         }
     }
 }
