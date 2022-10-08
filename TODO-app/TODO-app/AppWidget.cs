@@ -47,7 +47,7 @@ namespace TODO_app
 
                 }
             }
-            widgetView.SetTextViewText(Resource.Id.widgetCount, DateTime.Now.Second.ToString());
+            widgetView.SetTextViewText(Resource.Id.widgetCount, taskNotDoneCount.ToString());
         }
     }
 
