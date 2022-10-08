@@ -85,30 +85,36 @@ namespace TODO_app
         private void UpdateWidgetList(RemoteViews widgetView)
         {
             FileClass files = new FileClass();
-            List<TaskItem> taskList = new List<TaskItem>();
-            taskList = files.ReadFile();
+            List<TaskItem> localtaskList = new List<TaskItem>();
+            localtaskList = files.ReadFile();
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
-
-            if (taskList.Count > 0)
+            foreach (TaskItem task in localtaskList)
+            {
+                if (task.IsDone == true)
+                {
+                    localtaskList.Remove(task);
+                }
+            }
+            if (localtaskList.Count > 0)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1, taskList[0].Text);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1Due, taskList[0].DueDate.ToShortDateString());
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1, localtaskList[0].Text);
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1Due, localtaskList[0].DueDate.ToShortDateString());
             }
-            if(taskList.Count > 1)
+            if(localtaskList.Count > 1)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2, taskList[1].Text);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2Due, taskList[1].DueDate.ToShortDateString());
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2, localtaskList[1].Text);
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2Due, localtaskList[1].DueDate.ToShortDateString());
             }
 
-            if(taskList.Count > 2)
+            if(localtaskList.Count > 2)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
             }
-            widgetView.SetTextViewText(Resource.Id.widgetLargeHeader, "Tehtävät (" + taskList.Count + ")");
+            widgetView.SetTextViewText(Resource.Id.widgetLargeHeader, "Tehtävät (" + localtaskList.Count + ")");
 
 
         }
