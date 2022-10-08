@@ -110,7 +110,7 @@ namespace TODO_app
     }
 
 
-    [BroadcastReceiver(Label = "TODO small", Exported = true)]
+    [BroadcastReceiver(Label = "TODO scalable", Exported = true)]
     [IntentFilter(new string[] { "android.appwidget.action.APPWIDGET_UPDATE" })]
     [MetaData("android.appwidget.provider", Resource = "@xml/appwidgetprovider_small")]
     internal class SmallWidget : AppWidgetProvider

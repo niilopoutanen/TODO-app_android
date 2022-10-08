@@ -92,7 +92,7 @@
 
 	<string name="widgetLargeDesc">Shows tasks that are not done for all days</string>
 	<string name="widgetMediumDesc">Shows tasks that are not done for the current day</string>
-	<string name="widgetSmallDesc">Small widget that shows todays remaining tasks</string>
+	<string name="widgetSmallDesc">Widget that shows todays remaining tasks. Can be scaled</string>
 
 
 </resources>
