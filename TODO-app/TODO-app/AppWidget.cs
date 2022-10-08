@@ -3,7 +3,6 @@ using Android.Appwidget;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using System;
@@ -30,6 +29,7 @@ namespace TODO_app
 
             SetTextViewText(widgetView);
             RegisterClicks(context, appWidgetIds, widgetView);
+
             return widgetView;
         }
         private void SetTextViewText(RemoteViews widgetView)
@@ -48,7 +48,6 @@ namespace TODO_app
                     }
 
                 }
-
             }
             widgetView.SetTextViewText(Resource.Id.widgetCount, taskNotDoneCount.ToString());
         }
