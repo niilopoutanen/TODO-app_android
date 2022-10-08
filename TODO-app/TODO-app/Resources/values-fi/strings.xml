@@ -27,7 +27,7 @@
 	<string name="Credits1">Niilo Poutanen</string>
 	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
-	<string name="taskAmount">0 Tehtävää</string>
+	<string name="taskAmount">Tehtävät</string>
 
 	<string name="returnbtn">Takaisin</string>
 
@@ -89,4 +89,9 @@
 	<string name="noCompletedTasks">Sinulla ei ole yhtään valmista tehtävää.</string>
 	<string name="tasksDeleted">Tehtävät poistettu</string>
 	<string name="deleted">Poistettiin</string>
+
+	<string name="widgetLargeDesc">Näyttää tehtävät mitä ei ole vielä tehty</string>
+	<string name="widgetMediumDesc">Näyttää tämän päivän tehtävät mitä ei ole vielä tehty</string>
+	<string name="widgetSmallDesc">Pienoisohjelma joka näyttää tämän päivän tehtävät. Kokoa voi muokata</string>
+
 </resources>

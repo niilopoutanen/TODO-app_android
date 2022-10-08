@@ -13,6 +13,7 @@ using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
 using Firebase.Analytics;
 using Android.Animation;
+using Android.Appwidget;
 
 namespace TODO_app
 {
@@ -117,7 +118,7 @@ namespace TODO_app
             
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
+            UpdateWidget();
 
             InitializeElements();
             CalendarDater();
@@ -1225,7 +1226,7 @@ namespace TODO_app
                 }
             }
             file.WriteFile(taskList);
-
+            UpdateWidget();
 
             //buttonParent.RemoveAllViews();
             //scrollLayout.RemoveView(buttonParent);
@@ -1250,6 +1251,7 @@ namespace TODO_app
             task.DueDate = dueDate;
             taskList.Add(task);
             file.WriteFile(taskList);
+            UpdateWidget();
         }
 
         private void DeleteTaskItem(string name)
@@ -1263,6 +1265,8 @@ namespace TODO_app
                     break;
                 }
             }
+            UpdateWidget();
+
         }
 
         /// <summary>
@@ -1610,6 +1614,70 @@ namespace TODO_app
         public override void OnBackPressed()
         {
             this.FinishAffinity();
+        }
+
+        public void UpdateWidget()
+        {
+            List<TaskItem> localList = new List<TaskItem>();
+            foreach (TaskItem task in taskList)
+            {
+                if(task.IsDone == false)
+                {
+                    localList.Add(task);
+                }
+            }
+            int tasksNotDoneToday = 0;
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                if (taskList[i].DueDate == DateTime.Today)
+                {
+                    if (taskList[i].IsDone == false)
+                    {
+                        tasksNotDoneToday++;
+                    }
+
+                }
+            }
+            localList = TaskItem.SortListByDueDate(localList);
+            Context context = this;
+            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(context);
+            RemoteViews remoteViews = new RemoteViews(context.PackageName, Resource.Layout.widget);
+            RemoteViews remoteViewsLarge = new RemoteViews(context.PackageName, Resource.Layout.widgetLarge);
+            RemoteViews remoteViewsSmall = new RemoteViews(context.PackageName, Resource.Layout.widgetSmall);
+            ComponentName widget = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
+            ComponentName widgetLarge = new ComponentName(context, Java.Lang.Class.FromType(typeof(LargeWidget)).Name);
+            ComponentName widgetSmall = new ComponentName(context, Java.Lang.Class.FromType(typeof(SmallWidget)).Name);
+            remoteViews.SetTextViewText(Resource.Id.widgetCount, tasksNotDoneToday.ToString());
+            remoteViewsSmall.SetTextViewText(Resource.Id.widgetCountSmall, tasksNotDoneToday.ToString());
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
+
+
+
+            if (localList.Count > 0)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, localList[0].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1Due, localList[0].DueDate.ToShortDateString());
+            }
+            if (localList.Count > 1)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, localList[1].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2Due, localList[1].DueDate.ToShortDateString());
+            }
+            if (localList.Count > 2)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
+            }
+            remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeHeader, GetString(Resource.String.taskAmount) + " (" + localList.Count + ")");
+
+            appWidgetManager.UpdateAppWidget(widget, remoteViews);
+            appWidgetManager.UpdateAppWidget(widgetLarge, remoteViewsLarge);
+            appWidgetManager.UpdateAppWidget(widgetSmall, remoteViewsSmall);
+
+
         }
     }
 }

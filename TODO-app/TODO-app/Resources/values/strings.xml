@@ -27,7 +27,7 @@
 	<string name="Credits1">Niilo Poutanen</string>
 	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
-	<string name="taskAmount">0 Tasks</string>
+	<string name="taskAmount">Tasks</string>
 
 	<string name="returnbtn">Return</string>
 
@@ -89,4 +89,10 @@
 	<string name="noCompletedTasks">You have no completed tasks to delete.</string>
 	<string name="tasksDeleted">Tasks deleted</string>
 	<string name="deleted">Deleted</string>
+
+	<string name="widgetLargeDesc">Shows tasks that are not done for all days</string>
+	<string name="widgetMediumDesc">Shows tasks that are not done for the current day</string>
+	<string name="widgetSmallDesc">Widget that shows todays remaining tasks. Can be scaled</string>
+
+
 </resources>
