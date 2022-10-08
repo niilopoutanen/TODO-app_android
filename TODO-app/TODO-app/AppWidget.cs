@@ -108,4 +108,44 @@ namespace TODO_app
 
         }
     }
+
+
+    [BroadcastReceiver(Label = "TODO small", Exported = true)]
+    [IntentFilter(new string[] { "android.appwidget.action.APPWIDGET_UPDATE" })]
+    [MetaData("android.appwidget.provider", Resource = "@xml/appwidgetprovider_small")]
+    internal class SmallWidget : AppWidgetProvider
+    {
+        public override void OnUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
+        {
+            var me = new ComponentName(context, Java.Lang.Class.FromType(typeof(SmallWidget)).Name);
+            appWidgetManager.UpdateAppWidget(me, BuildRemoteViews(context, appWidgetIds));
+        }
+        private RemoteViews BuildRemoteViews(Context context, int[] appWidgetIds)
+        {
+            var widgetView = new RemoteViews(context.PackageName, Resource.Layout.widgetSmall);
+
+            SetTextViewText(widgetView);
+
+            return widgetView;
+        }
+        private void SetTextViewText(RemoteViews widgetView)
+        {
+            FileClass files = new FileClass();
+            int taskNotDoneCount = 0;
+            List<TaskItem> taskList = new List<TaskItem>();
+            taskList = files.ReadFile();
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                if (taskList[i].DueDate == DateTime.Today)
+                {
+                    if (taskList[i].IsDone == false)
+                    {
+                        taskNotDoneCount++;
+                    }
+
+                }
+            }
+            widgetView.SetTextViewText(Resource.Id.widgetCountSmall, taskNotDoneCount.ToString());
+        }
+    }
 }

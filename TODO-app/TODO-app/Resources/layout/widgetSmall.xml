@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/widgetBGsmall"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/rounded60px"
+        android:backgroundTint="@color/colorPrimaryDark">
+        <TextView
+            android:layout_above="@+id/sliderbg"
+            android:id="@+id/widgetCountSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:lineHeight="10dp"
+            android:textColor="@color/textPrimary"
+            android:textSize="35dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+</LinearLayout>
+

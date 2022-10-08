@@ -1643,9 +1643,12 @@ namespace TODO_app
             AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(context);
             RemoteViews remoteViews = new RemoteViews(context.PackageName, Resource.Layout.widget);
             RemoteViews remoteViewsLarge = new RemoteViews(context.PackageName, Resource.Layout.widgetLarge);
+            RemoteViews remoteViewsSmall = new RemoteViews(context.PackageName, Resource.Layout.widgetSmall);
             ComponentName widget = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
             ComponentName widgetLarge = new ComponentName(context, Java.Lang.Class.FromType(typeof(LargeWidget)).Name);
+            ComponentName widgetSmall = new ComponentName(context, Java.Lang.Class.FromType(typeof(SmallWidget)).Name);
             remoteViews.SetTextViewText(Resource.Id.widgetCount, tasksNotDoneToday.ToString());
+            remoteViewsSmall.SetTextViewText(Resource.Id.widgetCountSmall, tasksNotDoneToday.ToString());
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
@@ -1672,6 +1675,8 @@ namespace TODO_app
 
             appWidgetManager.UpdateAppWidget(widget, remoteViews);
             appWidgetManager.UpdateAppWidget(widgetLarge, remoteViewsLarge);
+            appWidgetManager.UpdateAppWidget(widgetSmall, remoteViewsSmall);
+
 
         }
     }

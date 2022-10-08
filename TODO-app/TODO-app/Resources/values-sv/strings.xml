@@ -90,4 +90,6 @@
 
 	<string name="widgetLargeDesc">Shuv uppgiftar de är inte done</string>
 	<string name="widgetMediumDesc">Shuv uppgiftar de är inte done todag</string>
+	<string name="widgetSmallDesc">Shuv uppgiftar de är inte done todag (littel ui)</string>
+
 </resources>

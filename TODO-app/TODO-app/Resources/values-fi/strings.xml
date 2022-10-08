@@ -92,4 +92,6 @@
 
 	<string name="widgetLargeDesc">Näyttää tehtävät mitä ei ole vielä tehty</string>
 	<string name="widgetMediumDesc">Näyttää tämän päivän tehtävät mitä ei ole vielä tehty</string>
+	<string name="widgetSmallDesc">Pieni pienoisohjelma joka näyttää tämän päivän tehtävät</string>
+
 </resources>
