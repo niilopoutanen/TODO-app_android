@@ -3,21 +3,46 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:id="@+id/widgetBG"
->
+    android:orientation="vertical">
     <RelativeLayout
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/rounded50px"
+        android:id="@+id/widgetBG"
+        android:padding="15dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/rounded90px"
         android:backgroundTint="@color/colorPrimaryDark">
         <TextView
-            android:id="@+id/widgetHeader"
+            android:layout_above="@+id/sliderbg"
+            android:id="@+id/widgetCount"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="widget"
+            android:layout_height="95dp"
+            android:text="4"
             android:layout_centerInParent="true"
-            android:textColor="@color/textPrimary"/>
+            android:lineHeight="10dp"
+            android:textColor="@color/textPrimary"
+            android:textSize="70dp"
+            android:fontFamily="@font/inter_bold"
+            android:textFontWeight="500"
+            android:textAlignment="center"/>
+
+        <RelativeLayout
+            android:id="@+id/sliderbg"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/rounded50px"
+            android:backgroundTint="@color/colorButton"
+            android:layout_alignParentBottom="true"
+            android:paddingRight="40dp">
+            <RelativeLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="?attr/colorAccent"
+                android:layout_alignParentBottom="true">
+
+            </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
 
