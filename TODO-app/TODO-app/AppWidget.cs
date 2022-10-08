@@ -27,7 +27,6 @@ namespace TODO_app
             var widgetView = new RemoteViews(context.PackageName, Resource.Layout.widget);
 
             SetTextViewText(widgetView);
-            RegisterClicks(context, appWidgetIds, widgetView);
 
             return widgetView;
         }
@@ -48,17 +47,7 @@ namespace TODO_app
 
                 }
             }
-            widgetView.SetTextViewText(Resource.Id.widgetCount, taskNotDoneCount.ToString());
-        }
-        private void RegisterClicks(Context context, int[] appWidgetIds, RemoteViews widgetView)
-        {
-            var intent = new Intent(context, typeof(AppWidget));
-            intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
-            intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
-
-            // Register click event for the Background
-            var piBackground = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.UpdateCurrent);
-            widgetView.SetOnClickPendingIntent(Resource.Id.widgetBG, piBackground);
+            widgetView.SetTextViewText(Resource.Id.widgetCount, DateTime.Now.Second.ToString());
         }
     }
 
@@ -77,16 +66,16 @@ namespace TODO_app
         {
             var widgetView = new RemoteViews(context.PackageName, Resource.Layout.widgetLarge);
 
-            UpdateWidgetList(widgetView);
-            RegisterClicks(context, appWidgetIds, widgetView);
+            UpdateWidgetList(widgetView, context);
 
             return widgetView;
         }
-        private void UpdateWidgetList(RemoteViews widgetView)
+        private void UpdateWidgetList(RemoteViews widgetView, Context context)
         {
             FileClass files = new FileClass();
             List<TaskItem> localtaskList = new List<TaskItem>();
             localtaskList = files.ReadFile();
+            localtaskList = TaskItem.SortListByDueDate(localtaskList);
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
             widgetView.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
@@ -114,19 +103,9 @@ namespace TODO_app
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
             }
-            widgetView.SetTextViewText(Resource.Id.widgetLargeHeader, "Tehtävät (" + localtaskList.Count + ")");
+            widgetView.SetTextViewText(Resource.Id.widgetLargeHeader, context.GetString(Resource.String.taskAmount) + " (" + localtaskList.Count + ")");
 
 
-        }
-        private void RegisterClicks(Context context, int[] appWidgetIds, RemoteViews widgetView)
-        {
-            var intent = new Intent(context, typeof(AppWidget));
-            intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
-            intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
-
-            // Register click event for the Background
-            var piBackground = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.UpdateCurrent);
-            widgetView.SetOnClickPendingIntent(Resource.Id.widgetBGLarge, piBackground);
         }
     }
 }

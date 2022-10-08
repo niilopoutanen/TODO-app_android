@@ -1621,27 +1621,31 @@ namespace TODO_app
             List<TaskItem> localList = new List<TaskItem>();
             foreach (TaskItem task in taskList)
             {
-                localList.Add(task);
+                if(task.IsDone == false)
+                {
+                    localList.Add(task);
+                }
             }
-            int taskNotDoneCount = 0;
+            int tasksNotDoneToday = 0;
             for (int i = 0; i < taskList.Count; i++)
             {
                 if (taskList[i].DueDate == DateTime.Today)
                 {
                     if (taskList[i].IsDone == false)
                     {
-                        taskNotDoneCount++;
+                        tasksNotDoneToday++;
                     }
 
                 }
             }
+            localList = TaskItem.SortListByDueDate(localList);
             Context context = this;
             AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(context);
             RemoteViews remoteViews = new RemoteViews(context.PackageName, Resource.Layout.widget);
             RemoteViews remoteViewsLarge = new RemoteViews(context.PackageName, Resource.Layout.widgetLarge);
             ComponentName widget = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
             ComponentName widgetLarge = new ComponentName(context, Java.Lang.Class.FromType(typeof(LargeWidget)).Name);
-            remoteViews.SetTextViewText(Resource.Id.widgetCount, taskNotDoneCount.ToString());
+            remoteViews.SetTextViewText(Resource.Id.widgetCount, tasksNotDoneToday.ToString());
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
             remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
@@ -1651,20 +1655,20 @@ namespace TODO_app
             if (localList.Count > 0)
             {
                 remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, taskList[0].Text);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1Due, taskList[0].DueDate.ToShortDateString());
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, localList[0].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1Due, localList[0].DueDate.ToShortDateString());
             }
             if (localList.Count > 1)
             {
                 remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, taskList[1].Text);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2Due, taskList[1].DueDate.ToShortDateString());
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, localList[1].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2Due, localList[1].DueDate.ToShortDateString());
             }
             if (localList.Count > 2)
             {
                 remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
             }
-            remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeHeader, "Tehtävät (" + taskList.Count + ")");
+            remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeHeader, GetString(Resource.String.taskAmount) + " (" + localList.Count + ")");
 
             appWidgetManager.UpdateAppWidget(widget, remoteViews);
             appWidgetManager.UpdateAppWidget(widgetLarge, remoteViewsLarge);
