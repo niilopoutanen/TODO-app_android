@@ -1658,13 +1658,13 @@ namespace TODO_app
             if (localList.Count > 0)
             {
                 remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, localList[0].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, ActivityMethods.TooLongStringParser(localList[0].Text, 18));
                 remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1Due, localList[0].DueDate.ToShortDateString());
             }
             if (localList.Count > 1)
             {
                 remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
-                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, localList[1].Text);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, ActivityMethods.TooLongStringParser(localList[1].Text, 18));
                 remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2Due, localList[1].DueDate.ToShortDateString());
             }
             if (localList.Count > 2)

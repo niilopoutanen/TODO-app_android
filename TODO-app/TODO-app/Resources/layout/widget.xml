@@ -6,18 +6,24 @@
     android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/widgetBG"
-        android:padding="15dp"
+        android:padding="10dp"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:background="@drawable/rounded90px"
         android:backgroundTint="@color/colorPrimaryDark">
         <TextView
-            android:layout_above="@+id/sliderbg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/today"
+            android:textColor="@color/textPrimary"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:fontFamily="@font/inter_bold"/>
+        <TextView
             android:id="@+id/widgetCount"
             android:layout_width="wrap_content"
             android:layout_height="95dp"
             android:layout_centerInParent="true"
-            android:lineHeight="10dp"
             android:textColor="@color/textPrimary"
             android:textSize="70dp"
             android:fontFamily="@font/inter_bold"

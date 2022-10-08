@@ -40,5 +40,19 @@ namespace TODO_app
             vibrator.Vibrate(VibrationEffect.CreateOneShot(length, VibrationEffect.DefaultAmplitude));
 
         }
+
+        public static string TooLongStringParser(string inputToParse, int maxChar)
+        {
+            if (inputToParse.Length > maxChar)
+            {
+                string newstring = inputToParse.Substring(0, maxChar - 3);
+                newstring = newstring + "...";
+                return newstring;
+            }
+            else
+            {
+                return inputToParse;
+            }
+        }
     }
 }
