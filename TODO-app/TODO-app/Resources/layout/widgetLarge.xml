@@ -18,7 +18,6 @@
             android:id="@+id/widgetLargeHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tehtävät (4)"
             android:fontFamily="@font/inter_bold"
             android:textColor="@color/textPrimary"/>
 
@@ -37,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Tehtävä 1"
                 android:textColor="@color/textPrimary"/>
             <TextView
                 android:id="@+id/widgetLargeTask1Due"
@@ -45,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="8.10.2022"
                 android:textColor="@color/textPrimary"/>
         </RelativeLayout>
         <RelativeLayout
@@ -63,7 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Tehtävä 2"
                 android:textColor="@color/textPrimary"/>
             <TextView
                 android:id="@+id/widgetLargeTask2Due"
@@ -71,7 +67,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="9.10.2022"
                 android:textColor="@color/textPrimary"/>
         </RelativeLayout>
         <RelativeLayout
