@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
+using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
@@ -20,6 +21,7 @@ namespace TODO_app
         private bool vibration;
         TextView version;
         RelativeLayout sendFeedbackButton;
+        RelativeLayout replayTutorial;
 
         TextView Niilobtn;
         TextView Oskaribtn;
@@ -39,8 +41,10 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
-        Button deleteAllDone;
-
+        RelativeLayout deleteAllDone;
+        Vibrator vibrator;
+        VibratorManager vibratorManager;
+        ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
         protected override void OnCreate(Bundle savedInstanceState)
@@ -49,6 +53,8 @@ namespace TODO_app
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             LoadSettings();
             SetTheme(GetStyle());
             // Set our view from the "main" layout resource
@@ -61,6 +67,9 @@ namespace TODO_app
 
             sendFeedbackButton = FindViewById<RelativeLayout>(Resource.Id.SendFeedbackBtn);
             sendFeedbackButton.Click += SendFeedback;
+
+            replayTutorial = FindViewById<RelativeLayout>(Resource.Id.ReplayTutorialbtn);
+            replayTutorial.Click += ReplayTutorial;
 
             Niilobtn = FindViewById<TextView>(Resource.Id.CreditsNP);
             Oskaribtn = FindViewById<TextView>(Resource.Id.CreditsOM);
@@ -88,8 +97,11 @@ namespace TODO_app
             violetActive = FindViewById<ImageView>(Resource.Id.MainVioletActive);
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
 
-            deleteAllDone = FindViewById<Button>(Resource.Id.deleteAllDoneButton);
+            deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
+
+            vibrator = (Vibrator)GetSystemService(VibratorService);
+            vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
@@ -161,6 +173,7 @@ namespace TODO_app
                 return Resource.Color.mainBlue;
             }
         }
+        
         private void LoadSettings()
         {
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
@@ -194,21 +207,46 @@ namespace TODO_app
             savedTheme = color;
 
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
-
         }
+        
         private void BackToMenu(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 100);
+            }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
         }
+        
         private void SendFeedback(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 50);
+            }
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
             StartActivity(intent);
         }
+
+        private void ReplayTutorial(object sender, EventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 50);
+            }
+            Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
+            StartActivity(onBoraderStarter);
+        }
+
         private void CreditsLinks(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 50);
+
+            }
             var button = (TextView)sender;
             switch (button.Id)
             {
@@ -230,9 +268,7 @@ namespace TODO_app
                     StartActivity(intentT);
                     break;
             }
-
         }
-
 
         private void ChangeTheme(object sender, EventArgs e)
         {
@@ -243,6 +279,10 @@ namespace TODO_app
             redActive.Visibility = ViewStates.Gone;
             RelativeLayout colorButton = (RelativeLayout)sender;
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator,vibratorManager, 60);
+            }
             switch (colorButton.Id)
             {
                 case Resource.Id.MainBlueToggle:
@@ -285,42 +325,45 @@ namespace TODO_app
                 }
             }
             files.WriteFile(taskList);
-            if (vibration == true)
+
+            if (amountRemoved > 0)
             {
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 60);
+                }
+                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
-            if(amountRemoved > 0)
+            else if (amountRemoved <= 0)
             {
-                OpenPopup("Tehtävät poistettu", "Poistettiin " + amountRemoved + " tehtävää", "OK");
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 200);
+                }
+                OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
+
             }
         }
 
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             
             if (e.IsChecked == true)
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
                 vibration = true;
-                VibrationEffect invalidHaptic = VibrationEffect.CreateOneShot(100, VibrationEffect.DefaultAmplitude);
-                Vibrator hapticSystem = (Vibrator)GetSystemService(VibratorService);
-                hapticSystem.Cancel();
-                hapticSystem.Vibrate(invalidHaptic);
+                methods.Vibrate(vibrator, vibratorManager, 100);
+
             }
 
             else if (e.IsChecked == false)
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", false).Commit();
                 vibration = false;
-
-
             }
         }
+
         private void OpenPopup(string Header, string Desc, string YesText)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
@@ -347,11 +390,16 @@ namespace TODO_app
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Visibility = ViewStates.Gone;
         }
+        
         private int DpToPx(int dpValue)
         {
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
-
+        public override void OnBackPressed() 
+        {
+            Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
+            StartActivity(mainMenuStarter);
+        }
     }
 }

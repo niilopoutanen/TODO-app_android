@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_height="310dp"
     android:background="@drawable/rounded90px"
     android:backgroundTint="@color/popupBG"
     android:gravity="center_horizontal"
@@ -31,17 +31,21 @@
         android:paddingLeft="5dp"
         android:id="@+id/EditTaskInput"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/rounded50px"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded10pxinvalid"
         android:backgroundTint="@color/colorButton"
         android:layout_below="@+id/EditTaskName"
         android:inputType="text"
-        android:textColor="@color/textPrimary"/>
+        android:textColor="@color/textPrimary"
+        />
     <TextView
         android:id="@+id/invalidEditName"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:layout_below="@+id/EditTaskInput"/>
+        android:layout_height="20dp"
+        android:layout_below="@+id/EditTaskInput"
+        android:textSize="12dp"
+        android:textColor="@color/errorColor"
+        android:textAlignment="center"/>
     <TextView
         android:id="@+id/EditDateHeader"
         android:textAlignment="center"
@@ -52,15 +56,16 @@
         android:fontFamily="@font/inter_medium"/>
 
     <LinearLayout
+        android:id="@+id/dateSelectorEdit"
         android:layout_below="@+id/EditDateHeader"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+>
         <RelativeLayout
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -82,12 +87,14 @@
                 android:id="@+id/EditDayInput"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/rounded50px"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded10pxinvalid"
                 android:backgroundTint="@color/colorButton"
                 android:inputType="date"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
@@ -107,9 +114,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -130,12 +137,14 @@
                 android:id="@+id/EditMonthInput"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/rounded50px"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded10pxinvalid"
                 android:inputType="date"
                 android:backgroundTint="@color/colorButton"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -156,7 +165,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="90dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -178,13 +187,14 @@
                 android:id="@+id/EditYearInput"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/rounded50px"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded10pxinvalid"
                 android:backgroundTint="@color/colorButton"
                 android:inputType="date"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:drawableTop="@drawable/rounded50pxinvalid"/>
+                android:fontFamily="@font/inter_medium"
+                android:textSize="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
@@ -203,6 +213,14 @@
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
+    <TextView
+        android:id="@+id/invalidEditDate"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/dateSelectorEdit"
+        android:textSize="12dp"
+        android:textColor="@color/errorColor"
+        android:textAlignment="center"/>
     <Button
         android:id="@+id/editPopupConfirm"
         android:layout_alignParentRight="true"

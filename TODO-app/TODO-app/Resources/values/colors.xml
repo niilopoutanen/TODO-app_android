@@ -16,4 +16,6 @@
 	<color name="mainViolet">#BE55F3</color>
 	<color name="mainOrange">#FB9B22</color>
 	<color name="mainRed">#ED4636</color>
+
+	<color name="errorColor">#FF7F74</color>
 </resources>

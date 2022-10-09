@@ -17,7 +17,6 @@ namespace TODO_app
             CreateFile();
         }
 
-
         /// <summary>
         /// If file doesn't exists it will create it
         /// (File.create has to be closed because it opens a stream on openin)
@@ -48,7 +47,6 @@ namespace TODO_app
             //Writes to file
 
         }
-
 
         /// <summary>
         /// Reads from internal storage.

@@ -6,7 +6,7 @@
 	<string name="date_select_header">Due datorna på uppgift</string>
 	<string name="default_description">Description</string>
 	<string name="show_all">Shuv allt</string>
-	<string name="add_task_header">Addärare nu uppgift</string>
+	<string name="add_task_header">Addärare en nu uppgift</string>
     <string name="edit_task_header">Editorna uppgift</string>
 
     <string name="add">Addärare</string>
@@ -21,12 +21,13 @@
     <string name="deleteAllDone">Radera allt gjort</string>
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
+	<string name="replayTutorial">Rewatchär tutorialen</string>
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Faktorerna:</string>
 	<string name="Credits1">Niilo Poutanen</string>
 	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
-	<string name="taskAmount">0 uppgiftar</string>
+	<string name="taskAmount">Uppgiftar</string>
 
 	<string name="returnbtn">Returna</string>
 
@@ -40,8 +41,8 @@
     <string name="Thursday">Tursdag</string>
     <string name="FridayShort">Fri</string>
     <string name="Friday">Fridåg</string>
-    <string name="SaturdayShort">Lön</string>
-    <string name="Saturday">Lönsdag</string>
+    <string name="SaturdayShort">Lör</string>
+    <string name="Saturday">Lördag</string>
     <string name="SundayShort">Sun</string>
     <string name="Sunday">Sundag</string>
 
@@ -62,10 +63,12 @@
 
 	<string name="next">Nästa</string>
 	<string name="skip">Skipparna</string>
-	<string name="guide1">Adda uppgiftar från hemmenus \n+buttorna.</string>
+	<string name="guide1">Adda uppgiftar från hemmenus buttorna.</string>
 	<string name="guide2">Marka uppgiftar gjort eller remuv dem håller uppgiftar nere.</string>
-	<string name="guide3">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
-	<string name="guide4">Senda utvecklingsförslag från regleringmenus linkka!</string>
+	<string name="guide3">Remuv or editarna uppgiftar by holdarna down</string>
+	<string name="guide4">Kontrollera uppgiftars förfalludatum på klikar uppgiftar.</string>
+	<string name="guide5">Äddar widgeten på tu hemscreen</string>
+	<string name="guide6">Senda utvecklingsförslag från regleringmenus linkka!</string>
 
 
 
@@ -79,5 +82,16 @@
     <string name="cancel">Avbryt</string>
 
     <string name="editDesc">Välj en funktion nedan.</string>
-    <string name="task">taskarna</string>
+    <string name="task">Taskarna</string>
+
+	<string name="nothingToDelete">inte har deleter</string>
+	<string name="noCompletedTasks">Du har 0 uppgiftar to remuv</string>
+	<string name="tasksDeleted">Uppgiftar remuven</string>
+	<string name="deleted">Remuven</string>
+
+	<string name="widgetLargeDesc">Shuv uppgiftar de är inte done</string>
+	<string name="widgetMediumDesc">Shuv uppgiftar de är inte done todag</string>
+	<string name="widgetSmallDesc">Shuv uppgiftar de är inte done todag (littel ui)</string>
+	<string name="today">Todag</string>
+
 </resources>

@@ -69,8 +69,38 @@ namespace TODO_app.Resources.layout
                 guideView.Animate().Alpha(0).SetDuration(300).Start();
                 onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
                 await Task.Delay(400);
+
+
                 guideView.SetImageResource(Resource.Drawable.guide4);
                 onBoardHeader.Text = GetString(Resource.String.guide4);
+                guideView.Animate().Alpha(1).SetDuration(200).Start();
+                onBoardHeader.Animate().Alpha(1).SetDuration(300).Start();
+                await Task.Delay(300);
+
+
+            }
+            else if (onBoardHeader.Text == GetString(Resource.String.guide4))
+            {
+                guideView.Animate().Alpha(0).SetDuration(300).Start();
+                onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
+                await Task.Delay(400);
+
+
+                guideView.SetImageResource(Resource.Drawable.guide5);
+                onBoardHeader.Text = GetString(Resource.String.guide5);
+                guideView.Animate().Alpha(1).SetDuration(200).Start();
+                onBoardHeader.Animate().Alpha(1).SetDuration(300).Start();
+                await Task.Delay(300);
+
+
+            }
+            else if (onBoardHeader.Text == GetString(Resource.String.guide5))
+            {
+                guideView.Animate().Alpha(0).SetDuration(300).Start();
+                onBoardHeader.Animate().Alpha(0).SetDuration(300).Start();
+                await Task.Delay(400);
+                guideView.SetImageResource(Resource.Drawable.guide6);
+                onBoardHeader.Text = GetString(Resource.String.guide6);
 
                 skip.Visibility = ViewStates.Gone;
 
@@ -85,7 +115,7 @@ namespace TODO_app.Resources.layout
 
 
             }
-            else if (onBoardHeader.Text == GetString(Resource.String.guide4))
+            else if (onBoardHeader.Text == GetString(Resource.String.guide6))
             {
                 ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
                 hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
@@ -109,5 +139,9 @@ namespace TODO_app.Resources.layout
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
+        public override void OnBackPressed()
+        {
+        }
+
     }
 }
