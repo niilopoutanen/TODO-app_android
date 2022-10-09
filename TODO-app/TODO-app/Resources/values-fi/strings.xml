@@ -68,7 +68,8 @@
 	<string name="guide2">Merkitse tehtävät tehdyksi \ntai poista ne pitämällä \ntehtävää pohjassa.</string>
 	<string name="guide3">Poista tai muokkaa tehtävää pitämällä tehtävää pohjassa.</string>
 	<string name="guide4">Tarkista tehtävän eräpäivä painamalla tehtävästä.</string>
-	<string name="guide5">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
+	<string name="guide5">Lisää pienoisohjelmia alkunäyttöösi.</string>
+	<string name="guide6">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
 
 
 

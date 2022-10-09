@@ -223,7 +223,7 @@
     <AndroidResource Include="Resources\drawable\plus.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\guide5.png" />
+    <AndroidResource Include="Resources\drawable\guide6.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\widget.xml">
@@ -269,6 +269,9 @@
     <Folder Include="Resources\mipmap-xhdpi\" />
     <Folder Include="Resources\mipmap-xxhdpi\" />
     <Folder Include="Resources\mipmap-xxxhdpi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\guide5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
