@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/textPrimary</item>
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
 	</style>
 
