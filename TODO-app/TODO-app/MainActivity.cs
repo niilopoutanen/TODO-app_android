@@ -73,6 +73,20 @@ namespace TODO_app
         RelativeLayout date6Btn;
         RelativeLayout date7Btn;
 
+        TextView date1number;
+        TextView date1str;
+        TextView date2number;
+        TextView date2str;
+        TextView date3number;
+        TextView date3str;
+        TextView date4number;
+        TextView date4str;
+        TextView date5number;
+        TextView date5str;
+        TextView date6number;
+        TextView date6str;
+        TextView date7number;
+        TextView date7str;
 
         LinearLayout scrollLayout;
 
@@ -86,6 +100,8 @@ namespace TODO_app
         RelativeLayout missedTasksBtn;
         TextView missedTasksCount;
         Space missedTaskSpace;
+
+        ImageView alarmIcon;
 
         EditText editTaskField;
 
@@ -116,7 +132,6 @@ namespace TODO_app
             taskList = file.ReadFile();
             taskList = TaskItem.SortListByIsDone(taskList);
             
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             UpdateWidget();
 
@@ -177,6 +192,8 @@ namespace TODO_app
             }
             activeDate = -1;
             scrollLayout.RemoveAllViews();
+            alarmIcon.BackgroundTintList = GetColorStateList(Resource.Color.white);
+            missedTasksCount.SetTextColor(GetColorStateList(Resource.Color.white));
             missedTasksBtn.BackgroundTintList = GetColorStateList(GetStyle());
             date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
@@ -185,6 +202,20 @@ namespace TODO_app
             date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date1number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date1str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date2number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date2str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date3number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date3str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date4number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date4str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date5number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date5str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date6number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date6str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date7number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date7str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
             foreach (TaskItem t in taskList)
             {
                 if (t.DueDate < DateTime.Today)
@@ -265,6 +296,7 @@ namespace TODO_app
         /// </summary>
         private void InitializeElements()
         {
+            alarmIcon = FindViewById<ImageView>(Resource.Id.alarmIcon);
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
             mainInfo = FindViewById<RelativeLayout>(Resource.Id.MainInfo);
@@ -317,7 +349,20 @@ namespace TODO_app
             yearDown.Click += ArrowModify;
 
 
-
+            date1number = FindViewById<TextView>(Resource.Id.date1number);
+            date1str = FindViewById<TextView>(Resource.Id.date1str);
+            date2number = FindViewById<TextView>(Resource.Id.date2number);
+            date2str = FindViewById<TextView>(Resource.Id.date2str);
+            date3number = FindViewById<TextView>(Resource.Id.date3number);
+            date3str = FindViewById<TextView>(Resource.Id.date3str);
+            date4number = FindViewById<TextView>(Resource.Id.date4number);
+            date4str = FindViewById<TextView>(Resource.Id.date4str);
+            date5number = FindViewById<TextView>(Resource.Id.date5number);
+            date5str = FindViewById<TextView>(Resource.Id.date5str);
+            date6number = FindViewById<TextView>(Resource.Id.date6number);
+            date6str = FindViewById<TextView>(Resource.Id.date6str);
+            date7number = FindViewById<TextView>(Resource.Id.date7number);
+            date7str = FindViewById<TextView>(Resource.Id.date7str);
 
 
             date1Btn = FindViewById<RelativeLayout>(Resource.Id.date1btn);
@@ -500,7 +545,7 @@ namespace TODO_app
                 sortByDueDate.Visibility = ViewStates.Visible;
                 sortByCreationDate.Visibility = ViewStates.Visible;
                 showAll.BackgroundTintList = GetColorStateList(GetStyle());
-                showAll.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+                showAll.SetTextColor(GetColorStateList(Resource.Color.white));
                 taskList = TaskItem.SortListByIsDone(taskList);
                 foreach (TaskItem t in taskList)
                 {
@@ -968,26 +1013,26 @@ namespace TODO_app
             string todaystr = dayNames[(int)today.DayOfWeek] + "\n" + today.Day.ToString() + "." + today.Month.ToString() + "." + today.Year.ToString();
             todayHeader.Text = todaystr;
 
-            FindViewById<TextView>(Resource.Id.date1number).Text = today.Day.ToString();
-            FindViewById<TextView>(Resource.Id.date1str).Text = dayNamesShort[(int)today.DayOfWeek];
+            date1number.Text = today.Day.ToString();
+            date1str.Text = dayNamesShort[(int)today.DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date2number).Text = today.AddDays(1).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date2str).Text = dayNamesShort[(int)today.AddDays(1).DayOfWeek];
+            date2number.Text = today.AddDays(1).Day.ToString();
+            date2str.Text = dayNamesShort[(int)today.AddDays(1).DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date3number).Text = today.AddDays(2).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date3str).Text = dayNamesShort[(int)today.AddDays(2).DayOfWeek];
+            date3number.Text = today.AddDays(2).Day.ToString();
+            date3str.Text = dayNamesShort[(int)today.AddDays(2).DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date4number).Text = today.AddDays(3).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date4str).Text = dayNamesShort[(int)today.AddDays(3).DayOfWeek];
+            date4number.Text = today.AddDays(3).Day.ToString();
+            date4str.Text = dayNamesShort[(int)today.AddDays(3).DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date5number).Text = today.AddDays(4).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date5str).Text = dayNamesShort[(int)today.AddDays(4).DayOfWeek];
+            date5number.Text = today.AddDays(4).Day.ToString();
+            date5str.Text = dayNamesShort[(int)today.AddDays(4).DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date6number).Text = today.AddDays(5).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date6str).Text = dayNamesShort[(int)today.AddDays(5).DayOfWeek];
+            date6number.Text = today.AddDays(5).Day.ToString();
+            date6str.Text = dayNamesShort[(int)today.AddDays(5).DayOfWeek];
 
-            FindViewById<TextView>(Resource.Id.date7number).Text = today.AddDays(6).Day.ToString();
-            FindViewById<TextView>(Resource.Id.date7str).Text = dayNamesShort[(int)today.AddDays(6).DayOfWeek];
+            date7number.Text = today.AddDays(6).Day.ToString();
+            date7str.Text = dayNamesShort[(int)today.AddDays(6).DayOfWeek];
         }
 
         /// <summary>
@@ -997,6 +1042,32 @@ namespace TODO_app
         /// <param name="e"></param>
         private void CalendarSelector(object sender, EventArgs e)
         {
+
+            alarmIcon.BackgroundTintList = GetColorStateList(Resource.Color.textPrimary);
+            missedTasksCount.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
+            date1number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date1str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date2number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date2str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date3number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date3str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date4number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date4str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date5number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date5str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date6number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date6str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date7number.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+            date7str.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
+
             if (vibration == true)
             {
                 methods.Vibrate(vibrator, vibratorManager, 45);
@@ -1011,84 +1082,57 @@ namespace TODO_app
                 case Resource.Id.date1btn:
                     activeDate = 1;
                     date1Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date1number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date1str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+
                     break;
 
                 case Resource.Id.date2btn:
                     activeDate = 2;
                     date2Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date2number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date2str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(1));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
                 case Resource.Id.date3btn:
                     activeDate = 3;
                     date3Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date3number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date3str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(2));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
                 case Resource.Id.date4btn:
                     activeDate = 4;
                     date4Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date4number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date4str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(3));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
                 case Resource.Id.date5btn:
                     activeDate = 5;
                     date5Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date5number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date5str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(4));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
                 case Resource.Id.date6btn:
                     activeDate = 6;
                     date6Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date6number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date6str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(5));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date7Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
                 case Resource.Id.date7btn:
                     activeDate = 7;
                     date7Btn.BackgroundTintList = GetColorStateList(GetStyle());
+                    date7number.SetTextColor(GetColorStateList(Resource.Color.white));
+                    date7str.SetTextColor(GetColorStateList(Resource.Color.white));
                     ShowDatestasks(DateTime.Today.AddDays(6));
-                    date1Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date2Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date3Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date4Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date5Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                    date6Btn.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
                     break;
 
 

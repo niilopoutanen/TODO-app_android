@@ -49,7 +49,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -77,7 +77,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -102,7 +102,7 @@
                         android:layout_width="15dp"
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/textPrimary"
                         android:rotation="180"
                     />
                 </RelativeLayout>
@@ -113,7 +113,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"
@@ -237,7 +237,7 @@
                 android:id="@+id/SendFeedbackBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -262,7 +262,7 @@
                         android:layout_width="15dp"
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/textPrimary"
                         android:rotation="180"
                     />
                 </RelativeLayout>
@@ -273,7 +273,7 @@
                 android:id="@+id/ReplayTutorialbtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -298,7 +298,7 @@
                         android:layout_width="15dp"
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/textPrimary"
                         android:rotation="180"
                     />
                 </RelativeLayout>
@@ -308,7 +308,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -335,7 +335,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/headerBackground"
+                android:background="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"

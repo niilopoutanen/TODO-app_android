@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
                 <RelativeLayout
@@ -119,11 +119,10 @@
                         android:contentDescription="@string/default_description"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/plus"
+                        android:background="@drawable/plus"
+                        android:backgroundTint="@color/white"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
-/>
-
             </RelativeLayout>
             <HorizontalScrollView
                 android:visibility="visible"
@@ -158,9 +157,11 @@
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/inter_bold"/>
                         <ImageView
+                            android:id="@+id/alarmIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/alarm"
+                            android:backgroundTint="@color/textPrimary"
                             android:contentDescription="@string/default_description"/>
                     </RelativeLayout>
 
@@ -214,7 +215,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -223,7 +224,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -245,7 +246,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -254,7 +255,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -276,7 +277,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -285,7 +286,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -307,7 +308,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -316,7 +317,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -339,7 +340,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -348,7 +349,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -370,7 +371,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="30dp"
                             android:fontFamily="@font/inter_bold"/>
                         <TextView
@@ -379,7 +380,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/textPrimary"
                             android:textSize="20dp"
                             android:fontFamily="@font/inter_bold"/>
 
@@ -399,10 +400,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/add_task_header"
                 android:textSize="20dp"
+                android:textColor="@color/textPrimary"
                 android:fontFamily="@font/inter_bold"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
+                android:textColor="@color/textPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/task_name_header"
@@ -417,7 +420,7 @@
                 android:inputType="text"
                 android:background="@drawable/rounded10pxinvalid"
                 android:backgroundTint="@color/colorButton"
-                android:textColor="@color/white"/>
+                android:textColor="@color/textPrimary"/>
             <TextView
                 android:id="@+id/invalidTaskName"
                 android:layout_width="match_parent"
@@ -432,7 +435,7 @@
                 android:text="@string/date_select_header"
                 android:textSize="15dp"
                 android:layout_marginBottom="10dp"
-/>
+                android:textColor="@color/textPrimary"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -467,7 +470,7 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/textPrimary"
                         android:fontFamily="@font/inter_medium"
                         android:textSize="20dp"/>
                     <RelativeLayout
@@ -517,7 +520,7 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/textPrimary"
                         android:fontFamily="@font/inter_medium"
                         android:textSize="20dp"/>
                     <RelativeLayout
@@ -566,7 +569,7 @@
                         android:backgroundTint="@color/colorButton"
                         android:inputType="date"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/textPrimary"
                         android:fontFamily="@font/inter_medium"
                         android:textSize="20dp"/>
                     <RelativeLayout
@@ -603,6 +606,7 @@
                 android:id="@+id/AddTask"
                 android:text="@string/add"
                 android:textSize="18dp"
+                android:textColor="@color/white"
                 android:fontFamily="@font/inter_bold"
                 android:layout_marginBottom="20dp"/>
         </LinearLayout>
@@ -617,6 +621,7 @@
         android:orientation="horizontal"
         android:layout_marginBottom="10dp">
         <Button
+            android:stateListAnimator="@null"
             android:visibility="gone"
             android:id="@+id/SortByCreationDate"
             android:layout_width="wrap_content"
@@ -624,11 +629,13 @@
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/CreationDate"
+            android:textColor="@color/textPrimary"
             android:textAllCaps="false"
             android:layout_marginRight="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
         <Button
+            android:stateListAnimator="@null"
             android:visibility="gone"
             android:id="@+id/SortByDueDate"
             android:layout_width="wrap_content"
@@ -636,17 +643,20 @@
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/DueDate"
+            android:textColor="@color/textPrimary"
             android:textAllCaps="false"
             android:layout_marginRight="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
         <Button
+            android:stateListAnimator="@null"
             android:id="@+id/taskCountText"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/taskAmount"
+            android:textColor="@color/textPrimary"
             android:textAllCaps="false"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
