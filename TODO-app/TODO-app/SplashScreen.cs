@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -20,7 +21,21 @@ namespace TODO_app.Resources.layout
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
-            SetTheme(Resource.Style.AppTheme_Splash);
+            var mode = Resources.Configuration.UiMode;
+            if(Android.OS.Build.VERSION.SdkInt == Android.OS.BuildVersionCodes.Q)
+            {
+                if (mode == Android.Content.Res.UiMode.NightYes)
+                {
+                    SetTheme(Resource.Style.AppTheme_Splash);
+
+                }
+                else if (mode == Android.Content.Res.UiMode.NightNo)
+                {
+                    SetTheme(Resource.Style.AppTheme_Splash_Light);
+
+                }
+
+            }
             base.OnCreate(savedInstanceState, persistentState);
         }
 

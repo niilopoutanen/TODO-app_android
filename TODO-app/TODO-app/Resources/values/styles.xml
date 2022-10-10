@@ -49,5 +49,13 @@
 		<item name="android:windowActionBar">true</item>
 	</style>
 
+	<style name="AppTheme.Splash.Light">
+		<item name="android:windowBackground">@drawable/splashscreenlight</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowActionBar">true</item>
+	</style>
+
 	<style name="Theme.Widget" parent="@android:style/Theme.DeviceDefault"/>
 </resources>
