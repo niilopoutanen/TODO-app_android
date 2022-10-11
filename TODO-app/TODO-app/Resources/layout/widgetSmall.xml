@@ -19,7 +19,6 @@
             android:lineHeight="10dp"
             android:textColor="@color/textPrimary"
             android:textSize="35dp"
-            android:text="2"
             android:fontFamily="@font/inter_bold"
             android:textAlignment="center"/>
     </RelativeLayout>
