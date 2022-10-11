@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#1c1c20</color>
     <color name="colorAccent">#317435</color>
     <color name="colorButton">#38383C</color>
-	<color name="textSecondary">#A1A1A1</color>
+	<color name="textSecondary">#FFFFFF</color>
 	<color name="textPrimary">#FFFFFF</color>
     <color name="popupBG">#212121</color>
 	<color name="onBoardingBG">#1B1C27</color>
-	<color name="widgetText">@color/textPrimary</color>
-	<color name="widgetBG">@color/colorPrimaryDark</color>
+	<color name="widgetBG">@color/m3_sys_color_dynamic_dark_surface</color>
+	<color name="widgetText">@color/m3_sys_color_dynamic_light_primary_container</color>
 	<color name="white">#FFFFFF</color>
 	
 	<color name="mainBlue">#3178F6</color>

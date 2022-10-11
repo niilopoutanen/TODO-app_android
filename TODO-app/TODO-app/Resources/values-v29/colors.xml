@@ -8,6 +8,7 @@
 	<color name="textPrimary">#131313</color>
     <color name="popupBG">#EAEAEA</color>
 	<color name="widgetBG">@color/colorPrimaryDark</color>
+	<color name="widgetText">@color/textPrimary</color>
 	<color name="onBoardingBG">#EAEAEA</color>
 
 	<color name="white">#FFFFFF</color>

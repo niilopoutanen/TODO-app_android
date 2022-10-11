@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/today"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/widgetText"
             android:textAlignment="center"
             android:textSize="20dp"
             android:fontFamily="@font/inter_bold"/>
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="95dp"
             android:layout_centerInParent="true"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/widgetText"
             android:textSize="70dp"
             android:fontFamily="@font/inter_bold"
             android:textAlignment="center"/>

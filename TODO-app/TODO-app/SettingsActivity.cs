@@ -11,6 +11,7 @@ using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
 using TODO_app.Resources.layout;
+using Android.Content.Res;
 
 namespace TODO_app
 {
