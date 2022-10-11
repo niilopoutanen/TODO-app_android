@@ -139,10 +139,10 @@
     <AndroidResource Include="Resources\drawable\task_radio_button_active.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SettingsVector.xml" />
+    <AndroidResource Include="Resources\drawable\settingsVector.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Arrow.xml" />
+    <AndroidResource Include="Resources\drawable\arrow.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\toggle_thumb.xml" />
@@ -199,7 +199,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SearchIcon.xml" />
+    <AndroidResource Include="Resources\drawable\searchIcon.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\rounded90px.xml" />
@@ -290,6 +290,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splashScreenLight.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-v32\colors.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>

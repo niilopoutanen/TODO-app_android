@@ -73,7 +73,7 @@
                     android:layout_height="35dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded10px"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textPrimary"
                     android:inputType="text"
                     android:layout_weight="1"
                     android:drawableStart="@drawable/searchicon"
