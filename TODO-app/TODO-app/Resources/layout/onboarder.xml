@@ -55,7 +55,7 @@
             android:textAllCaps="false"
             android:fontFamily="@font/inter_bold"
             android:clickable="true"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/white"
             />
 
         <Button
@@ -66,6 +66,6 @@
             android:layout_height="40dp"
             android:background="@android:color/transparent"
             android:text="@string/skip"
-            android:textColor="@color/white"/>
+            android:textColor="@color/textPrimary"/>
     </RelativeLayout>
 </LinearLayout>
