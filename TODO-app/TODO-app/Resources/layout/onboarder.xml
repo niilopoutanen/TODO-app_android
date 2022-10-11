@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1C27">
+    android:background="@color/onBoardingBG">
     <RelativeLayout
         android:id="@+id/imageLayout"
         android:paddingTop="20dp"
@@ -30,7 +30,8 @@
             android:text="@string/guide1"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:fontFamily="@font/inter_bold" />
+            android:fontFamily="@font/inter_bold" 
+            android:textColor="@color/textPrimary"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_alignParentBottom="true"
@@ -54,6 +55,7 @@
             android:textAllCaps="false"
             android:fontFamily="@font/inter_bold"
             android:clickable="true"
+            android:textColor="@color/textPrimary"
             />
 
         <Button
@@ -63,6 +65,7 @@
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
-            android:text="@string/skip"/>
+            android:text="@string/skip"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 </LinearLayout>

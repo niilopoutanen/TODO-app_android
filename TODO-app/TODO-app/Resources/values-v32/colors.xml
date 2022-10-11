@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">@color/m3_sys_color_dynamic_light_secondary_container</color>
-	<color name="colorPrimaryDark">@color/m3_sys_color_dynamic_light_background</color>
+	<color name="colorPrimary">@color/m3_sys_color_dynamic_light_background</color>
+	<color name="colorPrimaryDark">@color/m3_sys_color_dynamic_light_secondary_container</color>
 	<color name="colorAccent">#317435</color>
-	<color name="colorButton">@color/m3_sys_color_dynamic_light_secondary_container</color>
-	<color name="textSecondary">#A1A1A1</color>
+	<color name="colorButton">@color/m3_sys_color_dynamic_light_inverse_primary</color>
+	<color name="textSecondary">@color/m3_sys_color_dynamic_light_on_surface_variant</color>
 	<color name="textPrimary">@color/m3_sys_color_dynamic_light_on_surface_variant</color>
 	<color name="popupBG">#EAEAEA</color>
 	<color name="widgetBG">@color/m3_sys_color_dynamic_light_primary_container</color>
 	<color name="white">#FFFFFF</color>
-
+	<color name="onBoardingBG">@color/m3_sys_color_dynamic_light_secondary_container</color>
 	<color name="mainBlue">@color/m3_sys_color_dynamic_dark_on_primary</color>
 	<color name="mainGreen">@color/m3_sys_color_dynamic_dark_on_primary</color>
 	<color name="mainViolet">@color/m3_sys_color_dynamic_dark_on_primary</color>

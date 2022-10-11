@@ -38,8 +38,7 @@
                     android:layout_height="35dp"
                     android:background="@drawable/rounded10px"
                     android:padding="7dp"
-                    android:layout_weight="1"
-                    >
+                    android:layout_weight="1">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -52,6 +51,7 @@
                     android:layout_height="match_parent"/>
 
                 <Button
+                    android:stateListAnimator="@null"
                     android:visibility="visible"
                     android:paddingLeft="10dp"
                     android:id="@+id/SearchBar"
@@ -83,6 +83,7 @@
                     android:layout_height="match_parent"/>
 
                 <Button
+                    android:stateListAnimator="@null"
                     android:id="@+id/ShowAll"
                     android:layout_width="110dp"
                     android:layout_height="35dp"

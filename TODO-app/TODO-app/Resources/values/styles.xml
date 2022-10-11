@@ -37,8 +37,8 @@
 	</style>
 
 	<style name="OnBoardTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-		<item name="android:navigationBarColor">#1B1C27</item>
-		<item name="colorPrimaryDark">#1B1C27</item>
+		<item name="android:navigationBarColor">@color/onBoardingBG</item>
+		<item name="colorPrimaryDark">@color/onBoardingBG</item>
 	</style>
 
 	<style name="AppTheme.Splash">
