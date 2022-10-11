@@ -13,7 +13,7 @@
         android:layout_width="280dp"
         android:layout_height="140dp"
         android:background="@drawable/rounded90px"
-        android:backgroundTint="@color/colorPrimaryDark">
+        android:backgroundTint="@color/widgetBG">
         <TextView
             android:id="@+id/widgetLargeHeader"
             android:layout_width="wrap_content"

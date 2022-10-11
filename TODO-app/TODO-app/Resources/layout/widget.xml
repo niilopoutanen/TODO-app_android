@@ -10,7 +10,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:background="@drawable/rounded90px"
-        android:backgroundTint="@color/colorPrimaryDark">
+        android:backgroundTint="@color/widgetBG">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

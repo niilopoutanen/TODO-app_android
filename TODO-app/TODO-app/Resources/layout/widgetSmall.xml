@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded60px"
-        android:backgroundTint="@color/colorPrimaryDark">
+        android:backgroundTint="@color/widgetBG">
         <TextView
             android:layout_above="@+id/sliderbg"
             android:id="@+id/widgetCountSmall"

@@ -111,6 +111,7 @@
 
             
             <RelativeLayout
+                android:id="@+id/colorSelector"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@color/colorPrimaryDark"

@@ -22,7 +22,7 @@ namespace TODO_app
         TextView version;
         RelativeLayout sendFeedbackButton;
         RelativeLayout replayTutorial;
-
+        RelativeLayout colorSelector;
         TextView Niilobtn;
         TextView Oskaribtn;
         TextView Tomibtn;
@@ -61,7 +61,11 @@ namespace TODO_app
             SetContentView(Resource.Layout.activity_settings);
             RelativeLayout settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
             settingsReturn.Click += BackToMenu;
-
+            colorSelector = FindViewById<RelativeLayout>(Resource.Id.colorSelector);
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.SV2)
+            {
+                colorSelector.Visibility = ViewStates.Gone;
+            }
             version = FindViewById<TextView>(Resource.Id.VersionText);
             version.Text = AppInfo.Version.ToString();
 
