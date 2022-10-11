@@ -12,14 +12,17 @@
         android:paddingRight="20dp"
         android:layout_width="280dp"
         android:layout_height="140dp"
+        android:minWidth="200dp"
         android:background="@drawable/rounded90px"
         android:backgroundTint="@color/widgetBG">
         <TextView
+            android:text="@string/widgetLargeTemp1"
             android:id="@+id/widgetLargeHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:textColor="@color/textPrimary"/>
+            android:textStyle="bold"
+            android:textColor="@color/widgetText"/>
 
         <RelativeLayout
             android:id="@+id/widgetLargeElement1"
@@ -31,19 +34,24 @@
             android:gravity="center_vertical"
             android:padding="10dp">
             <TextView
+                android:textStyle="bold"
+                android:text="@string/firstTask"
                 android:id="@+id/widgetLargeTask1"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:textColor="@color/textPrimary"/>
+                android:textColor="@color/widgetText"/>
             <TextView
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:text="@string/tempDate"
                 android:id="@+id/widgetLargeTask1Due"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:textColor="@color/textPrimary"/>
+                android:textColor="@color/widgetText"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/widgetLargeElement2"
@@ -55,19 +63,24 @@
             android:gravity="center_vertical"
             android:padding="10dp">
             <TextView
+                android:textStyle="bold"
+                android:text="@string/secondTask"
                 android:id="@+id/widgetLargeTask2"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:textColor="@color/textPrimary"/>
+                android:textColor="@color/widgetText"/>
             <TextView
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:text="@string/tempDate"
                 android:id="@+id/widgetLargeTask2Due"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:textColor="@color/textPrimary"/>
+                android:textColor="@color/widgetText"/>
         </RelativeLayout>
         <RelativeLayout
             android:visibility="gone"

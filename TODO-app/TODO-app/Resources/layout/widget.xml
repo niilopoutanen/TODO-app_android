@@ -20,6 +20,7 @@
             android:textSize="20dp"
             android:fontFamily="@font/inter_bold"/>
         <TextView
+            android:text="0"
             android:id="@+id/widgetCount"
             android:layout_width="wrap_content"
             android:layout_height="95dp"

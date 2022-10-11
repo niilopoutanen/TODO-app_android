@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Android.Util;
 using TODO_app.Resources.layout;
 using Android.Content.Res;
+using Android.Icu.Lang;
 
 namespace TODO_app
 {
@@ -43,6 +44,7 @@ namespace TODO_app
 
         Switch vibrationToggle;
         RelativeLayout deleteAllDone;
+        RelativeLayout deleteAll;
         Vibrator vibrator;
         VibratorManager vibratorManager;
         ActivityMethods methods = new ActivityMethods();
@@ -103,11 +105,13 @@ namespace TODO_app
             redActive = FindViewById<ImageView>(Resource.Id.MainRedActive);
 
             deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
+            deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
 
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
+            deleteAll.Click += DeleteAll_Click;
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
             if (vibration == true)
@@ -350,6 +354,27 @@ namespace TODO_app
             }
         }
 
+        private void DeleteAll_Click(object sender, EventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 60);
+            }
+            FileClass fClass = new FileClass();
+
+            List<TaskItem> oldTasks = fClass.ReadFile();
+            List<TaskItem> emptyList = new List<TaskItem>();
+            fClass.WriteFile(emptyList);
+            if(fClass.ReadFile().Count == 0)
+            {
+                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + oldTasks.Count + " " + GetString(Resource.String.task), "OK");
+            }
+            else
+            {
+                OpenPopup("Error", "", "OK");
+            }
+
+        }
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);

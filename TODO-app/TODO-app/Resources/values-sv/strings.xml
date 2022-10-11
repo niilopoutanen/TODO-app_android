@@ -19,6 +19,7 @@
 	<string name="settings">Inställningar</string>
 	<string name="vibrationSettings">Vibratiorna</string>
     <string name="deleteAllDone">Radera allt gjort</string>
+	<string name="deleteAll">Radera allt</string>
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
 	<string name="replayTutorial">Rewatchär tutorialen</string>
@@ -94,4 +95,10 @@
 	<string name="widgetSmallDesc">Shuv uppgiftar de är inte done todag (littel ui)</string>
 	<string name="today">Todag</string>
 
+
+	<string name="widgetLargeTemp1">Uppgiftar (0)</string>
+
+	<string name="firstTask">Firstå uppgift</string>
+	<string name="secondTask">Två uppgift</string>
+	<string name="tempDate">1.1.2023</string>
 </resources>

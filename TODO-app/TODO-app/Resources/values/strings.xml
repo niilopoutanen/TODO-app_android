@@ -19,6 +19,7 @@
 	<string name="settings">Settings</string>
 	<string name="vibrationSettings">Vibration</string>
 	<string name="deleteAllDone">Remove all completed</string>
+	<string name="deleteAll">Remove all tasks</string>
 	<string name="colorTheme">Color theme</string>
 	<string name="sendFeedback">Send feedback</string>
 	<string name="replayTutorial">Replay tutorial</string>
@@ -96,4 +97,9 @@
 	<string name="widgetSmallDesc">Widget that shows todays remaining tasks. Can be scaled</string>
 	<string name="today">Today</string>
 
+	<string name="widgetLargeTemp1">Tasks (0)</string>
+
+	<string name="firstTask">First task</string>
+	<string name="secondTask">Second task</string>
+	<string name="tempDate">1/1/2023</string>
 </resources>

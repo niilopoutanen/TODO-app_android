@@ -19,6 +19,7 @@
 	<string name="settings">Asetukset</string>
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
+	<string name="deleteAll">Poista kaikki tehtävät</string>
 	<string name="colorTheme">Väriteema</string>
 	<string name="sendFeedback">Lähetä palautetta</string>
 	<string name="replayTutorial">Katso ohje uudestaan</string>
@@ -96,4 +97,9 @@
 	<string name="widgetSmallDesc">Pienoisohjelma joka näyttää tämän päivän tehtävät. Kokoa voi muokata</string>
 	<string name="today">Tänään</string>
 
+	<string name="widgetLargeTemp1">Tehtävät (0)</string>
+
+	<string name="firstTask">Ensimmäinen tehtävä</string>
+	<string name="secondTask">Toinen tehtävä</string>
+	<string name="tempDate">1.1.2023</string>
 </resources>

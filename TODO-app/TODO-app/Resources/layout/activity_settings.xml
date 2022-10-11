@@ -109,7 +109,40 @@
 
             </RelativeLayout>
 
-            
+                        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorPrimaryDark"
+                android:paddingLeft="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deleteAll"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/inter_bold"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/deleteAllButton"
+                    android:paddingRight="20dp">
+                    <Button
+                        android:clickable="false"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/arrow"
+                        android:backgroundTint="@color/textPrimary"
+                        android:rotation="180"
+                    />
+                </RelativeLayout>
+
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/colorSelector"
                 android:layout_width="match_parent"

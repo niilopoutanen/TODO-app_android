@@ -321,7 +321,7 @@ namespace TODO_app
             taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
-            settingsOpen.Click += ButtonAction;
+            settingsOpen.Click += OpenSettings;
             searchField = FindViewById<EditText>(Resource.Id.SearchField);
             searchField.Click += ToggleSearchMode;
             searchField.TextChanged += SearchChanged;
@@ -650,16 +650,15 @@ namespace TODO_app
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonAction(object sender, EventArgs e)
+        private void OpenSettings(object sender, EventArgs e)
         {
-            var button = (RelativeLayout)sender;
-            switch (button.Id)
+            if (vibration == true)
             {
-                case Resource.Id.SettingsButton:
-                    Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
-                    StartActivity(settingsStarter);
-                    break;
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
+
+            Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
+            StartActivity(settingsStarter);
 
         }
 
