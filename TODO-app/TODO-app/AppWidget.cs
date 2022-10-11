@@ -89,13 +89,13 @@ namespace TODO_app
             if (localtaskList.Count > 0)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1, ActivityMethods.TooLongStringParser(localtaskList[0].Text, 18));
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask1, ActivityMethods.TooLongStringParser(localtaskList[0].Text, 16));
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask1Due, localtaskList[0].DueDate.ToShortDateString());
             }
             if(localtaskList.Count > 1)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
-                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2, ActivityMethods.TooLongStringParser(localtaskList[1].Text, 18));
+                widgetView.SetTextViewText(Resource.Id.widgetLargeTask2, ActivityMethods.TooLongStringParser(localtaskList[1].Text, 16));
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask2Due, localtaskList[1].DueDate.ToShortDateString());
             }
 

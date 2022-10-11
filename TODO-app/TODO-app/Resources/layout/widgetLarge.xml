@@ -10,9 +10,8 @@
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:layout_width="280dp"
+        android:layout_width="260dp"
         android:layout_height="140dp"
-        android:minWidth="200dp"
         android:background="@drawable/rounded90px"
         android:backgroundTint="@color/widgetBG">
         <TextView
