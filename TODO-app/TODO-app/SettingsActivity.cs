@@ -118,7 +118,10 @@ namespace TODO_app
             themeSelector.Adapter = adapter;
             themeSelector.ItemSelected += ThemeSelected;
             themeSelector.SetSelection(SetThemeSpinnerDefault());
-
+            if(Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Q)
+            {
+                themeSelector.Visibility = ViewStates.Gone;
+            }
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
