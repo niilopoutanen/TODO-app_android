@@ -145,6 +145,14 @@ namespace TODO_app
             GetStyle();
 
 
+
+            CreateNotificationChannel();
+            Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: 0);
+
+            AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+
+            alarmManager.Set(AlarmType.RtcWakeup, triggerAtMillis: Java.Lang.JavaSystem.CurrentTimeMillis() + 1000 * 10 ,pendingIntent);
             //Start onboarding
             if (guideDone == false)
             {
@@ -1671,6 +1679,17 @@ namespace TODO_app
             this.FinishAffinity();
         }
 
+        private void CreateNotificationChannel()
+        {
+            if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                NotificationChannel channel = new NotificationChannel(id: "TaskReminder", "TaskReminder", Android.App.NotificationImportance.Default);
+                channel.Description = "Notification channel for TODO-app";
+
+                NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
+                notificationManager.CreateNotificationChannel(channel);
+            }
+        }
         public void UpdateWidget()
         {
             List<TaskItem> localList = new List<TaskItem>();
