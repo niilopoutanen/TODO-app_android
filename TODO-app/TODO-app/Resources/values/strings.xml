@@ -31,7 +31,7 @@
 	<string name="Credits3">Tomi Vahdersalo</string>
 	<string name="darkTheme">Dark theme</string>
 	<string name="lightTheme">Light theme</string>
-	<string name="systemTheme">Use system theme</string>
+	<string name="systemTheme">System theme</string>
 	
 	
 	<string name="taskAmount">Tasks</string>

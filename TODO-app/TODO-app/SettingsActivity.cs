@@ -114,10 +114,11 @@ namespace TODO_app
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
             ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            adapter.SetDropDownViewResource(Resource.Layout.spinner_item);
             themeSelector.Adapter = adapter;
             themeSelector.ItemSelected += ThemeSelected;
             themeSelector.SetSelection(SetThemeSpinnerDefault());
+            themeSelector.TextAlignment = TextAlignment.Center;
             if(Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Q)
             {
                 themeSelector.Visibility = ViewStates.Gone;
@@ -189,7 +190,6 @@ namespace TODO_app
         {
             if(++themechecked > 1)
             {
-                Intent restart = new Intent(this, typeof(SettingsActivity));
                 Spinner selector = (Spinner)sender;
                 int selectedID = (int)selector.GetItemIdAtPosition(e.Position);
                 int selectedPosition = e.Position;
@@ -208,20 +208,17 @@ namespace TODO_app
                 if (selectedPosition == 0)
                 {
                     themePref.Edit().PutString("themeSelected", "dark").Commit();
-                    StartActivity(restart);
-                    Finish();
+                    RestartActivity();
                 }
                 else if (selectedPosition == 1)
                 {
                     themePref.Edit().PutString("themeSelected", "light").Commit();
-                    StartActivity(restart);
-                    Finish();
+                    RestartActivity();
                 }
                 else if (selectedPosition == 2)
                 {
                     themePref.Edit().PutString("themeSelected", "system").Commit();
-                    StartActivity(restart);
-                    Finish();
+                    RestartActivity();
                 }
             }
 
@@ -377,26 +374,31 @@ namespace TODO_app
                 case Resource.Id.MainBlueToggle:
                     blueActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "blue").Commit();
+                    RestartActivity();
                     break;
 
                 case Resource.Id.MainGreenToggle:
                     greenActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "green").Commit();
+                    RestartActivity();
                     break;
 
                 case Resource.Id.MainOrangeToggle:
                     orangeActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "orange").Commit();
+                    RestartActivity();
                     break;
 
                 case Resource.Id.MainVioletToggle:
                     violetActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "violet").Commit();
+                    RestartActivity();
                     break;
 
                 case Resource.Id.MainRedToggle:
                     redActive.Visibility = ViewStates.Visible;
                     colorTheme.Edit().PutString("colorTheme", "red").Commit();
+                    RestartActivity();
                     break;
             }
         }
@@ -500,7 +502,13 @@ namespace TODO_app
             Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
             cancel.Visibility = ViewStates.Gone;
         }
-        
+        private void RestartActivity()
+        {
+            Intent restart = new Intent(this, typeof(SettingsActivity));
+            StartActivity(restart);
+            OverridePendingTransition(0, 0);
+            Finish();
+        }
         private int DpToPx(int dpValue)
         {
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
