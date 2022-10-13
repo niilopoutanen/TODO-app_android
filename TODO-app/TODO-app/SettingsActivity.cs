@@ -121,7 +121,7 @@ namespace TODO_app
             themeSelector.TextAlignment = TextAlignment.Center;
             if(Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Q)
             {
-                themeSelector.Visibility = ViewStates.Gone;
+                FindViewById<RelativeLayout>(Resource.Id.themePanel).Visibility = ViewStates.Gone;
             }
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
