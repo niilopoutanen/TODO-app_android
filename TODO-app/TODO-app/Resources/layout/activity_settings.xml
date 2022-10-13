@@ -96,7 +96,8 @@
                     android:layout_centerInParent="true"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:popupBackground="@drawable/spinnerbg"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/colorSelector"
