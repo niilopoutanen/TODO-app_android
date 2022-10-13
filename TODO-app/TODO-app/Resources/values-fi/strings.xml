@@ -110,6 +110,6 @@
 	<string name="tempDate">1.1.2023</string>
 
 	<string name="taskReminder">Tehtävämuistutus</string>
-	<string name="tasksToday">tehtävää tälle päivälle.</string>
+	<string name="tasksToday"> tehtävää tälle päivälle.</string>
 
 </resources>

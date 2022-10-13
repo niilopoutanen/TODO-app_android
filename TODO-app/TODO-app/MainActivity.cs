@@ -148,7 +148,7 @@ namespace TODO_app
 
             CreateNotificationChannel();
             Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: 0);
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
 
             AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
 

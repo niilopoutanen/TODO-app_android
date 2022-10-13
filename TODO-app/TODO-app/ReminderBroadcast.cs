@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
@@ -32,10 +33,10 @@ namespace TODO_app
             }
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: "TaskReminder")
                 .SetSmallIcon(Resource.Mipmap.ic_launcher)
-                .SetContentTitle(context.GetString(Resource.String.taskReminder))
-                .SetContentText(tasksToday + context.GetString(Resource.String.tasksToday))
+                .SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday))
                 .SetPriority(NotificationCompat.PriorityDefault);
-
+            PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
+            builder.SetContentIntent(contentClick);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(context);
 
             notificationManager.Notify(id: 200, builder.Build());
