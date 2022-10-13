@@ -107,4 +107,8 @@
 	<string name="firstTask">Firstå uppgift</string>
 	<string name="secondTask">Två uppgift</string>
 	<string name="tempDate">1.1.2023</string>
+
+	<string name="taskReminder">Uppgiftar reminderare</string>
+	<string name="tasksToday">tuppgiftar to do todag.</string>
+
 </resources>

@@ -108,4 +108,8 @@
 	<string name="firstTask">Ensimmäinen tehtävä</string>
 	<string name="secondTask">Toinen tehtävä</string>
 	<string name="tempDate">1.1.2023</string>
+
+	<string name="taskReminder">Tehtävämuistutus</string>
+	<string name="tasksToday">tehtävää tälle päivälle.</string>
+
 </resources>
