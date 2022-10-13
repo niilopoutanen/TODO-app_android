@@ -20,6 +20,7 @@
 	<string name="vibrationSettings">Vibratiorna</string>
     <string name="deleteAllDone">Radera allt gjort</string>
 	<string name="deleteAll">Radera allt</string>
+	<string name="theme">Temarnå</string>
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
 	<string name="replayTutorial">Rewatchär tutorialen</string>
@@ -28,6 +29,11 @@
 	<string name="Credits1">Niilo Poutanen</string>
 	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
+	<string name="darkTheme">Dark temarnå</string>
+	<string name="lightTheme">Light temarnå</string>
+	<string name="systemTheme">Use mobilen temarnå</string>
+	
+	
 	<string name="taskAmount">Uppgiftar</string>
 
 	<string name="returnbtn">Returna</string>

@@ -43,13 +43,16 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
+        Spinner themeSelector;
         RelativeLayout deleteAllDone;
         RelativeLayout deleteAll;
         Vibrator vibrator;
         VibratorManager vibratorManager;
+        ISharedPreferences themePref;
         ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
         FileClass files = new FileClass();
+        int themechecked = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseAnalytics.GetInstance(this);
@@ -108,6 +111,14 @@ namespace TODO_app
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
 
+            themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
+            string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
+            ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            themeSelector.Adapter = adapter;
+            themeSelector.ItemSelected += ThemeSelected;
+            themeSelector.SetSelection(SetThemeSpinnerDefault());
+
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
@@ -153,8 +164,65 @@ namespace TODO_app
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+        private int SetThemeSpinnerDefault()
+        {
+            int selectedPosition = 0;
+            string selected = themePref.GetString("themeSelected", default);
+            switch (selected)
+            {
+                case "dark":
+                    selectedPosition = 0;
+                    break;
+                case "light":
+                    selectedPosition = 1;
+                    break;
+                case "system":
+                    selectedPosition = 2;
+                    break;
+            }
+            return selectedPosition;
+        }
+        private void ThemeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            if(++themechecked > 1)
+            {
+                Intent restart = new Intent(this, typeof(SettingsActivity));
+                Spinner selector = (Spinner)sender;
+                int selectedID = (int)selector.GetItemIdAtPosition(e.Position);
+                int selectedPosition = e.Position;
+                //if (selectedID == Resource.String.lightTheme)
+                //{
+                //    themePref.Edit().PutString("themeSelected", "light").Commit();
+                //}
+                //else if (selectedID == Resource.String.darkTheme)
+                //{
+                //    themePref.Edit().PutString("themeSelected", "dark").Commit();
+                //}
+                //else if (selectedID == Resource.String.systemTheme)
+                //{
+                //    themePref.Edit().PutString("themeSelected", "system").Commit();
+                //}
+                if (selectedPosition == 0)
+                {
+                    themePref.Edit().PutString("themeSelected", "dark").Commit();
+                    StartActivity(restart);
+                    Finish();
+                }
+                else if (selectedPosition == 1)
+                {
+                    themePref.Edit().PutString("themeSelected", "light").Commit();
+                    StartActivity(restart);
+                    Finish();
+                }
+                else if (selectedPosition == 2)
+                {
+                    themePref.Edit().PutString("themeSelected", "system").Commit();
+                    StartActivity(restart);
+                    Finish();
+                }
+            }
 
-
+        }
         private int GetStyle()
         {
             if (savedTheme == "blue")
@@ -185,36 +253,45 @@ namespace TODO_app
         
         private void LoadSettings()
         {
+            themePref = GetSharedPreferences("Theme", 0);
+            string themeSelected = themePref.GetString("themeSelected", default);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
-            if (color == "blue")
+            switch (color)
             {
-                
-                SetTheme(Resource.Style.MainBlue);
+                case "blue":
+                    SetTheme(Resource.Style.MainBlue);
+                    break;
+                case "green":
+                    SetTheme(Resource.Style.MainGreen);
+                    break;
+                case "orange":
+                    SetTheme(Resource.Style.MainOrange);
+                    break;
+                case "violet":
+                    SetTheme(Resource.Style.MainViolet);
+                    break;
+                case "red":
+                    SetTheme(Resource.Style.MainRed);
+                    break;
+                case null:
+                    SetTheme(Resource.Style.MainBlue);
+                    break;
             }
-            else if (color == "green")
+            switch (themeSelected)
             {
-                SetTheme(Resource.Style.MainGreen);
-            }
-            else if (color == "orange")
-            {
-                SetTheme(Resource.Style.MainOrange);
-            }
-            else if (color == "violet")
-            {
-                SetTheme(Resource.Style.MainViolet);
-            }
-            else if (color == "red")
-            {
-                SetTheme(Resource.Style.MainRed);
-            }
-            else
-            {
-                SetTheme(Resource.Style.MainBlue);
+                case "dark":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightYes;
+                    break;
+                case "light":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+                    break;
+                case "system":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightFollowSystem;
+                    break;
             }
             savedTheme = color;
-
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
         }
         

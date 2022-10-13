@@ -134,7 +134,6 @@ namespace TODO_app
             
             SetContentView(Resource.Layout.activity_main);
             UpdateWidget();
-
             InitializeElements();
             CalendarDater();
 
@@ -254,41 +253,53 @@ namespace TODO_app
         }
         private void LoadSettings()
         {
+            ISharedPreferences themePref = GetSharedPreferences("Theme", 0);
+            string themeSelected = themePref.GetString("themeSelected", default);
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
             guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             string color = colorTheme.GetString("colorTheme", default);
-            if (color == "blue")
+            switch (color)
             {
-                SetTheme(Resource.Style.MainBlue);
-                currentTheme = "mainBlue";
+                case "blue":
+                    SetTheme(Resource.Style.MainBlue);
+                    currentTheme = "mainBlue";
+                    break;
+                case "green":
+                    SetTheme(Resource.Style.MainGreen);
+                    currentTheme = "mainGreen";
+                    break;
+                case "orange":
+                    SetTheme(Resource.Style.MainOrange);
+                    currentTheme = "mainOrange";
+                    break;
+                case "violet":
+                    SetTheme(Resource.Style.MainViolet);
+                    currentTheme = "mainViolet";
+                    break;
+                case "red":
+                    SetTheme(Resource.Style.MainRed);
+                    currentTheme = "mainRed";
+                    break;
+                case null:
+                    SetTheme(Resource.Style.MainBlue);
+                    currentTheme = "mainBlue";
+                    break;
             }
-            else if (color == "green")
+
+            switch (themeSelected)
             {
-                SetTheme(Resource.Style.MainGreen);
-                currentTheme = "mainGreen";
-            }
-            else if (color == "orange")
-            {
-                SetTheme(Resource.Style.MainOrange);
-                currentTheme = "mainOrange";
-            }
-            else if (color == "violet")
-            {
-                SetTheme(Resource.Style.MainViolet);
-                currentTheme = "mainViolet";
-            }
-            else if (color == "red")
-            {
-                SetTheme(Resource.Style.MainRed);
-                currentTheme = "mainRed";
-            }
-            else if (color == null)
-            {
-                SetTheme(Resource.Style.MainBlue);
-                currentTheme = "mainBlue";
+                case "dark":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightYes;
+                    break;
+                case "light":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+                    break;
+                case "system":
+                    AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightFollowSystem;
+                    break;
             }
         }
         /// <summary>
