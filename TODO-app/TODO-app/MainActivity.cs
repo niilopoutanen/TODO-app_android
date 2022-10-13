@@ -308,6 +308,9 @@ namespace TODO_app
                 case "system":
                     AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightFollowSystem;
                     break;
+                case null:
+                    themePref.Edit().PutString("themeSelected", "system").Commit();
+                    break;
             }
         }
         /// <summary>
@@ -1683,8 +1686,8 @@ namespace TODO_app
         {
             if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                NotificationChannel channel = new NotificationChannel(id: "TaskReminder", "TaskReminder", Android.App.NotificationImportance.Default);
-                channel.Description = "Notification channel for TODO-app";
+                NotificationChannel channel = new NotificationChannel(id: GetString(Resource.String.taskReminder), GetString(Resource.String.taskReminder), Android.App.NotificationImportance.Default);
+                channel.Description = GetString(Resource.String.notificationDesc);
 
                 NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
                 notificationManager.CreateNotificationChannel(channel);

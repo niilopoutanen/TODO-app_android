@@ -17,6 +17,7 @@
 
 
 	<string name="settings">Asetukset</string>
+	<string name="notificationSettings">Ilmoitukset</string>
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="deleteAll">Poista kaikki tehtävät</string>
@@ -111,5 +112,5 @@
 
 	<string name="taskReminder">Tehtävämuistutus</string>
 	<string name="tasksToday"> tehtävää tälle päivälle.</string>
-
+	<string name="notificationDesc">TODO-apin tehtävämuistutukset</string>
 </resources>

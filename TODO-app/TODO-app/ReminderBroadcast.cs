@@ -31,7 +31,7 @@ namespace TODO_app
                     }
                 }
             }
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: "TaskReminder")
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
                 .SetSmallIcon(Resource.Mipmap.ic_launcher)
                 .SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday))
                 .SetPriority(NotificationCompat.PriorityDefault);
