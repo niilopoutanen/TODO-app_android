@@ -155,6 +155,10 @@ namespace TODO_app
                     notificationsToggle.Checked = false;
                     break;
             }
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+            {
+                notificationsToggle.Checked = false;
+            }
 
             switch (savedTheme)
             {
