@@ -1705,8 +1705,8 @@ namespace TODO_app
 
             Calendar calendar = Calendar.Instance;
 
-            calendar.Set(CalendarField.HourOfDay, 19);
-            calendar.Set(CalendarField.Minute, 13);
+            calendar.Set(CalendarField.HourOfDay, selectedTime);
+            calendar.Set(CalendarField.Minute, 0);
             calendar.Set(CalendarField.Second, 0);
             calendar.Set(CalendarField.Millisecond, 0);
 

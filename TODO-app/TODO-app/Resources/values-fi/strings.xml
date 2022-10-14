@@ -18,6 +18,7 @@
 
 	<string name="settings">Asetukset</string>
 	<string name="notificationSettings">Ilmoitukset</string>
+	<string name="reminderTime">Ilmoituksen aika</string>
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="deleteAll">Poista kaikki tehtävät</string>

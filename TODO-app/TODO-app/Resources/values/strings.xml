@@ -18,6 +18,7 @@
 
 	<string name="settings">Settings</string>
 	<string name="notificationSettings">Notifications</string>
+	<string name="reminderTime">Time of the reminder</string>
 	<string name="vibrationSettings">Vibration</string>
 	<string name="deleteAllDone">Remove all completed</string>
 	<string name="deleteAll">Remove all tasks</string>
