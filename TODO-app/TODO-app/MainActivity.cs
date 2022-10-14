@@ -14,6 +14,9 @@ using TODO_app.Resources.layout;
 using Firebase.Analytics;
 using Android.Animation;
 using Android.Appwidget;
+using AndroidX.Core.Content;
+using Java.Security;
+using Android;
 
 namespace TODO_app
 {
@@ -24,6 +27,7 @@ namespace TODO_app
         private string currentTheme;
         private bool guideDone;
         private bool vibration;
+        private bool notifications;
         RelativeLayout btnCreateTask;
         Button btnAddTask;
 
@@ -139,20 +143,21 @@ namespace TODO_app
 
             DoneAndGone();
             CountAndShowMissed();
-
             ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
 
-
-
             CreateNotificationChannel();
-            Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
+            if(notifications == true)
+            {
+                Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
+                PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
 
-            AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+                AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
 
-            alarmManager.Set(AlarmType.RtcWakeup, triggerAtMillis: Java.Lang.JavaSystem.CurrentTimeMillis() + 1000 * 10 ,pendingIntent);
+                alarmManager.Set(AlarmType.RtcWakeup, triggerAtMillis: Java.Lang.JavaSystem.CurrentTimeMillis() + 1000 * 5, pendingIntent);
+            }
+
             //Start onboarding
             if (guideDone == false)
             {
@@ -267,7 +272,10 @@ namespace TODO_app
             guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            ISharedPreferences notificationsPref = GetSharedPreferences("Notifications", 0);
+
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            notifications = notificationsPref.GetBoolean("notificationsEnabled", default);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
             {

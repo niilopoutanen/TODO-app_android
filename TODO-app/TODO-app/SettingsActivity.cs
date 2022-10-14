@@ -13,6 +13,8 @@ using Android.Util;
 using TODO_app.Resources.layout;
 using Android.Content.Res;
 using Android.Icu.Lang;
+using AndroidX.Core.Content;
+using Android;
 
 namespace TODO_app
 {
@@ -21,6 +23,7 @@ namespace TODO_app
     {
         private string savedTheme = "";
         private bool vibration;
+        private bool notifications;
         TextView version;
         RelativeLayout sendFeedbackButton;
         RelativeLayout replayTutorial;
@@ -43,6 +46,7 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
+        Switch notificationsToggle;
         Spinner themeSelector;
         RelativeLayout deleteAllDone;
         RelativeLayout deleteAll;
@@ -110,6 +114,7 @@ namespace TODO_app
             deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
+            notificationsToggle = FindViewById<Switch>(Resource.Id.notificationsSwitch);
 
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
@@ -129,13 +134,26 @@ namespace TODO_app
             deleteAll.Click += DeleteAll_Click;
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
-            if (vibration == true)
+            notificationsToggle.CheckedChange += ToggleNotifications;
+
+            switch (vibration)
             {
-                vibrationToggle.Checked = true;
+                case true:
+                    vibrationToggle.Checked = true;
+                    break;
+                case false:
+                    vibrationToggle.Checked = false;
+                    break;
             }
-            else if (vibration == false)
+
+            switch (notifications)
             {
-                vibrationToggle.Checked = false;
+                case true:
+                    notificationsToggle.Checked = true;
+                    break;
+                case false:
+                    notificationsToggle.Checked = false;
+                    break;
             }
 
             switch (savedTheme)
@@ -167,6 +185,10 @@ namespace TODO_app
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+            {
+                notificationsToggle.Checked = false;
+            }
         }
         private int SetThemeSpinnerDefault()
         {
@@ -256,6 +278,7 @@ namespace TODO_app
             themePref = GetSharedPreferences("Theme", 0);
             string themeSelected = themePref.GetString("themeSelected", default);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
@@ -293,8 +316,10 @@ namespace TODO_app
             }
             savedTheme = color;
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            notifications = notificationPref.GetBoolean("notificationsEnabled", default);
+
         }
-        
+
         private void BackToMenu(object sender, EventArgs e)
         {
             if (vibration == true)
@@ -473,6 +498,30 @@ namespace TODO_app
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", false).Commit();
                 vibration = false;
+            }
+        }
+        private void ToggleNotifications(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 60);
+            }
+            ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
+
+            if (e.IsChecked == true)
+            {
+                notificationPref.Edit().PutBoolean("notificationsEnabled", true).Commit();
+                if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+                {
+                    string[] perms = { Manifest.Permission.PostNotifications };
+                    RequestPermissions(perms, 0);
+                }
+
+            }
+
+            else if (e.IsChecked == false)
+            {
+                notificationPref.Edit().PutBoolean("notificationsEnabled", false).Commit();
             }
         }
 

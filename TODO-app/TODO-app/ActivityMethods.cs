@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Essentials;
+using AndroidX.Core.Content;
+using Android;
+using AndroidX.Core.App;
 
 namespace TODO_app
 {
@@ -54,5 +57,7 @@ namespace TODO_app
                 return inputToParse;
             }
         }
+
+
     }
 }

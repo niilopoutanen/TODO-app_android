@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Android.Accessibilityservice.AccessibilityService;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -31,15 +32,19 @@ namespace TODO_app
                     }
                 }
             }
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
-                .SetSmallIcon(Resource.Mipmap.ic_launcher)
+            if(tasksToday > 0)
+            {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
+                .SetSmallIcon(Resource.Drawable.iconFull)
                 .SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday))
                 .SetPriority(NotificationCompat.PriorityDefault);
-            PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
-            builder.SetContentIntent(contentClick);
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.From(context);
+                PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
+                builder.SetContentIntent(contentClick);
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.From(context);
 
-            notificationManager.Notify(id: 200, builder.Build());
+                notificationManager.Notify(id: 200, builder.Build());
+            }
+
         }
     }
 }
