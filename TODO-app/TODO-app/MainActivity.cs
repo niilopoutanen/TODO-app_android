@@ -18,6 +18,7 @@ using AndroidX.Core.Content;
 using Java.Security;
 using Android;
 using Android.Icu.Util;
+using Android.Views.Autofill;
 
 namespace TODO_app
 {
@@ -1704,8 +1705,8 @@ namespace TODO_app
 
             Calendar calendar = Calendar.Instance;
 
-            calendar.Set(CalendarField.HourOfDay, 18);
-            calendar.Set(CalendarField.Minute, 56);
+            calendar.Set(CalendarField.HourOfDay, 19);
+            calendar.Set(CalendarField.Minute, 13);
             calendar.Set(CalendarField.Second, 0);
             calendar.Set(CalendarField.Millisecond, 0);
 
@@ -1713,7 +1714,7 @@ namespace TODO_app
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
 
             AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
-            alarmManager.SetRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalDay, pendingIntent);
+            alarmManager.SetInexactRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalDay, pendingIntent);
         }
         public void UpdateWidget()
         {
