@@ -47,6 +47,7 @@ namespace TODO_app.Resources.layout
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 
+        [Obsolete]
         public override void OnBackPressed() { }
 
 
