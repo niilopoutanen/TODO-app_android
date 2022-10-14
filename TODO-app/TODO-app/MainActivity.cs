@@ -17,6 +17,7 @@ using Android.Appwidget;
 using AndroidX.Core.Content;
 using Java.Security;
 using Android;
+using Android.Icu.Util;
 
 namespace TODO_app
 {
@@ -148,14 +149,9 @@ namespace TODO_app
             GetStyle();
 
             CreateNotificationChannel();
-            if(notifications == true)
+            if (notifications == true)
             {
-                Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
-                PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
-
-                AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
-
-                alarmManager.Set(AlarmType.RtcWakeup, triggerAtMillis: Java.Lang.JavaSystem.CurrentTimeMillis() + 1000 * 5, pendingIntent);
+                CreateNotificationRepeater();
             }
 
             //Start onboarding
@@ -1700,6 +1696,24 @@ namespace TODO_app
                 NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
                 notificationManager.CreateNotificationChannel(channel);
             }
+        }
+        private void CreateNotificationRepeater()
+        {
+            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
+            int selectedTime = notifTime.GetInt("notifTime", default);
+
+            Calendar calendar = Calendar.Instance;
+
+            calendar.Set(CalendarField.HourOfDay, 18);
+            calendar.Set(CalendarField.Minute, 56);
+            calendar.Set(CalendarField.Second, 0);
+            calendar.Set(CalendarField.Millisecond, 0);
+
+            Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
+
+            AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+            alarmManager.SetRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalDay, pendingIntent);
         }
         public void UpdateWidget()
         {

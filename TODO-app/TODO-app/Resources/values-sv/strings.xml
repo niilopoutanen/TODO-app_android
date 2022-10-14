@@ -112,5 +112,7 @@
 	<string name="taskReminder">Uppgiftar reminderare</string>
 	<string name="tasksToday"> tuppgiftar to do todag.</string>
 	<string name="notificationDesc">TODO-apparna uppgiftar-reminderare</string>
+	
+	<string name="timeHeader">Time får reminderare:</string>
 
 </resources>

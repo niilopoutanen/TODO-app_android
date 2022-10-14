@@ -15,6 +15,7 @@ using Android.Content.Res;
 using Android.Icu.Lang;
 using AndroidX.Core.Content;
 using Android;
+using System.Security.Cryptography;
 
 namespace TODO_app
 {
@@ -47,6 +48,7 @@ namespace TODO_app
 
         Switch vibrationToggle;
         Switch notificationsToggle;
+        RelativeLayout notificationTimeBtn;
         Spinner themeSelector;
         RelativeLayout deleteAllDone;
         RelativeLayout deleteAll;
@@ -115,7 +117,7 @@ namespace TODO_app
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
             notificationsToggle = FindViewById<Switch>(Resource.Id.notificationsSwitch);
-
+            notificationTimeBtn = FindViewById<RelativeLayout>(Resource.Id.changeNotificationTimeBtn);
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
             ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
@@ -135,7 +137,7 @@ namespace TODO_app
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
             notificationsToggle.CheckedChange += ToggleNotifications;
-
+            notificationTimeBtn.Click += ChangeNotificationTime;
             switch (vibration)
             {
                 case true:
@@ -528,7 +530,38 @@ namespace TODO_app
                 notificationPref.Edit().PutBoolean("notificationsEnabled", false).Commit();
             }
         }
+        private void ChangeNotificationTime(object sender, EventArgs e)
+        {
+            int timePicked;
+            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
+            timePicked = notifTime.GetInt("notifTime", default);
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
 
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.time_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(220));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.timePopupConfirm);
+            NumberPicker picker = view.FindViewById<NumberPicker>(Resource.Id.timePicker);
+            TextView timeHeader = view.FindViewById<TextView>(Resource.Id.timeHeader);
+            picker.MinValue = 1;
+            picker.MaxValue = 24;
+            picker.Value = timePicked;
+            picker.ValueChanged += (s, e) =>
+            {
+                timeHeader.Text = GetString(Resource.String.timeHeader) + " " + picker.Value + ":00";
+                timePicked = picker.Value;
+            };
+            confirm.Click += (s, e) =>
+            {
+                notifTime.Edit().PutInt("notifTime", timePicked).Commit();
+                alert.Dismiss();
+            };
+        }
         private void OpenPopup(string Header, string Desc, string YesText)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);

@@ -32,7 +32,7 @@
 	<string name="Credits3">Tomi Vahdersalo</string>
 	<string name="darkTheme">Tumma teema</string>
 	<string name="lightTheme">Vaalea teema</string>
-	<string name="systemTheme">Käytä puhelimen teemaa</string>
+	<string name="systemTheme">Puhelimen teema</string>
 	
 	
 	<string name="taskAmount">Tehtävät</string>
@@ -113,4 +113,6 @@
 	<string name="taskReminder">Tehtävämuistutus</string>
 	<string name="tasksToday"> tehtävää tälle päivälle.</string>
 	<string name="notificationDesc">TODO-apin tehtävämuistutukset</string>
+
+	<string name="timeHeader">Muistutusilmoituksen aika:</string>
 </resources>

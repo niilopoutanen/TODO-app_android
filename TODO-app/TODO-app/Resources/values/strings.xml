@@ -113,4 +113,6 @@
 	<string name="taskReminder">Task reminder</string>
 	<string name="tasksToday"> tasks to do today.</string>
 	<string name="notificationDesc">Notification channel for TODO-app</string>
+
+	<string name="timeHeader">Time for reminder notification:</string>
 </resources>
