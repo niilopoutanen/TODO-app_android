@@ -466,7 +466,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="130dp"
                 android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
@@ -503,6 +503,7 @@
                     android:id="@+id/CreditsTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Credits3"
                     android:layout_below="@+id/CreditsOM"
                     android:textSize="15dp"
