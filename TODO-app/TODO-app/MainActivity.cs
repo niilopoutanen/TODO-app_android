@@ -19,6 +19,7 @@ using Java.Security;
 using Android;
 using Android.Icu.Util;
 using Android.Views.Autofill;
+using AndroidX.Core.OS;
 
 namespace TODO_app
 {
@@ -133,6 +134,7 @@ namespace TODO_app
             FirebaseAnalytics.GetInstance(this);
             LoadSettings();
             base.OnCreate(savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             taskList = file.ReadFile();
@@ -1682,11 +1684,12 @@ namespace TODO_app
 
         }
 
+
+        [Obsolete]
         public override void OnBackPressed()
         {
             this.FinishAffinity();
         }
-
         private void CreateNotificationChannel()
         {
             if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.O)
