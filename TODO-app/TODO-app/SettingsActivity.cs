@@ -333,6 +333,7 @@ namespace TODO_app
                 methods.Vibrate(vibrator, vibratorManager, 100);
             }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
+            mainMenuStarter.SetFlags(ActivityFlags.ClearTop);
             StartActivity(mainMenuStarter);
             Finish();
         }
