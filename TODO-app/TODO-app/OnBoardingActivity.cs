@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace TODO_app.Resources.layout
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
-
-
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false, NoHistory =true)]
     public class OnBoardingActivity : Activity
     {
         Button next;
@@ -32,7 +30,6 @@ namespace TODO_app.Resources.layout
             guideView = FindViewById<ImageView>(Resource.Id.guideScreen);
             onBoardHeader = FindViewById<TextView>(Resource.Id.onBoardHeader);
             imageLayout = FindViewById<RelativeLayout>(Resource.Id.imageLayout);
-            // Create your application here
 
         }
 
@@ -120,7 +117,9 @@ namespace TODO_app.Resources.layout
                 ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
                 hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
                 Intent backToMain = new Intent(this, typeof(MainActivity));
+                backToMain.SetFlags(ActivityFlags.ClearTop);
                 StartActivity(backToMain);
+                Finish();
             }
 
 
@@ -130,7 +129,9 @@ namespace TODO_app.Resources.layout
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
             hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
             Intent backToMain = new Intent(this, typeof(MainActivity));
+            backToMain.SetFlags(ActivityFlags.ClearTop);
             StartActivity(backToMain);
+            Finish();
         }
 
 

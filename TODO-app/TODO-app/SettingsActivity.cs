@@ -334,6 +334,7 @@ namespace TODO_app
             }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);
+            Finish();
         }
         
         private void SendFeedback(object sender, EventArgs e)
@@ -355,6 +356,7 @@ namespace TODO_app
             }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
+            Finish();
         }
 
         private void CreditsLinks(object sender, EventArgs e)

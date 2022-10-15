@@ -40,6 +40,7 @@ namespace TODO_app
             {
                 vibrator = vibratorService;
             }
+            vibrator.Cancel();
             vibrator.Vibrate(VibrationEffect.CreateOneShot(length, VibrationEffect.DefaultAmplitude));
 
         }
