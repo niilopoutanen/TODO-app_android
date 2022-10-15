@@ -532,6 +532,10 @@ namespace TODO_app
         }
         private void ChangeNotificationTime(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 60);
+            }
             int timePicked;
             ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
             timePicked = notifTime.GetInt("notifTime", default);
@@ -555,11 +559,19 @@ namespace TODO_app
             {
                 timeHeader.Text = GetString(Resource.String.timeHeader) + " " + picker.Value + ":00";
                 timePicked = picker.Value;
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 30);
+                }
             };
             confirm.Click += (s, e) =>
             {
                 notifTime.Edit().PutInt("notifTime", timePicked).Commit();
                 alert.Dismiss();
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 60);
+                }
             };
         }
         private void OpenPopup(string Header, string Desc, string YesText)
