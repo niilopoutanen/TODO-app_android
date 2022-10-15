@@ -17,6 +17,8 @@
 
 
 	<string name="settings">Asetukset</string>
+	<string name="notificationSettings">Ilmoitukset</string>
+	<string name="reminderTime">Ilmoituksen aika</string>
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="deleteAll">Poista kaikki tehtävät</string>
@@ -31,7 +33,7 @@
 	<string name="Credits3">Tomi Vahdersalo</string>
 	<string name="darkTheme">Tumma teema</string>
 	<string name="lightTheme">Vaalea teema</string>
-	<string name="systemTheme">Käytä puhelimen teemaa</string>
+	<string name="systemTheme">Puhelimen teema</string>
 	
 	
 	<string name="taskAmount">Tehtävät</string>
@@ -108,4 +110,10 @@
 	<string name="firstTask">Ensimmäinen tehtävä</string>
 	<string name="secondTask">Toinen tehtävä</string>
 	<string name="tempDate">1.1.2023</string>
+
+	<string name="taskReminder">Tehtävämuistutus</string>
+	<string name="tasksToday"> tehtävää tälle päivälle.</string>
+	<string name="notificationDesc">TODO-apin tehtävämuistutukset</string>
+
+	<string name="timeHeader">Muistutusilmoituksen aika:</string>
 </resources>

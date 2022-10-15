@@ -75,8 +75,10 @@
   <ItemGroup>
     <Compile Include="ActivityMethods.cs" />
     <Compile Include="AppWidget.cs" />
+    <Compile Include="BootReceiver.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OnBoardingActivity.cs" />
+    <Compile Include="ReminderBroadcast.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,6 +313,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\spinner_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\iconFull.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\time_popup.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

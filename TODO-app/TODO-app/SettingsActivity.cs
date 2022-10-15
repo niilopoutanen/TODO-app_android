@@ -13,6 +13,9 @@ using Android.Util;
 using TODO_app.Resources.layout;
 using Android.Content.Res;
 using Android.Icu.Lang;
+using AndroidX.Core.Content;
+using Android;
+using System.Security.Cryptography;
 
 namespace TODO_app
 {
@@ -21,6 +24,7 @@ namespace TODO_app
     {
         private string savedTheme = "";
         private bool vibration;
+        private bool notifications;
         TextView version;
         RelativeLayout sendFeedbackButton;
         RelativeLayout replayTutorial;
@@ -43,6 +47,8 @@ namespace TODO_app
         ImageView redActive;
 
         Switch vibrationToggle;
+        Switch notificationsToggle;
+        RelativeLayout notificationTimeBtn;
         Spinner themeSelector;
         RelativeLayout deleteAllDone;
         RelativeLayout deleteAll;
@@ -110,7 +116,8 @@ namespace TODO_app
             deleteAllDone = FindViewById<RelativeLayout>(Resource.Id.deleteAllDoneButton);
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
-
+            notificationsToggle = FindViewById<Switch>(Resource.Id.notificationsSwitch);
+            notificationTimeBtn = FindViewById<RelativeLayout>(Resource.Id.changeNotificationTimeBtn);
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
             ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
@@ -129,13 +136,30 @@ namespace TODO_app
             deleteAll.Click += DeleteAll_Click;
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
-            if (vibration == true)
+            notificationsToggle.CheckedChange += ToggleNotifications;
+            notificationTimeBtn.Click += ChangeNotificationTime;
+            switch (vibration)
             {
-                vibrationToggle.Checked = true;
+                case true:
+                    vibrationToggle.Checked = true;
+                    break;
+                case false:
+                    vibrationToggle.Checked = false;
+                    break;
             }
-            else if (vibration == false)
+
+            switch (notifications)
             {
-                vibrationToggle.Checked = false;
+                case true:
+                    notificationsToggle.Checked = true;
+                    break;
+                case false:
+                    notificationsToggle.Checked = false;
+                    break;
+            }
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+            {
+                notificationsToggle.Checked = false;
             }
 
             switch (savedTheme)
@@ -167,6 +191,10 @@ namespace TODO_app
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+            {
+                notificationsToggle.Checked = false;
+            }
         }
         private int SetThemeSpinnerDefault()
         {
@@ -256,6 +284,7 @@ namespace TODO_app
             themePref = GetSharedPreferences("Theme", 0);
             string themeSelected = themePref.GetString("themeSelected", default);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
@@ -293,8 +322,10 @@ namespace TODO_app
             }
             savedTheme = color;
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            notifications = notificationPref.GetBoolean("notificationsEnabled", default);
+
         }
-        
+
         private void BackToMenu(object sender, EventArgs e)
         {
             if (vibration == true)
@@ -302,7 +333,9 @@ namespace TODO_app
                 methods.Vibrate(vibrator, vibratorManager, 100);
             }
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
+            mainMenuStarter.SetFlags(ActivityFlags.ClearTop);
             StartActivity(mainMenuStarter);
+            Finish();
         }
         
         private void SendFeedback(object sender, EventArgs e)
@@ -324,6 +357,7 @@ namespace TODO_app
             }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
+            Finish();
         }
 
         private void CreditsLinks(object sender, EventArgs e)
@@ -475,7 +509,74 @@ namespace TODO_app
                 vibration = false;
             }
         }
+        private void ToggleNotifications(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 60);
+            }
+            ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
 
+            if (e.IsChecked == true)
+            {
+                notificationPref.Edit().PutBoolean("notificationsEnabled", true).Commit();
+                if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
+                {
+                    string[] perms = { Manifest.Permission.PostNotifications };
+                    RequestPermissions(perms, 0);
+                }
+
+            }
+
+            else if (e.IsChecked == false)
+            {
+                notificationPref.Edit().PutBoolean("notificationsEnabled", false).Commit();
+            }
+        }
+        private void ChangeNotificationTime(object sender, EventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 60);
+            }
+            int timePicked;
+            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
+            timePicked = notifTime.GetInt("notifTime", default);
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.time_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), DpToPx(220));
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.timePopupConfirm);
+            NumberPicker picker = view.FindViewById<NumberPicker>(Resource.Id.timePicker);
+            TextView timeHeader = view.FindViewById<TextView>(Resource.Id.timeHeader);
+            picker.MinValue = 1;
+            picker.MaxValue = 24;
+            picker.Value = timePicked;
+            picker.ValueChanged += (s, e) =>
+            {
+                timeHeader.Text = GetString(Resource.String.timeHeader) + " " + picker.Value + ":00";
+                timePicked = picker.Value;
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 30);
+                }
+            };
+            confirm.Click += (s, e) =>
+            {
+                notifTime.Edit().PutInt("notifTime", timePicked).Commit();
+                alert.Dismiss();
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, 60);
+                }
+            };
+        }
         private void OpenPopup(string Header, string Desc, string YesText)
         {
             Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
@@ -514,6 +615,8 @@ namespace TODO_app
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
+
+        [Obsolete]
         public override void OnBackPressed() 
         {
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));

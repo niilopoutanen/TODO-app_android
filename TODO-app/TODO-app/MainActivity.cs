@@ -14,6 +14,12 @@ using TODO_app.Resources.layout;
 using Firebase.Analytics;
 using Android.Animation;
 using Android.Appwidget;
+using AndroidX.Core.Content;
+using Java.Security;
+using Android;
+using Android.Icu.Util;
+using Android.Views.Autofill;
+using AndroidX.Core.OS;
 
 namespace TODO_app
 {
@@ -24,6 +30,7 @@ namespace TODO_app
         private string currentTheme;
         private bool guideDone;
         private bool vibration;
+        private bool notifications;
         RelativeLayout btnCreateTask;
         Button btnAddTask;
 
@@ -127,6 +134,7 @@ namespace TODO_app
             FirebaseAnalytics.GetInstance(this);
             LoadSettings();
             base.OnCreate(savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             taskList = file.ReadFile();
@@ -139,11 +147,15 @@ namespace TODO_app
 
             DoneAndGone();
             CountAndShowMissed();
-
             ShowDatestasks(DateTime.Today);
             UpdateTaskCount();
             GetStyle();
 
+            CreateNotificationChannel();
+            if (notifications == true)
+            {
+                CreateNotificationRepeater();
+            }
 
             //Start onboarding
             if (guideDone == false)
@@ -259,7 +271,10 @@ namespace TODO_app
             guideDone = hasWatchedGuide.GetBoolean("hasWatchedGuide", default);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            ISharedPreferences notificationsPref = GetSharedPreferences("Notifications", 0);
+
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
+            notifications = notificationsPref.GetBoolean("notificationsEnabled", default);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
             {
@@ -299,6 +314,9 @@ namespace TODO_app
                     break;
                 case "system":
                     AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightFollowSystem;
+                    break;
+                case null:
+                    themePref.Edit().PutString("themeSelected", "system").Commit();
                     break;
             }
         }
@@ -1666,11 +1684,41 @@ namespace TODO_app
 
         }
 
+
+        [Obsolete]
         public override void OnBackPressed()
         {
             this.FinishAffinity();
         }
+        private void CreateNotificationChannel()
+        {
+            if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                NotificationChannel channel = new NotificationChannel(id: GetString(Resource.String.taskReminder), GetString(Resource.String.taskReminder), Android.App.NotificationImportance.Default);
+                channel.Description = GetString(Resource.String.notificationDesc);
 
+                NotificationManager notificationManager = (NotificationManager)GetSystemService(NotificationService);
+                notificationManager.CreateNotificationChannel(channel);
+            }
+        }
+        private void CreateNotificationRepeater()
+        {
+            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
+            int selectedTime = notifTime.GetInt("notifTime", default);
+
+            Calendar calendar = Calendar.Instance;
+
+            calendar.Set(CalendarField.HourOfDay, selectedTime);
+            calendar.Set(CalendarField.Minute, 0);
+            calendar.Set(CalendarField.Second, 0);
+            calendar.Set(CalendarField.Millisecond, 0);
+
+            Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
+
+            AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+            alarmManager.SetInexactRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalDay, pendingIntent);
+        }
         public void UpdateWidget()
         {
             List<TaskItem> localList = new List<TaskItem>();

@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
+using Android.Text.Method;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -37,6 +38,7 @@ namespace TODO_app.Resources.layout
 
             }
             base.OnCreate(savedInstanceState, persistentState);
+
         }
 
         protected override void OnResume()
@@ -45,6 +47,9 @@ namespace TODO_app.Resources.layout
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 
+        [Obsolete]
         public override void OnBackPressed() { }
+
+
     }
 }
