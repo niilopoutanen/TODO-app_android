@@ -109,7 +109,8 @@
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:id="@+id/changeNotificationTimeBtn">
 
                 <TextView
                     android:layout_centerVertical="true"
@@ -123,7 +124,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/changeNotificationTimeBtn"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -300,7 +300,8 @@
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:id="@+id/deleteAllDoneButton">
 
                 <TextView
                     android:layout_centerVertical="true"
@@ -314,7 +315,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/deleteAllDoneButton"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -331,6 +331,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/deleteAllButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
@@ -349,7 +350,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/deleteAllButton"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -359,8 +359,7 @@
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
                         android:backgroundTint="@color/textPrimary"
-                        android:rotation="180"
-                    />
+                        android:rotation="180"/>
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -385,7 +384,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/SendFeedbackBtn"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -421,7 +419,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/SendFeedbackBtn"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
