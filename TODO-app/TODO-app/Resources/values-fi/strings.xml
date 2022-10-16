@@ -116,6 +116,7 @@
 	<string name="notificationDesc">TODO-apin tehtävämuistutukset</string>
 
 	<string name="timeHeader">Muistutusilmoituksen aika:</string>
+	<string name="whatsNew">Mitä uutta?</string>
 
 	<string name="header1.7">Muistutuspäivitys</string>
 	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit muokata muistutksen aikaa asetusvalikosta, ja myös laittaa ilmoitukset kokonaan pois päältä jos et halua nähdä niitä.</string>

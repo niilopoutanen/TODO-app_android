@@ -309,7 +309,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="What's new"
+                    android:text="@string/whatsNew"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
                 <RelativeLayout

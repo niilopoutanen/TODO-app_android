@@ -115,6 +115,7 @@
 	<string name="notificationDesc">TODO-apparna uppgiftar-reminderare</string>
 	
 	<string name="timeHeader">Time får reminderare:</string>
+	<string name="whatsNew">Vad nu</string>
 
 	<string name="header1.7">Weminderare updaterna</string>
 	<string name="desc1.7">Applikatiorna nu har notificationer. Du can toggle them off på settings menu</string>
