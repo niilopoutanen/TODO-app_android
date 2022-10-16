@@ -131,4 +131,13 @@
 
 	<string name="header1.4">Google updaterna</string>
 	<string name="desc1.4">Inte visual updaterna, only Google analytiker och Google spelar servicerna.</string>
+
+	<string name="header1.3">Bug fixarna</string>
+	<string name="desc1.3">Fixarna bugs. Bättre touch areas.</string>
+
+	<string name="header1.2">Missed taskar updaterna</string>
+	<string name="desc1.2">Addad separaten view för uppgiftar på inte completed i timmar.</string>
+
+	<string name="header1.0">Förstå releasen</string>
+	<string name="desc1.0">Förstå releasen på TODO-apparna. jättemuch bugs.</string>
 </resources>

@@ -119,17 +119,26 @@
 	<string name="whatsNew">Mitä uutta?</string>
 
 	<string name="header1.7">Muistutuspäivitys</string>
-	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit muokata muistutksen aikaa asetusvalikosta, ja myös laittaa ilmoitukset kokonaan pois päältä jos et halua nähdä niitä.</string>
+	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit muokata muistutuksen aikaa asetusvalikosta, ja myös laittaa ilmoitukset kokonaan pois päältä jos et halua nähdä niitä.</string>
 
 	<string name="header1.6">Pienoisohjelmapäivitys</string>
-	<string name="desc1.6">Sovellukseen lisätty 3 uutta pienoisohjelmaa. Sovellus myös tukee nyt Material You-teemaa.</string>
+	<string name="desc1.6">Sovellukseen lisätty 3 uutta pienoisohjelmaa. Sovellus tukee nyt Material You-teemaa (Saatavilla Android 12.1+ versioissa).</string>
 
 	<string name="header1.5.5">Kielipäivitys</string>
 	<string name="desc1.5.5">Sovellus tukee nyt useampia eri kieliä. Tällä hetkellä saatavilla olevat kielet ovat suomi, englanti ja ruotsi.</string>
 
 	<string name="header1.5">Muokkauspäivitys</string>
-	<string name="desc1.5">Voit nyt muokata tehtäviä mitä olet luonut aikaisemmin. Sovellukseen myös lisätty värinätehosteita, ja parannettu virheellisten tekstikenttien käyttöliittymää.</string>
+	<string name="desc1.5">Voit nyt muokata tehtäviä mitä olet luonut aikaisemmin. Sovellukseen lisätty värinätehosteita, ja parannettu virheellisten tekstikenttien käyttöliittymää.</string>
 	
 	<string name="header1.4">Google-päivitys</string>
 	<string name="desc1.4">Ei visuaalisia muutoksia, Google Analytics- ja Google Play palvelut lisätty projektiin.</string>
+	
+	<string name="header1.3">Virheenkorjauksia</string>
+	<string name="desc1.3">Tehtävien näkyminen väärin/ ei ollenkaan korjattu, käyttöliittymän kosketusalueita paranneltu.</string>
+
+	<string name="header1.2">Myöhästyneet tehtävät-päivitys</string>
+	<string name="desc1.2">Sovellukseen lisätty näkymä jossa on myöhästyneet tehtävät. Tehtävät siirtyvät sinne automaattisesti heti kun päivämäärä on mennyt ohi.</string>
+
+	<string name="header1.0">Ensimmäinen julkaisu</string>
+	<string name="desc1.0">TODO-apin ensimmäinen julkaisu. Sovelluksessa mukana perustoiminnot kuten tehtävien käsittely ja asetusvalikko, myös paljon bugeja mukana.</string>
 </resources>

@@ -36,7 +36,7 @@ namespace TODO_app
             }
             if(tasksToday > 0)
             {
-                if(dayWhenLast == DateTime.Now.Day)
+                if(dayWhenLast != DateTime.Now.Day)
                 {
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
                     .SetSmallIcon(Resource.Drawable.iconFull)

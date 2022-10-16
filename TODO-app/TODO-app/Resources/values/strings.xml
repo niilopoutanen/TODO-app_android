@@ -116,7 +116,7 @@
 	<string name="notificationDesc">Notification channel for TODO-app</string>
 
 	<string name="timeHeader">Time for reminder notification:</string>
-	<string name="whatsNew">What's new</string>
+	<string name="whatsNew">What\'s new</string>
 
 	<string name="header1.7">Notification update</string>
 	<string name="desc1.7">Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want to see them.</string>
@@ -132,4 +132,13 @@
 
 	<string name="header1.4">Google update</string>
 	<string name="desc1.4">No visual updates, added support for Google Analytics and Google Play services base.</string>
+
+	<string name="header1.3">Bug fixes</string>
+	<string name="desc1.3">Fixes to task elements not showing correctly, also enhanced the touch areas of some elements.</string>
+
+	<string name="header1.2">Missed tasks update</string>
+	<string name="desc1.2">Added separate view for tasks that were not completed in time. The view appears automatically if there are any missed tasks.</string>
+
+	<string name="header1.0">First release</string>
+	<string name="desc1.0">First release of TODO-app. Basic features such as handling tasks and settings included, also lot of bugs included.</string>
 </resources>
