@@ -85,6 +85,7 @@
     <Compile Include="FileClass.cs" />
     <Compile Include="SettingsActivity.cs" />
     <Compile Include="TaskItem.cs" />
+    <Compile Include="WhatsNewActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\font\inter_semibold.ttf" />
@@ -325,6 +326,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\time_popup.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_whatsnew.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
