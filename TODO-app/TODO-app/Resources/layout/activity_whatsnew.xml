@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +22,7 @@
                 android:layout_marginBottom="20dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rounded90px"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="15dp"
@@ -110,6 +111,50 @@
                     android:src="@drawable/widgets"/>
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded90px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="15dp"
+                android:layout_marginBottom="30dp">
+                <TextView
+                    android:id="@+id/version1.5.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.5.5"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9/2022"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/header1.5.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header1.5.5"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_below="@+id/version1.5.5"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:id="@+id/desc1.5.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/header1.5.5"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/desc1.5.5"/>
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
