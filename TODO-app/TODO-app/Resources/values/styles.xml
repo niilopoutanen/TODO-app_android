@@ -59,4 +59,9 @@
 
 	<style name="Theme.Widget" parent="@android:style/Theme.DeviceDefault"/>
 
+	<style name="WhatsNew" parent="@style/AppTheme">
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimary</item>
+	</style>
+
 </resources>

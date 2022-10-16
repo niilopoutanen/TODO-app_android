@@ -117,12 +117,12 @@
 
 	<string name="timeHeader">Muistutusilmoituksen aika:</string>
 
-	<string name="header1.7">Muisutuspäivitys</string>
+	<string name="header1.7">Muistutuspäivitys</string>
 	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit muokata muistutksen aikaa asetusvalikosta, ja myös laittaa ilmoitukset kokonaan pois päältä jos et halua nähdä niitä.</string>
 
 	<string name="header1.6">Pienoisohjelmapäivitys</string>
 	<string name="desc1.6">Sovellukseen lisätty 3 uutta pienoisohjelmaa. Sovellus myös tukee nyt Material You-teemaa.</string>
 
 	<string name="header1.5.5">Kielipäivitys</string>
-	<string name="desc1.5.5">Sovellus tukee nyt useampia eri kieliä. Tällä hetkellä saatavat kielet ovat suomi, englanti ja ruotsi.</string>
+	<string name="desc1.5.5">Sovellus tukee nyt useampia eri kieliä. Tällä hetkellä saatavilla olevat kielet ovat suomi, englanti ja ruotsi.</string>
 </resources>

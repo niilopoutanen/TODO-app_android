@@ -11,7 +11,7 @@ using System.Text;
 
 namespace TODO_app
 {
-    [Activity(Label = "WhatsNewActivity", Theme = "@style/AppTheme")]
+    [Activity(Label = "WhatsNewActivity", Theme = "@style/WhatsNew")]
     public class WhatsNewActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
