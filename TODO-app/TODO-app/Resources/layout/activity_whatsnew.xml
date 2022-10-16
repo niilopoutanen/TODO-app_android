@@ -27,7 +27,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="30dp">
                 <TextView
-                    android:id="@+id/1.7version"
+                    android:id="@+id/version1.7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.7"
@@ -44,31 +44,32 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
                 <TextView
-                    android:id="@+id/1.7Header"
+                    android:id="@+id/header1.7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notification update"
                     android:textSize="15dp"
                     android:fontFamily="@font/inter_semibold"
-                    android:layout_below="@+id/1.7version"
+                    android:layout_below="@+id/version1.7"
                     android:layout_marginBottom="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/1.7Header"
+                    android:layout_below="@+id/header1.7"
                     android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want them."/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rounded90px"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="15dp"
                 android:layout_marginBottom="30dp">
                 <TextView
-                    android:id="@+id/1.6version"
+                    android:id="@+id/version1.6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.6"
@@ -85,19 +86,28 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
                 <TextView
-                    android:id="@+id/1.6Header"
+                    android:id="@+id/header1.6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Widget update"
                     android:textSize="15dp"
                     android:fontFamily="@font/inter_semibold"
-                    android:layout_below="@+id/1.6version"
+                    android:layout_below="@+id/version1.6"
                     android:layout_marginBottom="10dp"/>
                 <TextView
+                    android:id="@+id/desc1.6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/1.6Header"
-                    android:textSize="13dp"/>
+                    android:layout_below="@+id/header1.6"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Added 3 new widgets to the app. Also added support for Material You theme as shown in the image."/>
+                <ImageView
+                    android:contentDescription="@string/default_description"
+                    android:layout_below="@+id/desc1.6"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:src="@drawable/widgets"/>
             </RelativeLayout>
 
         </LinearLayout>

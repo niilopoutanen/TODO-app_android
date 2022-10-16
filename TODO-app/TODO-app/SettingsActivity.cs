@@ -16,6 +16,7 @@ using Android.Icu.Lang;
 using AndroidX.Core.Content;
 using Android;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace TODO_app
 {
@@ -50,6 +51,7 @@ namespace TODO_app
         Switch notificationsToggle;
         RelativeLayout notificationTimeBtn;
         Spinner themeSelector;
+        RelativeLayout whatsNewButton;
         RelativeLayout deleteAllDone;
         RelativeLayout deleteAll;
         Vibrator vibrator;
@@ -133,6 +135,8 @@ namespace TODO_app
             vibrator = (Vibrator)GetSystemService(VibratorService);
             vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
 
+            whatsNewButton = FindViewById<RelativeLayout>(Resource.Id.whatsNewButton);
+            whatsNewButton.Click += OpenWhatsNew;
             deleteAll.Click += DeleteAll_Click;
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
@@ -337,7 +341,15 @@ namespace TODO_app
             StartActivity(mainMenuStarter);
             Finish();
         }
-        
+        private void OpenWhatsNew(object sender, EventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 100);
+            }
+            Intent whatsNew = new Intent(this, typeof(WhatsNewActivity));
+            StartActivity(whatsNew);
+        }
         private void SendFeedback(object sender, EventArgs e)
         {
             if (vibration == true)

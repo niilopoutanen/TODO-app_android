@@ -1717,7 +1717,7 @@ namespace TODO_app
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
 
             AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
-            alarmManager.SetInexactRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalFifteenMinutes, pendingIntent);
+            alarmManager.SetInexactRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis, AlarmManager.IntervalDay, pendingIntent);
         }
         public void UpdateWidget()
         {
