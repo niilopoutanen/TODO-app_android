@@ -125,4 +125,10 @@
 
 	<string name="header1.5.5">Kielipäivitys</string>
 	<string name="desc1.5.5">Sovellus tukee nyt useampia eri kieliä. Tällä hetkellä saatavilla olevat kielet ovat suomi, englanti ja ruotsi.</string>
+
+	<string name="header1.5">Muokkauspäivitys</string>
+	<string name="desc1.5">Voit nyt muokata tehtäviä mitä olet luonut aikaisemmin. Sovellukseen myös lisätty värinätehosteita, ja parannettu virheellisten tekstikenttien käyttöliittymää.</string>
+	
+	<string name="header1.4">Google-päivitys</string>
+	<string name="desc1.4">Ei visuaalisia muutoksia, Google Analytics- ja Google Play palvelut lisätty projektiin.</string>
 </resources>

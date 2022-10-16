@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.7"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"/>
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10/2022"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.6"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"/>
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10/2022"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.5.5"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"/>
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="9/2022"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
@@ -153,7 +153,105 @@
                     android:textSize="13dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/desc1.5.5"/>
+                <ImageView
+                    android:contentDescription="@string/default_description"
+                    android:layout_below="@+id/desc1.5.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:src="@drawable/flags"/>
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded90px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="15dp"
+                android:layout_marginBottom="30dp">
+                <TextView
+                    android:id="@+id/version1.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.5"
+                    android:textSize="22dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9/2022"
+                    android:textSize="22dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/header1.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header1.5"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_below="@+id/version1.5"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:id="@+id/desc1.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/header1.5"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/desc1.5"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded90px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:padding="15dp"
+                android:layout_marginBottom="30dp">
+                <TextView
+                    android:id="@+id/version1.4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.4"
+                    android:textSize="22dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9/2022"
+                    android:textSize="22dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/header1.4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header1.4"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_below="@+id/version1.4"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:id="@+id/desc1.4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/header1.4"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/desc1.4"/>
+                <ImageView
+                    android:contentDescription="@string/default_description"
+                    android:layout_below="@+id/desc1.4"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:src="@drawable/firebaseimg"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

@@ -122,8 +122,14 @@
 	<string name="desc1.7">Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want to see them.</string>
 
 	<string name="header1.6">Widget update</string>
-	<string name="desc1.6">Added 3 new widgets to the app. Also added support for Material You theme as shown in the image.</string>
+	<string name="desc1.6">Added 3 new widgets to the app. Also added support for Material You theme (available in Android 12.1+ versions) as shown in the image. Material You theme also works inside the app.</string>
 
 	<string name="header1.5.5">Language update</string>
 	<string name="desc1.5.5">Added support for other languages. Right now finnish, english, and swedish are supported.</string>
+
+	<string name="header1.5">Task edit update</string>
+	<string name="desc1.5">You can now edit tasks that you have created. Also added haptics for user actions, and enhanced the UI for invalid input fields.</string>
+
+	<string name="header1.4">Google update</string>
+	<string name="desc1.4">No visual updates, added support for Google Analytics and Google Play services base.</string>
 </resources>

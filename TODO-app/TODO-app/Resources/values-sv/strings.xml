@@ -124,4 +124,10 @@
 
 	<string name="header1.5.5">Languagen updaterna</string>
 	<string name="desc1.5.5">Added tre nu languagerna. The apparna supports finska, engelska och svenska.</string>
+
+	<string name="header1.5">Uppgiftar edit updaterna</string>
+	<string name="desc1.5">Du kan nu editar uppgiftar. Och addad vibrationer i jättegood UI på inte correct inputtar.</string>
+
+	<string name="header1.4">Google updaterna</string>
+	<string name="desc1.4">Inte visual updaterna, only Google analytiker och Google spelar servicerna.</string>
 </resources>
