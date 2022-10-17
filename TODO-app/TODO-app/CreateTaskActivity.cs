@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using Java.Lang;
 using System;
@@ -13,7 +14,7 @@ using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
-    [Activity(Label = "CreateTaskActivity")]
+    [Activity(Label = "CreateTaskActivity", NoHistory = true)]
     public class CreateTaskActivity : Activity
     {
         Button doneBtn;
@@ -60,6 +61,8 @@ namespace TODO_app
         private void CreateDone(object sender, EventArgs e)
         {
             CreateTask(nameField.Text, selectedDate);
+            Intent toMain = new Intent(this, typeof(MainActivity));
+            StartActivity(toMain);
             Finish();
         }
 
@@ -67,6 +70,8 @@ namespace TODO_app
         {
             if (dateCalendar.Visibility == ViewStates.Gone)
             {
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
+                imm.HideSoftInputFromWindow(nameField.WindowToken, 0);
                 dateCalendar.Visibility = ViewStates.Visible;
                 calendarViewArrow.Animate().Rotation(270).SetDuration(250).Start();
             }
