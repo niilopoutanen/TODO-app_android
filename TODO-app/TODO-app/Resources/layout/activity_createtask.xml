@@ -20,6 +20,7 @@
                 android:textSize="25dp"
                 android:layout_marginBottom="10dp"/>
             <Button
+                android:id="@+id/finishedBtn"
                 android:layout_centerVertical="true"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
@@ -31,6 +32,7 @@
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/taskNameF"
             android:paddingLeft="10dp"
             android:inputType="text"
             android:text="Tehtävän nimi"
@@ -49,6 +51,7 @@
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark">
             <RelativeLayout
+                android:id="@+id/openCalendarBtn"
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -69,6 +72,7 @@
                     android:rotation="180"/>
             </RelativeLayout>
             <CalendarView
+                android:id="@+id/dateCalendar"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

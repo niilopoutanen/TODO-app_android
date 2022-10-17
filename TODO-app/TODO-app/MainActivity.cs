@@ -530,28 +530,30 @@ namespace TODO_app
             {
                 methods.Vibrate(vibrator, vibratorManager, 45);
             }
-            taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            invalidDate.Text = "";
-            invalidTaskName.Text = "";
+            Intent intent = new Intent(this, typeof(CreateTaskActivity));
+            StartActivity(intent);
+            //taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //yearInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //invalidDate.Text = "";
+            //invalidTaskName.Text = "";
 
 
-            if (createTaskHeader.Visibility == ViewStates.Gone)
-            {
-                mainHeader.Visibility = ViewStates.Gone;
-                createTaskHeader.Visibility = ViewStates.Visible;
-                scrollBase.Visibility = ViewStates.Gone;
-                scrollLayout.Visibility = ViewStates.Gone;
-                taskCountLayout.Visibility = ViewStates.Gone;
-                backToMain.Visibility = ViewStates.Visible;
+            //if (createTaskHeader.Visibility == ViewStates.Gone)
+            //{
+            //    mainHeader.Visibility = ViewStates.Gone;
+            //    createTaskHeader.Visibility = ViewStates.Visible;
+            //    scrollBase.Visibility = ViewStates.Gone;
+            //    scrollLayout.Visibility = ViewStates.Gone;
+            //    taskCountLayout.Visibility = ViewStates.Gone;
+            //    backToMain.Visibility = ViewStates.Visible;
 
-                dayInput.Text = thisDay.ToString();
-                monthInput.Text = thisMonth.ToString();
-                yearInput.Text = thisYear.ToString();
+            //    dayInput.Text = thisDay.ToString();
+            //    monthInput.Text = thisMonth.ToString();
+            //    yearInput.Text = thisYear.ToString();
 
-            }
+            //}
 
         }
 
