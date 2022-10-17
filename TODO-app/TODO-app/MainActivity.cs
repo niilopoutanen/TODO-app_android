@@ -164,6 +164,15 @@ namespace TODO_app
                 StartActivity(onBoarderStarter);
             }
         }
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+            taskList = file.ReadFile();
+            taskList = TaskItem.SortListByIsDone(taskList);
+            CountAndShowMissed();
+            UpdateTaskCount();
+
+        }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -532,6 +541,7 @@ namespace TODO_app
             }
             Intent intent = new Intent(this, typeof(CreateTaskActivity));
             StartActivity(intent);
+            Finish();
             //taskNameField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             //dayInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
             //monthInput.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);

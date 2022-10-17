@@ -38,15 +38,17 @@
         </RelativeLayout>
 
         <EditText
+            android:imeOptions="actionDone"
             android:id="@+id/taskNameF"
             android:paddingLeft="15dp"
             android:inputType="text"
-            android:text="Tehtävän nimi"
+            android:text="@string/task_name_header"
             android:textSize="14dp"
             android:fontFamily="@font/inter_semibold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="40dp"
+            android:textColor="@color/textSecondary"
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
             android:layout_marginBottom="15dp"/>
