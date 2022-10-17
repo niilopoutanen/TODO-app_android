@@ -3,9 +3,11 @@ using Android.Appwidget;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using AndroidX.Fragment.App.StrictMode;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,17 @@ namespace TODO_app
         TextView selectedDateText;
         CalendarView dateCalendar;
         ImageView calendarViewArrow;
+
+        CheckBox oneTimeBox;
+        LinearLayout oneTimeContainer;
+        CheckBox multipleTimeBox;
+        LinearLayout multipleTimeContainer;
+
+        LinearLayout timesNeededPanel;
+        EditText timesneededField;
+        RelativeLayout timesLessBtn;
+        RelativeLayout timesMoreBtn;
+
         FileClass file = new FileClass();
         List<TaskItem> taskList = new List<TaskItem>();
         DateTime selectedDate = DateTime.Today; 
@@ -59,6 +72,22 @@ namespace TODO_app
             dateCalendar.Visibility = ViewStates.Gone;
             selectedDateText = FindViewById<TextView>(Resource.Id.selectedDateText);
             calendarViewArrow = FindViewById<ImageView>(Resource.Id.calendarViewArrow);
+
+            oneTimeBox = FindViewById<CheckBox>(Resource.Id.singleCheckBox);
+            oneTimeContainer = FindViewById<LinearLayout>(Resource.Id.singleCheckContainer);
+            oneTimeContainer.Click += ModeChange;
+
+            multipleTimeBox = FindViewById<CheckBox>(Resource.Id.multiCheckBox);
+            multipleTimeContainer = FindViewById<LinearLayout>(Resource.Id.multiCheckContainer);
+            multipleTimeContainer.Click += ModeChange;
+
+            timesneededField = FindViewById<EditText>(Resource.Id.timesNeededField);
+            timesNeededPanel = FindViewById<LinearLayout>(Resource.Id.timesNeededPanel);
+            timesLessBtn = FindViewById<RelativeLayout>(Resource.Id.timesLessBtn);
+            timesLessBtn.Click += ChangeTimesNeeded;
+            timesMoreBtn = FindViewById<RelativeLayout>(Resource.Id.timesMoreBtn);
+            timesMoreBtn.Click += ChangeTimesNeeded;
+
             taskList = file.ReadFile();
         }
         private void CreateDone(object sender, EventArgs e)
@@ -68,7 +97,49 @@ namespace TODO_app
             StartActivity(toMain);
             Finish();
         }
-
+        private void ModeChange(object sender, EventArgs e)
+        {
+            LinearLayout senderBox = (LinearLayout)sender;
+            if(senderBox.Id == oneTimeContainer.Id)
+            {
+                oneTimeBox.Checked = true;
+                multipleTimeBox.Checked = false;
+                timesNeededPanel.Visibility = ViewStates.Gone;
+            }
+            else if (senderBox.Id == multipleTimeContainer.Id)
+            {
+                multipleTimeBox.Checked = true;
+                oneTimeBox.Checked = false;
+                timesNeededPanel.Visibility = ViewStates.Visible;
+            }
+        }
+        private void ChangeTimesNeeded(object sender, EventArgs e)
+        {
+            int timesInput = 0;
+            RelativeLayout senderBtn = (RelativeLayout)sender;
+            try
+            {
+                string input = timesneededField.Text;
+                timesInput = int.Parse(input);
+            }
+            catch
+            {
+                timesneededField.Text = "1";
+            }
+            if(senderBtn.Id == timesLessBtn.Id)
+            {
+                if(timesInput > 1)
+                {
+                    timesInput--;
+                    timesneededField.Text = timesInput.ToString();
+                }
+            }
+            else if (senderBtn.Id == timesMoreBtn.Id)
+            {
+                timesInput++;
+                timesneededField.Text = timesInput.ToString();
+            }
+        }
         private void ToggleCalendar(object sender, EventArgs e)
         {
             if (dateCalendar.Visibility == ViewStates.Gone)

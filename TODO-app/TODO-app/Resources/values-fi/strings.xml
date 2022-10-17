@@ -8,6 +8,7 @@
 	<string name="show_all">Näytä kaikki</string>
 	<string name="add_task_header">Uusi tehtävä</string>
 	<string name="edit_task_header">Muokkaa tehtävää</string>
+	<string name="typeOfTask">Tehtävän tyyppi</string>
 
 	<string name="add">Lisää</string>
 	<string name="search">Hae</string>

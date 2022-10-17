@@ -21,9 +21,10 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="@string/add_task_header"
                 android:fontFamily="@font/inter_bold"
-                android:textSize="25dp"
+                android:textSize="30dp"
                 android:layout_marginBottom="10dp"/>
             <Button
                 android:id="@+id/finishedBtn"
@@ -33,6 +34,7 @@
                 android:layout_height="30dp"
                 android:text="@string/add"
                 android:textAllCaps="false"
+                android:fontFamily="@font/inter_bold"
                 android:background="@drawable/rounded50px"
                 android:backgroundTint="?attr/colorAccent"/>
         </RelativeLayout>
@@ -92,20 +94,112 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded10px"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:padding="15dp"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:id="@+id/typeOfTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/typeOfTask"
+                android:textSize="14dp"
+                android:fontFamily="@font/inter_semibold"
+                android:layout_marginBottom="10dp"/>
+            <LinearLayout
+                android:id="@+id/singleCheckContainer"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:clickable="false"
+                    android:checked="true"
+                    android:id="@+id/singleCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Do one time"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/multiCheckContainer"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:clickable="false"
+                    android:id="@+id/multiCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Do multiple times"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/timesNeededPanel"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:paddingLeft="15dp">
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:gravity="center_vertical">
             <TextView
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tehtävän tyyppi"
+                android:text="Times needed"
+                android:fontFamily="@font/inter_bold"
                 android:textSize="14dp"
-                android:fontFamily="@font/inter_semibold"/>
-        </RelativeLayout>
+                android:layout_weight="1"/>
+
+            <RelativeLayout
+                android:id="@+id/timesLessBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/circle">
+                <ImageView
+                    android:contentDescription="@string/default_description"
+                    android:layout_centerInParent="true"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/minus"/>
+            </RelativeLayout>
+            <EditText
+                android:textAlignment="center"
+                android:text="1"
+                android:id="@+id/timesNeededField"
+                android:inputType="number"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:background="@android:color/transparent"/>
+            <RelativeLayout
+                android:id="@+id/timesMoreBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/circle">
+                <ImageView
+                    android:contentDescription="@string/default_description"
+                    android:layout_centerInParent="true"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/plus"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
