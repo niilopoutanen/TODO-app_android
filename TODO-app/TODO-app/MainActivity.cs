@@ -82,13 +82,8 @@ namespace TODO_app
         TextView date7str;
 
         LinearLayout scrollLayout;
-
-        RelativeLayout backToMain;
-
         Button sortByCreationDate;
         Button sortByDueDate;
-        ScrollView scrollBase;
-
 
         RelativeLayout missedTasksBtn;
         TextView missedTasksCount;
@@ -102,8 +97,7 @@ namespace TODO_app
         TextView invalidEditTaskName;
         TextView invalidEditDate;
 
-        TextView invalidTaskName;
-        TextView invalidDate;
+
 
         Vibrator vibrator;
         VibratorManager vibratorManager;
@@ -358,7 +352,6 @@ namespace TODO_app
             missedTasksBtn.Click += ShowMissedTasks;
             missedTasksCount = FindViewById<TextView>(Resource.Id.missedTasksCount);
             missedTaskSpace = FindViewById<Space>(Resource.Id.missedTasksSpace);
-            scrollBase = FindViewById<ScrollView>(Resource.Id.scrollBase);
             btnCreateTask = FindViewById<RelativeLayout>(Resource.Id.CreateTask);
             btnCreateTask.Click += (s, e) =>
             {
@@ -464,7 +457,6 @@ namespace TODO_app
 
             UpdateTaskCount();
         }
-        
 
         /// <summary>
         /// Triggers show all menu
@@ -675,9 +667,6 @@ namespace TODO_app
             {
 
             }
-
-
-
         }
 
         /// <summary>

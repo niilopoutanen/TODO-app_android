@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Appwidget;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -14,12 +15,13 @@ using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
-    [Activity(Label = "CreateTaskActivity", NoHistory = true)]
+    [Activity(Label = "CreateTaskActivity", NoHistory = true, Theme = "@style/DarkEdges")]
     public class CreateTaskActivity : Activity
     {
         Button doneBtn;
         EditText nameField;
         RelativeLayout openCalendar;
+        TextView selectedDateText;
         CalendarView dateCalendar;
         ImageView calendarViewArrow;
         FileClass file = new FileClass();
@@ -27,6 +29,7 @@ namespace TODO_app
         DateTime selectedDate = DateTime.Today; 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            GetStyle();
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_createtask);
@@ -54,7 +57,7 @@ namespace TODO_app
             dateCalendar.DateChange += DateChanged;
             dateCalendar.MinDate = JavaSystem.CurrentTimeMillis() - 1000;
             dateCalendar.Visibility = ViewStates.Gone;
-
+            selectedDateText = FindViewById<TextView>(Resource.Id.selectedDateText);
             calendarViewArrow = FindViewById<ImageView>(Resource.Id.calendarViewArrow);
             taskList = file.ReadFile();
         }
@@ -84,6 +87,7 @@ namespace TODO_app
         private void DateChanged(object sender, CalendarView.DateChangeEventArgs e)
         {
             selectedDate = new DateTime(e.Year, e.Month + 1, e.DayOfMonth);
+            selectedDateText.Text = GetString(Resource.String.DueDate)+ ": " + selectedDate.ToShortDateString();
         }
         private void CreateTask(string taskName, DateTime dueDate)
         {
@@ -92,6 +96,91 @@ namespace TODO_app
             task.DueDate = dueDate;
             taskList.Add(task);
             file.WriteFile(taskList);
+            UpdateWidget();
+        }
+        private void GetStyle()
+        {
+            ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
+            string color = colorTheme.GetString("colorTheme", default);
+            switch (color)
+            {
+                case "blue":
+                    SetTheme(Resource.Style.MainBlueDark);
+                    break;
+                case "green":
+                    SetTheme(Resource.Style.MainGreenDark);
+                    break;
+                case "orange":
+                    SetTheme(Resource.Style.MainOrangeDark);
+                    break;
+                case "violet":
+                    SetTheme(Resource.Style.MainVioletDark);
+                    break;
+                case "red":
+                    SetTheme(Resource.Style.MainRedDark);
+                    break;
+                case null:
+                    SetTheme(Resource.Style.MainBlueDark);
+                    break;
+            }
+        }
+        public void UpdateWidget()
+        {
+            List<TaskItem> localList = new List<TaskItem>();
+            foreach (TaskItem task in taskList)
+            {
+                if (task.IsDone == false)
+                {
+                    localList.Add(task);
+                }
+            }
+            int tasksNotDoneToday = 0;
+            for (int i = 0; i < taskList.Count; i++)
+            {
+                if (taskList[i].DueDate == DateTime.Today)
+                {
+                    if (taskList[i].IsDone == false)
+                    {
+                        tasksNotDoneToday++;
+                    }
+                }
+            }
+            localList = TaskItem.SortListByDueDate(localList);
+            Context context = this;
+            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(context);
+            RemoteViews remoteViews = new RemoteViews(context.PackageName, Resource.Layout.widget);
+            RemoteViews remoteViewsLarge = new RemoteViews(context.PackageName, Resource.Layout.widgetLarge);
+            RemoteViews remoteViewsSmall = new RemoteViews(context.PackageName, Resource.Layout.widgetSmall);
+            ComponentName widget = new ComponentName(context, Java.Lang.Class.FromType(typeof(AppWidget)).Name);
+            ComponentName widgetLarge = new ComponentName(context, Java.Lang.Class.FromType(typeof(LargeWidget)).Name);
+            ComponentName widgetSmall = new ComponentName(context, Java.Lang.Class.FromType(typeof(SmallWidget)).Name);
+            remoteViews.SetTextViewText(Resource.Id.widgetCount, tasksNotDoneToday.ToString());
+            remoteViewsSmall.SetTextViewText(Resource.Id.widgetCountSmall, tasksNotDoneToday.ToString());
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Gone);
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Gone);
+            remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Gone);
+
+            if (localList.Count > 0)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement1, ViewStates.Visible);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1, ActivityMethods.TooLongStringParser(localList[0].Text, 16));
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask1Due, localList[0].DueDate.ToShortDateString());
+            }
+            if (localList.Count > 1)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2, ActivityMethods.TooLongStringParser(localList[1].Text, 16));
+                remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeTask2Due, localList[1].DueDate.ToShortDateString());
+            }
+            if (localList.Count > 2)
+            {
+                remoteViewsLarge.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
+            }
+            remoteViewsLarge.SetTextViewText(Resource.Id.widgetLargeHeader, GetString(Resource.String.taskAmount) + " (" + localList.Count + ")");
+
+            appWidgetManager.UpdateAppWidget(widget, remoteViews);
+            appWidgetManager.UpdateAppWidget(widgetLarge, remoteViewsLarge);
+            appWidgetManager.UpdateAppWidget(widgetSmall, remoteViewsSmall);
         }
     }
 }

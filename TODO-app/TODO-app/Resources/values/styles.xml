@@ -59,9 +59,28 @@
 
 	<style name="Theme.Widget" parent="@android:style/Theme.DeviceDefault"/>
 
-	<style name="WhatsNew" parent="@style/AppTheme">
+	<style name="DarkEdges" parent="@style/AppTheme">
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimary</item>
+	</style>
+
+	<style name="MainBlueDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainBlue</item>
+	</style>
+
+	<style name="MainGreenDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainGreen</item>
+	</style>
+
+	<style name="MainVioletDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainViolet</item>
+	</style>
+	<style name="MainOrangeDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainOrange</item>
+
+	</style>
+	<style name="MainRedDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainRed</item>
 	</style>
 
 </resources>
