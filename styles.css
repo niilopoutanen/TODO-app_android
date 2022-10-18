@@ -69,3 +69,6 @@ h1{
     font-weight: bold;
     margin: 0;
 }
+.mainImg{
+    max-height: 50vh;
+}
