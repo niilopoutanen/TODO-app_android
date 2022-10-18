@@ -22,8 +22,9 @@ body{
     overflow: hidden;
 }
 .topnav{
+    width: 100vw;
     align-items: center;
-    height: 70px
+    min-height: 7vh
 }
 .center-items{
     display: flex;
@@ -32,22 +33,24 @@ body{
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
-    height: auto;
+    min-height: 7.22vh;
+    vertical-align: middle;
 }
 .topnav a{
     text-align: center;
-    margin: 20px;
-    font-size: 20px;
+    margin: 1.46vw 1.46vw 0 1.46vw;
+    font-size: 2.869vh;
     text-decoration: none;
     color: #FFFFFF;
+    width: auto;
 }
 .topnav img{
     float: left;
     margin-right: auto;
-    height: 70px;
+    height: 7.22vh;
 }
 .topnav a:hover{
-    filter: drop-shadow(0 0 5px#FFFFFF);
+    filter: drop-shadow(0 0 0.717vh #FFFFFF);
     cursor: pointer;
 }
 
@@ -61,14 +64,27 @@ body{
 }
 .providerImg{
     object-fit: cover;
-    height: 80px;
-    margin: 20px;
+    height: 11.47vh;
+    margin: 1.46vw;
 }
 h1{
-    font-size: 100px;
+    font-size: 14vh;
     font-weight: bold;
     margin: 0;
 }
 .mainImg{
     max-height: 50vh;
+    max-width: 90vw;
+}
+@media screen and (max-width: 700px){
+
+  #logo{
+    display: none;
+  }
+  h1{
+    font-size: 20vw;
+  }
+  .providerImg{
+    max-width: 80vw;
+  }
 }
