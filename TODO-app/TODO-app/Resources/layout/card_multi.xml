@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/taskBg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/rounded50px"
+    android:minHeight="67dp"
+    android:animateLayoutChanges="true">
+    <ImageView
+        android:contentDescription="@string/default_description"
+        android:visibility="visible"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/taskGradient"/>
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/taskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ensimmäinen tehtävä  70%"
+        android:textSize="19dp"
+        android:fontFamily="@font/inter_bold"/>
+</RelativeLayout>

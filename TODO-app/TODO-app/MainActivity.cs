@@ -119,7 +119,7 @@ namespace TODO_app
             RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             taskList = file.ReadFile();
             taskList = TaskItem.SortListByIsDone(taskList);
-            
+
             SetContentView(Resource.Layout.activity_main);
             UpdateWidget();
             InitializeElements();
@@ -218,7 +218,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator,vibratorManager, 60);
+                methods.Vibrate(vibrator, vibratorManager, 60);
             }
             activeDate = -1;
             scrollLayout.RemoveAllViews();
@@ -250,7 +250,7 @@ namespace TODO_app
             {
                 if (t.DueDate < DateTime.Today)
                 {
-                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                    CreateTaskElement(t);
                 }
             }
             UpdateTaskCount();
@@ -434,7 +434,7 @@ namespace TODO_app
                 taskCount.Text = elementCount.ToString() + " " + GetString(Resource.String.task);
             }
         }
-        
+
         /// <summary>
         /// Triggers every time search field text changes
         /// </summary>
@@ -451,7 +451,7 @@ namespace TODO_app
             {
                 if (task.Text.Contains(fieldText))
                 {
-                    CreateTaskElement(task.Text, task.IsDone, task.DueDate);
+                    CreateTaskElement(task);
                 }
             }
 
@@ -481,7 +481,7 @@ namespace TODO_app
                 taskList = TaskItem.SortListByIsDone(taskList);
                 foreach (TaskItem t in taskList)
                 {
-                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                    CreateTaskElement(t);
                 }
                 UpdateTaskCount();
 
@@ -766,8 +766,8 @@ namespace TODO_app
             }
 
 
-            RelativeLayout button = (RelativeLayout)sender;
-            TextView taskName = (TextView)button.GetChildAt(1);
+            LinearLayout button = (LinearLayout)sender;
+            TextView taskName = (TextView)button.FindViewById<TextView>(Resource.Id.taskName);
             CheckIfMissedAnymore();
 
             Android.App.AlertDialog.Builder dialog1 = new Android.App.AlertDialog.Builder(this);
@@ -1004,100 +1004,60 @@ namespace TODO_app
         /// Dynamically creates task element
         /// </summary>
         /// <param name="taskName"></param>
-        private void CreateTaskElement(string taskName, bool isTrue, DateTime dueDate)
+        private void CreateTaskElement(TaskItem task)
         {
-
-            RelativeLayout cardBG = new RelativeLayout(this);
-            Drawable rounded50 = GetDrawable(Resource.Drawable.rounded50px);
-            cardBG.Background = rounded50;
-            cardBG.SetPadding(DpToPx(20), 0, 0, 0);
-            cardBG.Id = View.GenerateViewId();
-            cardBG.LayoutTransition = new LayoutTransition();
-            RelativeLayout.LayoutParams cardparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MatchParent, RelativeLayout.LayoutParams.WrapContent);
-            cardparams.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-
-            cardBG.LayoutParameters = cardparams;
-            cardBG.LongClick += HoldTaskElement;
-            cardBG.Click += ExpandCard;
-
-
-            Button toggleBtn = new Button(this);
-            Drawable toggleDefault = GetDrawable(Resource.Drawable.task_radio_button);
-            Drawable toggleActive = GetDrawable(Resource.Drawable.task_radio_button_active);
-            toggleBtn.Background = toggleDefault;
-            RelativeLayout.LayoutParams buttonparams = new RelativeLayout.LayoutParams(DpToPx(37), DpToPx(37));
-            buttonparams.SetMargins(0, DpToPx(21), DpToPx(10), DpToPx(21));
-            //buttonparams.AddRule(LayoutRules.CenterVertical);
-            toggleBtn.LayoutParameters = buttonparams;
-            toggleBtn.Id = View.GenerateViewId();
-            toggleBtn.Click += TaskToggle;
-            toggleBtn.Tag = "Inactive";
-
-
-            TextView header = new TextView(this);
-            header.Text = taskName;
-            header.TextSize = DpToPx(6);
-            header.SetTypeface(Resources.GetFont(Resource.Font.inter_bold), Android.Graphics.TypefaceStyle.Normal);
-            RelativeLayout.LayoutParams headerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
-            headerparams.SetMargins(0, DpToPx(28), 0, 0);
-            //headerparams.AddRule(LayoutRules.CenterVertical);
-            headerparams.AddRule(LayoutRules.RightOf, toggleBtn.Id);
-            header.LayoutParameters = headerparams;
-
-
-            TextView date = new TextView(this);
-            date.Text = dueDate.Day.ToString() + "." + dueDate.Month.ToString() + "." + dueDate.Year.ToString();
-            RelativeLayout.LayoutParams dateparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
-            dateparams.AddRule(LayoutRules.CenterHorizontal);
-            dateparams.AddRule(LayoutRules.AlignParentBottom);
-            dateparams.SetMargins(0, 0, 0, DpToPx(5));
-            date.LayoutParameters = dateparams;
-            date.TextSize = DpToPx(6);
-            date.SetTypeface(Resources.GetFont(Resource.Font.inter_semibold), Android.Graphics.TypefaceStyle.Normal);
-            if (isTrue == true)
+            LayoutInflater inflater = LayoutInflater.From(this);
+            if (task.TaskType == "single")
             {
-                toggleBtn.Background = toggleActive;
-            }
-            scrollLayout.AddView(cardBG);
-            cardBG.AddView(toggleBtn);
-            cardBG.AddView(header);
-            cardBG.AddView(date);
-            date.Visibility = ViewStates.Gone;
-            try
-            {
-                elementIds.Add(taskName, cardBG.Id);
-            }
-            catch
-            {
-                elementIds[taskName] = cardBG.Id;
-            }
-            CheckIfMissedAnymore();
-        }
+                View cardSingle = inflater.Inflate(Resource.Layout.card_single, scrollLayout, false);
+                TextView taskName = cardSingle.FindViewById<TextView>(Resource.Id.taskName);
+                Button taskToggle = cardSingle.FindViewById<Button>(Resource.Id.taskToggle);
+                TextView taskDate = cardSingle.FindViewById<TextView>(Resource.Id.taskDate);
+                cardSingle.LongClick += HoldTaskElement;
+                cardSingle.Click += (s, e) =>
+                {
+                    if (vibration == true)
+                    {
+                        methods.Vibrate(vibrator, vibratorManager, 45);
+                    }
+                    switch (taskDate.Visibility)
+                    {
+                        case ViewStates.Gone:
+                            taskDate.Visibility = ViewStates.Visible;
+                            break;
+                        case ViewStates.Visible:
+                            taskDate.Visibility = ViewStates.Gone;
+                            break;
+                    }
+                };
+                LinearLayout.LayoutParams marginParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+                marginParams.SetMargins(0, 0, 0, DpToPx(20));
+                cardSingle.LayoutParameters = marginParams;
+                cardSingle.Id = View.GenerateViewId();
+                taskToggle.Click += TaskToggle;
+                Drawable toggleClicked = GetDrawable(Resource.Drawable.task_radio_button_active);
+                if(task.IsDone == true)
+                {
+                    taskToggle.Background = toggleClicked;
+                }
+                taskName.Text = task.Text;
+                taskDate.Text = task.DueDate.ToShortDateString();
 
-        private void ExpandCard(object sender, EventArgs e)
-        {
-            if (vibration == true)
-            {
-                methods.Vibrate(vibrator, vibratorManager, 45);
-            }
-            RelativeLayout card = (RelativeLayout)sender;
-            if (card.LayoutParameters.Height == RelativeLayout.LayoutParams.WrapContent)
-            {
-                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, card.Height + DpToPx(30));
-                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-                card.LayoutParameters = heightParam;
-                card.GetChildAt(2).Visibility = ViewStates.Visible;
-            }
-            else if (card.LayoutParameters.Height != RelativeLayout.LayoutParams.WrapContent)
-            {
-                LinearLayout.LayoutParams heightParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
-                heightParam.SetMargins(DpToPx(20), 0, DpToPx(20), DpToPx(20));
-                card.LayoutParameters = heightParam;
-                card.GetChildAt(2).Visibility = ViewStates.Gone;
+                try
+                {
+                    elementIds.Add(task.Text, cardSingle.Id);
+                }
+                catch
+                {
+                    elementIds[task.Text] = cardSingle.Id;
+                }
+                scrollLayout.AddView(cardSingle);
+                CheckIfMissedAnymore();
             }
 
         }
-        
+
+
         /// <summary>
         /// Toggle between done and not done
         /// </summary>
@@ -1113,7 +1073,7 @@ namespace TODO_app
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
             Drawable active = GetDrawable(Resource.Drawable.task_radio_button_active);
             Drawable inactive = GetDrawable(Resource.Drawable.task_radio_button);
-            TextView header = (TextView)buttonParent.GetChildAt(1);
+            TextView header = (TextView)buttonParent.FindViewById<TextView>(Resource.Id.taskName);
             foreach (TaskItem t in taskList)
             {
                 if (t.Text == header.Text)
@@ -1148,11 +1108,12 @@ namespace TODO_app
             return pixel;
         }
 
-        private void CreateTaskItem(string name, DateTime dueDate)
+        private void CreateTaskItem(string name, DateTime dueDate, string type)
         {
             TaskItem task = new TaskItem(DateTime.Now);
             task.Text = name;
             task.DueDate = dueDate;
+            task.TaskType = type;
             taskList.Add(task);
             file.WriteFile(taskList);
             UpdateWidget();
@@ -1210,7 +1171,7 @@ namespace TODO_app
                 return true;
             }
         }
-        
+
         /// <summary>
         /// Sorts show all view tasks
         /// </summary>
@@ -1233,7 +1194,7 @@ namespace TODO_app
                     }
                     foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
+                        CreateTaskElement(task);
                     }
 
                     break;
@@ -1248,7 +1209,7 @@ namespace TODO_app
                     }
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
-                        CreateTaskElement(task.Text, task.IsDone, task.DueDate);
+                        CreateTaskElement(task);
                     }
 
                     break;
@@ -1261,7 +1222,7 @@ namespace TODO_app
             {
                 if (t.DueDate == date)
                 {
-                    CreateTaskElement(t.Text, t.IsDone, t.DueDate);
+                    CreateTaskElement(t);
                 }
             }
         }
@@ -1402,7 +1363,7 @@ namespace TODO_app
             {
                 DateTime dueDate = new DateTime(intYear, intMonth, intDay);
                 DeleteTaskItem(oldTaskName);
-                CreateTaskItem(taskName, dueDate);
+                CreateTaskItem(taskName, dueDate, "single");
                 //Checks which date the user is currently focused on and then shows the tasks for that date
                 for (int i = 1; i < 8; i++)
                 {
@@ -1504,7 +1465,7 @@ namespace TODO_app
             List<TaskItem> localList = new List<TaskItem>();
             foreach (TaskItem task in taskList)
             {
-                if(task.IsDone == false)
+                if (task.IsDone == false)
                 {
                     localList.Add(task);
                 }

@@ -10,6 +10,7 @@ namespace TODO_app
         private DateTime _dueDate;
         private string _text;
         private bool _isDone = false;
+        private string _taskType;
 
         /// <summary>
         /// The time when the object was created
@@ -32,6 +33,11 @@ namespace TODO_app
         {
             get { return _isDone; }
             set { _isDone = value; }
+        }
+        public string TaskType
+        {
+            get { return _taskType; }
+            set { _taskType = value; }
         }
 
         public TaskItem(DateTime creationTime)

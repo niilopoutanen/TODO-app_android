@@ -165,6 +165,7 @@ namespace TODO_app
             TaskItem task = new TaskItem(DateTime.Now);
             task.Text = taskName;
             task.DueDate = dueDate;
+            task.TaskType = "single";
             taskList.Add(task);
             file.WriteFile(taskList);
             UpdateWidget();

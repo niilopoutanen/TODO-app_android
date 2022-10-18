@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/taskBg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded90px"
+    android:backgroundTint="@color/colorPrimaryDark"
+    android:padding="20dp"
+    android:animateLayoutChanges="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/taskToggle"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:background="@drawable/task_radio_button"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:id="@+id/taskName"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/taskToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:fontFamily="@font/inter_semibold"/>
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/taskDate"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/inter_bold"/>
+</LinearLayout>
