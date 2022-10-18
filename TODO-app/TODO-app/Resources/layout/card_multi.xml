@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
         <TextView
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tehdyt kerrat:"
@@ -59,14 +60,14 @@
             android:fontFamily="@font/inter_bold"/>
         <RelativeLayout
             android:id="@+id/timesDoneLess"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/circle">
             <ImageView
                 android:contentDescription="@string/default_description"
                 android:layout_centerInParent="true"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/minus"/>
         </RelativeLayout>
         <EditText
@@ -75,18 +76,20 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:text="4"
+            android:textSize="18dp"
+            android:fontFamily="@font/inter_bold"
             android:background="@android:color/transparent"
             android:textColor="@color/textPrimary"/>
         <RelativeLayout
             android:id="@+id/timesDoneMore"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/circle">
             <ImageView
                 android:contentDescription="@string/default_description"
                 android:layout_centerInParent="true"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/plus"/>
         </RelativeLayout>
     </LinearLayout>
