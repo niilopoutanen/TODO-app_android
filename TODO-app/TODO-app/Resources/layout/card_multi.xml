@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
         <TextView
-            android:layout_centerVertical=""
             android:id="@+id/taskName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,6 +22,7 @@
             android:textSize="19dp"
             android:fontFamily="@font/inter_bold"/>
         <TextView
+            android:id="@+id/taskProgress"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
@@ -33,11 +33,13 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/taskProgressBase"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:background="@drawable/taskgradient"
         android:backgroundTint="@color/colorButton">
         <ImageView
+            android:id="@+id/taskProgressBar"
             android:contentDescription="@string/default_description"
             android:layout_width="200dp"
             android:layout_height="match_parent"
@@ -45,8 +47,8 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/taskAdjustDone"
         android:layout_marginTop="10dp"
-        android:visibility="hgo"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,15 +72,14 @@
                 android:layout_height="15dp"
                 android:src="@drawable/minus"/>
         </RelativeLayout>
-        <EditText
+        <TextView
+            android:id="@+id/taskAmountDone"
             android:textAlignment="center"
-            android:inputType="number"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:text="4"
             android:textSize="18dp"
             android:fontFamily="@font/inter_bold"
-            android:background="@android:color/transparent"
             android:textColor="@color/textPrimary"/>
         <RelativeLayout
             android:id="@+id/timesDoneMore"

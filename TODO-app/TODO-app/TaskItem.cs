@@ -11,6 +11,8 @@ namespace TODO_app
         private string _text;
         private bool _isDone = false;
         private string _taskType;
+        private int _amountNeeded;
+        private int _amountDone = 0;
 
         /// <summary>
         /// The time when the object was created
@@ -38,6 +40,16 @@ namespace TODO_app
         {
             get { return _taskType; }
             set { _taskType = value; }
+        }
+        public int AmountNeeded
+        {
+            get { return _amountNeeded; }
+            set { _amountNeeded = value; }
+        }
+        public int AmountDone
+        {
+            get { return _amountDone; }
+            set { _amountDone = value; }
         }
 
         public TaskItem(DateTime creationTime)

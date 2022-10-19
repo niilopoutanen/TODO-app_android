@@ -7,6 +7,7 @@ using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using AndroidX.Browser.Trusted;
 using AndroidX.Fragment.App.StrictMode;
 using Java.Lang;
 using System;
@@ -39,7 +40,10 @@ namespace TODO_app
 
         FileClass file = new FileClass();
         List<TaskItem> taskList = new List<TaskItem>();
-        DateTime selectedDate = DateTime.Today; 
+
+        DateTime selectedDate = DateTime.Today;
+        string taskType = "single";
+        int amountNeeded = 1;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             GetStyle();
@@ -92,7 +96,7 @@ namespace TODO_app
         }
         private void CreateDone(object sender, EventArgs e)
         {
-            CreateTask(nameField.Text, selectedDate);
+            CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
             Intent toMain = new Intent(this, typeof(MainActivity));
             StartActivity(toMain);
             Finish();
@@ -105,12 +109,15 @@ namespace TODO_app
                 oneTimeBox.Checked = true;
                 multipleTimeBox.Checked = false;
                 timesNeededPanel.Visibility = ViewStates.Gone;
+                taskType = "single";
+                amountNeeded = 1;
             }
             else if (senderBox.Id == multipleTimeContainer.Id)
             {
                 multipleTimeBox.Checked = true;
                 oneTimeBox.Checked = false;
                 timesNeededPanel.Visibility = ViewStates.Visible;
+                taskType = "multi";
             }
         }
         private void ChangeTimesNeeded(object sender, EventArgs e)
@@ -139,6 +146,7 @@ namespace TODO_app
                 timesInput++;
                 timesneededField.Text = timesInput.ToString();
             }
+            amountNeeded = timesInput;
         }
         private void ToggleCalendar(object sender, EventArgs e)
         {
@@ -160,12 +168,13 @@ namespace TODO_app
             selectedDate = new DateTime(e.Year, e.Month + 1, e.DayOfMonth);
             selectedDateText.Text = GetString(Resource.String.DueDate)+ ": " + selectedDate.ToShortDateString();
         }
-        private void CreateTask(string taskName, DateTime dueDate)
+        private void CreateTask(string taskName, DateTime dueDate, string taskType, int amountNeeded)
         {
             TaskItem task = new TaskItem(DateTime.Now);
             task.Text = taskName;
             task.DueDate = dueDate;
-            task.TaskType = "single";
+            task.TaskType = taskType;
+            task.AmountNeeded = amountNeeded;
             taskList.Add(task);
             file.WriteFile(taskList);
             UpdateWidget();

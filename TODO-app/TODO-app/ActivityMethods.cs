@@ -59,6 +59,27 @@ namespace TODO_app
             }
         }
 
+        public string ProgressVisualizer(int amountDone, int amountNeeded)
+        {
+            bool prefersPercentage = true;
 
+            if(prefersPercentage == true)
+            {
+                double percentage = (((double)amountDone / (double)amountNeeded) * 100);
+                return Math.Round(percentage, 0).ToString() + "%";
+            }
+            else
+            {
+                return amountDone + "/" + amountNeeded;
+            }
+        }
+        public int ProgressBarCalculator(int baseWidth, int amountDone, int amountNeeded)
+        {
+            double percentage = Math.Round((double)amountDone / (double)amountNeeded * 100, 0);
+
+            double progressWidth = (double)baseWidth / 100 * percentage;
+
+            return (int)Math.Round(progressWidth, 0);
+        }
     }
 }

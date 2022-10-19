@@ -20,6 +20,7 @@ using Android;
 using Android.Icu.Util;
 using Android.Views.Autofill;
 using AndroidX.Core.OS;
+using AndroidX.Core.View;
 
 namespace TODO_app
 {
@@ -1052,8 +1053,105 @@ namespace TODO_app
                     elementIds[task.Text] = cardSingle.Id;
                 }
                 scrollLayout.AddView(cardSingle);
-                CheckIfMissedAnymore();
             }
+            else if (task.TaskType == "multi")
+            {
+                View cardMulti = inflater.Inflate(Resource.Layout.card_multi, scrollLayout, false);
+                TextView taskName = cardMulti.FindViewById<TextView>(Resource.Id.taskName);
+                TextView taskProgress = cardMulti.FindViewById<TextView>(Resource.Id.taskProgress);
+                LinearLayout taskAmountAdjust = cardMulti.FindViewById<LinearLayout>(Resource.Id.taskAdjustDone);
+                RelativeLayout taskTimesLess = cardMulti.FindViewById<RelativeLayout>(Resource.Id.timesDoneLess);
+                RelativeLayout taskTimesMore = cardMulti.FindViewById<RelativeLayout>(Resource.Id.timesDoneMore);
+                TextView taskAmountDone = cardMulti.FindViewById<TextView>(Resource.Id.taskAmountDone);
+                RelativeLayout taskProgressBase = cardMulti.FindViewById<RelativeLayout>(Resource.Id.taskProgressBase);
+                ImageView taskProgressBar = cardMulti.FindViewById<ImageView>(Resource.Id.taskProgressBar);
+                taskProgressBase.Measure((int)MeasureSpecMode.Unspecified, (int)MeasureSpecMode.Unspecified);
+
+
+                RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.MeasuredWidth, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
+                taskProgressBar.LayoutParameters = widthParam;
+
+                LinearLayout.LayoutParams marginParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
+                marginParams.SetMargins(0, 0, 0, DpToPx(20));
+                cardMulti.LayoutParameters = marginParams;
+                taskName.Text = task.Text;
+                taskProgress.Text = methods.ProgressVisualizer(task.AmountDone, task.AmountNeeded);
+                cardMulti.Id = View.GenerateViewId();
+                taskAmountDone.Text = task.AmountDone.ToString();
+                taskAmountAdjust.Visibility = ViewStates.Gone;
+                cardMulti.Click += (s, e) =>
+                {
+                    switch (taskAmountAdjust.Visibility)
+                    {
+                        case ViewStates.Visible:
+                            taskAmountAdjust.Visibility = ViewStates.Gone;
+                            break;
+                        case ViewStates.Gone:
+                            taskAmountAdjust.Visibility = ViewStates.Visible;
+                            break;
+                    }
+                };
+                taskTimesLess.Click += (s, e) =>
+                {
+                    int timesDone;
+                    bool success = int.TryParse(taskAmountDone.Text, out timesDone);
+                    if (success)
+                    {
+                        if(timesDone > 0)
+                        {
+                            timesDone--;
+                            taskAmountDone.Text = timesDone.ToString();
+                            foreach (TaskItem t in taskList)
+                            {
+                                if (t == task)
+                                {
+                                    t.AmountDone = timesDone;
+                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
+                                    taskProgressBar.LayoutParameters = widthParam;
+                                }
+                            }
+                            file.WriteFile(taskList);
+                        }
+                    }
+                };
+                taskTimesMore.Click += (s, e) =>
+                {
+                    int timesDone;
+                    bool success = int.TryParse(taskAmountDone.Text, out timesDone);
+                    if (success)
+                    {
+                        if(timesDone < task.AmountNeeded)
+                        {
+                            timesDone++;
+                            taskAmountDone.Text = timesDone.ToString();
+                            foreach (TaskItem t in taskList)
+                            {
+                                if (t == task)
+                                {
+                                    t.AmountDone = timesDone;
+                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
+                                    taskProgressBar.LayoutParameters = widthParam;
+                                }
+                            }
+                            file.WriteFile(taskList);
+                        }
+
+                    }
+                };
+                try
+                {
+                    elementIds.Add(task.Text, cardMulti.Id);
+                }
+                catch
+                {
+                    elementIds[task.Text] = cardMulti.Id;
+                }
+                scrollLayout.AddView(cardMulti);
+
+            }
+            CheckIfMissedAnymore();
 
         }
 
@@ -1108,12 +1206,14 @@ namespace TODO_app
             return pixel;
         }
 
-        private void CreateTaskItem(string name, DateTime dueDate, string type)
+        private void CreateTaskItem(string name, DateTime dueDate, string type, int amountNeeded, int amountDone)
         {
             TaskItem task = new TaskItem(DateTime.Now);
             task.Text = name;
             task.DueDate = dueDate;
             task.TaskType = type;
+            task.AmountNeeded = amountNeeded;
+            task.AmountDone = amountDone;
             taskList.Add(task);
             file.WriteFile(taskList);
             UpdateWidget();
@@ -1363,7 +1463,7 @@ namespace TODO_app
             {
                 DateTime dueDate = new DateTime(intYear, intMonth, intDay);
                 DeleteTaskItem(oldTaskName);
-                CreateTaskItem(taskName, dueDate, "single");
+                CreateTaskItem(taskName, dueDate, "single", 1, 0);
                 //Checks which date the user is currently focused on and then shows the tasks for that date
                 for (int i = 1; i < 8; i++)
                 {
