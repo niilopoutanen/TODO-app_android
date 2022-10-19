@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Appwidget;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Text;
@@ -28,9 +29,9 @@ namespace TODO_app
         CalendarView dateCalendar;
         ImageView calendarViewArrow;
 
-        CheckBox oneTimeBox;
+        Button oneTimeBox;
         LinearLayout oneTimeContainer;
-        CheckBox multipleTimeBox;
+        Button multipleTimeBox;
         LinearLayout multipleTimeContainer;
 
         LinearLayout timesNeededPanel;
@@ -77,11 +78,11 @@ namespace TODO_app
             selectedDateText = FindViewById<TextView>(Resource.Id.selectedDateText);
             calendarViewArrow = FindViewById<ImageView>(Resource.Id.calendarViewArrow);
 
-            oneTimeBox = FindViewById<CheckBox>(Resource.Id.singleCheckBox);
+            oneTimeBox = FindViewById<Button>(Resource.Id.singleCheckBox);
             oneTimeContainer = FindViewById<LinearLayout>(Resource.Id.singleCheckContainer);
             oneTimeContainer.Click += ModeChange;
 
-            multipleTimeBox = FindViewById<CheckBox>(Resource.Id.multiCheckBox);
+            multipleTimeBox = FindViewById<Button>(Resource.Id.multiCheckBox);
             multipleTimeContainer = FindViewById<LinearLayout>(Resource.Id.multiCheckContainer);
             multipleTimeContainer.Click += ModeChange;
 
@@ -104,18 +105,20 @@ namespace TODO_app
         private void ModeChange(object sender, EventArgs e)
         {
             LinearLayout senderBox = (LinearLayout)sender;
-            if(senderBox.Id == oneTimeContainer.Id)
+            Drawable toggled = GetDrawable(Resource.Drawable.task_radio_button_active);
+            Drawable untoggled = GetDrawable(Resource.Drawable.task_radio_button);
+            if (senderBox.Id == oneTimeContainer.Id)
             {
-                oneTimeBox.Checked = true;
-                multipleTimeBox.Checked = false;
+                oneTimeBox.Background = toggled;
+                multipleTimeBox.Background = untoggled;
                 timesNeededPanel.Visibility = ViewStates.Gone;
                 taskType = "single";
                 amountNeeded = 1;
             }
             else if (senderBox.Id == multipleTimeContainer.Id)
             {
-                multipleTimeBox.Checked = true;
-                oneTimeBox.Checked = false;
+                multipleTimeBox.Background = toggled;
+                oneTimeBox.Background = untoggled;
                 timesNeededPanel.Visibility = ViewStates.Visible;
                 taskType = "multi";
             }

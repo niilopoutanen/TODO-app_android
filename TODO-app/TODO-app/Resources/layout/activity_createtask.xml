@@ -111,39 +111,47 @@
                 android:fontFamily="@font/inter_semibold"
                 android:layout_marginBottom="10dp"/>
             <LinearLayout
+                android:layout_marginBottom="10dp"
                 android:id="@+id/singleCheckContainer"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <CheckBox
+                <Button
                     android:clickable="false"
-                    android:checked="true"
                     android:id="@+id/singleCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/task_radio_button_active"
+                    android:layout_alignParentLeft="true"
+                    />
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Do one time"
+                    android:fontFamily="@font/inter_semibold"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
 
             <LinearLayout
+
                 android:id="@+id/multiCheckContainer"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <CheckBox
+                <Button
                     android:clickable="false"
                     android:id="@+id/multiCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/task_radio_button"
                     android:layout_alignParentLeft="true"/>
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Do multiple times"
+                    android:fontFamily="@font/inter_semibold"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
 
@@ -186,7 +194,8 @@
                 android:inputType="number"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:textColor="@color/textPrimary"/>
             <RelativeLayout
                 android:id="@+id/timesMoreBtn"
                 android:layout_width="25dp"
