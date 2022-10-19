@@ -2,12 +2,14 @@
 using Android.Appwidget;
 using Android.Content;
 using Android.Graphics.Drawables;
+using Android.Icu.Util;
 using Android.OS;
 using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using AndroidX.Activity;
 using AndroidX.Browser.Trusted;
 using AndroidX.Fragment.App.StrictMode;
 using Java.Lang;
@@ -22,6 +24,7 @@ namespace TODO_app
     [Activity(Label = "CreateTaskActivity", NoHistory = true, Theme = "@style/DarkEdges")]
     public class CreateTaskActivity : Activity
     {
+        TextView activityHeader;
         Button doneBtn;
         EditText nameField;
         RelativeLayout openCalendar;
@@ -52,11 +55,76 @@ namespace TODO_app
 
             SetContentView(Resource.Layout.activity_createtask);
             InitializeElements();
+
+            Bundle b = Intent.Extras;
+            if (b != null)
+            {
+                string mode = b.GetString("mode");
+                if (mode == "create")
+                {
+                    activityHeader.Text = GetString(Resource.String.add_task_header);
+                    doneBtn.Text = GetString(Resource.String.add);
+                    doneBtn.Click += CreateDone;
+                }
+                else if (mode == "edit")
+                {
+                    string oldTaskName = b.GetString("taskName");
+
+                    activityHeader.Text = GetString(Resource.String.edit_task_header);
+                    doneBtn.Text = "OK";
+                    doneBtn.Click += (s, e) =>
+                    {
+                        DeleteTask(oldTaskName);
+                        CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                        Intent toMain = new Intent(this, typeof(MainActivity));
+                        StartActivity(toMain);
+                        Finish();
+                    };
+                    dateCalendar.DateChange += (s, e) =>
+                    {
+                        selectedDate = new DateTime(e.Year, e.Month, e.DayOfMonth);
+                        selectedDateText.Text = GetString(Resource.String.DueDate) + ": " + selectedDate.ToShortDateString();
+                    };
+                    foreach (TaskItem task in taskList)
+                    {
+                        if (task.Text == oldTaskName)
+                        {
+                            Drawable toggled = GetDrawable(Resource.Drawable.task_radio_button_active);
+                            Drawable untoggled = GetDrawable(Resource.Drawable.task_radio_button);
+                            nameField.Text = task.Text;
+                            Calendar oldDate = Calendar.Instance;
+                            oldDate.Set(CalendarField.Year, task.DueDate.Year);
+                            oldDate.Set(CalendarField.Month, task.DueDate.Month);
+                            oldDate.Set(CalendarField.DayOfMonth, task.DueDate.Day);
+                            if(task.TaskType == "single")
+                            {
+                                oneTimeBox.Background = toggled;
+                                multipleTimeBox.Background = untoggled;
+                                timesNeededPanel.Visibility = ViewStates.Gone;
+                                taskType = "single";
+                            }
+                            else if (task.TaskType == "multi")
+                            {
+                                oneTimeBox.Background = untoggled;
+                                multipleTimeBox.Background = toggled;
+                                timesNeededPanel.Visibility = ViewStates.Visible;
+                                taskType = "multi";
+                            }
+                            long milliTime = oldDate.TimeInMillis;
+                            dateCalendar.Date = milliTime;
+
+                            timesneededField.Text = task.AmountNeeded.ToString();
+
+                        }
+                    }
+
+                }
+            }
         }
         private void InitializeElements()
         {
+            activityHeader = FindViewById<TextView>(Resource.Id.createTaskActivityHeader);
             doneBtn = FindViewById<Button>(Resource.Id.finishedBtn);
-            doneBtn.Click += CreateDone;
 
             nameField = FindViewById<EditText>(Resource.Id.taskNameF);
             nameField.Click += (s, e) =>
@@ -173,6 +241,7 @@ namespace TODO_app
         }
         private void CreateTask(string taskName, DateTime dueDate, string taskType, int amountNeeded)
         {
+            taskList = file.ReadFile();
             TaskItem task = new TaskItem(DateTime.Now);
             task.Text = taskName;
             task.DueDate = dueDate;
@@ -181,6 +250,18 @@ namespace TODO_app
             taskList.Add(task);
             file.WriteFile(taskList);
             UpdateWidget();
+        }
+        private void DeleteTask(string oldTaskName)
+        {
+            foreach (TaskItem task in taskList)
+            {
+                if (task.Text == oldTaskName)
+                {
+                    taskList.Remove(task);
+                    file.WriteFile(taskList);
+                    break;
+                }
+            }
         }
         private void GetStyle()
         {

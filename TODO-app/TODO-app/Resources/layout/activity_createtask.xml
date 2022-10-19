@@ -17,6 +17,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="30dp">
             <TextView
+                android:id="@+id/createTaskActivityHeader"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"

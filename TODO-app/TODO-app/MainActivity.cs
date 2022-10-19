@@ -361,6 +361,7 @@ namespace TODO_app
                     methods.Vibrate(vibrator, vibratorManager, 45);
                 }
                 Intent intent = new Intent(this, typeof(CreateTaskActivity));
+                intent.PutExtra("mode", "create");
                 StartActivity(intent);
                 Finish();
             };
@@ -682,76 +683,88 @@ namespace TODO_app
         /// <param name="oldTaskName"></param>
         private void EditTaskPopup(string oldTaskName)
         {
-            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-            Android.App.AlertDialog alert = dialog.Create();
-
-            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.edit_popup, null);
-            dayInputEdit = view.FindViewById<EditText>(Resource.Id.EditDayInput);
-            monthInputEdit = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
-            yearInputEdit = view.FindViewById<EditText>(Resource.Id.EditYearInput);
-            dayInputEdit.Text = DateTime.Today.Day.ToString();
-            monthInputEdit.Text = DateTime.Today.Month.ToString();
-            yearInputEdit.Text = DateTime.Today.Year.ToString();
-            dayUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowUp);
-            monthUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowUp);
-            yearUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowUp);
-
-            dayDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowDown);
-            monthDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowDown);
-            yearDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowDown);
-            invalidEditTaskName = view.FindViewById<TextView>(Resource.Id.invalidEditName);
-            invalidEditDate = view.FindViewById<TextView>(Resource.Id.invalidEditDate);
-
-            dayUpEdit.Click += ArrowModify;
-            monthUpEdit.Click += ArrowModify;
-            yearUpEdit.Click += ArrowModify;
-
-            dayDownEdit.Click += ArrowModify;
-            monthDownEdit.Click += ArrowModify;
-            yearDownEdit.Click += ArrowModify;
-
-            foreach (TaskItem task in taskList)
+            if (vibration == true)
             {
-                if (task.Text == oldTaskName)
-                {
-                    dayInputEdit.Text = task.DueDate.Day.ToString();
-                    monthInputEdit.Text = task.DueDate.Month.ToString();
-                    yearInputEdit.Text = task.DueDate.Year.ToString();
-                    break;
-                }
+                methods.Vibrate(vibrator, vibratorManager, 45);
             }
+            Intent intent = new Intent(this, typeof(CreateTaskActivity));
+            Bundle editBundle = new Bundle();
+            editBundle.PutString("mode", "edit");
+            editBundle.PutString("taskName", oldTaskName);
+            intent.PutExtras(editBundle);
+            
+            StartActivity(intent);
+            Finish();
+            //Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            //Android.App.AlertDialog alert = dialog.Create();
+
+            //LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            //View view = inflater.Inflate(Resource.Layout.edit_popup, null);
+            //dayInputEdit = view.FindViewById<EditText>(Resource.Id.EditDayInput);
+            //monthInputEdit = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
+            //yearInputEdit = view.FindViewById<EditText>(Resource.Id.EditYearInput);
+            //dayInputEdit.Text = DateTime.Today.Day.ToString();
+            //monthInputEdit.Text = DateTime.Today.Month.ToString();
+            //yearInputEdit.Text = DateTime.Today.Year.ToString();
+            //dayUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowUp);
+            //monthUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowUp);
+            //yearUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowUp);
+
+            //dayDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowDown);
+            //monthDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowDown);
+            //yearDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowDown);
+            //invalidEditTaskName = view.FindViewById<TextView>(Resource.Id.invalidEditName);
+            //invalidEditDate = view.FindViewById<TextView>(Resource.Id.invalidEditDate);
+
+            //dayUpEdit.Click += ArrowModify;
+            //monthUpEdit.Click += ArrowModify;
+            //yearUpEdit.Click += ArrowModify;
+
+            //dayDownEdit.Click += ArrowModify;
+            //monthDownEdit.Click += ArrowModify;
+            //yearDownEdit.Click += ArrowModify;
+
+            //foreach (TaskItem task in taskList)
+            //{
+            //    if (task.Text == oldTaskName)
+            //    {
+            //        dayInputEdit.Text = task.DueDate.Day.ToString();
+            //        monthInputEdit.Text = task.DueDate.Month.ToString();
+            //        yearInputEdit.Text = task.DueDate.Year.ToString();
+            //        break;
+            //    }
+            //}
 
 
-            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-            alert.SetView(view);
-            alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(320));
-            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
-            editTaskField.Text = oldTaskName;
-            Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
-            editConfirm.Text = "OK";
-            editConfirm.Click += (s, e) =>
-            {
-                editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-                CreateATask(editTaskField.Text, oldTaskName, dayInputEdit.Text, monthInputEdit.Text, yearInputEdit.Text, false);
+            //view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            //alert.SetView(view);
+            //alert.Show();
+            //alert.Window.SetLayout(DpToPx(300), DpToPx(320));
+            //alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            //editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
+            //editTaskField.Text = oldTaskName;
+            //Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
+            //editConfirm.Text = "OK";
+            //editConfirm.Click += (s, e) =>
+            //{
+            //    editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //    dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //    monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //    yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
+            //    CreateATask(editTaskField.Text, oldTaskName, dayInputEdit.Text, monthInputEdit.Text, yearInputEdit.Text, false);
 
-                if (taskCreated == true)
-                {
-                    alert.Dismiss();
-                }
+            //    if (taskCreated == true)
+            //    {
+            //        alert.Dismiss();
+            //    }
 
-            };
+            //};
 
-            Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
-            editCancel.Click += (s, e) =>
-            {
-                alert.Dismiss();
-            };
+            //Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
+            //editCancel.Click += (s, e) =>
+            //{
+            //    alert.Dismiss();
+            //};
         }
 
         /// <summary>
@@ -1066,7 +1079,6 @@ namespace TODO_app
                 RelativeLayout taskProgressBase = cardMulti.FindViewById<RelativeLayout>(Resource.Id.taskProgressBase);
                 ImageView taskProgressBar = cardMulti.FindViewById<ImageView>(Resource.Id.taskProgressBar);
                 taskProgressBase.Measure((int)MeasureSpecMode.Unspecified, (int)MeasureSpecMode.Unspecified);
-
 
                 RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.MeasuredWidth, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                 taskProgressBar.LayoutParameters = widthParam;
