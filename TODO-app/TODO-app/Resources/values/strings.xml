@@ -117,7 +117,7 @@
 	<string name="notificationDesc">Notification channel for TODO-app</string>
 
 	<string name="timeHeader">Time for reminder notification:</string>
-	<string name="whatsNew">What\'s new</string>
+	<string name="whatsNew">What\'s new?</string>
 
 	<string name="header1.7">Notification update</string>
 	<string name="desc1.7">Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want to see them.</string>
