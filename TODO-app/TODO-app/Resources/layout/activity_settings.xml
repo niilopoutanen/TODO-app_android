@@ -196,7 +196,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0043BA"
+                            android:tint="@color/blueSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
 
@@ -217,7 +217,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0C8600"
+                            android:tint="@color/greenSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -237,7 +237,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#7000A8"
+                            android:tint="@color/violetSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -257,7 +257,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#8C4E00"
+                            android:tint="@color/orangeSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -277,7 +277,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#A80F00"
+                            android:tint="@color/redSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                 </LinearLayout>
