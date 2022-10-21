@@ -134,7 +134,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Do one time"
+                    android:text="@string/doSingle"
                     android:fontFamily="@font/inter_semibold"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Do multiple times"
+                    android:text="@string/doMulti"
                     android:fontFamily="@font/inter_semibold"
                     android:layout_marginBottom="10dp"/>
             </LinearLayout>
@@ -176,7 +176,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Times needed"
+                android:text="@string/timesNeeded"
                 android:fontFamily="@font/inter_bold"
                 android:textSize="14dp"
                 android:layout_weight="1"/>
@@ -195,7 +195,6 @@
             </RelativeLayout>
             <EditText
                 android:textAlignment="center"
-                android:text="1"
                 android:id="@+id/timesNeededField"
                 android:inputType="number"
                 android:layout_width="30dp"

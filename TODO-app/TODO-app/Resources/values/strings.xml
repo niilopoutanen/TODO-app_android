@@ -9,6 +9,9 @@
 	<string name="add_task_header">New task</string>
 	<string name="edit_task_header">Edit task</string>
 	<string name="typeOfTask">Type of task</string>
+	<string name="doSingle">Do one time</string>
+	<string name="doMulti">Do multiple times</string>
+	<string name="timesNeeded">Times needed</string>
 
 	<string name="add">Add</string>
 	<string name="search">Search</string>

@@ -9,7 +9,10 @@
 	<string name="add_task_header">Uusi tehtävä</string>
 	<string name="edit_task_header">Muokkaa tehtävää</string>
 	<string name="typeOfTask">Tehtävän tyyppi</string>
-
+	<string name="doSingle">Tee kerran</string>
+	<string name="doMulti">Tee useamman kerran</string>
+	<string name="timesNeeded">Tarvittavat kerrat</string>
+	
 	<string name="add">Lisää</string>
 	<string name="search">Hae</string>
 	<string name="plus">+</string>

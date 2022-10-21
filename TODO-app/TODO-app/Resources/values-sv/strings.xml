@@ -9,7 +9,10 @@
 	<string name="add_task_header">Addärare en nu uppgift</string>
     <string name="edit_task_header">Editorna uppgift</string>
 	<string name="typeOfTask">Typen på uppgift</string>
-
+	<string name="doSingle">Går single timman</string>
+	<string name="doMulti">Går multiple timman</string>
+	<string name="timesNeeded">timmar needed</string>
+	
     <string name="add">Addärare</string>
 	<string name="search">Sök</string>
 	<string name="plus">+</string>
