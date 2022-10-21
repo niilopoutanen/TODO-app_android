@@ -69,7 +69,7 @@ namespace TODO_app
                 else if (mode == "edit")
                 {
                     string oldTaskName = b.GetString("taskName");
-
+                    nameField.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
                     activityHeader.Text = GetString(Resource.String.edit_task_header);
                     doneBtn.Text = "OK";
                     doneBtn.Click += (s, e) =>

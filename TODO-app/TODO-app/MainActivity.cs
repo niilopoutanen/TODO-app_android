@@ -21,6 +21,7 @@ using Android.Icu.Util;
 using Android.Views.Autofill;
 using AndroidX.Core.OS;
 using AndroidX.Core.View;
+using Android.Views.Animations;
 
 namespace TODO_app
 {
@@ -1119,6 +1120,7 @@ namespace TODO_app
                                 {
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                                     taskProgressBar.LayoutParameters = widthParam;
                                 }
@@ -1143,6 +1145,7 @@ namespace TODO_app
                                 {
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                                     taskProgressBar.LayoutParameters = widthParam;
                                 }
