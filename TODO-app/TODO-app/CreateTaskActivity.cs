@@ -112,8 +112,10 @@ namespace TODO_app
                             }
                             long milliTime = oldDate.TimeInMillis;
                             dateCalendar.Date = milliTime;
+                            selectedDate = new DateTime(task.DueDate.Year, task.DueDate.Month, task.DueDate.Day);
 
                             timesneededField.Text = task.AmountNeeded.ToString();
+                            amountNeeded = task.AmountNeeded;
 
                         }
                     }

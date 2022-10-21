@@ -1103,6 +1103,7 @@ namespace TODO_app
                             break;
                     }
                 };
+                cardMulti.LongClick += HoldTaskElement;
                 taskTimesLess.Click += (s, e) =>
                 {
                     int timesDone;
