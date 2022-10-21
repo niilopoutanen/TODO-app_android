@@ -14,14 +14,7 @@ using TODO_app.Resources.layout;
 using Firebase.Analytics;
 using Android.Animation;
 using Android.Appwidget;
-using AndroidX.Core.Content;
-using Java.Security;
-using Android;
 using Android.Icu.Util;
-using Android.Views.Autofill;
-using AndroidX.Core.OS;
-using AndroidX.Core.View;
-using Android.Views.Animations;
 
 namespace TODO_app
 {
@@ -41,23 +34,7 @@ namespace TODO_app
         Button searchBar;
         EditText searchField;
         RelativeLayout settingsOpen;
-        LinearLayout taskCountLayout;
         TextView taskCount;
-
-        RelativeLayout dayUpEdit;
-        RelativeLayout monthUpEdit;
-        RelativeLayout yearUpEdit;
-        RelativeLayout dayDownEdit;
-        RelativeLayout monthDownEdit;
-        RelativeLayout yearDownEdit;
-
-        EditText dayInputEdit;
-        EditText monthInputEdit;
-        EditText yearInputEdit;
-
-        int thisDay = DateTime.Today.Day;
-        int thisMonth = DateTime.Today.Month;
-        int thisYear = DateTime.Today.Year;
 
 
         RelativeLayout date1Btn;
@@ -93,23 +70,15 @@ namespace TODO_app
 
         ImageView alarmIcon;
 
-        EditText editTaskField;
-
         RelativeLayout mainInfo;
-        TextView invalidEditTaskName;
-        TextView invalidEditDate;
-
-
 
         Vibrator vibrator;
         VibratorManager vibratorManager;
-        Dictionary<string, int> elementIds = new Dictionary<string, int>();
 
-        ActivityMethods methods = new ActivityMethods();
+        readonly ActivityMethods methods = new ActivityMethods();
 
-        private static FileClass file = new FileClass();
+        readonly private static FileClass file = new FileClass();
         private List<TaskItem> taskList = new List<TaskItem>();
-        private bool taskCreated = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -369,7 +338,6 @@ namespace TODO_app
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
             showAll = FindViewById<Button>(Resource.Id.ShowAll);
             showAll.Click += ShowAll;
-            taskCountLayout = FindViewById<LinearLayout>(Resource.Id.taskCountLayout);
             taskCount = FindViewById<TextView>(Resource.Id.taskCountText);
 
             settingsOpen = FindViewById<RelativeLayout>(Resource.Id.SettingsButton);
@@ -594,81 +562,6 @@ namespace TODO_app
             Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
             StartActivity(settingsStarter);
 
-        }
-
-        /// <summary>
-        /// This modifies date values with arrows.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ArrowModify(object sender, EventArgs e)
-        {
-            var button = (RelativeLayout)sender;
-            try
-            {
-                string DayInputTextEdit = dayInputEdit.Text;
-                int daySelectedEdit = int.Parse(DayInputTextEdit);
-                string MonthInputTextEdit = monthInputEdit.Text;
-                int MonthSelectedEdit = int.Parse(MonthInputTextEdit);
-                string YearInputTextEdit = yearInputEdit.Text;
-                int YearSelectedEdit = int.Parse(YearInputTextEdit);
-                switch (button.Id)
-                {
-                    case Resource.Id.EditDayArrowUp:
-                        daySelectedEdit++;
-                        if (daySelectedEdit > DateTime.DaysInMonth(YearSelectedEdit, MonthSelectedEdit))
-                        {
-                            daySelectedEdit--;
-                        }
-                        dayInputEdit.Text = daySelectedEdit.ToString();
-                        break;
-
-                    case Resource.Id.EditDayArrowDown:
-                        daySelectedEdit--;
-                        if (daySelectedEdit < 1)
-                        {
-                            daySelectedEdit++;
-                        }
-                        dayInputEdit.Text = daySelectedEdit.ToString();
-                        break;
-
-                    case Resource.Id.EditMonthArrowUp:
-                        MonthSelectedEdit++;
-                        if (MonthSelectedEdit > 12)
-                        {
-                            MonthSelectedEdit = 12;
-                        }
-                        monthInputEdit.Text = MonthSelectedEdit.ToString();
-                        break;
-
-                    case Resource.Id.EditYearArrowUp:
-                        YearSelectedEdit++;
-                        yearInputEdit.Text = YearSelectedEdit.ToString();
-                        break;
-
-                    case Resource.Id.EditYearArrowDown:
-                        YearSelectedEdit--;
-                        if (YearSelectedEdit < DateTime.Today.Year)
-                        {
-                            YearSelectedEdit = DateTime.Today.Year;
-                        }
-                        yearInputEdit.Text = YearSelectedEdit.ToString();
-                        break;
-
-                    case Resource.Id.EditMonthArrowDown:
-                        MonthSelectedEdit--;
-                        if (MonthSelectedEdit < 1)
-                        {
-                            MonthSelectedEdit = 1;
-                        }
-                        monthInputEdit.Text = MonthSelectedEdit.ToString();
-                        break;
-                }
-            }
-            catch
-            {
-
-            }
         }
 
         /// <summary>
@@ -986,15 +879,6 @@ namespace TODO_app
                 }
                 taskName.Text = task.Text;
                 taskDate.Text = task.DueDate.ToShortDateString();
-
-                try
-                {
-                    elementIds.Add(task.Text, cardSingle.Id);
-                }
-                catch
-                {
-                    elementIds[task.Text] = cardSingle.Id;
-                }
                 scrollLayout.AddView(cardSingle);
             }
             else if (task.TaskType == "multi")
@@ -1104,14 +988,6 @@ namespace TODO_app
 
                     }
                 };
-                try
-                {
-                    elementIds.Add(task.Text, cardMulti.Id);
-                }
-                catch
-                {
-                    elementIds[task.Text] = cardMulti.Id;
-                }
                 scrollLayout.AddView(cardMulti);
             }
             CheckIfMissedAnymore();
@@ -1321,173 +1197,6 @@ namespace TODO_app
             }
             file.WriteFile(taskList);
         }
-
-        /// <summary>
-        /// Creates a new TaskItem and adds it to the taskList
-        /// </summary>
-        /// <param name="taskName"></param>
-        /// <param name="oldTaskName"></param>
-        /// <param name="day"></param>
-        /// <param name="month"></param>
-        /// <param name="year"></param>
-        /// <param name="isNew"></param>
-        private void CreateATask(string taskName, string oldTaskName, string day, string month, string year, bool isNew)
-        {
-            taskCreated = false;
-            bool didFail = false;
-
-            if (string.IsNullOrWhiteSpace(taskName))
-            {
-                InvalidInput(editTaskField, invalidEditTaskName, "Tehtävän nimi ei voi olla tyhjä");
-                didFail = true;
-            }
-            if (isNew == true)
-            {
-                foreach (TaskItem t in taskList)
-                {
-                    if (t.Text.ToLower() == taskName.ToLower())
-                    {
-                        InvalidInput(editTaskField, invalidEditTaskName, "Tämän niminen tehtävä on jo olemassa");
-                        didFail = true;
-                    }
-                }
-            }
-            if (!int.TryParse(day, out int intDay))
-            {
-                InvalidInput(dayInputEdit, invalidEditDate, "Virheellinen päivä");
-                didFail = true;
-            }
-            if (!int.TryParse(month, out int intMonth))
-            {
-                InvalidInput(monthInputEdit, invalidEditDate, "Virheellinen kuukausi");
-                didFail = true;
-            }
-            if (!int.TryParse(year, out int intYear))
-            {
-                InvalidInput(yearInputEdit, invalidEditDate, "Virheellinen vuosi");
-                didFail = true;
-            }
-            if (intDay < 1)
-            {
-                InvalidInput(dayInputEdit, invalidEditDate, "Päivä ei voi olla pienempi kuin 1");
-                didFail = true;
-            }
-            if (intMonth < 1)
-            {
-                InvalidInput(monthInputEdit, invalidEditDate, "Kuukausi ei voi olla pienempi kuin 1");
-                didFail = true;
-            }
-            if (intYear < 1)
-            {
-                InvalidInput(yearInputEdit, invalidEditDate, "Vuosi ei voi olla pienempi kuin 1");
-                didFail = true;
-            }
-            if (intMonth > 12)
-            {
-                InvalidInput(monthInputEdit, invalidEditDate, "Kuukausi ei voi olla suurempi kuin 12");
-                didFail = true;
-            }
-            if (intDay < DateTime.Today.Day)
-            {
-                InvalidInput(dayInputEdit, invalidEditDate, "Päivä ei voi olla menneisyydessä");
-                didFail = true;
-            }
-            if (intMonth < DateTime.Today.Month)
-            {
-                InvalidInput(monthInputEdit, invalidEditDate, "Kuukausi ei voi olla menneisyydessä");
-                didFail = true;
-            }
-            if (intYear < DateTime.Today.Year)
-            {
-                InvalidInput(yearInputEdit, invalidEditDate, "Vuosi ei voi olla menneisyydessä");
-                didFail = true;
-            }
-            if (intDay > DateTime.MaxValue.Day)
-            {
-                InvalidInput(dayInputEdit, invalidEditDate, "Liian suuri päivä");
-                didFail = true;
-            }
-            if (intMonth > DateTime.MaxValue.Month)
-            {
-                InvalidInput(monthInputEdit, invalidEditDate, "Liian suuri kuukausi");
-                didFail = true;
-            }
-            if (intYear > DateTime.MaxValue.Year)
-            {
-                InvalidInput(yearInputEdit, invalidEditDate, "Liian suuri vuosi");
-                didFail = true;
-            }
-            if (!IsDayInMonth(intDay, intMonth, intYear))
-            {
-                InvalidInput(dayInputEdit, invalidEditDate, "Päivä ei kuulu annettuun kuukauteen");
-                didFail = true;
-            }
-            if (didFail == false)
-            {
-                DateTime dueDate = new DateTime(intYear, intMonth, intDay);
-                DeleteTaskItem(oldTaskName);
-                CreateTaskItem(taskName, dueDate, "single", 1, 0);
-                //Checks which date the user is currently focused on and then shows the tasks for that date
-                for (int i = 1; i < 8; i++)
-                {
-                    //1 or 0 = Today
-                    if (activeDate == 1 || activeDate == 0)
-                    {
-                        scrollLayout.RemoveAllViews();
-                        ShowDatestasks(DateTime.Today);
-                        UpdateTaskCount();
-                        taskCreated = true;
-                        break;
-                    }
-                    //-1 = Missed tasks
-                    else if (activeDate == -1)
-                    {
-                        UpdateTaskCount();
-                        taskCreated = true;
-                        break;
-                    }
-
-                    //2-7 = Rest of the days
-                    else if (activeDate == i)
-                    {
-                        scrollLayout.RemoveAllViews();
-                        ShowDatestasks(DateTime.Today.AddDays(i - 1));
-                        UpdateTaskCount();
-                        taskCreated = true;
-                        break;
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// When input is invalid, this method is called to change the color of the input field and vibrate the phone (if toggled on)
-        /// </summary>
-        /// <param name="visual"></param>
-        /// <param name="errorDesc"></param>
-        /// <param name="errorName"></param>
-        public void InvalidInput(EditText visual, TextView errorDesc, string errorName)
-        {
-            if (visual != null)
-            {
-                if (vibration == true)
-                {
-                    methods.Vibrate(vibrator, vibratorManager, 200);
-                }
-                Drawable invalid = GetDrawable(Resource.Drawable.rounded10pxinvalid);
-                if (errorDesc != null)
-                {
-                    errorDesc.Text = errorName;
-                }
-                visual.BackgroundTintList = null;
-                //visual.BackgroundTintList = GetColorStateList(Resource.Color.errorColor);
-
-                //await System.Threading.Tasks.Task.Delay(1000);
-                //visual.Background = active;
-                //visual.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);  
-            }
-
-        }
-
 
         [Obsolete]
         public override void OnBackPressed()

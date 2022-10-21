@@ -4,21 +4,12 @@ using Android.Content;
 using Android.Graphics.Drawables;
 using Android.Icu.Util;
 using Android.OS;
-using Android.Runtime;
-using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using AndroidX.Activity;
-using AndroidX.Browser.Trusted;
-using AndroidX.Fragment.App.StrictMode;
-using AndroidX.Interpolator.View.Animation;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using static Java.Util.Jar.Attributes;
 
 namespace TODO_app
 {
@@ -43,9 +34,9 @@ namespace TODO_app
         RelativeLayout timesLessBtn;
         RelativeLayout timesMoreBtn;
 
-        FileClass file = new FileClass();
+        readonly FileClass file = new FileClass();
         List<TaskItem> taskList = new List<TaskItem>();
-        ActivityMethods methods = new ActivityMethods();
+        readonly ActivityMethods methods = new ActivityMethods();
         DateTime selectedDate = DateTime.Today;
         string taskType = "single";
         int amountNeeded = 1;
@@ -181,7 +172,14 @@ namespace TODO_app
             {
                 methods.Vibrate(vibrator, vibratorManager, 45);
             }
-            CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+            if(nameField.Text != null || nameField.Text != "" || nameField.Text != " ")
+            {
+                CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+            }
+            else
+            {
+                methods.Vibrate(vibrator, vibratorManager, 70);
+            }
             Intent toMain = new Intent(this, typeof(MainActivity));
             StartActivity(toMain);
             Finish();

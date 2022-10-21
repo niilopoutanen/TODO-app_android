@@ -11,12 +11,8 @@ using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
 using TODO_app.Resources.layout;
-using Android.Content.Res;
-using Android.Icu.Lang;
 using AndroidX.Core.Content;
 using Android;
-using System.Security.Cryptography;
-using System.Net;
 
 namespace TODO_app
 {
@@ -57,9 +53,9 @@ namespace TODO_app
         Vibrator vibrator;
         VibratorManager vibratorManager;
         ISharedPreferences themePref;
-        ActivityMethods methods = new ActivityMethods();
+        readonly ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
-        FileClass files = new FileClass();
+        readonly FileClass files = new FileClass();
         int themechecked = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
