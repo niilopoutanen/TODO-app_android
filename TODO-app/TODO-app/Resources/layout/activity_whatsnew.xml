@@ -56,15 +56,34 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.7"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="10dp"
                 android:text="@string/desc1.7"/>
             <ImageView
+                android:id="@+id/notifImage"
                 android:contentDescription="@string/default_description"
                 android:layout_below="@+id/desc1.7"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                
-                android:src="@drawable/notificationexample"/>
+                android:layout_height="100dp"
+                android:src="@drawable/notificationexample"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/desc1.72"
+                android:layout_below="@+id/notifImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/desc1.72"
+                android:textSize="14dp"
+                android:layout_marginBottom="10dp"/>
+            <ImageView
+                android:id="@+id/taskTypeImage"
+                android:contentDescription="@string/default_description"
+                android:layout_below="@+id/desc1.72"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/newtasktype"
+                android:layout_marginBottom="10dp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -106,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.6"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="10dp"
                 android:text="@string/desc1.6"/>
             <ImageView
@@ -156,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.5.5"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="10dp"
                 android:text="@string/desc1.5.5"/>
             <ImageView
@@ -205,6 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.5"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="10dp"
                 android:text="@string/desc1.5"/>
 
@@ -249,6 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.4"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="20dp"
                 android:text="@string/desc1.4"/>
             <ImageView
@@ -298,6 +321,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.3"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="20dp"
                 android:text="@string/desc1.3"/>
         </RelativeLayout>
@@ -341,6 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.2"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="20dp"
                 android:text="@string/desc1.2"/>
             <RelativeLayout
@@ -398,6 +423,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header1.0"
                 android:textSize="14dp"
+                android:fontFamily="@font/inter_medium"
                 android:layout_marginBottom="20dp"
                 android:text="@string/desc1.0"/>
         </RelativeLayout>

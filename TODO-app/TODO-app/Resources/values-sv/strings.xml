@@ -123,6 +123,8 @@
 
 	<string name="header1.7">Weminderare updaterna</string>
 	<string name="desc1.7">Applikatiorna nu har notificationer. Du can toggle them off på settings menu</string>
+	<string name="desc1.72">Addad nu uppgiftar typarnå. Du kan nu selectarna between single och multi uppgift. Jättemuch ottre stuff inkluderna.</string>
+
 
 	<string name="header1.6">Widget updaterna</string>
 	<string name="desc1.6">tre nu widgeter addad på appen. och Material You temårna.</string>
