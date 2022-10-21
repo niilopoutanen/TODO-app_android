@@ -22,6 +22,8 @@ namespace TODO_app.Resources.layout
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             var mode = Resources.Configuration.UiMode;
             if(Android.OS.Build.VERSION.SdkInt == Android.OS.BuildVersionCodes.Q)
             {
@@ -38,7 +40,6 @@ namespace TODO_app.Resources.layout
 
             }
             base.OnCreate(savedInstanceState, persistentState);
-
         }
 
         protected override void OnResume()

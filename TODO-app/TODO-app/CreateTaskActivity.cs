@@ -54,6 +54,8 @@ namespace TODO_app
         VibratorManager vibratorManager;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             GetStyle();

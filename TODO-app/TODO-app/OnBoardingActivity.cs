@@ -21,7 +21,10 @@ namespace TODO_app.Resources.layout
         {
             base.OnCreate(savedInstanceState);
             SetTheme(Resource.Style.OnBoardTheme);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             SetContentView(Resource.Layout.onboarder);
+
             next = FindViewById<Button>(Resource.Id.nextButton);
             next.Click += NextView;
 

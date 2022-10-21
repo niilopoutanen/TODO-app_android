@@ -16,6 +16,8 @@ namespace TODO_app
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_whatsnew);
         }
