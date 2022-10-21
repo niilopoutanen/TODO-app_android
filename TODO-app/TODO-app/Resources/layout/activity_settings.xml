@@ -89,40 +89,7 @@
                     android:track="@drawable/toggle_track"
                     />
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/rounded50px"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:paddingLeft="25dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/changeNotificationTimeBtn">
 
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reminderTime"
-                    android:textSize="20dp"
-                    android:fontFamily="@font/inter_bold"/>
-                <RelativeLayout
-                    android:layout_height="match_parent"
-                    android:layout_width="100dp"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="20dp">
-                    <Button
-                        android:clickable="false"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="15dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/arrow"
-                        android:backgroundTint="@color/textPrimary"
-                        android:rotation="180"
-                    />
-                </RelativeLayout>
-            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/themePanel"
                 android:layout_width="match_parent"

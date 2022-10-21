@@ -123,7 +123,7 @@
 	<string name="whatsNew">What\'s new?</string>
 
 	<string name="header1.7">Notification &amp; Task update</string>
-	<string name="desc1.7">Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want to see them.</string>
+	<string name="desc1.7">Notifications are now supported! You can toggle the notifications off if you don’t want to see them.</string>
 	<string name="desc1.72">Also added a new task type. You can now select between single- and multi-task mode. UI for the task creation was renewed in the process. Many other enhancements to UI included.</string>
 
 

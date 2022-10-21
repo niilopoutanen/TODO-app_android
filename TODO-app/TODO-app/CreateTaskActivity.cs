@@ -170,7 +170,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             if(nameField.Text != null || nameField.Text != "" || nameField.Text != " ")
             {
@@ -178,7 +178,7 @@ namespace TODO_app
             }
             else
             {
-                methods.Vibrate(vibrator, vibratorManager, 70);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
             }
             Intent toMain = new Intent(this, typeof(MainActivity));
             StartActivity(toMain);
@@ -188,7 +188,7 @@ namespace TODO_app
         {
             if(vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             LinearLayout senderBox = (LinearLayout)sender;
             Drawable toggled = GetDrawable(Resource.Drawable.task_radio_button_active);
@@ -213,7 +213,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             int timesInput = 0;
             RelativeLayout senderBtn = (RelativeLayout)sender;
@@ -245,7 +245,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             if (dateCalendar.Visibility == ViewStates.Gone)
             {
@@ -264,7 +264,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             selectedDate = new DateTime(e.Year, e.Month + 1, e.DayOfMonth);
             selectedDateText.Text = GetString(Resource.String.DueDate)+ ": " + selectedDate.ToShortDateString();

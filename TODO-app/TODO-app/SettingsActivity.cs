@@ -45,7 +45,6 @@ namespace TODO_app
 
         Switch vibrationToggle;
         Switch notificationsToggle;
-        RelativeLayout notificationTimeBtn;
         Spinner themeSelector;
         RelativeLayout whatsNewButton;
         RelativeLayout deleteAllDone;
@@ -114,7 +113,6 @@ namespace TODO_app
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
             notificationsToggle = FindViewById<Switch>(Resource.Id.notificationsSwitch);
-            notificationTimeBtn = FindViewById<RelativeLayout>(Resource.Id.changeNotificationTimeBtn);
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
             ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
@@ -136,7 +134,6 @@ namespace TODO_app
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
             notificationsToggle.CheckedChange += ToggleNotifications;
-            notificationTimeBtn.Click += ChangeNotificationTime;
             switch (vibration)
             {
                 case true:
@@ -329,7 +326,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 100);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
             }
             Intent whatsNew = new Intent(this, typeof(WhatsNewActivity));
             StartActivity(whatsNew);
@@ -338,7 +335,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 50);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             var uri = Android.Net.Uri.Parse("https://github.com/niilopoutanen/TODO-app_android/issues/new");
             var intent = new Intent(Intent.ActionView, uri);
@@ -349,7 +346,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 50);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             Intent onBoraderStarter = new Intent(this, typeof(OnBoardingActivity));
             StartActivity(onBoraderStarter);
@@ -360,7 +357,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 50);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
 
             }
             var button = (TextView)sender;
@@ -397,7 +394,7 @@ namespace TODO_app
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             if (vibration == true)
             {
-                methods.Vibrate(vibrator,vibratorManager, 60);
+                methods.Vibrate(vibrator,vibratorManager, methods.intensityMedium);
             }
             switch (colorButton.Id)
             {
@@ -451,7 +448,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate(vibrator, vibratorManager, 60);
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
                 }
                 OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + amountRemoved + " " + GetString(Resource.String.task), "OK");
             }
@@ -459,7 +456,7 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate(vibrator, vibratorManager, 200);
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
                 }
                 OpenPopup(GetString(Resource.String.nothingToDelete), GetString(Resource.String.noCompletedTasks), "OK");
 
@@ -470,7 +467,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 60);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             FileClass fClass = new FileClass();
 
@@ -495,7 +492,7 @@ namespace TODO_app
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
                 vibration = true;
-                methods.Vibrate(vibrator, vibratorManager, 100);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
 
             }
 
@@ -509,7 +506,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 60);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
 
@@ -528,50 +525,6 @@ namespace TODO_app
             {
                 notificationPref.Edit().PutBoolean("notificationsEnabled", false).Commit();
             }
-        }
-        private void ChangeNotificationTime(object sender, EventArgs e)
-        {
-            if (vibration == true)
-            {
-                methods.Vibrate(vibrator, vibratorManager, 60);
-            }
-            int timePicked;
-            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
-            timePicked = notifTime.GetInt("notifTime", default);
-            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-            Android.App.AlertDialog alert = dialog.Create();
-
-            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.time_popup, null);
-            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-            alert.SetView(view);
-            alert.Show();
-            alert.Window.SetLayout(DpToPx(300), DpToPx(220));
-            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            Button confirm = view.FindViewById<Button>(Resource.Id.timePopupConfirm);
-            NumberPicker picker = view.FindViewById<NumberPicker>(Resource.Id.timePicker);
-            TextView timeHeader = view.FindViewById<TextView>(Resource.Id.timeHeader);
-            picker.MinValue = 1;
-            picker.MaxValue = 24;
-            picker.Value = timePicked;
-            picker.ValueChanged += (s, e) =>
-            {
-                timeHeader.Text = GetString(Resource.String.timeHeader) + " " + picker.Value + ":00";
-                timePicked = picker.Value;
-                if (vibration == true)
-                {
-                    methods.Vibrate(vibrator, vibratorManager, 30);
-                }
-            };
-            confirm.Click += (s, e) =>
-            {
-                notifTime.Edit().PutInt("notifTime", timePicked).Commit();
-                alert.Dismiss();
-                if (vibration == true)
-                {
-                    methods.Vibrate(vibrator, vibratorManager, 60);
-                }
-            };
         }
         private void OpenPopup(string Header, string Desc, string YesText)
         {

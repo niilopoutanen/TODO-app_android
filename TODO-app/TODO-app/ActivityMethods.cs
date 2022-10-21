@@ -20,6 +20,9 @@ namespace TODO_app
 {
     internal class ActivityMethods : AppCompatActivity
     {
+        public readonly int intensityHard = 85;
+        public readonly int intensityMedium = 60;
+        public readonly int intensitySmall = 45;
         public int DpToPx(int dpValue)
         {
 

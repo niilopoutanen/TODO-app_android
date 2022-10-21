@@ -123,7 +123,7 @@
 	<string name="whatsNew">Mitä uutta?</string>
 
 	<string name="header1.7">Muistutus &#38; tehtäväpäivitys</string>
-	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit muokata muistutuksen aikaa asetusvalikosta, ja myös laittaa ilmoitukset kokonaan pois päältä jos et halua nähdä niitä.</string>
+	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit laittaa ilmoitukset kokonaan pois päältä asetuksista jos et halua nähdä niitä.</string>
 	<string name="desc1.72">Uusi tehtävätyyppi lisätty. Voit nyt valita joko yksi- tai moniosaisen tehtävän väliltä. Tehtävän luonnin käyttöliittymä uusittu samalla, ja paljon muita pikkumuokkauksia.</string>
 
 

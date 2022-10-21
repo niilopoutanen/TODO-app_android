@@ -28,7 +28,6 @@ namespace TODO_app
         private bool notifications;
         RelativeLayout btnCreateTask;
 
-        LinearLayout mainHeader;
         HorizontalScrollView calendarView;
         Button showAll;
         Button searchBar;
@@ -69,7 +68,6 @@ namespace TODO_app
         Space missedTaskSpace;
 
         ImageView alarmIcon;
-
         RelativeLayout mainInfo;
 
         Vibrator vibrator;
@@ -186,7 +184,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 60);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             activeDate = -1;
             scrollLayout.RemoveAllViews();
@@ -325,13 +323,12 @@ namespace TODO_app
             {
                 if (vibration == true)
                 {
-                    methods.Vibrate(vibrator, vibratorManager, 45);
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
                 }
                 Intent intent = new Intent(this, typeof(CreateTaskActivity));
                 intent.PutExtra("mode", "create");
                 StartActivity(intent);
             };
-            mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
             showAll = FindViewById<Button>(Resource.Id.ShowAll);
             showAll.Click += ShowAll;
@@ -434,7 +431,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             if (calendarView.Visibility == ViewStates.Visible)
             {
@@ -493,7 +490,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             if (searchBar.Visibility == ViewStates.Visible)
             {
@@ -553,7 +550,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
 
             Intent settingsStarter = new Intent(this, typeof(SettingsActivity));
@@ -575,7 +572,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             Intent intent = new Intent(this, typeof(CreateTaskActivity));
             Bundle editBundle = new Bundle();
@@ -596,7 +593,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 100);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
             }
 
 
@@ -764,7 +761,7 @@ namespace TODO_app
 
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             scrollLayout.RemoveAllViews();
             var button = (RelativeLayout)sender;
@@ -852,7 +849,7 @@ namespace TODO_app
                 {
                     if (vibration == true)
                     {
-                        methods.Vibrate(vibrator, vibratorManager, 45);
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                     }
                     switch (taskDate.Visibility)
                     {
@@ -909,7 +906,7 @@ namespace TODO_app
                 {
                     if (vibration == true)
                     {
-                        methods.Vibrate(vibrator, vibratorManager, 50);
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
                     }
                     switch (taskAmountAdjust.Visibility)
                     {
@@ -926,7 +923,7 @@ namespace TODO_app
                 {
                     if (vibration == true)
                     {
-                        methods.Vibrate(vibrator, vibratorManager, 45);
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                     }
                     int timesDone;
                     bool success = int.TryParse(taskAmountDone.Text, out timesDone);
@@ -942,7 +939,7 @@ namespace TODO_app
                                 {
                                     if (vibration == true)
                                     {
-                                        methods.Vibrate(vibrator, vibratorManager, 45);
+                                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                                     }
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
@@ -971,7 +968,7 @@ namespace TODO_app
                                 {
                                     if (vibration == true)
                                     {
-                                        methods.Vibrate(vibrator, vibratorManager, 45);
+                                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                                     }
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
@@ -991,7 +988,6 @@ namespace TODO_app
 
         }
 
-
         /// <summary>
         /// Toggle between done and not done
         /// </summary>
@@ -1001,7 +997,7 @@ namespace TODO_app
         {
             if (vibration == true)
             {
-                methods.Vibrate(vibrator, vibratorManager, 45);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             Button button = (Button)sender;
             RelativeLayout buttonParent = (RelativeLayout)button.Parent;
@@ -1042,19 +1038,6 @@ namespace TODO_app
             return pixel;
         }
 
-        private void CreateTaskItem(string name, DateTime dueDate, string type, int amountNeeded, int amountDone)
-        {
-            TaskItem task = new TaskItem(DateTime.Now);
-            task.Text = name;
-            task.DueDate = dueDate;
-            task.TaskType = type;
-            task.AmountNeeded = amountNeeded;
-            task.AmountDone = amountDone;
-            taskList.Add(task);
-            file.WriteFile(taskList);
-            UpdateWidget();
-        }
-
         private void DeleteTaskItem(string name)
         {
             foreach (TaskItem t in taskList)
@@ -1068,44 +1051,6 @@ namespace TODO_app
             }
             UpdateWidget();
 
-        }
-
-        /// <summary>
-        /// Checks if the given date is in the given month
-        /// </summary>
-        /// <param name="day"></param>
-        /// <param name="month"></param>
-        /// <param name="year"></param>
-        /// <returns>
-        /// True if the day is in the month
-        /// </returns>
-        private bool IsDayInMonth(int day, int month, int year)
-        {
-            if (day < 1)
-            {
-                return false;
-            }
-
-            if (month > 12 || month < 1)
-            {
-                return false;
-            }
-
-            if (year > DateTime.MaxValue.Year || year < DateTime.MinValue.Year)
-            {
-                return false;
-            }
-
-            int amountOfDaysInMonth = DateTime.DaysInMonth(year, month);
-            if (day > amountOfDaysInMonth)
-            {
-                return false;
-            }
-
-            else
-            {
-                return true;
-            }
         }
 
         /// <summary>
@@ -1126,7 +1071,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     if (vibration == true)
                     {
-                        methods.Vibrate(vibrator, vibratorManager, 45);
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                     }
                     foreach (TaskItem task in TaskItem.SortListByDueDate(taskList))
                     {
@@ -1141,7 +1086,7 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     if (vibration == true)
                     {
-                        methods.Vibrate(vibrator, vibratorManager, 45);
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                     }
                     foreach (TaskItem task in TaskItem.SortListByCreationDate(taskList))
                     {
@@ -1213,12 +1158,9 @@ namespace TODO_app
         }
         private void CreateNotificationRepeater()
         {
-            ISharedPreferences notifTime = GetSharedPreferences("NotificationTime", 0);
-            int selectedTime = notifTime.GetInt("notifTime", default);
-
             Calendar calendar = Calendar.Instance;
 
-            calendar.Set(CalendarField.HourOfDay, selectedTime);
+            calendar.Set(CalendarField.HourOfDay, 8);
             calendar.Set(CalendarField.Minute, 0);
             calendar.Set(CalendarField.Second, 0);
             calendar.Set(CalendarField.Millisecond, 0);
