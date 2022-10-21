@@ -195,6 +195,7 @@
                 android:inputType="number"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
+                android:fontFamily="@font/inter_bold"
                 android:background="@android:color/transparent"
                 android:textColor="@color/textPrimary"/>
             <RelativeLayout

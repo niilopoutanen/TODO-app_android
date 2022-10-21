@@ -1009,6 +1009,10 @@ namespace TODO_app
                 RelativeLayout taskProgressBase = cardMulti.FindViewById<RelativeLayout>(Resource.Id.taskProgressBase);
                 ImageView taskProgressBar = cardMulti.FindViewById<ImageView>(Resource.Id.taskProgressBar);
                 int estimatedWidth = scrollLayout.Width - DpToPx(80);
+                if(scrollLayout.Width == 0)
+                {
+                    estimatedWidth = Resources.DisplayMetrics.WidthPixels - DpToPx(80);
+                }
                 RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(estimatedWidth, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                 taskProgressBar.LayoutParameters = widthParam;
 
@@ -1022,6 +1026,10 @@ namespace TODO_app
                 taskAmountAdjust.Visibility = ViewStates.Gone;
                 cardMulti.Click += (s, e) =>
                 {
+                    if (vibration == true)
+                    {
+                        methods.Vibrate(vibrator, vibratorManager, 50);
+                    }
                     switch (taskAmountAdjust.Visibility)
                     {
                         case ViewStates.Visible:
