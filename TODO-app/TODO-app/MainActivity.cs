@@ -364,7 +364,6 @@ namespace TODO_app
                 Intent intent = new Intent(this, typeof(CreateTaskActivity));
                 intent.PutExtra("mode", "create");
                 StartActivity(intent);
-                Finish();
             };
             mainHeader = FindViewById<LinearLayout>(Resource.Id.mainHeader);
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
@@ -695,77 +694,7 @@ namespace TODO_app
             intent.PutExtras(editBundle);
             
             StartActivity(intent);
-            Finish();
-            //Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-            //Android.App.AlertDialog alert = dialog.Create();
 
-            //LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            //View view = inflater.Inflate(Resource.Layout.edit_popup, null);
-            //dayInputEdit = view.FindViewById<EditText>(Resource.Id.EditDayInput);
-            //monthInputEdit = view.FindViewById<EditText>(Resource.Id.EditMonthInput);
-            //yearInputEdit = view.FindViewById<EditText>(Resource.Id.EditYearInput);
-            //dayInputEdit.Text = DateTime.Today.Day.ToString();
-            //monthInputEdit.Text = DateTime.Today.Month.ToString();
-            //yearInputEdit.Text = DateTime.Today.Year.ToString();
-            //dayUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowUp);
-            //monthUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowUp);
-            //yearUpEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowUp);
-
-            //dayDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditDayArrowDown);
-            //monthDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditMonthArrowDown);
-            //yearDownEdit = view.FindViewById<RelativeLayout>(Resource.Id.EditYearArrowDown);
-            //invalidEditTaskName = view.FindViewById<TextView>(Resource.Id.invalidEditName);
-            //invalidEditDate = view.FindViewById<TextView>(Resource.Id.invalidEditDate);
-
-            //dayUpEdit.Click += ArrowModify;
-            //monthUpEdit.Click += ArrowModify;
-            //yearUpEdit.Click += ArrowModify;
-
-            //dayDownEdit.Click += ArrowModify;
-            //monthDownEdit.Click += ArrowModify;
-            //yearDownEdit.Click += ArrowModify;
-
-            //foreach (TaskItem task in taskList)
-            //{
-            //    if (task.Text == oldTaskName)
-            //    {
-            //        dayInputEdit.Text = task.DueDate.Day.ToString();
-            //        monthInputEdit.Text = task.DueDate.Month.ToString();
-            //        yearInputEdit.Text = task.DueDate.Year.ToString();
-            //        break;
-            //    }
-            //}
-
-
-            //view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
-            //alert.SetView(view);
-            //alert.Show();
-            //alert.Window.SetLayout(DpToPx(300), DpToPx(320));
-            //alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
-            //editTaskField = view.FindViewById<EditText>(Resource.Id.EditTaskInput);
-            //editTaskField.Text = oldTaskName;
-            //Button editConfirm = view.FindViewById<Button>(Resource.Id.editPopupConfirm);
-            //editConfirm.Text = "OK";
-            //editConfirm.Click += (s, e) =>
-            //{
-            //    editTaskField.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            //    dayInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            //    monthInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            //    yearInputEdit.BackgroundTintList = GetColorStateList(Resource.Color.colorButton);
-            //    CreateATask(editTaskField.Text, oldTaskName, dayInputEdit.Text, monthInputEdit.Text, yearInputEdit.Text, false);
-
-            //    if (taskCreated == true)
-            //    {
-            //        alert.Dismiss();
-            //    }
-
-            //};
-
-            //Button editCancel = view.FindViewById<Button>(Resource.Id.editPopupCancel);
-            //editCancel.Click += (s, e) =>
-            //{
-            //    alert.Dismiss();
-            //};
         }
 
         /// <summary>
@@ -1106,6 +1035,10 @@ namespace TODO_app
                 cardMulti.LongClick += HoldTaskElement;
                 taskTimesLess.Click += (s, e) =>
                 {
+                    if (vibration == true)
+                    {
+                        methods.Vibrate(vibrator, vibratorManager, 45);
+                    }
                     int timesDone;
                     bool success = int.TryParse(taskAmountDone.Text, out timesDone);
                     if (success)
@@ -1118,6 +1051,10 @@ namespace TODO_app
                             {
                                 if (t == task)
                                 {
+                                    if (vibration == true)
+                                    {
+                                        methods.Vibrate(vibrator, vibratorManager, 45);
+                                    }
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
@@ -1143,6 +1080,10 @@ namespace TODO_app
                             {
                                 if (t == task)
                                 {
+                                    if (vibration == true)
+                                    {
+                                        methods.Vibrate(vibrator, vibratorManager, 45);
+                                    }
                                     t.AmountDone = timesDone;
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
