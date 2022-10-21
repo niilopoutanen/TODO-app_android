@@ -129,7 +129,6 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     ShowDatestasks(DateTime.Today);
                     UpdateTaskCount();
-                    taskCreated = true;
                     break;
                 }
 
@@ -137,7 +136,6 @@ namespace TODO_app
                 else if (activeDate == -1)
                 {
                     UpdateTaskCount();
-                    taskCreated = true;
                     break;
                 }
 
@@ -147,7 +145,6 @@ namespace TODO_app
                     scrollLayout.RemoveAllViews();
                     ShowDatestasks(DateTime.Today.AddDays(i - 1));
                     UpdateTaskCount();
-                    taskCreated = true;
                     break;
                 }
             }
