@@ -1078,9 +1078,8 @@ namespace TODO_app
                 TextView taskAmountDone = cardMulti.FindViewById<TextView>(Resource.Id.taskAmountDone);
                 RelativeLayout taskProgressBase = cardMulti.FindViewById<RelativeLayout>(Resource.Id.taskProgressBase);
                 ImageView taskProgressBar = cardMulti.FindViewById<ImageView>(Resource.Id.taskProgressBar);
-                taskProgressBase.Measure((int)MeasureSpecMode.Unspecified, (int)MeasureSpecMode.Unspecified);
-
-                RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.MeasuredWidth, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
+                int estimatedWidth = scrollLayout.Width - DpToPx(80);
+                RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(estimatedWidth, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                 taskProgressBar.LayoutParameters = widthParam;
 
                 LinearLayout.LayoutParams marginParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
@@ -1162,7 +1161,6 @@ namespace TODO_app
                     elementIds[task.Text] = cardMulti.Id;
                 }
                 scrollLayout.AddView(cardMulti);
-
             }
             CheckIfMissedAnymore();
 
