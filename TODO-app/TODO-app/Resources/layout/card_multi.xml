@@ -64,8 +64,8 @@
             android:fontFamily="@font/inter_bold"/>
         <RelativeLayout
             android:id="@+id/timesDoneLess"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/circle">
             <ImageView
                 android:contentDescription="@string/default_description"
@@ -85,8 +85,8 @@
             android:textColor="@color/textPrimary"/>
         <RelativeLayout
             android:id="@+id/timesDoneMore"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/circle">
             <ImageView
                 android:contentDescription="@string/default_description"
