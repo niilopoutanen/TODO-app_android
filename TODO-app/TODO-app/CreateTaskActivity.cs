@@ -12,6 +12,7 @@ using Android.Widget;
 using AndroidX.Activity;
 using AndroidX.Browser.Trusted;
 using AndroidX.Fragment.App.StrictMode;
+using AndroidX.Interpolator.View.Animation;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
@@ -44,12 +45,17 @@ namespace TODO_app
 
         FileClass file = new FileClass();
         List<TaskItem> taskList = new List<TaskItem>();
-
+        ActivityMethods methods = new ActivityMethods();
         DateTime selectedDate = DateTime.Today;
         string taskType = "single";
         int amountNeeded = 1;
+        bool vibration = false;
+        Vibrator vibrator;
+        VibratorManager vibratorManager;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
+            vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             GetStyle();
             base.OnCreate(savedInstanceState);
 
@@ -125,13 +131,15 @@ namespace TODO_app
         }
         private void InitializeElements()
         {
+            vibrator = (Vibrator)GetSystemService(VibratorService);
+            vibratorManager = (VibratorManager)GetSystemService(VibratorManagerService);
             activityHeader = FindViewById<TextView>(Resource.Id.createTaskActivityHeader);
             doneBtn = FindViewById<Button>(Resource.Id.finishedBtn);
 
             nameField = FindViewById<EditText>(Resource.Id.taskNameF);
-            nameField.Click += (s, e) =>
+            nameField.FocusChange += (s, e) =>
             {
-                if(nameField.Text == GetString(Resource.String.task_name_header))
+                if (nameField.Text == GetString(Resource.String.task_name_header))
                 {
                     nameField.Text = "";
                     nameField.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
@@ -167,6 +175,10 @@ namespace TODO_app
         }
         private void CreateDone(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 45);
+            }
             CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
             Intent toMain = new Intent(this, typeof(MainActivity));
             StartActivity(toMain);
@@ -174,6 +186,10 @@ namespace TODO_app
         }
         private void ModeChange(object sender, EventArgs e)
         {
+            if(vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 45);
+            }
             LinearLayout senderBox = (LinearLayout)sender;
             Drawable toggled = GetDrawable(Resource.Drawable.task_radio_button_active);
             Drawable untoggled = GetDrawable(Resource.Drawable.task_radio_button);
@@ -195,6 +211,10 @@ namespace TODO_app
         }
         private void ChangeTimesNeeded(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 45);
+            }
             int timesInput = 0;
             RelativeLayout senderBtn = (RelativeLayout)sender;
             try
@@ -223,6 +243,10 @@ namespace TODO_app
         }
         private void ToggleCalendar(object sender, EventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 45);
+            }
             if (dateCalendar.Visibility == ViewStates.Gone)
             {
                 InputMethodManager imm = (InputMethodManager)GetSystemService(Android.Content.Context.InputMethodService);
@@ -238,6 +262,10 @@ namespace TODO_app
         }
         private void DateChanged(object sender, CalendarView.DateChangeEventArgs e)
         {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, 45);
+            }
             selectedDate = new DateTime(e.Year, e.Month + 1, e.DayOfMonth);
             selectedDateText.Text = GetString(Resource.String.DueDate)+ ": " + selectedDate.ToShortDateString();
         }
