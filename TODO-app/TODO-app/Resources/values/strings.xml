@@ -6,8 +6,9 @@
 	<string name="date_select_header">Due date of the task</string>
 	<string name="default_description">description</string>
 	<string name="show_all">Show all</string>
-	<string name="add_task_header">Add new task</string>
+	<string name="add_task_header">New task</string>
 	<string name="edit_task_header">Edit task</string>
+	<string name="typeOfTask">Type of task</string>
 
 	<string name="add">Add</string>
 	<string name="search">Search</string>
@@ -116,7 +117,7 @@
 	<string name="notificationDesc">Notification channel for TODO-app</string>
 
 	<string name="timeHeader">Time for reminder notification:</string>
-	<string name="whatsNew">What\'s new</string>
+	<string name="whatsNew">What\'s new?</string>
 
 	<string name="header1.7">Notification update</string>
 	<string name="desc1.7">Notifications are now supported! You can customize the time for the reminder from settings, and also toggle notifications off if you don’t want to see them.</string>

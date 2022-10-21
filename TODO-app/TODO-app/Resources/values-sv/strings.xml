@@ -8,6 +8,7 @@
 	<string name="show_all">Shuv allt</string>
 	<string name="add_task_header">Addärare en nu uppgift</string>
     <string name="edit_task_header">Editorna uppgift</string>
+	<string name="typeOfTask">Typen på uppgift</string>
 
     <string name="add">Addärare</string>
 	<string name="search">Sök</string>

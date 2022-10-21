@@ -6,8 +6,9 @@
 	<string name="date_select_header">Anna tehtävän erääntymispäivä</string>
 	<string name="default_description">description</string>
 	<string name="show_all">Näytä kaikki</string>
-	<string name="add_task_header">Lisää uusi tehtävä</string>
+	<string name="add_task_header">Uusi tehtävä</string>
 	<string name="edit_task_header">Muokkaa tehtävää</string>
+	<string name="typeOfTask">Tehtävän tyyppi</string>
 
 	<string name="add">Lisää</string>
 	<string name="search">Hae</string>

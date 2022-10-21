@@ -8,31 +8,7 @@
     android:background="?attr/colorPrimary"
     android:orientation="vertical"
     android:animateLayoutChanges="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/bottomrounded">
-        <RelativeLayout
-            android:id="@+id/SettingsReturn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:padding="17dp">
-            <ImageView
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow"
-                android:contentDescription="@string/default_description" />
-        </RelativeLayout>
-        <TextView
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textSize="25dp"
-            android:fontFamily="@font/inter_bold"/>
-    </RelativeLayout>
+
     <ScrollView
         android:scrollbars="none"
         android:visibility="visible"
@@ -46,13 +22,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:textSize="35dp"
+                android:fontFamily="@font/inter_bold"/>
 
             <RelativeLayout
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -81,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -108,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/changeNotificationTimeBtn">
@@ -142,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="10dp"
                 android:layout_marginBottom="10dp">
@@ -177,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"
@@ -208,7 +196,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0043BA"
+                            android:tint="@color/blueSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
 
@@ -229,7 +217,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0C8600"
+                            android:tint="@color/greenSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -249,7 +237,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#7000A8"
+                            android:tint="@color/violetSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -269,7 +257,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#8C4E00"
+                            android:tint="@color/orangeSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -289,7 +277,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#A80F00"
+                            android:tint="@color/redSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -300,6 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/whatsNewButton">
@@ -333,6 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/deleteAllDoneButton">
@@ -369,6 +359,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -402,6 +393,7 @@
                 android:id="@+id/SendFeedbackBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
@@ -437,6 +429,7 @@
                 android:id="@+id/ReplayTutorialbtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
@@ -472,6 +465,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -499,6 +493,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"

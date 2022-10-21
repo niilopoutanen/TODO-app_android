@@ -11,16 +11,12 @@ using Firebase.Analytics;
 using System.Collections.Generic;
 using Android.Util;
 using TODO_app.Resources.layout;
-using Android.Content.Res;
-using Android.Icu.Lang;
 using AndroidX.Core.Content;
 using Android;
-using System.Security.Cryptography;
-using System.Net;
 
 namespace TODO_app
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
+    [Activity(Label = "@string/app_name", Theme = "@style/DarkEdges", MainLauncher = false)]
     public class SettingsActivity : AppCompatActivity
     {
         private string savedTheme = "";
@@ -57,9 +53,9 @@ namespace TODO_app
         Vibrator vibrator;
         VibratorManager vibratorManager;
         ISharedPreferences themePref;
-        ActivityMethods methods = new ActivityMethods();
+        readonly ActivityMethods methods = new ActivityMethods();
         private List<TaskItem> taskList = new List<TaskItem>();
-        FileClass files = new FileClass();
+        readonly FileClass files = new FileClass();
         int themechecked = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -73,8 +69,7 @@ namespace TODO_app
             SetTheme(GetStyle());
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_settings);
-            RelativeLayout settingsReturn = FindViewById<RelativeLayout>(Resource.Id.SettingsReturn);
-            settingsReturn.Click += BackToMenu;
+
             colorSelector = FindViewById<RelativeLayout>(Resource.Id.colorSelector);
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.SV2)
             {
@@ -294,22 +289,22 @@ namespace TODO_app
             switch (color)
             {
                 case "blue":
-                    SetTheme(Resource.Style.MainBlue);
+                    SetTheme(Resource.Style.MainBlueDark);
                     break;
                 case "green":
-                    SetTheme(Resource.Style.MainGreen);
+                    SetTheme(Resource.Style.MainGreenDark);
                     break;
                 case "orange":
-                    SetTheme(Resource.Style.MainOrange);
+                    SetTheme(Resource.Style.MainOrangeDark);
                     break;
                 case "violet":
-                    SetTheme(Resource.Style.MainViolet);
+                    SetTheme(Resource.Style.MainVioletDark);
                     break;
                 case "red":
-                    SetTheme(Resource.Style.MainRed);
+                    SetTheme(Resource.Style.MainRedDark);
                     break;
                 case null:
-                    SetTheme(Resource.Style.MainBlue);
+                    SetTheme(Resource.Style.MainBlueDark);
                     break;
             }
             switch (themeSelected)
@@ -330,17 +325,6 @@ namespace TODO_app
 
         }
 
-        private void BackToMenu(object sender, EventArgs e)
-        {
-            if (vibration == true)
-            {
-                methods.Vibrate(vibrator, vibratorManager, 100);
-            }
-            Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
-            mainMenuStarter.SetFlags(ActivityFlags.ClearTop);
-            StartActivity(mainMenuStarter);
-            Finish();
-        }
         private void OpenWhatsNew(object sender, EventArgs e)
         {
             if (vibration == true)

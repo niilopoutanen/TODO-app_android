@@ -3,6 +3,7 @@
 	<color name="colorPrimary">@color/m3_sys_color_dynamic_light_background</color>
 	<color name="colorPrimaryDark">@color/m3_sys_color_dynamic_light_secondary_container</color>
 	<color name="colorAccent">#317435</color>
+	<color name="colorAccentSecondary">#2b522e</color>
 	<color name="colorButton">@color/m3_sys_color_dynamic_light_inverse_primary</color>
 	<color name="textSecondary">@color/m3_sys_color_dynamic_light_on_surface_variant</color>
 	<color name="textPrimary">@color/m3_sys_color_dynamic_light_on_surface_variant</color>
@@ -17,5 +18,13 @@
 	<color name="mainOrange">@color/m3_sys_color_dynamic_dark_on_primary</color>
 	<color name="mainRed">@color/m3_sys_color_dynamic_dark_on_primary</color>
 
+
+	<color name="blueSecondary">@color/mainBlue</color>
+	<color name="greenSecondary">@color/mainGreen</color>
+	<color name="violetSecondary">@color/mainViolet</color>
+	<color name="orangeSecondary">@color/mainOrange</color>
+	<color name="redSecondary">@color/mainRed</color>
+
+	
 	<color name="errorColor">#FF7F74</color>
 </resources>

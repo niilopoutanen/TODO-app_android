@@ -7,10 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 		<item name="colorAccentSecondary">@color/colorAccentSecondary</item>
-        <item name="windowActionBar">false</item>
+		<item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/textPrimary</item>
-		<item name="android:textColorPrimary">@color/textPrimary</item>
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
 	</style>
 
@@ -31,7 +30,7 @@
 	<style name="MainOrange" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainOrange</item>
 		<item name="colorAccentSecondary">@color/orangeSecondary</item>
-		
+
 	</style>
 	<style name="MainRed" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainRed</item>
@@ -94,7 +93,6 @@
 	</style>
 
 	<style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
-		<item name="android:textColor">@color/textPrimary</item>
 	</style>
 	
 </resources>
