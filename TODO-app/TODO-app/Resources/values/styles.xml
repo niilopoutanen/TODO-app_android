@@ -87,4 +87,5 @@
 	<style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
 		<item name="android:textColor">@color/textPrimary</item>
 	</style>
+	
 </resources>
