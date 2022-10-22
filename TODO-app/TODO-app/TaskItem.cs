@@ -6,7 +6,7 @@ namespace TODO_app
 {
     internal class TaskItem
     {
-        private DateTime _creationTime;
+        private readonly DateTime _creationTime;
         private DateTime _dueDate;
         private string _text;
         private bool _isDone = false;
@@ -60,8 +60,8 @@ namespace TODO_app
         internal static List<TaskItem> SortListByDueDate(List<TaskItem> taskList)
         {
             var tasks = from t in taskList
-                          orderby t._dueDate
-                          select t;
+                        orderby t._dueDate
+                        select t;
             return tasks.ToList();
         }
 
@@ -92,7 +92,7 @@ namespace TODO_app
                     newOrder.Add(t);
                 }
             }
-            
+
             return newOrder;
         }
     }
