@@ -125,7 +125,7 @@
 	<string name="header1.7">Notification &amp; Task update</string>
 	<string name="desc1.7">Notifications are now supported! You can toggle the notifications off if you don’t want to see them.</string>
 	<string name="desc1.72">Also added a new task type. You can now select between single- and multi-task mode. UI for the task creation was renewed in the process. Many other enhancements to UI included.</string>
-	<string name="desc1.73">You can now create tasks straight from your quick settings. Add the tile by going to your quick settings and drag the tile where you want it.</string
+	<string name="desc1.73">You can now create tasks straight from your quick settings. That way creating tasks is a lot faster no matter what application you are currently using with your phone. Add the tile by going to your quick settings and drag the tile where you want it.</string>
 
 	<string name="header1.6">Widget update</string>
 	<string name="desc1.6">Added 3 new widgets to the app. Also added support for Material You theme (available in Android 12.1+ versions) as shown in the image. Material You theme also works inside the app.</string>

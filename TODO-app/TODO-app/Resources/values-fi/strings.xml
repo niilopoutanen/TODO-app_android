@@ -125,6 +125,7 @@
 	<string name="header1.7">Muistutus &#38; tehtäväpäivitys</string>
 	<string name="desc1.7">Sovellus tukee nyt ilmoituksia! Voit laittaa ilmoitukset kokonaan pois päältä asetuksista jos et halua nähdä niitä.</string>
 	<string name="desc1.72">Uusi tehtävätyyppi lisätty. Voit nyt valita joko yksi- tai moniosaisen tehtävän väliltä. Tehtävän luonnin käyttöliittymä uusittu samalla, ja paljon muita pikkumuokkauksia.</string>
+	<string name="desc1.73">Voit nyt lisätä kuvakkeen puhelimesi pikavalikkoon. Kuvaketta käyttämällä voit luoda tehtäviä paljon nopeammin, riippumatta auki olevasta sovelluksesta. Lisää kuvake menemällä pikavalikkoon ja siirrä kuvake siihin kohtaa mihin haluat.</string>
 
 
 	<string name="header1.6">Pienoisohjelmapäivitys</string>
