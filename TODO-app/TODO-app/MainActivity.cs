@@ -26,6 +26,7 @@ namespace TODO_app
         private bool guideDone;
         private bool vibration;
         private bool notifications;
+        private bool progressInPercents;
         RelativeLayout btnCreateTask;
 
         HorizontalScrollView calendarView;
@@ -116,6 +117,7 @@ namespace TODO_app
         protected override void OnRestart()
         {
             base.OnRestart();
+            LoadSettings();
             taskList = file.ReadFile();
             taskList = TaskItem.SortListByIsDone(taskList);
             CountAndShowMissed();
@@ -257,9 +259,11 @@ namespace TODO_app
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             ISharedPreferences notificationsPref = GetSharedPreferences("Notifications", 0);
+            ISharedPreferences progressPref = GetSharedPreferences("Progress", 0);
 
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             notifications = notificationsPref.GetBoolean("notificationsEnabled", default);
+            progressInPercents = progressPref.GetBoolean("progressInPercents", default);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
             {
@@ -663,16 +667,6 @@ namespace TODO_app
                 alert1.Dismiss();
                 EditTaskPopup(taskName.Text);
             };
-
-
-
-
-
-
-
-
-
-
         }
         /// <summary>
         /// Initializes calendar dates on creation
@@ -898,7 +892,7 @@ namespace TODO_app
                 marginParams.SetMargins(0, 0, 0, DpToPx(20));
                 cardMulti.LayoutParameters = marginParams;
                 taskName.Text = task.Text;
-                taskProgress.Text = methods.ProgressVisualizer(task.AmountDone, task.AmountNeeded);
+                taskProgress.Text = methods.ProgressVisualizer(task.AmountDone, task.AmountNeeded, progressInPercents);
                 cardMulti.Id = View.GenerateViewId();
                 taskAmountDone.Text = task.AmountDone.ToString();
                 taskAmountAdjust.Visibility = ViewStates.Gone;
@@ -942,7 +936,7 @@ namespace TODO_app
                                         methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                                     }
                                     t.AmountDone = timesDone;
-                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded, progressInPercents);
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                                     taskProgressBar.LayoutParameters = widthParam;
@@ -971,7 +965,7 @@ namespace TODO_app
                                         methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                                     }
                                     t.AmountDone = timesDone;
-                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded);
+                                    taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded, progressInPercents);
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                                     taskProgressBar.LayoutParameters = widthParam;

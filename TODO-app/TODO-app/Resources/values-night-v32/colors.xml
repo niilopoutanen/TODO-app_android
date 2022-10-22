@@ -5,7 +5,7 @@
     <color name="colorAccent">#317435</color>
 	<color name="colorAccentSecondary">#2b522e</color>
     <color name="colorButton">#38383C</color>
-	<color name="textSecondary">#FFFFFF</color>
+	<color name="textSecondary">#c7c7c7</color>
 	<color name="textPrimary">#FFFFFF</color>
     <color name="popupBG">#212121</color>
 	<color name="onBoardingBG">#1B1C27</color>

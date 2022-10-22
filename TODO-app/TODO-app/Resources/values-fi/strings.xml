@@ -26,6 +26,8 @@
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
 	<string name="deleteAll">Poista kaikki tehtävät</string>
+	<string name="progressType">Edistyminen: %</string>
+	<string name="progressTypeInfo">Moniosaisten tehtävien edistyminen näytetään murtolukuina. Jos laitat asetuksen päälle edistyminen näytetään prosentteina. Esim: 50% tai 3/6</string>
 	<string name="theme">Teema</string>
 	<string name="colorTheme">Väriteema</string>
 	<string name="sendFeedback">Lähetä palautetta</string>

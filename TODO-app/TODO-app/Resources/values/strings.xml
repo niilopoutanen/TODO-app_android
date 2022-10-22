@@ -26,6 +26,9 @@
 	<string name="vibrationSettings">Vibration</string>
 	<string name="deleteAllDone">Remove all completed</string>
 	<string name="deleteAll">Remove all tasks</string>
+	<string name="progressType">Show progress in %</string>
+	<string name="progressTypeInfo">The progress of multi-part tasks is shown in fractions. If you turn on the setting, the progress is displayed as a percentage. Eg: 50% or 3/6</string>
+
 	<string name="theme">Theme</string>
 	<string name="colorTheme">Color theme</string>
 	<string name="sendFeedback">Send feedback</string>

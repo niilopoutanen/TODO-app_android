@@ -127,6 +127,7 @@
 
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/colorSelector"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -285,49 +286,86 @@
                     />
                 </RelativeLayout>
             </RelativeLayout>
-            <RelativeLayout
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rounded50px"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:paddingLeft="25dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/deleteAllDoneButton">
-
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deleteAllDone"
-                    android:textSize="20dp"
-                    android:fontFamily="@font/inter_bold"/>
+                android:layout_marginBottom="10dp">
                 <RelativeLayout
-                    android:layout_height="match_parent"
-                    android:layout_width="100dp"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="20dp">
-                    <Button
-                        android:clickable="false"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="15dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/arrow"
-                        android:backgroundTint="@color/textPrimary"
-                        android:rotation="180"
-                    />
-                </RelativeLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="25dp"
+                    android:id="@+id/deleteAllDoneButton">
 
-            </RelativeLayout>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deleteAllDone"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/inter_bold"/>
+                    <RelativeLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="100dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="20dp">
+                        <Button
+                            android:clickable="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="15dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/arrow"
+                            android:backgroundTint="@color/textPrimary"
+                            android:rotation="180"
+                    />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/deleteAllButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="25dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deleteAll"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/inter_bold"/>
+                    <RelativeLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="100dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="20dp">
+                        <Button
+                            android:clickable="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="15dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/arrow"
+                            android:backgroundTint="@color/textPrimary"
+                            android:rotation="180"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/deleteAllButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/rounded50px"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
+                android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -335,27 +373,30 @@
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/deleteAll"
+                    android:text="@string/progressType"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
-                <RelativeLayout
-                    android:layout_height="match_parent"
-                    android:layout_width="100dp"
+                <Switch
+                    android:checked="true"
+                    android:id="@+id/progressSwitch"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:paddingRight="20dp">
-                    <Button
-                        android:clickable="false"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="15dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/arrow"
-                        android:backgroundTint="@color/textPrimary"
-                        android:rotation="180"/>
-                </RelativeLayout>
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/toggle_thumb"
+                    android:track="@drawable/toggle_track"
+                    />
             </RelativeLayout>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="13dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginBottom="10dp"
+                android:text="@string/progressTypeInfo"/>
             <RelativeLayout
                 android:id="@+id/SendFeedbackBtn"
                 android:layout_width="match_parent"

@@ -22,6 +22,7 @@ namespace TODO_app
         private string savedTheme = "";
         private bool vibration;
         private bool notifications;
+        private bool progress;
         TextView version;
         RelativeLayout sendFeedbackButton;
         RelativeLayout replayTutorial;
@@ -45,6 +46,7 @@ namespace TODO_app
 
         Switch vibrationToggle;
         Switch notificationsToggle;
+        Switch progressToggle;
         Spinner themeSelector;
         RelativeLayout whatsNewButton;
         RelativeLayout deleteAllDone;
@@ -113,6 +115,7 @@ namespace TODO_app
             deleteAll = FindViewById<RelativeLayout>(Resource.Id.deleteAllButton);
             vibrationToggle = FindViewById<Switch>(Resource.Id.vibrationSwitch);
             notificationsToggle = FindViewById<Switch>(Resource.Id.notificationsSwitch);
+            progressToggle = FindViewById<Switch>(Resource.Id.progressSwitch);
             themeSelector = FindViewById<Spinner>(Resource.Id.themeSelector);
             string[] themeOptions = { GetString(Resource.String.darkTheme), GetString(Resource.String.lightTheme), GetString(Resource.String.systemTheme) };
             ArrayAdapter adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, themeOptions);
@@ -134,6 +137,7 @@ namespace TODO_app
             deleteAllDone.Click += DeleteAllDone_Click;
             vibrationToggle.CheckedChange += ToggleVibration;
             notificationsToggle.CheckedChange += ToggleNotifications;
+            progressToggle.CheckedChange += ToggleProgress;
             switch (vibration)
             {
                 case true:
@@ -151,6 +155,16 @@ namespace TODO_app
                     break;
                 case false:
                     notificationsToggle.Checked = false;
+                    break;
+            }
+
+            switch (progress)
+            {
+                case true:
+                    progressToggle.Checked = true;
+                    break;
+                case false:
+                    progressToggle.Checked = false;
                     break;
             }
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) == Android.Content.PM.Permission.Denied)
@@ -281,6 +295,7 @@ namespace TODO_app
             string themeSelected = themePref.GetString("themeSelected", default);
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
             ISharedPreferences notificationPref = GetSharedPreferences("Notifications", 0);
+            ISharedPreferences progressPref = GetSharedPreferences("Progress", 0);
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             string color = colorTheme.GetString("colorTheme", default);
             switch (color)
@@ -319,7 +334,7 @@ namespace TODO_app
             savedTheme = color;
             vibration = vibrationPref.GetBoolean("vibrationEnabled", default);
             notifications = notificationPref.GetBoolean("notificationsEnabled", default);
-
+            progress = progressPref.GetBoolean("progressInPercents", default);
         }
 
         private void OpenWhatsNew(object sender, EventArgs e)
@@ -524,6 +539,26 @@ namespace TODO_app
             else if (e.IsChecked == false)
             {
                 notificationPref.Edit().PutBoolean("notificationsEnabled", false).Commit();
+            }
+        }
+
+        private void ToggleProgress(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (vibration == true)
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
+            }
+            ISharedPreferences progressPref = GetSharedPreferences("Progress", 0);
+
+            if (e.IsChecked == true)
+            {
+                progressPref.Edit().PutBoolean("progressInPercents", true).Commit();
+
+            }
+
+            else if (e.IsChecked == false)
+            {
+                progressPref.Edit().PutBoolean("progressInPercents", false).Commit();
             }
         }
         private void OpenPopup(string Header, string Desc, string YesText)

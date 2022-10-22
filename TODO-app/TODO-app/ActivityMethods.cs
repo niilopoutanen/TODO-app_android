@@ -23,13 +23,6 @@ namespace TODO_app
         public readonly int intensityHard = 85;
         public readonly int intensityMedium = 60;
         public readonly int intensitySmall = 45;
-        public int DpToPx(int dpValue)
-        {
-
-            //viittaaminen toiseen luokkaan ei onnistu, Java.NullException
-            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
-            return pixel;
-        }
 
         public void Vibrate(Vibrator vibratorService, VibratorManager vibratorManager, int length)
         {
@@ -62,10 +55,8 @@ namespace TODO_app
             }
         }
 
-        public string ProgressVisualizer(int amountDone, int amountNeeded)
+        public string ProgressVisualizer(int amountDone, int amountNeeded, bool prefersPercentage)
         {
-            bool prefersPercentage = true;
-
             if(prefersPercentage == true)
             {
                 double percentage = (((double)amountDone / (double)amountNeeded) * 100);

@@ -30,6 +30,8 @@
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
 	<string name="replayTutorial">Rewatchär tutorialen</string>
+	<string name="progressType">Progr på %</string>
+	<string name="progressTypeInfo">Framstegen för flerdelade uppgifter visas i bråkdelar. Om du aktiverar inställningen visas förloppet i procent. T.ex.: 50 % eller 3/6</string>
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Faktorerna:</string>
 	<string name="Credits1">Niilo Poutanen</string>

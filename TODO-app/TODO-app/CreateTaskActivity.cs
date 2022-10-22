@@ -178,6 +178,7 @@ namespace TODO_app
             }
             if(nameField.Text != null || nameField.Text != "" || nameField.Text != " ")
             {
+
                 CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
             }
             else
