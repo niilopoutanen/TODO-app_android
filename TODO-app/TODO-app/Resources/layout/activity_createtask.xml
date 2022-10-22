@@ -194,10 +194,9 @@
                     android:layout_height="12dp"
                     android:src="@drawable/minus"/>
             </RelativeLayout>
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/timesNeededField"
-                android:inputType="number"
                 android:layout_width="30dp"
                 android:text="1"
                 android:layout_height="25dp"

@@ -30,7 +30,7 @@ namespace TODO_app
         LinearLayout multipleTimeContainer;
 
         LinearLayout timesNeededPanel;
-        EditText timesneededField;
+        TextView timesneededField;
         RelativeLayout timesLessBtn;
         RelativeLayout timesMoreBtn;
 
@@ -155,7 +155,7 @@ namespace TODO_app
             multipleTimeContainer = FindViewById<LinearLayout>(Resource.Id.multiCheckContainer);
             multipleTimeContainer.Click += ModeChange;
 
-            timesneededField = FindViewById<EditText>(Resource.Id.timesNeededField);
+            timesneededField = FindViewById<TextView>(Resource.Id.timesNeededField);
             timesNeededPanel = FindViewById<LinearLayout>(Resource.Id.timesNeededPanel);
             timesLessBtn = FindViewById<RelativeLayout>(Resource.Id.timesLessBtn);
             timesLessBtn.Click += ChangeTimesNeeded;
