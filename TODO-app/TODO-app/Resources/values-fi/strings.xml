@@ -7,7 +7,7 @@
 	<string name="default_description">description</string>
 	<string name="show_all">Näytä kaikki</string>
 	<string name="add_task_header">Uusi tehtävä</string>
-	<string name="edit_task_header">Muokkaa tehtävää</string>
+	<string name="edit_task_header">Muokkaa</string>
 	<string name="typeOfTask">Tehtävän tyyppi</string>
 	<string name="doSingle">Tee kerran</string>
 	<string name="doMulti">Tee useamman kerran</string>
