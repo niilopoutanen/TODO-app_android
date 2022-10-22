@@ -68,7 +68,7 @@ namespace TODO_app
                 }
                 else if (mode == "tileCreate")
                 {
-                    doneBtn.Click += CreateDone;
+                    doneBtn.Click += TileCreateDone;
                 }
                 else if (mode == "edit")
                 {
@@ -198,6 +198,46 @@ namespace TODO_app
                     methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                 }
                 CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                Finish();
+            }
+
+        }
+        private void TileCreateDone(object sender, EventArgs e)
+        {
+            bool failed = false;
+
+            if (nameField.Text == GetString(Resource.String.task_name_header))
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            if (string.IsNullOrWhiteSpace(nameField.Text))
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            foreach (TaskItem task in taskList)
+            {
+                if (task.Text.ToLower() == nameField.Text.ToLower())
+                {
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                    Toast.MakeText(this, GetString(Resource.String.nameExists), ToastLength.Long).Show();
+                    failed = true;
+                }
+            }
+
+
+            if (failed == false)
+            {
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
+                }
+                CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                Intent mainIntent = new Intent(this, typeof(MainActivity));
+                StartActivity(mainIntent);
                 Finish();
             }
 
