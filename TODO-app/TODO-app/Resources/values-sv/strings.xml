@@ -22,6 +22,7 @@
 
 	<string name="settings">Inställningar</string>
 	<string name="notificationSettings">Notifikatiorna</string>
+	<string name="notificationInfo">Applikationen påminner dig om dagens uppgifter once på dag. Aviseringen säger också om du har sena uppdrag.</string>
 	<string name="reminderTime">Clockan på reminderare</string>
 	<string name="vibrationSettings">Vibratiorna</string>
     <string name="deleteAllDone">Radera allt gjort</string>
@@ -108,7 +109,7 @@
 	<string name="widgetMediumDesc">Shuv uppgiftar de är inte done todag</string>
 	<string name="widgetSmallDesc">Shuv uppgiftar de är inte done todag (littel ui)</string>
 	<string name="today">Todag</string>
-
+	<string name="overDueTasks">uppgiftar late.</string>
 
 	<string name="widgetLargeTemp1">Uppgiftar (0)</string>
 

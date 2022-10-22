@@ -17,6 +17,7 @@ namespace TODO_app
             FileClass fileClass = new FileClass();
             List<TaskItem> tasks = fileClass.ReadFile();
             int tasksToday = 0;
+            int tasksOverDue = 0;
             foreach (TaskItem task in tasks)
             {
                 if (task.DueDate == DateTime.Today)
@@ -25,16 +26,24 @@ namespace TODO_app
                     {
                         tasksToday++;
                     }
+                    if(task.DueDate < DateTime.Today)
+                    {
+                        tasksOverDue++;
+                    }
                 }
             }
             if (tasksToday > 0)
             {
                 if (dayWhenLast != DateTime.Now.Day)
                 {
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
-                    .SetSmallIcon(Resource.Drawable.iconFull)
-                    .SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday))
-                    .SetPriority(NotificationCompat.PriorityDefault);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder));
+                    builder.SetSmallIcon(Resource.Drawable.iconFull);
+                    builder.SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday));
+                    if(tasksOverDue > 0)
+                    {
+                        builder.SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday) + ", "+ tasksOverDue + context.GetString(Resource.String.overDueTasks));
+                    }
+                    builder.SetPriority(NotificationCompat.PriorityDefault);
                     PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
                     builder.SetContentIntent(contentClick);
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.From(context);
@@ -43,6 +52,22 @@ namespace TODO_app
                     lastNotificationDay.Edit().PutInt("dayWhenLast", DateTime.Now.Day).Commit();
                 }
 
+            }
+            else if (tasksOverDue > 0 && tasksToday == 0)
+            {
+                if (dayWhenLast != DateTime.Now.Day)
+                {
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder));
+                    builder.SetSmallIcon(Resource.Drawable.iconFull);
+                    builder.SetContentTitle(tasksOverDue + " " + context.GetString(Resource.String.overDueTasks));
+                    builder.SetPriority(NotificationCompat.PriorityDefault);
+                    PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
+                    builder.SetContentIntent(contentClick);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.From(context);
+
+                    notificationManager.Notify(id: 200, builder.Build());
+                    lastNotificationDay.Edit().PutInt("dayWhenLast", DateTime.Now.Day).Commit();
+                }
             }
 
         }

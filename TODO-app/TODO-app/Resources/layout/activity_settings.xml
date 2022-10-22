@@ -68,7 +68,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_centerVertical="true"
@@ -89,7 +89,16 @@
                     android:track="@drawable/toggle_track"
                     />
             </RelativeLayout>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="13dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginBottom="10dp"
+                android:text="@string/notificationInfo"/>
             <RelativeLayout
                 android:id="@+id/themePanel"
                 android:layout_width="match_parent"

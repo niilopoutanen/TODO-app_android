@@ -22,6 +22,7 @@
 
 	<string name="settings">Asetukset</string>
 	<string name="notificationSettings">Ilmoitukset</string>
+	<string name="notificationInfo">Sovellus muistuttaa sinua tämän päivän tehtävistä kerran päivässä. Ilmoituksessa lukee myös jos sinulla on myöhästyneitä tehtäviä.</string>
 	<string name="reminderTime">Ilmoituksen aika</string>
 	<string name="vibrationSettings">Värinä</string>
 	<string name="deleteAllDone">Poista kaikki valmiit</string>
@@ -110,7 +111,7 @@
 	<string name="widgetMediumDesc">Näyttää tämän päivän tehtävät mitä ei ole vielä tehty</string>
 	<string name="widgetSmallDesc">Pienoisohjelma joka näyttää tämän päivän tehtävät. Kokoa voi muokata</string>
 	<string name="today">Tänään</string>
-
+	<string name="overDueTasks">tehtävää myöhässä.</string>
 	<string name="widgetLargeTemp1">Tehtävät (0)</string>
 
 	<string name="firstTask">Ensimmäinen tehtävä</string>
