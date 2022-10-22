@@ -331,7 +331,8 @@ namespace TODO_app
                 }
                 Intent intent = new Intent(this, typeof(CreateTaskActivity));
                 intent.PutExtra("mode", "create");
-                StartActivity(intent);
+                ActivityOptions options = ActivityOptions.MakeSceneTransitionAnimation(this, btnCreateTask, "createButton");
+                StartActivity(intent, options.ToBundle());
             };
             calendarView = FindViewById<HorizontalScrollView>(Resource.Id.calendarView);
             showAll = FindViewById<Button>(Resource.Id.ShowAll);

@@ -109,6 +109,7 @@
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
                 <RelativeLayout
+                    android:transitionName="createButton"
                     android:id="@+id/CreateTask"
                     android:background="@drawable/rounded50px"
                     android:backgroundTint="?attr/colorAccent"

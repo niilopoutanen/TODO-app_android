@@ -30,6 +30,7 @@
                 android:textSize="30dp"
                 android:layout_marginBottom="10dp"/>
             <Button
+                android:transitionName="createButton"
                 android:id="@+id/finishedBtn"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"

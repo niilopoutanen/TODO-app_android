@@ -12,6 +12,7 @@
         <item name="android:textColor">@color/textPrimary</item>
 		<item name="android:textColorPrimary">@color/textPrimary</item>
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
+		<item name="android:windowActivityTransitions">true</item>
 	</style>
 
 	<style name="MainBlue" parent="@style/AppTheme">
