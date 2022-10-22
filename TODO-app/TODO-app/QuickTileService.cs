@@ -25,5 +25,12 @@ namespace TODO_app
             createTask.PutExtra("mode", "tileCreate");
             StartActivityAndCollapse(createTask);
         }
+        public override void OnStartListening()
+        {
+            base.OnStartListening();
+            Tile tile = QsTile;
+            tile.State = TileState.Inactive;
+            tile.UpdateTile();
+        }
     }
 }
