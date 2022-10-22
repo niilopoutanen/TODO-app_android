@@ -65,6 +65,10 @@ namespace TODO_app
                     doneBtn.Text = GetString(Resource.String.add);
                     doneBtn.Click += CreateDone;
                 }
+                else if (mode == "tileCreate")
+                {
+                    doneBtn.Click += CreateDone;
+                }
                 else if (mode == "edit")
                 {
                     string oldTaskName = b.GetString("taskName");

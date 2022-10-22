@@ -79,6 +79,7 @@
     <Compile Include="CreateTaskActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OnBoardingActivity.cs" />
+    <Compile Include="QuickTileService.cs" />
     <Compile Include="ReminderBroadcast.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
