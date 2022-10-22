@@ -87,8 +87,6 @@
 	<string name="guide5">Lisää pienoisohjelmia alkunäyttöösi.</string>
 	<string name="guide6">Lähetä kehitysehdotukset asetusvalikon linkistä!</string>
 
-
-
 	<string name="DueDate">Erääntymispäivä</string>
 	<string name="CreationDate">Luontipäivä</string>
 
@@ -100,6 +98,7 @@
 
 	<string name="editDesc">Valitse toiminto alta</string>
 	<string name="task">tehtävää</string>
+	<string name="confirmDeleteAll">Oletko varma että haluat poistaa kaikki tehtävät?</string>
 
 
 	<string name="nothingToDelete">Ei poistettavaa</string>

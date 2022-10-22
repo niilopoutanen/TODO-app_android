@@ -11,6 +11,7 @@ using AndroidX.Core.Content;
 using Firebase.Analytics;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TODO_app.Resources.layout;
 using Xamarin.Essentials;
 
@@ -480,23 +481,51 @@ namespace TODO_app
 
         private void DeleteAll_Click(object sender, EventArgs e)
         {
+            
             if (vibration == true)
             {
                 methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
-            FileClass fClass = new FileClass();
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
 
-            List<TaskItem> oldTasks = fClass.ReadFile();
-            List<TaskItem> emptyList = new List<TaskItem>();
-            fClass.WriteFile(emptyList);
-            if (fClass.ReadFile().Count == 0)
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Android.Content.Context.LayoutInflaterService);
+            View view = inflater.Inflate(Resource.Layout.dialog_popup, null);
+            view.BackgroundTintList = GetColorStateList(Resource.Color.colorPrimaryDark);
+            alert.SetView(view);
+            alert.Show();
+            alert.Window.SetLayout(DpToPx(300), RelativeLayout.LayoutParams.WrapContent);
+            alert.Window.SetBackgroundDrawableResource(Resource.Color.mtrl_btn_transparent_bg_color);
+            Button confirm = view.FindViewById<Button>(Resource.Id.PopupConfirm);
+            confirm.Text = GetString(Resource.String.yes);
+            TextView header = view.FindViewById<TextView>(Resource.Id.PopupHeader);
+            header.Text = GetString(Resource.String.confirmDeleteAll);
+            TextView desc = view.FindViewById<TextView>(Resource.Id.PopupDescription);
+            desc.Text = "";
+            confirm.Click += (s, e) =>
             {
-                OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + oldTasks.Count + " " + GetString(Resource.String.task), "OK");
-            }
-            else
+                FileClass fClass = new FileClass();
+
+                List<TaskItem> oldTasks = fClass.ReadFile();
+                List<TaskItem> emptyList = new List<TaskItem>();
+                fClass.WriteFile(emptyList);
+                alert.Dismiss();
+                if (fClass.ReadFile().Count == 0)
+                {
+                    OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + oldTasks.Count + " " + GetString(Resource.String.task), "OK");
+                }
+                else
+                {
+                    OpenPopup("Error", "", "OK");
+                }
+            };
+
+            Button cancel = view.FindViewById<Button>(Resource.Id.PopupCancel);
+            cancel.Text = GetString(Resource.String.no);
+            cancel.Click += (s, e) =>
             {
-                OpenPopup("Error", "", "OK");
-            }
+                alert.Dismiss();
+            };
 
         }
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)

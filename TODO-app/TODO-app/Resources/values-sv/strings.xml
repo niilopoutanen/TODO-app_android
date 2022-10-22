@@ -99,6 +99,7 @@
 
     <string name="editDesc">Välj en funktion nedan.</string>
     <string name="task">Taskarna</string>
+	<string name="confirmDeleteAll">Är du sure du tyckar på deleter din uppgiftar?</string>
 
 	<string name="nothingToDelete">inte har deleter</string>
 	<string name="noCompletedTasks">Du har 0 uppgiftar to remuv</string>

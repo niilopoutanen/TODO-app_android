@@ -13,7 +13,7 @@
         android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottomrounded"
+        android:background="@drawable/bottomRounded"
         android:orientation="vertical"
         android:padding="20dp"
         android:layout_marginBottom="10dp"
