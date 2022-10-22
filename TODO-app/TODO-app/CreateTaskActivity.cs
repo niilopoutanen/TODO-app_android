@@ -10,7 +10,6 @@ using Android.Widget;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace TODO_app
 {
@@ -100,7 +99,7 @@ namespace TODO_app
                             oldDate.Set(CalendarField.Year, task.DueDate.Year);
                             oldDate.Set(CalendarField.Month, task.DueDate.Month);
                             oldDate.Set(CalendarField.DayOfMonth, task.DueDate.Day);
-                            if(task.TaskType == "single")
+                            if (task.TaskType == "single")
                             {
                                 oneTimeBox.Background = toggled;
                                 multipleTimeBox.Background = untoggled;
@@ -192,7 +191,7 @@ namespace TODO_app
         }
         private void ModeChange(object sender, EventArgs e)
         {
-            if(vibration == true)
+            if (vibration == true)
             {
                 methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
@@ -232,9 +231,9 @@ namespace TODO_app
             {
                 timesneededField.Text = "1";
             }
-            if(senderBtn.Id == timesLessBtn.Id)
+            if (senderBtn.Id == timesLessBtn.Id)
             {
-                if(timesInput > 1)
+                if (timesInput > 1)
                 {
                     timesInput--;
                     timesneededField.Text = timesInput.ToString();
@@ -273,7 +272,7 @@ namespace TODO_app
                 methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
             selectedDate = new DateTime(e.Year, e.Month + 1, e.DayOfMonth);
-            selectedDateText.Text = GetString(Resource.String.DueDate)+ ": " + selectedDate.ToShortDateString();
+            selectedDateText.Text = GetString(Resource.String.DueDate) + ": " + selectedDate.ToShortDateString();
         }
         private void CreateTask(string taskName, DateTime dueDate, string taskType, int amountNeeded)
         {

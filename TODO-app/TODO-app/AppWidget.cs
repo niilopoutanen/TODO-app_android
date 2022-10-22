@@ -1,14 +1,10 @@
 ﻿using Android.App;
 using Android.Appwidget;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TODO_app
 {
@@ -92,14 +88,14 @@ namespace TODO_app
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask1, ActivityMethods.TooLongStringParser(localtaskList[0].Text, 16));
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask1Due, localtaskList[0].DueDate.ToShortDateString());
             }
-            if(localtaskList.Count > 1)
+            if (localtaskList.Count > 1)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement2, ViewStates.Visible);
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask2, ActivityMethods.TooLongStringParser(localtaskList[1].Text, 16));
                 widgetView.SetTextViewText(Resource.Id.widgetLargeTask2Due, localtaskList[1].DueDate.ToShortDateString());
             }
 
-            if(localtaskList.Count > 2)
+            if (localtaskList.Count > 2)
             {
                 widgetView.SetViewVisibility(Resource.Id.widgetLargeElement3, ViewStates.Visible);
             }

@@ -8,7 +8,7 @@ namespace TODO_app
     internal class FileClass
     {
         //Folder location and filename
-        private string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
+        private readonly string _fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "TODO2.0.JSON");
 
 
         public FileClass()
@@ -41,7 +41,7 @@ namespace TODO_app
             foreach (TaskItem task in tasks)
             {
                 taskList.Add(JsonSerializer.Serialize(task));
-                
+
             }
             File.WriteAllLines(_fileName, taskList);
             //Writes to file
@@ -54,7 +54,7 @@ namespace TODO_app
         /// <returns>A list of TaskItems that are in the file</returns>
         internal List<TaskItem> ReadFile()
         {
-            
+
             List<TaskItem> tasks = new List<TaskItem>();
 
             foreach (string line in System.IO.File.ReadLines(_fileName))
@@ -64,7 +64,7 @@ namespace TODO_app
                 {
                     tasks.Add(JsonSerializer.Deserialize<TaskItem>(line));
                 }
-                
+
             }
             return tasks;
         }

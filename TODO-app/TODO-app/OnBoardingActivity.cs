@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TODO_app.Resources.layout
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false, NoHistory =true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false, NoHistory = true)]
     public class OnBoardingActivity : Activity
     {
         Button next;

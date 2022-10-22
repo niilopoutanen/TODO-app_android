@@ -1,10 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
 
@@ -19,7 +15,7 @@ namespace TODO_app.Resources.layout
             RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             var mode = Resources.Configuration.UiMode;
-            if(Android.OS.Build.VERSION.SdkInt == Android.OS.BuildVersionCodes.Q)
+            if (Android.OS.Build.VERSION.SdkInt == Android.OS.BuildVersionCodes.Q)
             {
                 if (mode == Android.Content.Res.UiMode.NightYes)
                 {

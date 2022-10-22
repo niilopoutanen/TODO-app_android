@@ -1,20 +1,6 @@
-﻿using Android.App;
-using Android.Content;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
+﻿using Android.OS;
 using AndroidX.AppCompat.App;
-using Android.Widget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xamarin.Essentials;
-using AndroidX.Core.Content;
-using Android;
-using AndroidX.Core.App;
 
 namespace TODO_app
 {
@@ -57,7 +43,7 @@ namespace TODO_app
 
         public string ProgressVisualizer(int amountDone, int amountNeeded, bool prefersPercentage)
         {
-            if(prefersPercentage == true)
+            if (prefersPercentage == true)
             {
                 double percentage = (((double)amountDone / (double)amountNeeded) * 100);
                 return Math.Round(percentage, 0).ToString() + "%";

@@ -1,19 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.Icu.Util;
-using AndroidX.Core.App;
 
 namespace TODO_app
 {
-    [BroadcastReceiver(Name = "com.tiimi1.BootBroadcastReceiver", Enabled =true, Exported = true)]
+    [BroadcastReceiver(Name = "com.tiimi1.BootBroadcastReceiver", Enabled = true, Exported = true)]
     [IntentFilter(new string[] { "android.intent.action.BOOT_COMPLETED" })]
     internal class BootReceiver : BroadcastReceiver
     {

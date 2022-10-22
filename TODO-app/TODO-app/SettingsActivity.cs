@@ -1,18 +1,18 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
-using System;
 using AndroidX.AppCompat.App;
-using Xamarin.Essentials;
-using Firebase.Analytics;
-using System.Collections.Generic;
-using Android.Util;
-using TODO_app.Resources.layout;
 using AndroidX.Core.Content;
-using Android;
+using Firebase.Analytics;
+using System;
+using System.Collections.Generic;
+using TODO_app.Resources.layout;
+using Xamarin.Essentials;
 
 namespace TODO_app
 {
@@ -124,7 +124,7 @@ namespace TODO_app
             themeSelector.ItemSelected += ThemeSelected;
             themeSelector.SetSelection(SetThemeSpinnerDefault());
             themeSelector.TextAlignment = TextAlignment.Center;
-            if(Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Q)
+            if (Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Q)
             {
                 FindViewById<RelativeLayout>(Resource.Id.themePanel).Visibility = ViewStates.Gone;
             }
@@ -226,7 +226,7 @@ namespace TODO_app
         }
         private void ThemeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            if(++themechecked > 1)
+            if (++themechecked > 1)
             {
                 Spinner selector = (Spinner)sender;
                 int selectedID = (int)selector.GetItemIdAtPosition(e.Position);
@@ -288,7 +288,7 @@ namespace TODO_app
                 return Resource.Color.mainBlue;
             }
         }
-        
+
         private void LoadSettings()
         {
             themePref = GetSharedPreferences("Theme", 0);
@@ -409,7 +409,7 @@ namespace TODO_app
             ISharedPreferences colorTheme = GetSharedPreferences("ColorTheme", 0);
             if (vibration == true)
             {
-                methods.Vibrate(vibrator,vibratorManager, methods.intensityMedium);
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityMedium);
             }
             switch (colorButton.Id)
             {
@@ -489,7 +489,7 @@ namespace TODO_app
             List<TaskItem> oldTasks = fClass.ReadFile();
             List<TaskItem> emptyList = new List<TaskItem>();
             fClass.WriteFile(emptyList);
-            if(fClass.ReadFile().Count == 0)
+            if (fClass.ReadFile().Count == 0)
             {
                 OpenPopup(GetString(Resource.String.tasksDeleted), GetString(Resource.String.deleted) + " " + oldTasks.Count + " " + GetString(Resource.String.task), "OK");
             }
@@ -502,7 +502,7 @@ namespace TODO_app
         private void ToggleVibration(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             ISharedPreferences vibrationPref = GetSharedPreferences("Vibration", 0);
-            
+
             if (e.IsChecked == true)
             {
                 vibrationPref.Edit().PutBoolean("vibrationEnabled", true).Commit();
@@ -601,7 +601,7 @@ namespace TODO_app
         }
 
         [Obsolete]
-        public override void OnBackPressed() 
+        public override void OnBackPressed()
         {
             Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
             StartActivity(mainMenuStarter);

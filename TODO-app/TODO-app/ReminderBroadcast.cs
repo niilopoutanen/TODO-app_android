@@ -1,20 +1,13 @@
-﻿using Android.Accessibilityservice.AccessibilityService;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using AndroidX.Core.App;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TODO_app.Resources.layout;
 
 namespace TODO_app
 {
-    [BroadcastReceiver(Label ="TodoAppReceiver", Enabled =true, Exported =true)]
+    [BroadcastReceiver(Label = "TodoAppReceiver", Enabled = true, Exported = true)]
     internal class ReminderBroadcast : BroadcastReceiver
     {
         public override void OnReceive(Context context, Intent intent)
@@ -28,15 +21,15 @@ namespace TODO_app
             {
                 if (task.DueDate == DateTime.Today)
                 {
-                    if(task.IsDone == false)
+                    if (task.IsDone == false)
                     {
                         tasksToday++;
                     }
                 }
             }
-            if(tasksToday > 0)
+            if (tasksToday > 0)
             {
-                if(dayWhenLast != DateTime.Now.Day)
+                if (dayWhenLast != DateTime.Now.Day)
                 {
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId: context.GetString(Resource.String.taskReminder))
                     .SetSmallIcon(Resource.Drawable.iconFull)

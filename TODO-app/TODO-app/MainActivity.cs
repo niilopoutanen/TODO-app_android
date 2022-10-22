@@ -1,20 +1,20 @@
+using Android.Animation;
 using Android.App;
+using Android.Appwidget;
+using Android.Content;
 using Android.Graphics.Drawables;
+using Android.Icu.Util;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using Firebase.Analytics;
 using System;
 using System.Collections.Generic;
-using Android.Content;
-using Android.Views.InputMethods;
 using TODO_app.Resources.layout;
-using Firebase.Analytics;
-using Android.Animation;
-using Android.Appwidget;
-using Android.Icu.Util;
 
 namespace TODO_app
 {
@@ -583,7 +583,7 @@ namespace TODO_app
             editBundle.PutString("mode", "edit");
             editBundle.PutString("taskName", oldTaskName);
             intent.PutExtras(editBundle);
-            
+
             StartActivity(intent);
 
         }
@@ -861,7 +861,7 @@ namespace TODO_app
                 cardSingle.Id = View.GenerateViewId();
                 taskToggle.Click += TaskToggle;
                 Drawable toggleClicked = GetDrawable(Resource.Drawable.task_radio_button_active);
-                if(task.IsDone == true)
+                if (task.IsDone == true)
                 {
                     taskToggle.Background = toggleClicked;
                 }
@@ -881,7 +881,7 @@ namespace TODO_app
                 RelativeLayout taskProgressBase = cardMulti.FindViewById<RelativeLayout>(Resource.Id.taskProgressBase);
                 ImageView taskProgressBar = cardMulti.FindViewById<ImageView>(Resource.Id.taskProgressBar);
                 int estimatedWidth = scrollLayout.Width - DpToPx(80);
-                if(scrollLayout.Width == 0)
+                if (scrollLayout.Width == 0)
                 {
                     estimatedWidth = Resources.DisplayMetrics.WidthPixels - DpToPx(80);
                 }
@@ -923,7 +923,7 @@ namespace TODO_app
                     bool success = int.TryParse(taskAmountDone.Text, out timesDone);
                     if (success)
                     {
-                        if(timesDone > 0)
+                        if (timesDone > 0)
                         {
                             timesDone--;
                             taskAmountDone.Text = timesDone.ToString();
@@ -952,7 +952,7 @@ namespace TODO_app
                     bool success = int.TryParse(taskAmountDone.Text, out timesDone);
                     if (success)
                     {
-                        if(timesDone < task.AmountNeeded)
+                        if (timesDone < task.AmountNeeded)
                         {
                             timesDone++;
                             taskAmountDone.Text = timesDone.ToString();
