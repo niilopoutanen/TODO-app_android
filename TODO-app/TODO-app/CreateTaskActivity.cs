@@ -10,6 +10,7 @@ using Android.Widget;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TODO_app
 {
@@ -176,18 +177,18 @@ namespace TODO_app
             {
                 methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
             }
-            if(nameField.Text != null || nameField.Text != "" || nameField.Text != " ")
+            if (nameField.Text != GetString(Resource.String.task_name_header) && !string.IsNullOrWhiteSpace(nameField.Text))
             {
 
                 CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                Finish();
             }
             else
             {
                 methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
             }
-            Intent toMain = new Intent(this, typeof(MainActivity));
-            StartActivity(toMain);
-            Finish();
+
         }
         private void ModeChange(object sender, EventArgs e)
         {

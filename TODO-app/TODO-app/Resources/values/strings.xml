@@ -71,7 +71,7 @@
 	<string name="invalidValue">Invalid input</string>
 	<string name="invalidDate">The date you gave is not valid.</string>
 
-	<string name="invalidName">Invalid name</string>
+	<string name="invalidName">Task name cannot be empty.</string>
 	<string name="invalidNameDesc">The name you gave is not valid.</string>
 	<string name="nameExists">The name you gave already exists.</string>
 	<string name="dateDoesntExist">The date you gave does not exist.</string>
