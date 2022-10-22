@@ -919,8 +919,7 @@ namespace TODO_app
                     {
                         methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                     }
-                    int timesDone;
-                    bool success = int.TryParse(taskAmountDone.Text, out timesDone);
+                    bool success = int.TryParse(taskAmountDone.Text, out int timesDone);
                     if (success)
                     {
                         if (timesDone > 0)
@@ -936,6 +935,10 @@ namespace TODO_app
                                         methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
                                     }
                                     t.AmountDone = timesDone;
+                                    if(t.AmountDone < t.AmountNeeded)
+                                    {
+                                        t.IsDone = false;
+                                    }
                                     taskProgress.Text = methods.ProgressVisualizer(t.AmountDone, t.AmountNeeded, progressInPercents);
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
@@ -948,8 +951,7 @@ namespace TODO_app
                 };
                 taskTimesMore.Click += (s, e) =>
                 {
-                    int timesDone;
-                    bool success = int.TryParse(taskAmountDone.Text, out timesDone);
+                    bool success = int.TryParse(taskAmountDone.Text, out int timesDone);
                     if (success)
                     {
                         if (timesDone < task.AmountNeeded)
@@ -969,10 +971,16 @@ namespace TODO_app
                                     taskProgressBase.LayoutTransition.EnableTransitionType(LayoutTransitionType.Changing);
                                     RelativeLayout.LayoutParams widthParam = new RelativeLayout.LayoutParams(methods.ProgressBarCalculator(taskProgressBase.Width, task.AmountDone, task.AmountNeeded), RelativeLayout.LayoutParams.MatchParent);
                                     taskProgressBar.LayoutParameters = widthParam;
+                                    if (t.AmountDone == t.AmountNeeded)
+                                    {
+                                        t.IsDone = true;
+                                    }
                                 }
                             }
                             file.WriteFile(taskList);
+
                         }
+                        
 
                     }
                 };
