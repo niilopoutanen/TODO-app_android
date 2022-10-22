@@ -41,6 +41,7 @@ namespace TODO_app
         string taskType = "single";
         int amountNeeded = 1;
         bool vibration = false;
+        string oldTaskName = "";
         Vibrator vibrator;
         VibratorManager vibratorManager;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -71,18 +72,11 @@ namespace TODO_app
                 }
                 else if (mode == "edit")
                 {
-                    string oldTaskName = b.GetString("taskName");
+                    oldTaskName = b.GetString("taskName");
                     nameField.SetTextColor(GetColorStateList(Resource.Color.textPrimary));
                     activityHeader.Text = GetString(Resource.String.edit_task_header);
                     doneBtn.Text = "OK";
-                    doneBtn.Click += (s, e) =>
-                    {
-                        DeleteTask(oldTaskName);
-                        CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
-                        Intent toMain = new Intent(this, typeof(MainActivity));
-                        StartActivity(toMain);
-                        Finish();
-                    };
+                    doneBtn.Click += EditDone;
                     dateCalendar.DateChange += (s, e) =>
                     {
                         selectedDate = new DateTime(e.Year, e.Month, e.DayOfMonth);
@@ -172,22 +166,82 @@ namespace TODO_app
         }
         private void CreateDone(object sender, EventArgs e)
         {
-            if (vibration == true)
-            {
-                methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
-            }
-            if (nameField.Text != GetString(Resource.String.task_name_header) && !string.IsNullOrWhiteSpace(nameField.Text))
-            {
+            bool failed = false;
 
-                CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
-                Finish();
-            }
-            else
+            if (nameField.Text == GetString(Resource.String.task_name_header))
             {
                 methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
                 Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            if (string.IsNullOrWhiteSpace(nameField.Text))
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            foreach (TaskItem task in taskList)
+            {
+                if (task.Text.ToLower() == nameField.Text.ToLower())
+                {
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                    Toast.MakeText(this, GetString(Resource.String.nameExists), ToastLength.Long).Show();
+                    failed = true;
+                }
             }
 
+
+            if (failed == false)
+            {
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
+                }
+                CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                Finish();
+            }
+
+        }
+        private void EditDone(object sender, EventArgs e)
+        {
+            bool failed = false;
+
+            if (nameField.Text == GetString(Resource.String.task_name_header))
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            if (string.IsNullOrWhiteSpace(nameField.Text))
+            {
+                methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                Toast.MakeText(this, GetString(Resource.String.invalidName), ToastLength.Long).Show();
+                failed = true;
+            }
+            foreach (TaskItem task in taskList)
+            {
+                if(task.Text.ToLower() != oldTaskName.ToLower())
+                {
+                    if (task.Text.ToLower() == nameField.Text.ToLower())
+                    {
+                        methods.Vibrate(vibrator, vibratorManager, methods.intensityHard);
+                        Toast.MakeText(this, GetString(Resource.String.nameExists), ToastLength.Long).Show();
+                        failed = true;
+                    }
+                }
+            }
+
+
+            if (failed == false)
+            {
+                if (vibration == true)
+                {
+                    methods.Vibrate(vibrator, vibratorManager, methods.intensitySmall);
+                }
+                DeleteTask(oldTaskName);
+                CreateTask(nameField.Text, selectedDate, taskType, amountNeeded);
+                Finish();
+            }
         }
         private void ModeChange(object sender, EventArgs e)
         {
