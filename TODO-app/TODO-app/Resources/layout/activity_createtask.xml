@@ -94,6 +94,7 @@
                     android:rotation="180"/>
             </RelativeLayout>
             <CalendarView
+                android:visibility="gone"
                 android:id="@+id/dateCalendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,11 +165,11 @@
 
         </LinearLayout>
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/timesNeededPanel"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@drawable/rounded10px"
             android:backgroundTint="@color/colorPrimaryDark"
             android:paddingLeft="15dp"
@@ -184,14 +185,14 @@
 
             <RelativeLayout
                 android:id="@+id/timesLessBtn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/circle">
                 <ImageView
                     android:contentDescription="@string/default_description"
                     android:layout_centerInParent="true"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/minus"/>
             </RelativeLayout>
             <TextView
@@ -199,20 +200,21 @@
                 android:id="@+id/timesNeededField"
                 android:layout_width="30dp"
                 android:text="1"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:fontFamily="@font/inter_bold"
                 android:background="@android:color/transparent"
                 android:textColor="@color/textPrimary"/>
             <RelativeLayout
                 android:id="@+id/timesMoreBtn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/circle">
                 <ImageView
                     android:contentDescription="@string/default_description"
                     android:layout_centerInParent="true"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/plus"/>
             </RelativeLayout>
         </LinearLayout>
