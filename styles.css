@@ -32,9 +32,10 @@ nav ul{
 nav ul li{
     display: inline-block;
     padding: 1vh;
-    font-family: Inter-bold;
+    font-family: Inter-medium;
     font-size: 2vh;
     transition-duration: 0.2s;
+    margin-right: 2vw;
 }
 nav ul li:hover{
     filter: drop-shadow(0 0 10px#FFFFFF);
