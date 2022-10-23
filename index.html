@@ -45,5 +45,31 @@
 
             </div>
         </div>
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyDi-AcCiowj9zgeQCN0I7g4WROOIN6RfRA",
+              authDomain: "todo-app-b590d.firebaseapp.com",
+              databaseURL: "https://todo-app-b590d-default-rtdb.europe-west1.firebasedatabase.app",
+              projectId: "todo-app-b590d",
+              storageBucket: "todo-app-b590d.appspot.com",
+              messagingSenderId: "847120914475",
+              appId: "1:847120914475:web:d803bf4e117b6d91d1b26e",
+              measurementId: "G-QW5ZSSK1SC"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+          </script>
     </body>
 </html>
