@@ -106,7 +106,18 @@ namespace TODO_app
             {
                 CreateNotificationRepeater();
             }
+            Calendar calendar = Calendar.Instance;
 
+            calendar.Set(CalendarField.HourOfDay, DateTime.Now.Hour);
+            calendar.Set(CalendarField.Minute, DateTime.Now.Minute);
+            calendar.Set(CalendarField.Second, DateTime.Now.Second + 4);
+            calendar.Set(CalendarField.Millisecond, 0);
+
+            Intent intent = new Intent(packageContext: this, typeof(ReminderBroadcast));
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(context: this, requestCode: 0, intent, flags: PendingIntentFlags.Immutable);
+
+            AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+            alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, pendingIntent);
             //Start onboarding
             if (guideDone == false)
             {

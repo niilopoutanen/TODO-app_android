@@ -119,7 +119,7 @@
 	<string name="tempDate">1.1.2023</string>
 
 	<string name="taskReminder">Uppgiftar reminderare</string>
-	<string name="tasksToday"> tuppgiftar to do todag.</string>
+	<string name="tasksToday"> tuppgiftar to do todag</string>
 	<string name="notificationDesc">TODO-apparna uppgiftar-reminderare</string>
 	
 	<string name="timeHeader">Time får reminderare:</string>

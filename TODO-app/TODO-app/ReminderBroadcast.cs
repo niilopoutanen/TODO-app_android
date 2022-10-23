@@ -26,10 +26,10 @@ namespace TODO_app
                     {
                         tasksToday++;
                     }
-                    if(task.DueDate < DateTime.Today)
-                    {
-                        tasksOverDue++;
-                    }
+                }
+                else if (task.DueDate < DateTime.Today)
+                {
+                    tasksOverDue++;
                 }
             }
             if (tasksToday > 0)
