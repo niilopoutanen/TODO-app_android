@@ -38,7 +38,7 @@
                 android:layout_height="30dp"
                 android:text="@string/add"
                 android:textAllCaps="false"
-                android:textColor="@color/textPrimary"
+                android:textColor="@color/white"
                 android:fontFamily="@font/inter_bold"
                 android:background="@drawable/rounded50px"
                 android:backgroundTint="?attr/colorAccent"/>
