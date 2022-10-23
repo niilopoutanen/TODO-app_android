@@ -34,6 +34,7 @@ nav ul li{
     padding: 1vh;
     font-family: Inter-bold;
     font-size: 2vh;
+    transition-duration: 0.2s;
 }
 nav ul li:hover{
     filter: drop-shadow(0 0 10px#FFFFFF);
@@ -79,9 +80,11 @@ nav ul li:hover{
     width: 30vh;
     margin-bottom: 2vh;
 }
-.bottomArea{
-    width: 100vw;
-    height: 10vh;
+.blur{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 @media only screen and (max-width: 1300px) {
@@ -110,13 +113,26 @@ nav ul li:hover{
         width: 40vw;
         margin-bottom: 2vh;
     }
+    nav ul li{
+        font-size: 3vw;
+    }
+    .blur{
+        display: none;
+    }
 }
-@media (min-width:700px) and (max-width:1299px) {
+
+@media (min-width:700px) and (max-width:1300px) {
     .headerArea h1{
         font-size: 10vh;
     }
     .headerArea img{
         width: 30vh;
         margin-bottom: 2vh;
+    }
+    nav ul li{
+        font-size: 2vh;
+    }
+    .blur{
+        display: none;
     }
 }​
