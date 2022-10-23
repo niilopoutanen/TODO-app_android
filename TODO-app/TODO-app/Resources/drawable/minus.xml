@@ -7,7 +7,7 @@
 
 	<path
         android:fillColor="#000000"
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/textPrimary"
         android:strokeWidth="15"
         android:strokeLineJoin="bevel"
         android:strokeLineCap="round"
