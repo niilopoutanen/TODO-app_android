@@ -6,7 +6,7 @@ App store demo:
 
 
 ### Available on:
-[<img src="/git.png" height=80/>](https://github.com/niilopoutanen/TODO-app_android/releases)
+[<img src="https://user-images.githubusercontent.com/60819607/197388883-c09a151c-fa22-4e95-bcd6-b4cc51910233.png" height=80/>](https://github.com/niilopoutanen/TODO-app_android/releases)
 
 
 <br>
