@@ -38,6 +38,7 @@
             android:backgroundTint="?attr/colorAccent"
             android:text="@string/yes"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:fontFamily="@font/inter_bold"/>
 
         <Button

@@ -9,17 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded60px"
-        android:backgroundTint="@color/colorPrimaryDark">
+        android:backgroundTint="@color/widgetBG">
         <TextView
+            android:text="0"
             android:layout_above="@+id/sliderbg"
             android:id="@+id/widgetCountSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:lineHeight="10dp"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/widgetText"
             android:textSize="35dp"
-            android:text="2"
             android:fontFamily="@font/inter_bold"
             android:textAlignment="center"/>
     </RelativeLayout>

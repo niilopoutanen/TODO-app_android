@@ -6,29 +6,38 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+		<item name="colorAccentSecondary">@color/colorAccentSecondary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/textPrimary</item>
+		<item name="android:textColorPrimary">@color/textPrimary</item>
 		<item name="android:navigationBarColor">@color/colorPrimary</item>
+		<item name="android:windowActivityTransitions">true</item>
+		<item name="android:windowBackground">@color/colorPrimary</item>
 	</style>
 
 	<style name="MainBlue" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainBlue</item>
+		<item name="colorAccentSecondary">@color/blueSecondary</item>
 	</style>
 
 	<style name="MainGreen" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainGreen</item>
+		<item name="colorAccentSecondary">@color/greenSecondary</item>
 	</style>
 
 	<style name="MainViolet" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainViolet</item>
+		<item name="colorAccentSecondary">@color/violetSecondary</item>
 	</style>
 	<style name="MainOrange" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainOrange</item>
+		<item name="colorAccentSecondary">@color/orangeSecondary</item>
 		
 	</style>
 	<style name="MainRed" parent="@style/AppTheme">
 		<item name="colorAccent">@color/mainRed</item>
+		<item name="colorAccentSecondary">@color/redSecondary</item>
 	</style>
 
 
@@ -37,8 +46,8 @@
 	</style>
 
 	<style name="OnBoardTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-		<item name="android:navigationBarColor">#1B1C27</item>
-		<item name="colorPrimaryDark">#1B1C27</item>
+		<item name="android:navigationBarColor">@color/onBoardingBG</item>
+		<item name="colorPrimaryDark">@color/onBoardingBG</item>
 	</style>
 
 	<style name="AppTheme.Splash">
@@ -48,4 +57,46 @@
 		<item name="android:windowContentOverlay">@null</item>
 		<item name="android:windowActionBar">true</item>
 	</style>
+
+	<style name="AppTheme.Splash.Light">
+		<item name="android:windowBackground">@drawable/splashscreenlight</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowActionBar">true</item>
+	</style>
+
+	<style name="DarkEdges" parent="@style/AppTheme">
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimary</item>
+	</style>
+
+	<style name="MainBlueDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainBlue</item>
+		<item name="colorAccentSecondary">@color/blueSecondary</item>
+	</style>
+
+	<style name="MainGreenDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainGreen</item>
+		<item name="colorAccentSecondary">@color/greenSecondary</item>
+	</style>
+
+	<style name="MainVioletDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainViolet</item>
+		<item name="colorAccentSecondary">@color/violetSecondary</item>
+	</style>
+	<style name="MainOrangeDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainOrange</item>
+		<item name="colorAccentSecondary">@color/orangeSecondary</item>
+
+	</style>
+	<style name="MainRedDark" parent="@style/DarkEdges">
+		<item name="colorAccent">@color/mainRed</item>
+		<item name="colorAccentSecondary">@color/redSecondary</item>
+	</style>
+
+	<style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+		<item name="android:textColor">@color/textPrimary</item>
+	</style>
+	
 </resources>

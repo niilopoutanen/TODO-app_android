@@ -8,48 +8,35 @@
     android:background="?attr/colorPrimary"
     android:orientation="vertical"
     android:animateLayoutChanges="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/bottomrounded">
-        <RelativeLayout
-            android:id="@+id/SettingsReturn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:padding="17dp">
-            <ImageView
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow"
-                android:contentDescription="@string/default_description" />
-            </RelativeLayout>
-        <TextView
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textSize="25dp"
-            android:fontFamily="@font/inter_bold"/>
-    </RelativeLayout>
+
     <ScrollView
+        android:scrollbars="none"
         android:visibility="visible"
         android:id="@+id/SettingsScroller"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:textSize="35dp"
+                android:fontFamily="@font/inter_bold"/>
 
             <RelativeLayout
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -77,8 +64,49 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notificationSettings"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/inter_bold"/>
+                <Switch
+                    android:checked="true"
+                    android:id="@+id/notificationsSwitch"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/toggle_thumb"
+                    android:track="@drawable/toggle_track"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="13dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginBottom="10dp"
+                android:text="@string/notificationInfo"/>
+            <RelativeLayout
+                android:id="@+id/themePanel"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:paddingLeft="25dp"
+                android:paddingRight="10dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -86,34 +114,33 @@
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/deleteAllDone"
+                    android:text="@string/theme"
                     android:textSize="20dp"
                     android:fontFamily="@font/inter_bold"/>
-                <RelativeLayout
-                    android:layout_height="match_parent"
-                    android:layout_width="100dp"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/deleteAllDoneButton"
-                    android:paddingRight="20dp">
-                    <Button
-                        android:clickable="false"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="15dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
-                        android:rotation="180"
-                    />
-                </RelativeLayout>
 
+                <Spinner
+                    android:id="@+id/themeSelector"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:minWidth="80dp"
+                    android:popupBackground="@drawable/spinnerbg"
+                    android:background="@drawable/rounded50px"
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/colorButton"
+                    />
             </RelativeLayout>
 
-            
+
             <RelativeLayout
+                android:id="@+id/colorSelector"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/headerBackground"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"
@@ -145,7 +172,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0043BA"
+                            android:tint="@color/blueSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
 
@@ -166,7 +193,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#0C8600"
+                            android:tint="@color/greenSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -186,7 +213,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#7000A8"
+                            android:tint="@color/violetSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -206,7 +233,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#8C4E00"
+                            android:tint="@color/orangeSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                     <Space
@@ -226,7 +253,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/circle"
-                            android:tint="#A80F00"
+                            android:tint="@color/redSecondary"
                             android:contentDescription="@string/default_description" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -234,10 +261,155 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:paddingLeft="25dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/whatsNewButton">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/whatsNew"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/inter_bold"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="20dp">
+                    <Button
+                        android:clickable="false"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/arrow"
+                        android:backgroundTint="@color/textPrimary"
+                        android:rotation="180"
+                    />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="25dp"
+                    android:id="@+id/deleteAllDoneButton">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deleteAllDone"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/inter_bold"/>
+                    <RelativeLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="100dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="20dp">
+                        <Button
+                            android:clickable="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="15dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/arrow"
+                            android:backgroundTint="@color/textPrimary"
+                            android:rotation="180"
+                    />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/deleteAllButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="25dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deleteAll"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/inter_bold"/>
+                    <RelativeLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="100dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="20dp">
+                        <Button
+                            android:clickable="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="15dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/arrow"
+                            android:backgroundTint="@color/textPrimary"
+                            android:rotation="180"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/progressType"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/inter_bold"/>
+                <Switch
+                    android:id="@+id/progressSwitch"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/toggle_thumb"
+                    android:track="@drawable/toggle_track"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="13dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginBottom="10dp"
+                android:text="@string/progressTypeInfo"/>
+            <RelativeLayout
                 android:id="@+id/SendFeedbackBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -253,7 +425,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/SendFeedbackBtn"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -262,7 +433,7 @@
                         android:layout_width="15dp"
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/textPrimary"
                         android:rotation="180"
                     />
                 </RelativeLayout>
@@ -273,7 +444,8 @@
                 android:id="@+id/ReplayTutorialbtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:background="@drawable/rounded50px"
                 android:paddingLeft="25dp"
                 android:layout_marginBottom="10dp">
 
@@ -289,7 +461,6 @@
                     android:layout_height="match_parent"
                     android:layout_width="100dp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/SendFeedbackBtn"
                     android:paddingRight="20dp">
                     <Button
                         android:clickable="false"
@@ -298,7 +469,7 @@
                         android:layout_width="15dp"
                         android:layout_height="25dp"
                         android:background="@drawable/arrow"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/textPrimary"
                         android:rotation="180"
                     />
                 </RelativeLayout>
@@ -308,7 +479,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@color/headerBackground"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="10dp">
@@ -334,8 +506,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@color/headerBackground"
+                android:layout_height="130dp"
+                android:background="@drawable/rounded50px"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:paddingTop="10dp"
@@ -371,6 +544,7 @@
                     android:id="@+id/CreditsTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/Credits3"
                     android:layout_below="@+id/CreditsOM"
                     android:textSize="15dp"

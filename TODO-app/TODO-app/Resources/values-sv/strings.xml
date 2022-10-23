@@ -8,7 +8,11 @@
 	<string name="show_all">Shuv allt</string>
 	<string name="add_task_header">Addärare en nu uppgift</string>
     <string name="edit_task_header">Editorna uppgift</string>
-
+	<string name="typeOfTask">Typen på uppgift</string>
+	<string name="doSingle">Går single timman</string>
+	<string name="doMulti">Går multiple timman</string>
+	<string name="timesNeeded">timmar needed</string>
+	
     <string name="add">Addärare</string>
 	<string name="search">Sök</string>
 	<string name="plus">+</string>
@@ -17,16 +21,28 @@
 
 
 	<string name="settings">Inställningar</string>
+	<string name="notificationSettings">Notifikatiorna</string>
+	<string name="notificationInfo">Applikationen påminner dig om dagens uppgifter once på dag. Aviseringen säger också om du har sena uppdrag.</string>
+	<string name="reminderTime">Clockan på reminderare</string>
 	<string name="vibrationSettings">Vibratiorna</string>
     <string name="deleteAllDone">Radera allt gjort</string>
+	<string name="deleteAll">Radera allt</string>
+	<string name="theme">Temarnå</string>
 	<string name="colorTheme">Färgtema</string>
 	<string name="sendFeedback">Skicka synpunkter</string>
 	<string name="replayTutorial">Rewatchär tutorialen</string>
+	<string name="progressType">Progr på %</string>
+	<string name="progressTypeInfo">Framstegen för flerdelade uppgifter visas i bråkdelar. Om du aktiverar inställningen visas förloppet i procent. T.ex.: 50 % eller 3/6</string>
 	<string name="versionHeader">Version:</string>
 	<string name="CreditsHeader">Faktorerna:</string>
 	<string name="Credits1">Niilo Poutanen</string>
 	<string name="Credits2">Oskari Mäkelä</string>
 	<string name="Credits3">Tomi Vahdersalo</string>
+	<string name="darkTheme">Dark temarnå</string>
+	<string name="lightTheme">Light temarnå</string>
+	<string name="systemTheme">Use mobilen temarnå</string>
+	
+	
 	<string name="taskAmount">Uppgiftar</string>
 
 	<string name="returnbtn">Returna</string>
@@ -83,6 +99,7 @@
 
     <string name="editDesc">Välj en funktion nedan.</string>
     <string name="task">Taskarna</string>
+	<string name="confirmDeleteAll">Är du sure du tyckar på deleter din uppgiftar?</string>
 
 	<string name="nothingToDelete">inte har deleter</string>
 	<string name="noCompletedTasks">Du har 0 uppgiftar to remuv</string>
@@ -93,5 +110,44 @@
 	<string name="widgetMediumDesc">Shuv uppgiftar de är inte done todag</string>
 	<string name="widgetSmallDesc">Shuv uppgiftar de är inte done todag (littel ui)</string>
 	<string name="today">Todag</string>
+	<string name="overDueTasks">uppgiftar late.</string>
 
+	<string name="widgetLargeTemp1">Uppgiftar (0)</string>
+
+	<string name="firstTask">Firstå uppgift</string>
+	<string name="secondTask">Två uppgift</string>
+	<string name="tempDate">1.1.2023</string>
+
+	<string name="taskReminder">Uppgiftar reminderare</string>
+	<string name="tasksToday"> tuppgiftar to do todag</string>
+	<string name="notificationDesc">TODO-apparna uppgiftar-reminderare</string>
+	
+	<string name="timeHeader">Time får reminderare:</string>
+	<string name="whatsNew">Vad nu</string>
+
+	<string name="header1.7">Weminderare updaterna</string>
+	<string name="desc1.7">Applikatiorna nu har notificationer. Du can toggle them off på settings menu</string>
+	<string name="desc1.72">Addad nu uppgiftar typarnå. Du kan nu selectarna between single och multi uppgift. Jättemuch ottre stuff inkluderna.</string>
+	<string name="desc1.73">Du kan nu addar uppgift på du quick settingerare. Addad en quick tile på muvar det på du quick settingar.</string>
+
+	<string name="header1.6">Widget updaterna</string>
+	<string name="desc1.6">tre nu widgeter addad på appen. och Material You temårna.</string>
+
+	<string name="header1.5.5">Languagen updaterna</string>
+	<string name="desc1.5.5">Added tre nu languagerna. The apparna supports finska, engelska och svenska.</string>
+
+	<string name="header1.5">Uppgiftar edit updaterna</string>
+	<string name="desc1.5">Du kan nu editar uppgiftar. Och addad vibrationer i jättegood UI på inte correct inputtar.</string>
+
+	<string name="header1.4">Google updaterna</string>
+	<string name="desc1.4">Inte visual updaterna, only Google analytiker och Google spelar servicerna.</string>
+
+	<string name="header1.3">Bug fixarna</string>
+	<string name="desc1.3">Fixarna bugs. Bättre touch areas.</string>
+
+	<string name="header1.2">Missed taskar updaterna</string>
+	<string name="desc1.2">Addad separaten view för uppgiftar på inte completed i timmar.</string>
+
+	<string name="header1.0">Förstå releasen</string>
+	<string name="desc1.0">Förstå releasen på TODO-apparna. jättemuch bugs.</string>
 </resources>

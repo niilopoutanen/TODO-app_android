@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace TODO_app.Resources.layout
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
-
-
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false, NoHistory = true)]
     public class OnBoardingActivity : Activity
     {
         Button next;
@@ -23,7 +21,10 @@ namespace TODO_app.Resources.layout
         {
             base.OnCreate(savedInstanceState);
             SetTheme(Resource.Style.OnBoardTheme);
-            SetContentView(Resource.Layout.onboarder);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
+            SetContentView(Resource.Layout.activity_onboarder);
+
             next = FindViewById<Button>(Resource.Id.nextButton);
             next.Click += NextView;
 
@@ -32,7 +33,6 @@ namespace TODO_app.Resources.layout
             guideView = FindViewById<ImageView>(Resource.Id.guideScreen);
             onBoardHeader = FindViewById<TextView>(Resource.Id.onBoardHeader);
             imageLayout = FindViewById<RelativeLayout>(Resource.Id.imageLayout);
-            // Create your application here
 
         }
 
@@ -120,7 +120,9 @@ namespace TODO_app.Resources.layout
                 ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
                 hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
                 Intent backToMain = new Intent(this, typeof(MainActivity));
+                backToMain.SetFlags(ActivityFlags.ClearTop);
                 StartActivity(backToMain);
+                Finish();
             }
 
 
@@ -130,7 +132,9 @@ namespace TODO_app.Resources.layout
             ISharedPreferences hasWatchedGuide = GetSharedPreferences("hasWatchedGuide", 0);
             hasWatchedGuide.Edit().PutBoolean("hasWatchedGuide", true).Commit();
             Intent backToMain = new Intent(this, typeof(MainActivity));
+            backToMain.SetFlags(ActivityFlags.ClearTop);
             StartActivity(backToMain);
+            Finish();
         }
 
 
@@ -139,6 +143,8 @@ namespace TODO_app.Resources.layout
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
+
+        [Obsolete]
         public override void OnBackPressed()
         {
         }

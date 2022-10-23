@@ -92,7 +92,7 @@
                 android:backgroundTint="@color/colorButton"
                 android:inputType="date"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary"
                 android:fontFamily="@font/inter_medium"
                 android:textSize="20dp"/>
             <RelativeLayout
@@ -142,7 +142,7 @@
                 android:inputType="date"
                 android:backgroundTint="@color/colorButton"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary"
                 android:fontFamily="@font/inter_medium"
                 android:textSize="20dp"/>
 
@@ -192,7 +192,7 @@
                 android:backgroundTint="@color/colorButton"
                 android:inputType="date"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/textPrimary"
                 android:fontFamily="@font/inter_medium"
                 android:textSize="20dp"/>
             <RelativeLayout
@@ -231,6 +231,7 @@
         android:backgroundTint="?attr/colorAccent"
         android:text="@string/yes"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:fontFamily="@font/inter_bold"/>
 
     <Button
