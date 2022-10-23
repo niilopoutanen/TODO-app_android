@@ -1,15 +1,15 @@
 @font-face {
-    font-family: Inter;
+    font-family: Inter-bold;
     src: url(resources/fonts/Inter-Bold.ttf);
     font-weight: bold;
 }
 @font-face {
-    font-family: Inter;
+    font-family: Inter-semibold;
     src: url(resources/fonts/Inter-SemiBold.ttf);
     font-weight: 600;
 }
 @font-face {
-    font-family: Inter;
+    font-family: Inter-medium;
     src: url(resources/fonts/Inter-Medium.ttf);
     font-weight: 500;
 }
@@ -18,73 +18,53 @@ body{
     background-color: #000000;
     margin: 0;
     color: #FFFFFF;
-    font-family: Inter;
     overflow: hidden;
 }
-.topnav{
+nav{
     width: 100vw;
-    align-items: center;
-    min-height: 7vh
+    height: 10vh;
 }
-.center-items{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden;
-    min-height: 7.22vh;
-    vertical-align: middle;
-}
-.topnav a{
+nav ul{
     text-align: center;
-    margin: 1.46vw 1.46vw 0 1.46vw;
-    font-size: 2.869vh;
     text-decoration: none;
-    color: #FFFFFF;
-    width: auto;
 }
-.topnav img{
-    float: left;
-    margin-right: auto;
-    height: 7.22vh;
+nav ul li{
+    display: inline-block;
+    padding: 20px;
+    font-family: Inter-medium;
+    font-size: 1.5vh;
 }
-.topnav a:hover{
-    filter: drop-shadow(0 0 0.717vh #FFFFFF);
-    cursor: pointer;
-}
-
-.centerArea{
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    flex-direction: column;
+.content{
     width: 100vw;
+    height: 90vh;
+}
+.imageArea{
+    width: 100vw;
+    height: 60%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imageArea img{
+    width: auto;
+    height: auto;
+    max-height: 60%;
+}
+.headerArea{
+    width: 100vw;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
-.providerImg{
-    object-fit: cover;
-    height: 11.47vh;
-    margin: 1.46vw;
-}
-h1{
-    font-size: 14vh;
-    font-weight: bold;
+.headerArea h1{
+    font-family: Inter-bold;
+    font-size: 8vh;
     margin: 0;
+    margin-bottom: 2vh;
 }
-.mainImg{
-    max-height: 50vh;
-    max-width: 90vw;
-}
-@media screen and (max-width: 700px){
-
-  #logo{
-    display: none;
-  }
-  h1{
-    font-size: 20vw;
-  }
-  .providerImg{
-    max-width: 80vw;
-  }
+.headerArea img{
+    width: 30vh;
+    margin-bottom: 2vh;
 }
