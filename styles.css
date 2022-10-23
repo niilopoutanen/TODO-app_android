@@ -32,37 +32,42 @@ nav ul{
 nav ul li{
     display: inline-block;
     padding: 1vh;
-    font-family: Inter-medium;
-    font-size: 1.5vh;
+    font-family: Inter-bold;
+    font-size: 2vh;
 }
 nav ul li:hover{
     filter: drop-shadow(0 0 10px#FFFFFF);
     cursor: pointer;
 }
 .content{
+    display: flex;
     width: 100vw;
     height: 90vh;
 }
 .imageArea{
-    width: 100vw;
-    height: 50%;
-    position: relative;
+    width: 50vw;
+    height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 .imageArea img{
-    width: auto;
-    height: auto;
-    max-height: 60%;
-    max-width: 90vw;
+    margin-top: auto;
+    min-height: 75vh;
 }
-.headerArea{
-    width: 100vw;
-    height: 30%;
+.info{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+.headerArea{
+    width: 50vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .headerArea h1{
     font-family: Inter-bold;
@@ -78,3 +83,40 @@ nav ul li:hover{
     width: 100vw;
     height: 10vh;
 }
+
+@media only screen and (max-width: 1300px) {
+    .content{
+        flex-direction: column;
+    }
+    .imageArea{
+        margin: 0;
+        width: 100vw;
+        height: 60%;
+        justify-content: center;
+    }
+    .imageArea img{
+        max-width: 90vw;
+        height: auto;
+        min-height: 0;
+    }
+    .headerArea{
+        width: 100vw;
+        height: 40%;
+    }
+    .headerArea h1{
+        font-size: 15vw;
+    }
+    .headerArea img{
+        width: 40vw;
+        margin-bottom: 2vh;
+    }
+}
+@media (min-width:700px) and (max-width:1299px) {
+    .headerArea h1{
+        font-size: 10vh;
+    }
+    .headerArea img{
+        width: 30vh;
+        margin-bottom: 2vh;
+    }
+}​
