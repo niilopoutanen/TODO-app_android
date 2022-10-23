@@ -1133,11 +1133,11 @@ namespace TODO_app
         /// </summary>
         private void DoneAndGone()
         {
-            foreach (TaskItem t in taskList)
+            for(int i = 0; i < taskList.Count; i++)
             {
-                if (t.IsDone == true && t.DueDate < DateTime.Today)
+                if (taskList[i].IsDone == true && taskList[i].DueDate < DateTime.Today)
                 {
-                    DeleteTaskItem(t.Text);
+                    DeleteTaskItem(taskList[i].Text);
                 }
             }
             file.WriteFile(taskList);
