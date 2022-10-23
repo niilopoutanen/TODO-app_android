@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>TODO-app</title>
         <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     </head>
@@ -8,10 +9,10 @@
     <body>
         <nav>
             <ul>
-                <li>Github</li>
-                <li>Play store</li>
-                <li>Direct download</li>
-                <li>Send feedback</li>
+                <li onclick="location.href='https://github.com/niilopoutanen/TODO-app_android'">Github</li>
+                <li onclick="location.href=''" style="display:none;">Play store</li>
+                <li onclick="location.href='https://github.com/niilopoutanen/TODO-app_android/releases/latest/download/com.tiimi1.todo_app.apk'">Direct download</li>
+                <li onclick="location.href='mailto:niilo.poutanen@gmail.com'">Send feedback</li>
             </ul>
         </nav>
         <div class="content">
@@ -20,8 +21,12 @@
             </div>
             <div class="headerArea">
                 <h1>TODO-app</h1>
-                <img src="resources\images\github-badge.png"/>
-                <img src="resources\images\google-play-badge.png"/>
+                <a href="https://github.com/niilopoutanen/TODO-app_android/releases/latest">
+                    <img src="resources\images\github-badge.png"/>
+                </a>
+                <a style="display: none;">
+                    <img src="resources\images\google-play-badge.png"/>
+                </a>
 
             </div>
             <div class="bottomArea">

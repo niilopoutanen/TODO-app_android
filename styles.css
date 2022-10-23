@@ -35,6 +35,10 @@ nav ul li{
     font-family: Inter-medium;
     font-size: 1.5vh;
 }
+nav ul li:hover{
+    filter: drop-shadow(0 0 10px#FFFFFF);
+    cursor: pointer;
+}
 .content{
     width: 100vw;
     height: 90vh;
