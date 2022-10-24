@@ -41,7 +41,7 @@ namespace TODO_app
                     builder.SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday));
                     if(tasksOverDue > 0)
                     {
-                        builder.SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday) + ", "+ tasksOverDue + context.GetString(Resource.String.overDueTasks));
+                        builder.SetContentTitle(tasksToday + " " + context.GetString(Resource.String.tasksToday) + ", "+ tasksOverDue + " " + context.GetString(Resource.String.overDueTasks));
                     }
                     builder.SetPriority(NotificationCompat.PriorityDefault);
                     PendingIntent contentClick = PendingIntent.GetActivity(context, 0, new Intent(context, typeof(SplashActivity)), PendingIntentFlags.Immutable);
