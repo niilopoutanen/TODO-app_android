@@ -1162,7 +1162,7 @@ namespace TODO_app
         {
             Calendar calendar = Calendar.Instance;
 
-            calendar.Set(CalendarField.HourOfDay, 8);
+            calendar.Set(CalendarField.HourOfDay, 08);
             calendar.Set(CalendarField.Minute, 0);
             calendar.Set(CalendarField.Second, 0);
             calendar.Set(CalendarField.Millisecond, 0);
