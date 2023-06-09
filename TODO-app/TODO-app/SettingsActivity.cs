@@ -628,12 +628,5 @@ namespace TODO_app
             int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dpValue, Resources.DisplayMetrics);
             return pixel;
         }
-
-        [Obsolete]
-        public override void OnBackPressed()
-        {
-            Intent mainMenuStarter = new Intent(this, typeof(MainActivity));
-            StartActivity(mainMenuStarter);
-        }
     }
 }
